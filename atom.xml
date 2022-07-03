@@ -6,7 +6,7 @@
   <link href="https://longls777.github.io/atom.xml" rel="self"/>
   
   <link href="https://longls777.github.io/"/>
-  <updated>2022-07-02T09:45:35.451Z</updated>
+  <updated>2022-07-03T02:27:22.201Z</updated>
   <id>https://longls777.github.io/</id>
   
   <author>
@@ -17,11 +17,129 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>latex</title>
+    <link href="https://longls777.github.io/2022/07/03/latex/"/>
+    <id>https://longls777.github.io/2022/07/03/latex/</id>
+    <published>2022-07-03T02:09:31.000Z</published>
+    <updated>2022-07-03T02:27:22.201Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#&quot;&gt;&lt;/a&gt; &lt;/h4&gt;
+&lt;h4 id=&quot;分式&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#分式&quot;&gt;&lt;/a&gt; 分式&lt;/h4&gt;
+&lt;p&gt;\frac {分子}</summary>
+        
+      
+    
+    
+    
+    <category term="others" scheme="https://longls777.github.io/categories/others/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Distributed Representations of Words and Phrases and their Compositionality</title>
+    <link href="https://longls777.github.io/2022/07/03/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space/"/>
+    <id>https://longls777.github.io/2022/07/03/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space/</id>
+    <published>2022-07-03T01:46:00.000Z</published>
+    <updated>2022-07-03T01:46:16.299Z</updated>
+    
+    
+    
+    
+    <category term="ai" scheme="https://longls777.github.io/categories/ai/"/>
+    
+    
+    <category term="thesis analysis" scheme="https://longls777.github.io/tags/thesis-analysis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>word2vec详解</title>
+    <link href="https://longls777.github.io/2022/07/03/word2vec/"/>
+    <id>https://longls777.github.io/2022/07/03/word2vec/</id>
+    <published>2022-07-03T01:45:30.000Z</published>
+    <updated>2022-07-03T02:28:08.538Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;跳字模型skip-gram&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#跳字模型skip-gram&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="ai" scheme="https://longls777.github.io/categories/ai/"/>
+    
+    
+    <category term="nlp" scheme="https://longls777.github.io/tags/nlp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>命令记录</title>
+    <link href="https://longls777.github.io/2022/07/03/%E5%91%BD%E4%BB%A4/"/>
+    <id>https://longls777.github.io/2022/07/03/%E5%91%BD%E4%BB%A4/</id>
+    <published>2022-07-03T01:45:00.000Z</published>
+    <updated>2022-07-03T02:10:07.392Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;linux&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#linux&quot;&gt;&lt;/a&gt; Linux&lt;/h2&gt;
+&lt;p&gt;查看显卡信息&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lspci | grep -i</summary>
+        
+      
+    
+    
+    
+    <category term="others" scheme="https://longls777.github.io/categories/others/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>words</title>
+    <link href="https://longls777.github.io/2022/07/03/%E5%8D%95%E8%AF%8D%E6%9C%AC/"/>
+    <id>https://longls777.github.io/2022/07/03/%E5%8D%95%E8%AF%8D%E6%9C%AC/</id>
+    <published>2022-07-03T01:43:00.000Z</published>
+    <updated>2022-07-03T02:10:04.322Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;53&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#53&quot;&gt;&lt;/a&gt; 5.3&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;feasible/feasibility 可行的&lt;/li&gt;
+&lt;li&gt;extract</summary>
+        
+      
+    
+    
+    
+    <category term="others" scheme="https://longls777.github.io/categories/others/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>收获长久且平等的亲密关系</title>
     <link href="https://longls777.github.io/2022/07/02/love/"/>
     <id>https://longls777.github.io/2022/07/02/love/</id>
     <published>2022-07-02T05:48:00.000Z</published>
-    <updated>2022-07-02T09:45:35.451Z</updated>
+    <updated>2022-07-03T02:28:16.687Z</updated>
     
     
       
