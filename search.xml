@@ -12,9 +12,40 @@
       </tags>
   </entry>
   <entry>
-    <title>word2vec详解</title>
-    <url>/2022/07/03/word2vec/</url>
-    <content><![CDATA[<h2 id="跳字模型skip-gram"><a class="markdownIt-Anchor" href="#跳字模型skip-gram"></a> 跳字模型（skip-gram）</h2>
+    <title>latex</title>
+    <url>/2022/07/03/latex/</url>
+    <content><![CDATA[<h4 id=""><a class="markdownIt-Anchor" href="#"></a> </h4>
+<h4 id="分式"><a class="markdownIt-Anchor" href="#分式"></a> 分式</h4>
+<p>\frac {分子} {分母}</p>
+<h4 id="对数"><a class="markdownIt-Anchor" href="#对数"></a> 对数</h4>
+<p>\log_{对数底数}{表达式}</p>
+<h4 id="累加累乘并集交集"><a class="markdownIt-Anchor" href="#累加累乘并集交集"></a> 累加累乘并集交集</h4>
+<p>\sum_{下标表达式}^{上标表达式}{累加表达式}</p>
+<p>\prod_{下标表达式}^{上标表达式}{累加表达式}</p>
+<p>\bigcup_{下标表达式}^{上标表达式}{累加表达式}</p>
+<p>\bigcap_{下标表达式}^{上标表达式}{累加表达式}</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png" alt="image-20220703101253562" /></p>
+<h4 id="希腊字母"><a class="markdownIt-Anchor" href="#希腊字母"></a> 希腊字母</h4>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101623488.png" alt="image-20220703101623488" /></p>
+<h4 id="运算符"><a class="markdownIt-Anchor" href="#运算符"></a> 运算符</h4>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101722800.png" alt="image-20220703101722800" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101742492.png" alt="image-20220703101742492" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101839932.png" alt="image-20220703101839932" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101939025.png" alt="image-20220703101939025" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102002751.png" alt="image-20220703102002751" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102015626.png" alt="image-20220703102015626" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102035627.png" alt="image-20220703102035627" /></p>
+<h4 id="不常用符号"><a class="markdownIt-Anchor" href="#不常用符号"></a> 不常用符号</h4>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102118077.png" alt="image-20220703102118077" /></p>
+]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>skip-gram详解</title>
+    <url>/2022/07/03/skip-gram/</url>
+    <content><![CDATA[<h2 id="跳字模型skip-gram"><a class="markdownIt-Anchor" href="#跳字模型skip-gram"></a> 跳字模型(skip-gram)</h2>
 <p>跳字模型的<strong>概念</strong>是在每一次迭代中都取一个词作为中心词汇，尝试去预测它一定范围内的上下文词汇</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-6224dddd34017aee696a88289245604c_720w.jpg" alt="v2-6224dddd34017aee696a88289245604c_720w" /></p>
 <p>目标函数为</p>
@@ -61,9 +92,10 @@
 <p>反向传播：更新矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>W</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi><mi>p</mi><mi>u</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{output}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201224142640867.png" alt="20201224142640867" /></p>
 <p>可以观察到，每次迭代，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>W</mi><mrow><mi>i</mi><mi>n</mi><mi>p</mi><mi>u</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{input}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 中只有对应中心词的一行在更新，而<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>W</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi><mi>p</mi><mi>u</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{output}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 里的权重都在更新。</p>
+<h2 id="负采样negative-sampling"><a class="markdownIt-Anchor" href="#负采样negative-sampling"></a> 负采样(Negative Sampling)</h2>
 <blockquote>
-<p><a href="https://blog.csdn.net/weixin_42192508/article/details/111590376">https://blog.csdn.net/weixin_42192508/article/details/111590376</a></p>
 <p><a href="https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling">https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling</a></p>
+<p><a href="https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling">https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling</a></p>
 </blockquote>
 ]]></content>
       <categories>
@@ -72,37 +104,6 @@
       <tags>
         <tag>nlp</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>latex</title>
-    <url>/2022/07/03/latex/</url>
-    <content><![CDATA[<h4 id=""><a class="markdownIt-Anchor" href="#"></a> </h4>
-<h4 id="分式"><a class="markdownIt-Anchor" href="#分式"></a> 分式</h4>
-<p>\frac {分子} {分母}</p>
-<h4 id="对数"><a class="markdownIt-Anchor" href="#对数"></a> 对数</h4>
-<p>\log_{对数底数}{表达式}</p>
-<h4 id="累加累乘并集交集"><a class="markdownIt-Anchor" href="#累加累乘并集交集"></a> 累加累乘并集交集</h4>
-<p>\sum_{下标表达式}^{上标表达式}{累加表达式}</p>
-<p>\prod_{下标表达式}^{上标表达式}{累加表达式}</p>
-<p>\bigcup_{下标表达式}^{上标表达式}{累加表达式}</p>
-<p>\bigcap_{下标表达式}^{上标表达式}{累加表达式}</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png" alt="image-20220703101253562" /></p>
-<h4 id="希腊字母"><a class="markdownIt-Anchor" href="#希腊字母"></a> 希腊字母</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101623488.png" alt="image-20220703101623488" /></p>
-<h4 id="运算符"><a class="markdownIt-Anchor" href="#运算符"></a> 运算符</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101722800.png" alt="image-20220703101722800" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101742492.png" alt="image-20220703101742492" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101839932.png" alt="image-20220703101839932" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101939025.png" alt="image-20220703101939025" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102002751.png" alt="image-20220703102002751" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102015626.png" alt="image-20220703102015626" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102035627.png" alt="image-20220703102035627" /></p>
-<h4 id="不常用符号"><a class="markdownIt-Anchor" href="#不常用符号"></a> 不常用符号</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102118077.png" alt="image-20220703102118077" /></p>
-]]></content>
-      <categories>
-        <category>others</category>
-      </categories>
   </entry>
   <entry>
     <title>words &amp; phrases</title>
@@ -247,6 +248,41 @@
 <li>ultimate 最后的; 最终的; 终极的; 极端的; 最好(或坏、伟大、重要等)的; 根本的; 基本的; 基础性的;最好(或先进、伟大等)的事物; 极品; 精华;</li>
 <li>inevitable 不可避免的; 不能防止的; 总会发生的; 照例必有的; 惯常的; 必然发生的事; 不可避免的事;</li>
 <li>evitable 可以避免的;</li>
+</ul>
+<h2 id="74"><a class="markdownIt-Anchor" href="#74"></a> 7.4</h2>
+<ul>
+<li>quantify 量化; 以数量表述;</li>
+<li>illustration 插图; 图解; 图示; (书、杂志等中的)图表; 例释; (说明事实的)示例;</li>
+<li>euclidean 欧氏; 欧几里得; 欧几里德; 欧几里得的; 欧几里德的;</li>
+<li>analogy 类比; 比拟; 比喻; 类推;</li>
+<li>derivation (尤指词语的)起源，由来，派生;</li>
+<li>concatenation 一系列相关联的事物(或事件);</li>
+<li>take derivative 求导</li>
+<li>multinomial 多项的; 多项式</li>
+<li>regression 倒退; 回归; 退化;</li>
+<li>monotonical 单调的</li>
+<li>convention 习俗; 常规; 惯例; (某职业、政党等成员的)大会，集会; (国家或首脑间的)公约，协定，协议; 传统手法，传统风格;</li>
+<li>equivalent 相等的; (价值、数量、意义、重要性等)相同的;</li>
+<li>likelihood 可能;可能性</li>
+<li>corpus (书面或口语的)文集，文献，汇编; 语料库;</li>
+<li>numerator 分子</li>
+<li>denominator 分母</li>
+<li>stochastic 随机的; 机会的; 有可能性的; 随便的;</li>
+<li>exceed 超过(数量); 超越(法律、命令等)的限制;</li>
+<li>tweak 扭; 拧; 扯; 稍稍调整(机器、系统等)</li>
+<li>intuitive 凭直觉得到的; 直觉的; 有直觉力的; 易懂的; 使用简便的;</li>
+<li>insight 洞察力; 领悟; 洞悉; 了解</li>
+<li>empirical 以实验(或经验)为依据的; 经验主义的;</li>
+<li>propagation 传播; 扩展; 宣传; 培养;</li>
+<li>mitigate 减轻; 缓和;</li>
+<li>fluctuation 波动; 涨落; 起伏;</li>
+<li>exponentiation 取幂，求幂，乘方;</li>
+<li>vanilla 香草味的; 有香子兰香味的; 普通的; 寻常的; 毫无特色的;</li>
+<li>whereas (用以比较或对比两个事实)然而，但是，尽管; (用于正式文件中句子的开头)鉴于;</li>
+<li>methodology 方法论; (从事某一活动的)方法，原则</li>
+<li>numerical 数字的; 用数字表示的;</li>
+<li>demonstration 集会示威; 游行示威; 示范; 示范表演; 演示; 证明; 证实; 论证;</li>
+<li></li>
 </ul>
 ]]></content>
       <categories>
