@@ -1,14 +1,14 @@
 ---
-title: word2vec详解
+title: skip-gram详解
 tags: nlp
 categories: ai
 date: 2022-07-03 9:45:30
-index_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-6224dddd34017aee696a88289245604c_720w.jpg
-banner_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-6224dddd34017aee696a88289245604c_720w.jpg
+index_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/20201223170652487.png
+banner_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/20201223170652487.png
 math: true
 ---
 
-## 跳字模型（skip-gram）
+## 跳字模型(skip-gram)
 
 跳字模型的**概念**是在每一次迭代中都取一个词作为中心词汇，尝试去预测它一定范围内的上下文词汇
 
@@ -44,7 +44,7 @@ $$
 
 **第三步：**用第二步中的得到的，“爱”的one-hot编码乘以中心词向量矩阵W，得到一个1×D维的向量，这个向量可以认为是该词的**中心词向量表示**。
 
-**第四步：**用该中心词向量乘以周围词向量矩阵w*,该步骤可以理解为对于“爱”这个词，我们分别与每一个词作内积，最终得到的1×V向量中的每一个元素，便是该位置的词与“爱”这个词的内积大小。
+**第四步：** 用该中心词向量乘以周围词向量矩阵w*,该步骤可以理解为对于“爱”这个词，我们分别与每一个词作内积，最终得到的1×V向量中的每一个元素，便是该位置的词与“爱”这个词的内积大小。
 
 **第五步**：对于最终的得到的向量，我们再进一步的做softmax归一化，归一化之后的概率越大，表示该词与“爱”的相关性越大，现在我们的目标就是要使得：“勇哥”这个词的概率较大，我们如何去实现这个目标呢？那就是通过调整参数矩阵w和w*,（这里就可以明白这两个矩阵其实只是辅助矩阵，我们根据损失函数，使用反向传播算法来对参数矩阵进行调节，最终实现损失函数的最小化。
 
@@ -100,6 +100,35 @@ $$
 
 可以观察到，每次迭代，$W_{input}$ 中只有对应中心词的一行在更新，而$W_{output}$ 里的权重都在更新。
 
-> https://blog.csdn.net/weixin_42192508/article/details/111590376
->
+## 负采样(Negative Sampling)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 > https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling
+>
+> https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling
+
