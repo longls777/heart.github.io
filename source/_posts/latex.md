@@ -8,7 +8,7 @@ categories: others
 math: true
 ---
 
-#### 
+##
 
 #### 分式
 

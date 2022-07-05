@@ -100,35 +100,78 @@ $$
 
 可以观察到，每次迭代，$W_{input}$ 中只有对应中心词的一行在更新，而$W_{output}$ 里的权重都在更新。
 
+> https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling
+
 ## 负采样(Negative Sampling)
 
+### 为什么采用负采样？
+
+![vanilla-skip-gram-complexity](http://longls777.oss-cn-beijing.aliyuncs.com/img/vanilla-skip-gram-complexity.png)
+
+采用softmax来归一化，分母上需要计算V次矩阵乘积，V是语料库的大小，一般很大，时间复杂度是$O(V)$，除此之外，对于每个中心词，都要计算一次normalization factor，时间复杂度达到$O(V^2)$，但是在代码实现中，一般只计算一次normalization factor（可能是因为SGD，计算多个中心词之后才更新参数）
+
+负采样使用sigmoid，可以使问题转化为多个独立的二分类任务，复杂度为$O(K+1)$，K的范围一般是$[5, 20]$
+
+### 负采样的具体做法？
+
+负采样每次会更新$W_{output}$中的$(K+1)*N$个参数
+
+假设隐藏层维度$N=3$，词汇总数$V=11$，负样本$K=3$
+
+softmax和negative sampling的对比如下：
+
+![neg_vs_skip](http://longls777.oss-cn-beijing.aliyuncs.com/img/neg_vs_skip.png)
 
 
 
+在负采样中，不再通过给定中心词预测周围的词来学习word vector，而是通过区分positive words和negative words来训练
 
+![neg_binomial](http://longls777.oss-cn-beijing.aliyuncs.com/img/neg_binomial.png)
 
+例如，对于中心词regression来说，“logistic", "machine", "sigmoid", "supervised", "neural" 就是positive words，而”zebra", "pimples", "Gangnam-Style", "toothpaste", "idiot"就是negative words
 
+模型训练的目标是最大化$p(D=1|w,c_{pos})$，最小化$p(D=1|w,c_{neg})$
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-> https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling
+> $w$是center word
 >
+> negative words来自噪声分布$P_{n}(w)$
+
+如果模型可以很好的区分positive words和negative words，就可以得到well learned word vectors
+
+对于给定的word pair$(w,c)$，判断word $c$是不是来自center word $w$的context words，True($D=1$) or False($D=0$)，使用sigmoid函数来表示：
+
+![image-20220705184738156](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220705184738156.png)
+
+$\overline{c}_{output_{(j)}}$是来自$W_{output}$的word vector
+
+![image-20220705185457497](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220705185457497.png)
+
+对于每个word，需要计算$k+1$次上面的sigmoid，即一个来自context words的$c_{pos}$和$K$个来自$P_{n}(w)$的negative words
+
+![image-20220705185805468](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220705185805468.png)
+
+> $h$是center word的隐藏层表示
+
+![negative_sample_text](http://longls777.oss-cn-beijing.aliyuncs.com/img/negative_sample_text.png)
+
+对于上图，center word是drilling，$c_{pos}$是engineer，橙色的是context words，黄色的是从噪声分布$P_{n}(w)$随机选出的negative words
+
+下面是训练过程：
+
+![neg_opt_1](http://longls777.oss-cn-beijing.aliyuncs.com/img/neg_opt_1.png)
+
+注意，对于每个context word 都要训练，所以上面的例子中，一共要训练$6*5=30$个word vector
+
+### 噪声分布$P_{n}(w)$是什么？
+
+$P_{n}(w)$可以表示为如下的形式：
+$$
+P_{n}(w) = (\frac{U(w)}{Z})^\alpha
+$$
+其中每个单词在语料库中出现的次数组成的分布叫做$U(w)$，也叫做unigram分布；$Z$是normalization factor，$\alpha$是平滑因子，其作用如下：
+
+![image-20220705192220777](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220705192220777.png)
+
 > https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling
 
+## 层次softmax(Hierarchical Softmax)
