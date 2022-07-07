@@ -6,7 +6,7 @@
   <link href="https://lishilong.cc/atom.xml" rel="self"/>
   
   <link href="https://lishilong.cc/"/>
-  <updated>2022-07-04T14:39:51.786Z</updated>
+  <updated>2022-07-07T05:56:15.313Z</updated>
   <id>https://lishilong.cc/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>《也许你该找个人聊聊》</title>
-    <link href="https://lishilong.cc/2022/07/04/%E3%80%8A%E4%B9%9F%E8%AE%B8%E4%BD%A0%E8%AF%A5%E6%89%BE%E4%B8%AA%E4%BA%BA%E8%81%8A%E8%81%8A%E3%80%8B/"/>
-    <id>https://lishilong.cc/2022/07/04/%E3%80%8A%E4%B9%9F%E8%AE%B8%E4%BD%A0%E8%AF%A5%E6%89%BE%E4%B8%AA%E4%BA%BA%E8%81%8A%E8%81%8A%E3%80%8B/</id>
+    <title>人格独立，再谈爱情</title>
+    <link href="https://lishilong.cc/2022/07/07/love02/"/>
+    <id>https://lishilong.cc/2022/07/07/love02/</id>
+    <published>2022-07-07T04:50:00.000Z</published>
+    <updated>2022-07-07T05:56:15.313Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;不知道大家有没有过这样的体验：焦虑型依恋、缺爱、恋爱脑、过度依赖、缺乏安全感、黏人、自我很弱、为情所困、在感情里非常投入甚至丧失自我，有些人觉得这是性格，有人埋怨童年自暴自弃。我专业学习心理学，阅读了很多文献书籍，思考了很多也尝试过很多方法。其实你缺的不是爱和安全感，是自我</summary>
+        
+      
+    
+    
+    
+    <category term="think" scheme="https://lishilong.cc/categories/think/"/>
+    
+    
+    <category term="亲密关系" scheme="https://lishilong.cc/tags/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>也许你该找个人聊聊</title>
+    <link href="https://lishilong.cc/2022/07/04/%E4%B9%9F%E8%AE%B8%E4%BD%A0%E8%AF%A5%E6%89%BE%E4%B8%AA%E4%BA%BA%E8%81%8A%E8%81%8A/"/>
+    <id>https://lishilong.cc/2022/07/04/%E4%B9%9F%E8%AE%B8%E4%BD%A0%E8%AF%A5%E6%89%BE%E4%B8%AA%E4%BA%BA%E8%81%8A%E8%81%8A/</id>
     <published>2022-07-04T13:55:01.000Z</published>
-    <updated>2022-07-04T14:39:51.786Z</updated>
+    <updated>2022-07-06T04:05:44.882Z</updated>
     
     
       
@@ -52,16 +77,16 @@
     <link href="https://lishilong.cc/2022/07/03/latex/"/>
     <id>https://lishilong.cc/2022/07/03/latex/</id>
     <published>2022-07-03T02:09:31.000Z</published>
-    <updated>2022-07-05T10:51:50.903Z</updated>
+    <updated>2022-07-06T06:46:58.418Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#&quot;&gt;&lt;/a&gt; &lt;/h2&gt;
-&lt;h4 id=&quot;分式&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#分式&quot;&gt;&lt;/a&gt; 分式&lt;/h4&gt;
-&lt;p&gt;\frac {分子}</summary>
+    <summary type="html">&lt;h4 id=&quot;分式&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#分式&quot;&gt;&lt;/a&gt; 分式&lt;/h4&gt;
+&lt;p&gt;\frac {分子} {分母}&lt;/p&gt;
+&lt;h4 id=&quot;对数&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;</summary>
         
       
     
@@ -94,7 +119,7 @@
     <link href="https://lishilong.cc/2022/07/03/skip-gram/"/>
     <id>https://lishilong.cc/2022/07/03/skip-gram/</id>
     <published>2022-07-03T01:45:30.000Z</published>
-    <updated>2022-07-05T11:32:45.369Z</updated>
+    <updated>2022-07-06T07:05:02.256Z</updated>
     
     
       
@@ -144,7 +169,7 @@
     <link href="https://lishilong.cc/2022/07/03/%E5%8D%95%E8%AF%8D%E6%9C%AC/"/>
     <id>https://lishilong.cc/2022/07/03/%E5%8D%95%E8%AF%8D%E6%9C%AC/</id>
     <published>2022-07-03T01:43:00.000Z</published>
-    <updated>2022-07-05T11:32:17.764Z</updated>
+    <updated>2022-07-06T05:46:59.725Z</updated>
     
     
       
