@@ -174,4 +174,3 @@ $$
 
 > https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling
 
-## 层次softmax(Hierarchical Softmax)
