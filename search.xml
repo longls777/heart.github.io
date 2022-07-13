@@ -176,6 +176,21 @@
       </tags>
   </entry>
   <entry>
+    <title>向量矩阵运算法则</title>
+    <url>/2022/07/11/%E5%90%91%E9%87%8F%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99/</url>
+    <content><![CDATA[<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%90%91%E9%87%8F%E5%BE%AE%E5%88%86%E8%A7%84%E5%88%99.png" alt="向量微分规则" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203344822.png" alt="image-20220711203344822" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203353068.png" alt="image-20220711203353068" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203822620.png" alt="image-20220711203822620" /></p>
+]]></content>
+      <categories>
+        <category>machine learning</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>words &amp; phrases</title>
     <url>/2022/07/03/%E5%8D%95%E8%AF%8D%E6%9C%AC/</url>
     <content><![CDATA[<h2 id="53"><a class="markdownIt-Anchor" href="#53"></a> 5.3</h2>
@@ -369,27 +384,16 @@
 <h2 id="711"><a class="markdownIt-Anchor" href="#711"></a> 7.11</h2>
 <ul>
 <li>hypothesis 假设; (有少量事实依据但未被证实的)假说; (凭空的)猜想; 猜测;</li>
+</ul>
+<h3 id="713"><a class="markdownIt-Anchor" href="#713"></a> 7.13</h3>
+<ul>
+<li>discriminate 区别对待; 歧视; 区分; 辨别; 区别; 偏袒;</li>
 <li></li>
 </ul>
 ]]></content>
       <categories>
         <category>others</category>
       </categories>
-  </entry>
-  <entry>
-    <title>向量矩阵运算法则</title>
-    <url>/2022/07/11/%E5%90%91%E9%87%8F%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99/</url>
-    <content><![CDATA[<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%90%91%E9%87%8F%E5%BE%AE%E5%88%86%E8%A7%84%E5%88%99.png" alt="向量微分规则" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203344822.png" alt="image-20220711203344822" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203353068.png" alt="image-20220711203353068" /></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203822620.png" alt="image-20220711203822620" /></p>
-]]></content>
-      <categories>
-        <category>machine learning</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-      </tags>
   </entry>
   <entry>
     <title>命令记录</title>
@@ -545,6 +549,17 @@ Compute M：计算模式</p>
       </tags>
   </entry>
   <entry>
+    <title>机器学习-决策树</title>
+    <url>/2022/07/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A003/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>《机器学习》笔记</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>机器学习-线性模型</title>
     <url>/2022/07/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A002/</url>
     <content><![CDATA[<h2 id="线性模型"><a class="markdownIt-Anchor" href="#线性模型"></a> 线性模型</h2>
@@ -575,7 +590,61 @@ Compute M：计算模式</p>
 <p>推导过程https://eli.thegreenplace.net/2014/derivation-of-the-normal-equation-for-linear-regression</p>
 </blockquote>
 <p>当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>X</mi><mi>T</mi></msup><mi>X</mi></mrow><annotation encoding="application/x-tex">X^TX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>不是满秩矩阵时，需要引入正则化(regularization)项</p>
+<h3 id="广义线性模型"><a class="markdownIt-Anchor" href="#广义线性模型"></a> 广义线性模型</h3>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713144210957.png" alt="image-20220713144210957" /></p>
+<p>其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mo separator="true">⋅</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(·)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mclose">)</span></span></span></span>称为联系函数</p>
 <h3 id="对数几率回归"><a class="markdownIt-Anchor" href="#对数几率回归"></a> 对数几率回归</h3>
+<p>对数几率函数，即sigmod函数：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>z</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">y=\frac{1}{1+e^{-z}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.09077em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.697331em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>带入广义线性模型得到：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713144355971.png" alt="image-20220713144355971" /></p>
+<p>即：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713144406172.png" alt="image-20220713144406172" /></p>
+<p>将<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>视为样本<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>为正例的可能性，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>−</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">1-y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>视为其反例的可能性，则两者的比值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mi>y</mi><mrow><mn>1</mn><mo>−</mo><mi>y</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{y}{1-y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.228608em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7475em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>称为几率(odds)，即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>为正例的相对可能性，取对数则为对数几率(log odds)</p>
+<p>那么如何确定上式中的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span>呢？可以采用<strong>极大似然法</strong></p>
+<p>上式可重写为：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713145905713.png" alt="image-20220713145905713" /></p>
+<p>则：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713145915269.png" alt="image-20220713145915269" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713150237839.png" alt="image-20220713150237839" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713150758755.png" alt="image-20220713150758755" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713150806729.png" alt="image-20220713150806729" /></p>
+<h3 id="线性判别分析"><a class="markdownIt-Anchor" href="#线性判别分析"></a> 线性判别分析</h3>
+<p>Linear Discrimination Analysis，简称LDA，可用于二分类问题</p>
+<p>LDA的思想非常朴素：给定训练样例集，设法将样例投影到一条直线上，使得同类样例的投影点尽可能接近、异类样例的投影点尽可能远离；在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来确定新样本的类别</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153049081.png" alt="image-20220713153049081" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153241813.png" alt="image-20220713153241813" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153340728.png" alt="image-20220713153340728" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153442866.png" alt="image-20220713153442866" /></p>
+<p>​	<img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153557781.png" alt="image-20220713153557781" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153706768.png" alt="image-20220713153706768" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153718194.png" alt="image-20220713153718194" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153730154.png" alt="image-20220713153730154" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713153748406.png" alt="image-20220713153748406" /></p>
+<h3 id="多分类学习"><a class="markdownIt-Anchor" href="#多分类学习"></a> 多分类学习</h3>
+<p>多分类学习的基本思路是“拆解法”，即将多分类任务拆为若干个二分类任务求解</p>
+<p>具体来说，先对问题进行拆分，然后为拆出的每个二分类任务训练一个分类器；在测试时，对这些分类器的预测结果进行集成以获得最终的多分类结果。这里的关键是如何对多分类任务进行拆分，以及如何对多个分类器进行集成</p>
+<p>最经典的拆分策略有三种：</p>
+<ul>
+<li>一对一（One vs. One，简称OvO）</li>
+<li>一对其余（One vs. Rest，简称OvR）</li>
+<li>多对多（Many vs. Many，简称MvM）</li>
+</ul>
+<p>假设有N个类别，OvO将这N个类别两两配对，产生N(N-1)/2个二分类任务，最终结果通过投票产生，即预测最多的类作为最终分类结果。OvR则是每次将一个类别作为正例，其他N-1个类别作为反例，训练N个分类器，若仅有一个分类器预测为正类，则对应的类别标记作为最终分类结果；若有多个分类器预测为正类,则通常考虑各分类器的预测置信度，选择置信度最大的类别标记作为分类结果</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713160043881.png" alt="image-20220713160043881" /></p>
+<p>容易看出，OvR只需训练N个分类器，而OvО需训练N(N - 1)/2个分类器，因此，OvO的存储开销和测试时间开销通常比OvR更大，但在训练时，OvR的每个分类器均使用全部训练样例，而OvO的每个分类器仅用到两个类的样例，因此，在类别很多时，OvO的训练时间开销通常比OvR更小，至于预测性能，则取决于具体的数据分布，在多数情形下两者差不多</p>
+<p>MvM是每次将若干个类作为正类，若干个其他类作为反类。显然，OvO和OvR是MvM的特例。MvM的正、反类构造必须有特殊的设计，不能随意选取。一种最常用的MvM技术：“纠错输出码”(Error Correcting Output Codes，简称ECOC)</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713161831059.png" alt="image-20220713161831059" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713161852654.png" alt="image-20220713161852654" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713162034580.png" alt="image-20220713162034580" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713162057232.png" alt="image-20220713162057232" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713162106292.png" alt="image-20220713162106292" /></p>
+<h3 id="类别不平衡问题"><a class="markdownIt-Anchor" href="#类别不平衡问题"></a> 类别不平衡问题</h3>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713162359620.png" alt="image-20220713162359620" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713162414670.png" alt="image-20220713162414670" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713162435233.png" alt="image-20220713162435233" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220713162547300.png" alt="image-20220713162547300" /></p>
 ]]></content>
       <categories>
         <category>《机器学习》笔记</category>
@@ -586,7 +655,7 @@ Compute M：计算模式</p>
   </entry>
   <entry>
     <title>人格独立，再谈爱情</title>
-    <url>/2022/07/07/love02/</url>
+    <url>/2022/07/07/%E4%BA%BA%E6%A0%BC%E7%8B%AC%E7%AB%8B%EF%BC%8C%E5%86%8D%E8%B0%88%E7%88%B1%E6%83%85/</url>
     <content><![CDATA[<p>不知道大家有没有过这样的体验：焦虑型依恋、缺爱、恋爱脑、过度依赖、缺乏安全感、黏人、自我很弱、为情所困、在感情里非常投入甚至丧失自我，有些人觉得这是性格，有人埋怨童年自暴自弃。我专业学习心理学，阅读了很多文献书籍，思考了很多也尝试过很多方法。其实你缺的不是爱和安全感，是自我，是独立的人格，是自爱的能力。</p>
 <blockquote>
 <p>1、1、1、1、1、1、1、1、1</p>
@@ -643,7 +712,7 @@ Compute M：计算模式</p>
   </entry>
   <entry>
     <title>收获长久且平等的亲密关系</title>
-    <url>/2022/07/02/love/</url>
+    <url>/2022/07/02/%E6%94%B6%E8%8E%B7%E9%95%BF%E4%B9%85%E4%B8%94%E5%B9%B3%E7%AD%89%E7%9A%84%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/</url>
     <content><![CDATA[<blockquote>
 <p>每个人的恋爱都不一样，人和人的差异远超越男人女人的差异。</p>
 <p><a href="https://www.zhihu.com/remix/albums/1010247731499106304">https://www.zhihu.com/remix/albums/1010247731499106304</a></p>
