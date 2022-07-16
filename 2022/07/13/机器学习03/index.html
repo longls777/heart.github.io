@@ -16,16 +16,30 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="决策树  基本流程 一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树。其基本流程遵循简单且直观的“分而治之”(divide-an">
+<meta property="og:type" content="article">
 <meta property="og:title" content="机器学习-决策树">
 <meta property="og:url" content="https://lishilong.cc/2022/07/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A003/index.html">
 <meta property="og:site_name" content="Heart">
+<meta property="og:description" content="决策树  基本流程 一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树。其基本流程遵循简单且直观的“分而治之”(divide-an">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714200801923.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714201654008.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714201823523.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714205227283.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714205457545.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714205433068.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714205925313.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220716180226651.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220716180247574.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220716180520040.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220716180652878.png">
 <meta property="article:published_time" content="2022-07-13T08:43:30.000Z">
-<meta property="article:modified_time" content="2022-07-13T08:43:55.652Z">
+<meta property="article:modified_time" content="2022-07-16T10:13:28.022Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="machine learning">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714200801923.png">
   
   
   
@@ -235,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.1k 字
         
       </span>
     
@@ -246,7 +260,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -289,7 +303,43 @@
             
               <div class="markdown-body">
                 
-                
+                <h2 id="决策树"><a class="markdownIt-Anchor" href="#决策树"></a> 决策树</h2>
+<h3 id="基本流程"><a class="markdownIt-Anchor" href="#基本流程"></a> 基本流程</h3>
+<p>一般的，一棵决策树包含一个根结点、若干个内部结点和若干个叶结点；叶结点对应于决策结果，其他每个结点则对应于一个属性测试；每个结点包含的样本集合根据属性测试的结果被划分到子结点中；根结点包含样本全集。从根结点到每个叶结点的路径对应了一个判定测试序列。决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树。其基本流程遵循简单且直观的“分而治之”(divide-and-conquer)策略，如图所示：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714200801923.png" srcset="/img/loading.gif" lazyload alt="image-20220714200801923" /></p>
+<p>决策树的生成是一个递归过程</p>
+<h3 id="划分选择"><a class="markdownIt-Anchor" href="#划分选择"></a> 划分选择</h3>
+<p>那么应该如何选择最优划分属性呢？目标是使得结点的纯度越来越高</p>
+<h4 id="信息增益"><a class="markdownIt-Anchor" href="#信息增益"></a> 信息增益</h4>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714201654008.png" srcset="/img/loading.gif" lazyload alt="image-20220714201654008" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714201823523.png" srcset="/img/loading.gif" lazyload alt="image-20220714201823523" /></p>
+<h4 id="增益率"><a class="markdownIt-Anchor" href="#增益率"></a> 增益率</h4>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714205227283.png" srcset="/img/loading.gif" lazyload alt="image-20220714205227283" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714205457545.png" srcset="/img/loading.gif" lazyload alt="image-20220714205457545" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714205433068.png" srcset="/img/loading.gif" lazyload alt="image-20220714205433068" /></p>
+<h4 id="基尼指数"><a class="markdownIt-Anchor" href="#基尼指数"></a> 基尼指数</h4>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220714205925313.png" srcset="/img/loading.gif" lazyload alt="image-20220714205925313" /></p>
+<h3 id="剪枝处理"><a class="markdownIt-Anchor" href="#剪枝处理"></a> 剪枝处理</h3>
+<p>剪枝可以降低过拟合，其基本策略有：</p>
+<ul>
+<li>预剪枝</li>
+<li>后剪枝</li>
+</ul>
+<p>预剪枝是指在决策树生成过程中，对每个结点在划分前先进行估计，若当前结点的划分不能带来决策树泛化性能提升，则停止划分并将当前结点标记为叶结点；后剪枝则是先从训练集生成一棵完整的决策树，然后自底向上地对非叶结点进行考察，若将该结点对应的子树替换为叶结点能带来决策树泛化性能提升，则将该子树替换为叶结点</p>
+<p>预剪枝使得决策树的很多分支都没有“展开”，这不仅降低了过拟合的风险，还显著减少了决策树的训练时间开销和测试时间开销。但另一方面，有些分支的当前划分虽不能提升泛化性能、甚至可能导致泛化性能暂时下降，但在其基础上进行的后续划分却有可能导致性能显著提高；预剪枝基于“贪心”本质禁止这些分支展开，给预剪枝决策树带来了欠拟合的风险</p>
+<p>后剪枝决策树通常比预剪枝决策树保留了更多的分支。一般情形下，后剪枝决策树的欠拟合风险很小，泛化性能往往优于预剪枝决策树。但后剪枝过程是在生成完全决策树之后进行的，并且要自底向上地对树中的所有非叶结点进行逐一考察，因此其训练时间开销比未剪枝决策树和预剪枝决策树都要大得多</p>
+<h3 id="连续与缺失值"><a class="markdownIt-Anchor" href="#连续与缺失值"></a> 连续与缺失值</h3>
+<h4 id="连续值处理"><a class="markdownIt-Anchor" href="#连续值处理"></a> 连续值处理</h4>
+<p>二分法处理连续属性(连续属性离散化)，在C4.5决策树算法中使用</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220716180226651.png" srcset="/img/loading.gif" lazyload alt="image-20220716180226651" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220716180247574.png" srcset="/img/loading.gif" lazyload alt="image-20220716180247574" /></p>
+<h4 id="缺失值处理"><a class="markdownIt-Anchor" href="#缺失值处理"></a> 缺失值处理</h4>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220716180520040.png" srcset="/img/loading.gif" lazyload alt="image-20220716180520040" /></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220716180652878.png" srcset="/img/loading.gif" lazyload alt="image-20220716180652878" /></p>
+<h3 id="多变量决策树"><a class="markdownIt-Anchor" href="#多变量决策树"></a> 多变量决策树</h3>
+<p>单变量决策树的分类边界的每一段都是与坐标轴平行的，多变量决策树则可以实现斜划分，在此类决策树中，非叶结点不再是仅对某个属性，而是对属性的线性组合进行测试</p>
+<p>换言之，每个非叶结点是一个形如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>d</mi></msubsup><mrow><msub><mi>w</mi><mi>i</mi></msub><msub><mi>a</mi><mi>i</mi></msub></mrow><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">\sum_{i=1}^{d}{w_{i}a_{i}}=t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2887179999999998em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9890079999999999em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>的线性分类器，其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是属性<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的权重，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>可在该结点所含的样本集和属性集上学得，于是，与传统的“单变量决策树”(univariate decision tree)不同，在多变量决策树的学习过程中，不是为每个非叶结点寻找一个最优划分属性，而是试图建立一个合适的线性分类器</p>
+
                 
               </div>
             
