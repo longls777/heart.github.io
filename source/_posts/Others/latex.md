@@ -1,10 +1,9 @@
 ---
 title: latex
 date: 2022-07-03 10:09:31
-tags: 
 index_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png
 banner_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png
-categories: others
+categories: Others
 math: true
 ---
 
@@ -29,6 +28,14 @@ math: true
 \bigcap_{下标表达式}^{上标表达式}{累加表达式}
 
 ![image-20220703101253562](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png)
+
+#### 公式标号
+
+\tag{}
+$$
+a+b=c \tag{1}
+$$
+
 
 #### 希腊字母
 
