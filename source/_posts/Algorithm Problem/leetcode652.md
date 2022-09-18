@@ -1,6 +1,6 @@
 ---
 title: leetcode652
-date: 2022-09-6 21:06:44
+date: 2022-09-06 21:06:44
 tags: DFS
 categories: Algorithm Problem
 math: true

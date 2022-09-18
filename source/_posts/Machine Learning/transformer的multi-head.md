@@ -1,5 +1,5 @@
 ---
-title: transformer的Multi-Head
+title: Transformer为什么使用Multi-Head？
 tags: transformer
 categories: Machine Learning
 date: 2022-09-15 19:19:30

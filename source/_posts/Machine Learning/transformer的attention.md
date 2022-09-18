@@ -1,5 +1,5 @@
 ---
-title: transformer的Q,K,V
+title: Transformer的attention相关问题
 tags: transformer
 categories: Machine Learning
 date: 2022-09-15 21:20:30
@@ -32,4 +32,47 @@ Q，K，V物理意义上是一样的，都表示同一个句子中不同token组
 > https://www.zhihu.com/question/319339652/answer/730848834
 >
 > https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3
+
+#### Transformer计算attention的时候为何选择点乘而不是加法？两者计算复杂度和效果上有什么区别？
+
+attention有两种形式，Add和Mul，即：
+$$
+score(h,s)=<v, tanh(W_1h+W_2s)> \\
+score(h,s)=<W_1h,W_2s>
+$$
+$<>$代表矩阵点积，至于为什么要用Mul来完成Self-attention，作者的说法是为了计算更快。因为虽然矩阵加法的计算更简单，但是Add 形式套着$tanh$和$o$，相当于一个完整的隐层。在整体计算复杂度上两者接近，但是矩阵乘法已经有了非常成熟的加速实现。在$d_k$(即attention-dim）较小的时候，两者的效果接近。但是随着d增大，Add开始显著超越Mul。
+
+![img](http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-4ce33c847c71c3092e1a557c857369fb_1440w.jpg)
+
+
+
+作者分析Mul性能不佳的原因，认为是极大的点积值将整个softmax推向梯度平缓区，使得收敛困难。也就是出现了“梯度消失”。
+
+这才有了scaled。所以，Add是天然地不需要scaled，Mul在$d_k$较大的时候必须要做scaled。
+
+那么，极大的点积值是从哪里来的呢?
+
+对于Mul来说，如果$s$和$h$都分布在[0,1]，在相乘时引入一次对所有位置的$\sum$求和，整体的分布就会扩大到[0, dk]。
+
+反过来看Add，右侧是被$tanh()$钳位后的值，分布在[-1,1]。整体分布和$d_k$没有关系。
+
+
+
+> https://zhuanlan.zhihu.com/p/31547842
+
+
+
+
+
+
+
+
+
+
+
+#### 为什么在进行softmax之前需要对attention进行scaled（为什么除以dk的平方根），使用公式推导解释
+
+这取决于softmax函数的特性，如果softmax内计算的数数量级太大，会输出近似one-hot编码的形式，导致梯度消失的问题，所以需要scale
+
+那么至于为什么需要用维度开根号，假设向量q，k满足各分量独立同分布，均值为0，方差为1，那么qk点积均值为0，方差为$d_k$，从统计学计算，若果让qk点积的方差控制在1，需要将其除以$d_k$的平方根，使得softmax更加平滑
 
