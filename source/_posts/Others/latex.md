@@ -13,6 +13,25 @@ math: true
 
 \frac {分子} {分母}
 
+#### 加粗
+
+\boldsymbol{}
+
+#### 根号
+
+\sqrt[m]{n}
+$$
+\sqrt[m]{n}
+$$
+
+#### 花体字母
+
+\mathcal{}
+$$
+\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}
+$$
+
+
 #### 对数
 
 \log_{对数底数}{表达式}
