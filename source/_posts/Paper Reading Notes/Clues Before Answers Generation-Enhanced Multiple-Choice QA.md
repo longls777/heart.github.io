@@ -1,5 +1,5 @@
 ---
-title: Clues Before Answers: Generation-Enhanced Multiple-Choice QA
+title: Clues Before Answers  Generation-Enhanced Multiple-Choice QA
 tags: MCQA
 categories: Paper Reading Notes
 date: 2022-09-27 13:52:00

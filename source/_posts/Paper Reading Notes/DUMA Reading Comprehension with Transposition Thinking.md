@@ -1,13 +1,11 @@
 ---
-title: DUMA: Reading Comprehension with Transposition Thinking
+title: DUMA Reading Comprehension with Transposition Thinking
 tags: MCQA
 categories: Paper Reading Notes
 date: 2022-09-29 15:48:00
 index_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220929162023650.png
 banner_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220929162023650.png
 math: true
-
-
 ---
 
 **标题：**《DUMA: Reading Comprehension with Transposition Thinkin》
@@ -17,8 +15,6 @@ math: true
 **原文链接：** https://arxiv.org/pdf/2001.09415v5.pdf
 
 **源码：**https://github.com/pfZhu/duma_code
-
-
 
 ## 概述
 
