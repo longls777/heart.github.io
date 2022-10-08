@@ -35,5 +35,45 @@ math: true
 
 ![image-20220929162023650](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220929162023650.png)
 
+## 模型
 
+DUMA模型的具体设计是：将passage + question + option(1/2/3)输入encoder进行编码，其中passage + question 和每一个option对应，也就是说，如果有三个选项，那么就会有三个输入
+
+![image-20221005142727594](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005142727594.png)
+
+在编码之前，记录passage和question-option对的分界index，以便编码后split
+
+![image-20221005142915197](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005142915197.png)
+
+将总的token输入encoder进行编码：
+
+![image-20221005143207016](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005143207016.png)
+
+将编码后的输出进行分割，一部分是passage， 另一部分是question-option对
+
+![image-20221005143825864](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005143825864.png)
+
+将分割后的二者互作attention
+
+![image-20221005144210917](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005144210917.png)
+
+直接concat，然后通过一个（2*config.hidden_size, 1）的线性层
+
+![image-20221005144349483](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005144349483.png)
+
+为什么直接concat呢？文章对这里的融合方法进行了探究，发现在点乘，相加和concat中，concat效果最好，作者解释是concat能最好的保留特征
+
+## 复现
+
+根据论文的源代码，复现了本文的实验后得到如下数据：
+
+**albert + duma**
+
+![image-20221002180701225](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221002180701225.png)
+
+与文章中的实验数据进行对比：
+
+![image-20221002180738630](http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221002180738630.png)
+
+发现误差在可接受范围内
 

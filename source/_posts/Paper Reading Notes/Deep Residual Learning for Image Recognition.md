@@ -80,13 +80,13 @@ $$
 
 那么这时候残差块可以表示为：
 $$
-x_{l+1}= x_l+\mathcal{F}(x_l, {W_l})\\
+x_{l+1}= x_l+\mathcal{F}(x_l, {W_l})\\
 $$
 对于一个更深的层 $L$ ，其与 $l$ 层的关系可以表示为
 $$
 x_L = x_l + \sum_{i=l}^{L-1}\mathcal{F}(x_i, {W_i})
 $$
- 
+
 
 这个公式反应了残差网络的两个属性：
 
@@ -152,8 +152,6 @@ $$
 > https://blog.csdn.net/m0_47146037/article/details/124299668
 >
 > 为什么残差连接的网络结构更容易学习？ - 人间白头的回答 - 知乎 https://www.zhihu.com/question/306135761/answer/2491142607
->
-> 残差和误差
 >
 > [基础知识复习：残差(residuals)是什么 - Daniel Liu的文章 - 知乎](https://zhuanlan.zhihu.com/p/98643701)
 >

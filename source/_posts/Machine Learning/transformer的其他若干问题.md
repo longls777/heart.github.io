@@ -1,5 +1,5 @@
 ---
-title: Transformer的其他若干问题
+title: Transformer相关问题
 tags: transformer
 categories: Machine Learning
 date: 2022-09-15 21:20:30

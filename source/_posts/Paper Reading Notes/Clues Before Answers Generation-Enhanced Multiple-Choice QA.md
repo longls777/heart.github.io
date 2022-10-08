@@ -6,7 +6,6 @@ date: 2022-09-27 13:52:00
 index_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220927142410395.png
 banner_img: http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220927142410395.png
 math: true
-
 ---
 
 **标题：**《Clues Before Answers: Generation-Enhanced Multiple-Choice QA》
@@ -15,7 +14,7 @@ math: true
 
 **原文链接：** https://arxiv.org/pdf/2205.00274v1.pdf
 
-**源码：**https://github.com/nju-websoft/genmc
+**源码：** https://github.com/nju-websoft/genmc
 
 
 
