@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>hexo出现问题后重建流程</title>
+    <link href="/2022/12/16/Others/hexo%E9%87%8D%E5%BB%BA/"/>
+    <url>/2022/12/16/Others/hexo%E9%87%8D%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<p>1</p><h2 id="一、初始化hexo"><a href="#一、初始化hexo" class="headerlink" title="一、初始化hexo"></a>一、初始化hexo</h2><p>按照hexo建立博客流程</p><ul><li>安装node.js</li><li>安装hexo</li><li>初始化hexo文件</li></ul><p>建立一个初始化的hexo本地网站</p><h2 id="二、安装fluid博客主题"><a href="#二、安装fluid博客主题" class="headerlink" title="二、安装fluid博客主题"></a>二、安装fluid博客主题</h2><p>安装流程可见fluid官网</p><p><a href="https://github.com/fluid-dev/hexo-theme-fluid">fluid github主页</a></p><p><a href="https://hexo.fluid-dev.com/docs/">fluid 用户手册</a></p><p><a href="https://hexo.fluid-dev.com/docs/guide/">fluid 配置指南</a></p><h2 id="三、复制原文章和配置文件"><a href="#三、复制原文章和配置文件" class="headerlink" title="三、复制原文章和配置文件"></a>三、复制原文章和配置文件</h2><p>从原博客复制source文件夹以及_config.fluid.yml和config.yml配置文件，替换新hexo博客中的对应文件</p><h2 id="四、替换fluid主题的图片"><a href="#四、替换fluid主题的图片" class="headerlink" title="四、替换fluid主题的图片"></a>四、替换fluid主题的图片</h2><p>将原博客根目录下的图片复制到node_modules\hexo-theme-fluid\source\img文件夹下</p><h2 id="五、将文件夹与github相关联"><a href="#五、将文件夹与github相关联" class="headerlink" title="五、将文件夹与github相关联"></a>五、将文件夹与github相关联</h2><p>可能需要先安装hexo deploy相关的git组件</p><p><code>npm install --save hexo-deployer-git</code></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Others</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title></title>
     <link href="/2022/12/16/Imagination/%E7%8A%AF%E9%94%99%E8%AE%B0%E5%BD%95/"/>
     <url>/2022/12/16/Imagination/%E7%8A%AF%E9%94%99%E8%AE%B0%E5%BD%95/</url>
