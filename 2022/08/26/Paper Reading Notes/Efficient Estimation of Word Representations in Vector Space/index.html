@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta name="description" content="标题：《Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information》 论文来源： ACL 2018 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1805.04655.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information">
+<meta property="og:url" content="https://lishilong.cc/2022/08/26/Paper%20Reading%20Notes/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:description" content="标题：《Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information》 论文来源： ACL 2018 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1805.04655.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220826145712032.png">
+<meta property="article:published_time" content="2022-08-26T06:56:00.000Z">
+<meta property="article:modified_time" content="2022-12-16T10:23:03.930Z">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="CQGen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220826145712032.png">
+  
+  
+  
+  <title>Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information - Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220826145724722.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-26 14:56" pubdate>
+          2022年8月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>标题：</strong>《Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information》</p>
+<p><strong>论文来源：</strong> ACL 2018</p>
+<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1805.04655.pdf">https://arxiv.org/pdf/1805.04655.pdf</a></p>
+<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/raosudha89/ranking_clarification_questions">https://github.com/raosudha89/ranking_clarification_questions</a></p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>在QA中，机器通过提问来获取补充信息，这种问题就是澄清问题(clarifying question)，澄清问题包括生成（CQGen）和评估（CQR），本文针对于评估任务，提出了一个模型用于对澄清问题进行排序。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220826145712032.png" srcset="/img/loading.gif" lazyload></p>
+<p>如上图所示，提问者提出的问题缺少一些信息，所以机器通过澄清式提问来试图补全缺失的信息，而生成的潜在澄清问有很多，如何从中选择最好的？评价标准是什么？这都是本文试图解决的问题</p>
+<blockquote>
+<p>可选择的澄清问题：</p>
+<ol>
+<li>What version of Ubuntu do you have?</li>
+<li>What is the make of your wifi card?</li>
+<li>Are you running Ubuntu 14.10 kernel 4.4.0-59-<br>generic on an x86 64 architecture?</li>
+</ol>
+</blockquote>
+<p>基本上可以认为，好的澄清问题的答案可以提供更多更准确的信息</p>
+<p>针对以上问题，本文建立了一个基于完全信息期望值（EVPI，expected value with perfect information）的决策框架的神经网络模型，利用问答网站 StackExchange构建的(post, question,answer) 三元组数据集进行训练，通过计算哪个问题能给post提供更多信息量，更有可能得到答案，来对澄清问题进行排序。</p>
+<h3 id="Contributions"><a href="#Contributions" class="headerlink" title="Contributions"></a><strong>Contributions</strong></h3><ol>
+<li><p>基于完全信息期望值（EVPI）架构构建了一个用于解决澄清问题排序的神经网络模型。</p>
+</li>
+<li><p>从StackExchange问答网站构建了一个新的数据集，用于训练一个能通过人们的问题，来提出澄清问题的模型。</p>
+</li>
+</ol>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>对于每一个问题q有一组可能的答案，每个答案提供的信息的价值不同。EVPI用来衡量一个问题q的所有可能回答带来的收益的期望值。<br>$$<br>EVPI(q_i|p)&#x3D;\sum_{a_j\in A}{P[a_j|p,q_i]U[p+a_j]} \tag{1}<br>$$<br>对于问题$q_i$，可能的回答的集合为$A$，$a_j$为其中的一个回答，$p$为post，$P[a_j|p,q_i]$为给定post $p$和问题$q_i$时，得到答案$a_j$的概率，$U[p+a_j]$是用来计算通过回答$a_j$增广后post会更完整多少的效用函数</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220826145724722.png" srcset="/img/loading.gif" lazyload></p>
+<p>在测试时，给定一个帖子 p，用Lucene（检索系统）抽取10个与p相似的帖子，得到对应的澄清问题q和对应的答案a，构成(post, question,answer)的候选三元组数据集。</p>
+<p>对于每个问题$q_i$，生成答案表示$F(p,q_i)$，计算答案$a_j$和我们的答案表示$F(p,q_i)$有多接近。然后, 我们计算$p$因为$a_j$而增加的效用。最后，使用式(1)来对所有的澄清问题进行排序。</p>
+<h3 id="候选问题和答案的生成"><a href="#候选问题和答案的生成" class="headerlink" title="候选问题和答案的生成"></a><strong>候选问题和答案的生成</strong></h3><p>给定一个帖子$p$，第一步是生成一组候选问题和答案，本文的做法是通过信息检索，从数据集中抽取10个与帖子$p$最相似的帖子（包含$p$自身），帖子里面对应的问题和答案作为候选的问题和答案</p>
+<h3 id="答案模型"><a href="#答案模型" class="headerlink" title="答案模型"></a>答案模型</h3><h1 id="第二步就是计算对于给定的帖子-p-i-和问题-q-i-，答案是-a-j-的概率。首先结合帖子-p-i-和问题-q-i-来生成答案表达式-Fans-overline-p-i，-overline-q-i-，是含有5个隐层的前馈神经网络，词向量用LSTM编码。我们用如下函数衡量答案表达式与候选答案-a-j-之间的距离：-dist-F-ans-overline-p-i，-overline-q-i-hat-a-j"><a href="#第二步就是计算对于给定的帖子-p-i-和问题-q-i-，答案是-a-j-的概率。首先结合帖子-p-i-和问题-q-i-来生成答案表达式-Fans-overline-p-i，-overline-q-i-，是含有5个隐层的前馈神经网络，词向量用LSTM编码。我们用如下函数衡量答案表达式与候选答案-a-j-之间的距离：-dist-F-ans-overline-p-i，-overline-q-i-hat-a-j" class="headerlink" title="第二步就是计算对于给定的帖子$p_i$和问题$q_i$，答案是$a_j$的概率。首先结合帖子$p_i$和问题$q_i$来生成答案表达式$Fans(\overline{p}_i，\overline{q}i)$，是含有5个隐层的前馈神经网络，词向量用LSTM编码。我们用如下函数衡量答案表达式与候选答案$a_j$之间的距离：$$dist(F{ans}(\overline{p}_i，\overline{q}_i),\hat{a}_j)"></a>第二步就是计算对于给定的帖子$p_i$和问题$q_i$，答案是$a_j$的概率。首先结合帖子$p_i$和问题$q_i$来生成答案表达式$Fans(\overline{p}_i，\overline{q}<em>i)$，是含有5个隐层的前馈神经网络，词向量用LSTM编码。我们用如下函数衡量答案表达式与候选答案$a_j$之间的距离：<br>$$<br>dist(F</em>{ans}(\overline{p}_i，\overline{q}_i),\hat{a}_j)</h1><p>1-cos_sim(F_{ans}(\overline{p}_i，\overline{q}_i),\hat{a}<em>j)<br>$$<br>再结合上问题$q_i$与$q_j$（和$a_j$配对）之间的余弦相似度，最终计算出$a_j$是$q_i$的答案的可能性：<br>$$<br>P[a_j|p,q_i]&#x3D;exp^{-dist(F</em>{ans}(\overline{p}，\overline{q}_i),\hat{a}_j)}*cos_sim(\hat{q}_i,\hat{q}_j)<br>$$<br>$\hat{a}_j$，$\hat{q}_i$，$\hat{q}_j$是对应的平均词向量，用GloVe embedding</p>
+<p>因为问题和答案都可以用几种不同的方式来表达相同的意思，为了归纳进相似的答案表示，提高答案的泛化能力，使用如下损失函数训练答案生成器，迫使生成与正确答案$a_i$相近的答案：<br>$$<br>loss_{ans}(p_i,q_i,a_i,Q_i)&#x3D;dist(F_{ans}(\overline{p}_i，\overline{q}<em>i),\hat{a}<em>j)+\<br>\sum</em>{j\in Q}{(dist(F</em>{ans}(\overline{p}_i，\overline{q}_i),\hat{a}_j)*cos_sim(\hat{q}_i,\hat{q}_j))}<br>$$<br><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220826203720659.png" srcset="/img/loading.gif" lazyload></p>
+<p>上图是答案生成器的训练过程，给定post $p$和问题$q_i$，生成一个答案表示，不仅接近它的原始答案$a_i$，而且如果候选问题$q_j$接近原始问题$q_i$，它也会接近它的一个候选答案$a_j$</p>
+<h3 id="有效性计算"><a href="#有效性计算" class="headerlink" title="有效性计算"></a><strong>有效性计算</strong></h3><p>给定一个帖子$p_i$和一个候选答案$a_j$，第三步是计算更新的帖子有效性$U(p_i+a_j)$，有效性是指对于帖子$p_i$，答案$a_j$和不同的问题$q_j$叠加对于$p_i$的更新有多有用，因为一个$a_j$可能对应多个$q_j$。对数据集中所有的$(p_i,q_i,a_i)$元组，我们标注为$y&#x3D;1$，对于候选数据$(p_i,q_j,a_j)$元组，我们标注为$y&#x3D;0$，除非$a_j&#x3D;a_i$</p>
+<blockquote>
+<p>虽然理论上，更新后的帖子的效用只能通过给定的帖子$p$和候选答案$a_j$来计算，但在实验中，本文发现当候选问题$q_j$与候选答案配对成为效用函数的一部分时，神经EVPI模型表现得更好。本文把这归因于这样一个事实，即关于一个答案是否增加了帖子的效用的很多信息也包含在向帖子提问的问题中</p>
+</blockquote>
+<p>有效性用交叉熵损失函数来衡量：<br>$$<br>loss_{util}(y_i,\hat{p}_i,\hat{q}<em>j,\hat{a}<em>j)&#x3D;<br>y_ilog(\sigma(F</em>{util}(p_i,q_j,a_j)))<br>$$<br>其中$\sigma(F</em>{util}(p_i,q_j,a_j))&#x3D;U(p_i+a_j)$，即更新后$p$的效用，是含有5个隐层的前馈神经网络，词向量用LSTM编码</p>
+<h3 id="联合神经网络模型"><a href="#联合神经网络模型" class="headerlink" title="联合神经网络模型"></a>联合神经网络模型</h3><p>总损失函数如下：<br>$$<br>\sum_{i}\sum_{j}&#x3D;loss_{ans}(p_i,q_i,a_i,Q_i)+loss_{util}(y_i,\hat{p}_i,\hat{q}_j,\hat{a}_j)<br>$$</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><strong>Conclusion</strong></h2><p>作者构建了一个用于澄清问题排序的新数据集，并提出了一个新的模型来解决这一任务。模型集成了深度网络架构和EVPI（完美信息期望值）概念，这有效地模拟了提问者的务实选择:如果我问这个问题，我如何想象对方会回答这个问题。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文为了解决对澄清问题排序的问题，首先对于给定的$p_i$，通过检索类似的$p$，建立10个$(p_i,q_i,a_i)$的“文本，问题，答案”三元组，然后通过embedding和余弦相似度，计算对于指定的$p_i,q_i$，其答案是$a_i$的概率，接着再计算对于给定的$p_i,a_j$，$p_i$更新后的效用$U(p_i+a_j)$，最后通过式1（EVPI）来计算候选答案的价值并排序</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CQGen/">#CQGen</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information</div>
+      <div>https://lishilong.cc/2022/08/26/Paper Reading Notes/Efficient Estimation of Word Representations in Vector Space/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Aaron</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/27/Algorithm%20Problem/leetcode662/" title="leetcode662">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode662</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/23/Algorithm%20Problem/leetcode782/" title="leetcode782">
+                        <span class="hidden-mobile">leetcode782</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

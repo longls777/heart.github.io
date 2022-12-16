@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta name="description" content="关于Transformer的若干问题整理记录  有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？ 这个问题也会被分为几个子问题  加性注意力(Additive Attention、乘性注意力(Dot Product Attention)、缩放点积注意力(Scaled Dot-Product Attention)的公式与计算过程？ Transformer计算attention的时候">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformer相关问题">
+<meta property="og:url" content="https://lishilong.cc/2022/09/15/Machine%20Learning/transformer%E7%9A%84%E5%85%B6%E4%BB%96%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:description" content="关于Transformer的若干问题整理记录  有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？ 这个问题也会被分为几个子问题  加性注意力(Additive Attention、乘性注意力(Dot Product Attention)、缩放点积注意力(Scaled Dot-Product Attention)的公式与计算过程？ Transformer计算attention的时候">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png">
+<meta property="article:published_time" content="2022-09-15T13:20:30.000Z">
+<meta property="article:modified_time" content="2022-12-16T10:23:36.315Z">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="transformer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png">
+  
+  
+  
+  <title>Transformer相关问题 - Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212309079.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Transformer相关问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-15 21:20" pubdate>
+          2022年9月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Transformer相关问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/82391768">关于Transformer的若干问题整理记录</a></p>
+</blockquote>
+<h4 id="有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？"><a href="#有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？" class="headerlink" title="有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？"></a>有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？</h4><blockquote>
+<p>这个问题也会被分为几个子问题</p>
+<ul>
+<li>加性注意力(Additive Attention、乘性注意力(Dot Product Attention)、缩放点积注意力(Scaled Dot-Product Attention)的公式与计算过程？</li>
+<li>Transformer计算attention的时候为何选择点乘而不是加法？<br>两者计算复杂度和效果上有什么区别？</li>
+<li>为什么在进行之前需要对attention进行scaled (attention计算时为什么要除 ) ？</li>
+</ul>
+</blockquote>
+<p>首先我们来看一下三者的公式：</p>
+<p><strong>Additive Attention</strong>(加性注意力模型)<br>$$<br>S(x_i,q)&#x3D;v^{T}tanh(Wx_i+Uq)<br>$$<br><strong>dot product attention</strong> （乘性注意力&#x2F;点积模型）<br>$$<br>S(x_i,q)&#x3D;x_i^{T}q<br>$$<br><strong>Scaled Dot-Product Attention</strong>(缩放点积模型)<br>$$<br>S(x_i,q)&#x3D;x_i^{T}q&#x2F;\sqrt{d_k}<br>$$<br>其他的还有双线性模型$S(x_i,q)&#x3D;x_i^TWq$等</p>
+<p>想象成一句中文与其对应的英文翻译，每个词为一个向量。两个序列也可以不等长，我们要计算两组序列彼此之间的attention权重。其过程大体可以被抽象为三步：</p>
+<ol>
+<li>信息输入：将语言输入模型，转换为对应的向量如 $q,k,v$ 或者$key, value$，我们这里假设存在两组向量序列来表示一句话与其对应的翻译。 $H:h_1,h_2,…h_n$和$S:s_1,s_2,…,s_n$，任意一个元素的维度为$d_k$</li>
+<li>对于任意的$h_i,s_j$,以某种attention函数计算两者之间的分数</li>
+<li>信息加权平均</li>
+</ol>
+<h5 id="Additive-Attention"><a href="#Additive-Attention" class="headerlink" title="Additive Attention"></a>Additive Attention</h5><p>对于Additive Attention而言，这个过程为：</p>
+<ol>
+<li>计算任意向量$h_i$与向量$s_1,s_2,…,s_n$的attention权重</li>
+<li>然后拼接 $h_i−s_1$通过一个特定的线性层计算出其分数，再拼接 $h_i−s_2$，重复通过线性层计算，…，直到所有的均计算出一个结果</li>
+<li>再把所有结果通过 softmax</li>
+</ol>
+<p>其计算过程公式如下：<br>$$<br>\begin{aligned}<br>\boldsymbol{c}<em>t&amp;&#x3D;\sum</em>{i&#x3D;1}^{n}{\alpha_{t,i}\boldsymbol{h}<em>i} \qquad ;输出的上下文向量\boldsymbol{y}<em>t\<br>\alpha</em>{t,i}&amp;&#x3D;align(y_t,x_i)\qquad;两个单词y_t和x_i的对齐情况\ &amp;&#x3D;\frac{exp(score(s</em>{t-1},\boldsymbol{h}<em>i))}{\sum</em>{i^{‘}&#x3D;1}^{n}{exp(score(s_{t-1},\boldsymbol{h}_{i^{‘}}))}}\quad;对自定义的对齐分数进行softmax<br>\end{aligned}<br>$$</p>
+<p>从这个角度讲，Additive Attention注意力的公式也可以看作：<br>$$<br>f_{score(i,j)}&#x3D;v_a^Ttanh(W_a[h_i;s_j])&#x3D;v^Ttanh(W_1s_i+W_2h_j)<br>$$<br>其中 $v_a$ 和 $W_a$ 是学习的注意参数。这里 $h$ 是指编码器的隐藏状态， $s$ 是解码器的隐藏状态。</p>
+<h5 id="Dot-Product-Attention"><a href="#Dot-Product-Attention" class="headerlink" title="Dot Product Attention"></a>Dot Product Attention</h5><p>同样地，我们也可以将 $f_{score(i,j)}$ 函数替换为乘性注意力，即<br>$$<br>f_{score(i,j)}&#x3D;F(s_i,h_j)&#x3D;s_i^Th_j<br>$$<br>而上述的计算过程不变，依次对任意的 $s_i,h_j$ 求出其乘性注意力分数，然后统一softmax 。这个过程对于序列 $H，S$ 而言,就是矩阵相乘的过程</p>
+<p>Dot Product Attention（Mul）和 Additive Attention（Add）两者在复杂度上是相似的。但是Additive Attention增加了三个可学习的矩阵，所以相比另外两个效果会更好，同时也增加了更多的模型参数，计算效率会较低。</p>
+<p>至于为什么要用Mul来完成Self-attention，Transformer作者的说法是为了计算更快。因为虽然矩阵加法的计算更简单，但是Add套着$tanh$和$v$，相当于一个完整的隐层。在整体计算复杂度上两者接近，但是矩阵乘法已经有了非常成熟的加速实现。在$d_k$(即attention-dim）较小的时候，两者的效果接近。但是随着$d_k$增大，Add开始显著超越Mul。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-4ce33c847c71c3092e1a557c857369fb_1440w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>作者分析Mul性能不佳的原因，认为是极大的点积值将整个softmax推向梯度平缓区，使得收敛困难。也就是出现了“梯度消失”。</p>
+<p>这才有了scaled。所以，Add是天然地不需要scaled，Mul在$d_k$较大的时候必须要做scaled。</p>
+<p>那么，极大的点积值是从哪里来的呢?</p>
+<p>对于Mul来说，如果$s$和$h$都分布在[0,1]，在相乘时引入一次对所有位置的$\sum$求和，整体的分布就会扩大到[0, dk]。</p>
+<p>反过来看Add，右侧是被$tanh()$钳位后的值，分布在[-1,1]。整体分布和$d_k$没有关系。</p>
+<p>于是，这才出现了Scaled Dot-Product Attention</p>
+<h5 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h5><p>除以 $\sqrt{d_k}$ 的具体证明则如下，假设输入元素 $x_i$ 转化而来的 $q,k$ 每一维是均值为0、方差为1的独立随机变量，一共有 $d_k$ 维，那么它们的点积 $q·k&#x3D;\sum_{i&#x3D;1}^{d_k}{q_ik_i}$ 的均值为0、方差为 $d_k$<br>$$<br>var(\sum{x_iy_i})&#x3D;kvar(x_1y_1)&#x3D;kE[x_1^2]E[y_1^2]&#x3D;k\sigma^4<br>$$<br>控制方差为1，所以就要除以$\sqrt{d_k}$，即：<br>$$<br>var(\frac{q·k}{\sqrt{d_k}})&#x3D;\frac{d_k}{(\sqrt{d_k})^2}&#x3D;1<br>$$<br>将方差控制为1，也就有效地控制了前面提到的梯度消失的问题</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/366993073?utm_id=0">https://zhuanlan.zhihu.com/p/366993073?utm_id=0</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31547842">https://zhuanlan.zhihu.com/p/31547842</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/379033238">https://zhuanlan.zhihu.com/p/379033238</a></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1409.0473">https://arxiv.org/abs/1409.0473</a></p>
+</blockquote>
+<h4 id="Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？"><a href="#Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？" class="headerlink" title="Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？"></a>Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？</h4><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png" srcset="/img/loading.gif" lazyload alt="image-20220915212106860"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212309079.png" srcset="/img/loading.gif" lazyload alt="image-20220915212309079"></p>
+<p>先从点乘的物理意义说，两个向量的点乘表示两个向量的相似度</p>
+<p>Q，K，V物理意义上是一样的，都表示同一个句子中不同token组成的矩阵。矩阵中的每一行，是表示一个token的word embedding向量。假设一个句子”Hello, how are you?”长度是6，embedding维度是300，那么Q，K，V都是(6, 300)的矩阵</p>
+<p>简单的说，K和Q的点乘是为了计算一个句子中每个token相对于句子中其他token的相似度，这个相似度可以理解为attetnion score，关注度得分。比如说 “Hello, how are you?”这句话，当前token为”Hello”的时候，我们可以知道”Hello“对于” , “, “how”, “are”, “you”, “?”这几个token对应的关注度是多少。有了这个attetnion score，可以知道处理到”Hello“的时候，模型在关注句子中的哪些token。</p>
+<p>这个attention score是一个(6, 6)的矩阵。每一行代表每个token相对于其他token的关注度。比如说上图中的第一行，代表的是Hello这个单词相对于本句话中的其他单词的关注度。添加softmax只是为了对关注度进行归一化。</p>
+<p>然后我们拿这个attention score矩阵与代表着句子特征的V相乘，得到的是一个加权后结果。也就是说，原本V里的各个单词只用word embedding表示，相互之间没什么关系。但是经过与attention score相乘后，V中每个token的向量（即一个单词的word embedding向量），在300维的每个维度上（每一列）上，都会对其他token做出调整（关注度不同）。与V相乘这一步，相当于提纯，让每个单词关注该关注的部分。</p>
+<p>好了，该解释为什么不把K和Q用同一个值了。</p>
+<p>经过上面的解释，我们知道K和Q的点乘是为了得到一个attention score 矩阵，用来对V进行提纯。K和Q使用了不同的$W_k$,$ W_Q$来计算，可以理解为是在不同空间上的投影。</p>
+<p>但是如果不用Q，直接拿K和K点乘的话，你会发现attention score 矩阵是一个对称矩阵。因为是同样一个矩阵，都投影到了同样一个空间，通过矩阵相乘的方式并不能获取每个token对其他token的attention score。俩个向量越相似，内积越大，当一个向量与自己做内积，再与其他不同词的向量做内积后(形成一个打分向量)，该向量经过softmax后，就会变为一个有一个位置的值很大(自己与自己相乘)，其他位置的值非常非常小的状况出现，比如[0.98,0.01,0.05,0.05]，那么，这样的得分再与V矩阵相乘后得出的加权向量就是一个基本上跟自己本身差不多的矩阵，那就失去了self attention的意义</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/319339652/answer/730848834">https://www.zhihu.com/question/319339652/answer/730848834</a></p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3">https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3</a></p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/transformer/">#transformer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Transformer相关问题</div>
+      <div>https://lishilong.cc/2022/09/15/Machine Learning/transformer的其他若干问题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Aaron</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/18/Algorithm%20Problem/leetcode827/" title="leetcode827">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode827</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/15/Machine%20Learning/transformer%E7%9A%84multi-head/" title="Transformer为什么使用Multi-Head？">
+                        <span class="hidden-mobile">Transformer为什么使用Multi-Head？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
