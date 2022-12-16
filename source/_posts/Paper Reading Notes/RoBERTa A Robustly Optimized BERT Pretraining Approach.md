@@ -10,7 +10,7 @@ math: true
 
 **标题：**《RoBERTa:  A Robustly Optimized BERT Pretraining Approach》
 
-**论文来源：** ARXIV 2019
+**论文来源：** arxiv 2019
 
 **原文链接：** https://arxiv.org/pdf/1907.11692.pdf
 

@@ -18,7 +18,7 @@ math: true
 
 **示例 1：**
 
-![img](https://assets.leetcode.com/uploads/2020/08/16/e1.jpg)
+![img](http://longls777.oss-cn-beijing.aliyuncs.com/img/e1.jpg)
 
 ```
 输入：root = [1,2,3,4,null,2,4,null,null,4]
@@ -27,7 +27,7 @@ math: true
 
 **示例 2：**
 
-![img](https://assets.leetcode.com/uploads/2020/08/16/e2.jpg)
+![img](http://longls777.oss-cn-beijing.aliyuncs.com/img/e2.jpg)
 
 ```
 输入：root = [2,1,1]
@@ -36,7 +36,7 @@ math: true
 
 **示例 3：**
 
-**![img](https://assets.leetcode.com/uploads/2020/08/16/e33.jpg)**
+**![img](http://longls777.oss-cn-beijing.aliyuncs.com/img/e33.jpg)**
 
 ```
 输入：root = [2,2,2,3,null,3,null]
