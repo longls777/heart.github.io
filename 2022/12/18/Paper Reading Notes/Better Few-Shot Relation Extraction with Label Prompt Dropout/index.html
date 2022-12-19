@@ -16,24 +16,25 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="关于Transformer的若干问题整理记录  有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？ 这个问题也会被分为几个子问题  加性注意力(Additive Attention、乘性注意力(Dot Product Attention)、缩放点积注意力(Scaled Dot-Product Attention)的公式与计算过程？ Transformer计算attention的时候">
+    <meta name="description" content="标题：《Better Few-Shot Relation Extraction with Label Prompt Dropout》 论文来源： EMNLP 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2210.13733 源码：  https:&#x2F;&#x2F;github.com&#x2F;jzhang38&#x2F;LPD 论文动机Few-Shot关系提取的目的是基于非常有限的训练，学习识别两个实体之间">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Transformer相关问题">
-<meta property="og:url" content="https://lishilong.cc/2022/09/15/Machine%20Learning/transformer%E7%9A%84%E5%85%B6%E4%BB%96%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="Better Few-Shot Relation Extraction with Label Prompt Dropout">
+<meta property="og:url" content="https://lishilong.cc/2022/12/18/Paper%20Reading%20Notes/Better%20Few-Shot%20Relation%20Extraction%20with%20Label%20Prompt%20Dropout/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="关于Transformer的若干问题整理记录  有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？ 这个问题也会被分为几个子问题  加性注意力(Additive Attention、乘性注意力(Dot Product Attention)、缩放点积注意力(Scaled Dot-Product Attention)的公式与计算过程？ Transformer计算attention的时候">
+<meta property="og:description" content="标题：《Better Few-Shot Relation Extraction with Label Prompt Dropout》 论文来源： EMNLP 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2210.13733 源码：  https:&#x2F;&#x2F;github.com&#x2F;jzhang38&#x2F;LPD 论文动机Few-Shot关系提取的目的是基于非常有限的训练，学习识别两个实体之间">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png">
-<meta property="article:published_time" content="2022-09-15T13:20:30.000Z">
-<meta property="article:modified_time" content="2022-12-16T10:23:36.315Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221219221843700.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221219230137709.png">
+<meta property="article:published_time" content="2022-12-18T14:19:00.000Z">
+<meta property="article:modified_time" content="2022-12-19T15:07:49.940Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="transformer">
+<meta property="article:tag" content="Few-Shot">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221219221843700.png">
   
   
   
-  <title>Transformer相关问题 - Heart</title>
+  <title>Better Few-Shot Relation Extraction with Label Prompt Dropout - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -44,6 +45,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
 
 
 
@@ -208,13 +211,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212309079.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/1.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Transformer相关问题"></span>
+            <span id="subtitle" data-typed-text="Better Few-Shot Relation Extraction with Label Prompt Dropout"></span>
           
         </div>
 
@@ -225,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-15 21:20" pubdate>
-          2022年9月15日 晚上
+        <time datetime="2022-12-18 22:19" pubdate>
+          2022年12月18日 晚上
         </time>
       </span>
     
@@ -237,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k 字
+          1.5k 字
         
       </span>
     
@@ -248,7 +251,7 @@
         
         
         
-          34 分钟
+          13 分钟
         
       </span>
     
@@ -286,69 +289,36 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Transformer相关问题</h1>
+            <h1 style="display: none">Better Few-Shot Relation Extraction with Label Prompt Dropout</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/82391768">关于Transformer的若干问题整理记录</a></p>
+                <p><strong>标题：</strong>《Better Few-Shot Relation Extraction with Label Prompt Dropout》</p>
+<p><strong>论文来源：</strong> EMNLP 2022</p>
+<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.13733">https://arxiv.org/abs/2210.13733</a></p>
+<p><strong>源码：</strong>  <a target="_blank" rel="noopener" href="https://github.com/jzhang38/LPD">https://github.com/jzhang38/LPD</a></p>
+<h2 id="论文动机"><a href="#论文动机" class="headerlink" title="论文动机"></a>论文动机</h2><p>Few-Shot关系提取的目的是基于非常有限的训练，学习识别两个实体之间的关系。最近的研究发现，文本标签(即关系名称和关系描述)对于学习类别表示非常有用，然而，在学习过程中如何更好地利用这些标签信息是一个重要的研究问题。现有的工作很大程度上假设这种文本标签在学习和预测过程中总是存在的，相反，我们提出了一种称为label prompt dropout的新方法，它在学习过程中随机删除标签描述。实验证明，我们的方法能够导致改进类别表示，在Few-Shot关系提取任务上产生明显更好的结果。</p>
+<h2 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h2><p>提取实体关系这个任务一般被作为多分类问题处理，使用LSTM或者BERT进行大语料监督学习是主流处理方法，然而一个新的问题是如何使用少量数据训练以识别新的关系，这个新的研究任务称为few-shot relation extraction（FSRE）。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://aclanthology.org/D18-1514.pdf">FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation</a></p>
+<p><a target="_blank" rel="noopener" href="https://aclanthology.org/D19-1649.pdf">FewRel 2.0: Towards More Challenging Few-Shot Relation Classification</a></p>
 </blockquote>
-<h4 id="有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？"><a href="#有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？" class="headerlink" title="有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？"></a>有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？</h4><blockquote>
-<p>这个问题也会被分为几个子问题</p>
-<ul>
-<li>加性注意力(Additive Attention、乘性注意力(Dot Product Attention)、缩放点积注意力(Scaled Dot-Product Attention)的公式与计算过程？</li>
-<li>Transformer计算attention的时候为何选择点乘而不是加法？<br>两者计算复杂度和效果上有什么区别？</li>
-<li>为什么在进行之前需要对attention进行scaled (attention计算时为什么要除 ) ？</li>
+<p>得益于CV领域few-shot的成功，许多人使用元学习框架处理FSRE，从训练数据中随机采样具有不同标签集的事件，以模拟测试阶段的few-shot场景。</p>
+<p>基于bert的原型网络性能很好，但是类别原型仅通过每个类别的支持实例的平均表示来构造，忽略了可能提供额外有用信息的文本标签。因此，最近的努力方向是试图修改原型网络，使其也可以使用标签信息。</p>
+<p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3340531.3412153">Yang et al. (2020)</a>将实体类型信息和关系描述插入到模型中。<a target="_blank" rel="noopener" href="https://aclanthology.org/2021.emnlp-main.212/">Dong et al. (2021)</a>除语句编码器外，还使用关系编码器生成关系表示。<a target="_blank" rel="noopener" href="https://aclanthology.org/2021.emnlp-main.204/">Han et al. (2021a)</a>提出了一种混合原型网络，可以从上下文句子和关系描述中生成混合原型。尽管如此，这些方法在很大程度上假设在学习和预测过程中，每个支持实例都在支持集中提供了相应的文本标签。我们认为，向所有支持实例注入文本标签可能会使训练任务变得没有挑战性，因为模型在训练过程中很大程度上依赖于文本标签，从而导致在测试过程中面对看不见的关系和文本标签时性能较差。理想情况下，文本标签应该被视为额外的信息源，这样模型可以使用或不使用文本标签。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3340531.3412153">Enhance Prototypical Network with Text Descriptions for Few-shot Relation Classification</a></p>
+<p><a target="_blank" rel="noopener" href="https://aclanthology.org/2021.emnlp-main.212.pdf">MapRE: An Effective Semantic Mapping Approach for Low-resource Relation Extraction</a></p>
+<p><a target="_blank" rel="noopener" href="https://aclanthology.org/2021.emnlp-main.204.pdf">Exploring Task Difficulty for Few-Shot Relation Extraction</a></p>
+</blockquote>
+<h2 id="本文贡献"><a href="#本文贡献" class="headerlink" title="本文贡献"></a>本文贡献</h2><ul>
+<li>提出了LPD（label prompt dropout），一种新的标签提示dropout方法，可以更好地利用FSRE中的文本标签。这种简单的设计明显优于先前使用复杂网络结构融合文本标签和上下文句子的尝试。</li>
+<li>确定了文献中先前实验设置的局限性，并提出了一个更严格的FSRE评估设置。对于这两种设置，我们都展示了相对于之前的技术状态的强大改进。</li>
 </ul>
-</blockquote>
-<p>首先我们来看一下三者的公式：</p>
-<p><strong>Additive Attention</strong>(加性注意力模型)<br>$$<br>S(x_i,q)&#x3D;v^{T}tanh(Wx_i+Uq)<br>$$<br><strong>dot product attention</strong> （乘性注意力&#x2F;点积模型）<br>$$<br>S(x_i,q)&#x3D;x_i^{T}q<br>$$<br><strong>Scaled Dot-Product Attention</strong>(缩放点积模型)<br>$$<br>S(x_i,q)&#x3D;x_i^{T}q&#x2F;\sqrt{d_k}<br>$$<br>其他的还有双线性模型$S(x_i,q)&#x3D;x_i^TWq$等</p>
-<p>想象成一句中文与其对应的英文翻译，每个词为一个向量。两个序列也可以不等长，我们要计算两组序列彼此之间的attention权重。其过程大体可以被抽象为三步：</p>
-<ol>
-<li>信息输入：将语言输入模型，转换为对应的向量如 $q,k,v$ 或者$key, value$，我们这里假设存在两组向量序列来表示一句话与其对应的翻译。 $H:h_1,h_2,…h_n$和$S:s_1,s_2,…,s_n$，任意一个元素的维度为$d_k$</li>
-<li>对于任意的$h_i,s_j$,以某种attention函数计算两者之间的分数</li>
-<li>信息加权平均</li>
-</ol>
-<h5 id="Additive-Attention"><a href="#Additive-Attention" class="headerlink" title="Additive Attention"></a>Additive Attention</h5><p>对于Additive Attention而言，这个过程为：</p>
-<ol>
-<li>计算任意向量$h_i$与向量$s_1,s_2,…,s_n$的attention权重</li>
-<li>然后拼接 $h_i−s_1$通过一个特定的线性层计算出其分数，再拼接 $h_i−s_2$，重复通过线性层计算，…，直到所有的均计算出一个结果</li>
-<li>再把所有结果通过 softmax</li>
-</ol>
-<p>其计算过程公式如下：<br>$$<br>\begin{aligned}<br>\boldsymbol{c}<em>t&amp;&#x3D;\sum</em>{i&#x3D;1}^{n}{\alpha_{t,i}\boldsymbol{h}<em>i} \qquad ;输出的上下文向量\boldsymbol{y}<em>t\<br>\alpha</em>{t,i}&amp;&#x3D;align(y_t,x_i)\qquad;两个单词y_t和x_i的对齐情况\ &amp;&#x3D;\frac{exp(score(s</em>{t-1},\boldsymbol{h}<em>i))}{\sum</em>{i^{‘}&#x3D;1}^{n}{exp(score(s_{t-1},\boldsymbol{h}_{i^{‘}}))}}\quad;对自定义的对齐分数进行softmax<br>\end{aligned}<br>$$</p>
-<p>从这个角度讲，Additive Attention注意力的公式也可以看作：<br>$$<br>f_{score(i,j)}&#x3D;v_a^Ttanh(W_a[h_i;s_j])&#x3D;v^Ttanh(W_1s_i+W_2h_j)<br>$$<br>其中 $v_a$ 和 $W_a$ 是学习的注意参数。这里 $h$ 是指编码器的隐藏状态， $s$ 是解码器的隐藏状态。</p>
-<h5 id="Dot-Product-Attention"><a href="#Dot-Product-Attention" class="headerlink" title="Dot Product Attention"></a>Dot Product Attention</h5><p>同样地，我们也可以将 $f_{score(i,j)}$ 函数替换为乘性注意力，即<br>$$<br>f_{score(i,j)}&#x3D;F(s_i,h_j)&#x3D;s_i^Th_j<br>$$<br>而上述的计算过程不变，依次对任意的 $s_i,h_j$ 求出其乘性注意力分数，然后统一softmax 。这个过程对于序列 $H，S$ 而言,就是矩阵相乘的过程</p>
-<p>Dot Product Attention（Mul）和 Additive Attention（Add）两者在复杂度上是相似的。但是Additive Attention增加了三个可学习的矩阵，所以相比另外两个效果会更好，同时也增加了更多的模型参数，计算效率会较低。</p>
-<p>至于为什么要用Mul来完成Self-attention，Transformer作者的说法是为了计算更快。因为虽然矩阵加法的计算更简单，但是Add套着$tanh$和$v$，相当于一个完整的隐层。在整体计算复杂度上两者接近，但是矩阵乘法已经有了非常成熟的加速实现。在$d_k$(即attention-dim）较小的时候，两者的效果接近。但是随着$d_k$增大，Add开始显著超越Mul。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-4ce33c847c71c3092e1a557c857369fb_1440w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>作者分析Mul性能不佳的原因，认为是极大的点积值将整个softmax推向梯度平缓区，使得收敛困难。也就是出现了“梯度消失”。</p>
-<p>这才有了scaled。所以，Add是天然地不需要scaled，Mul在$d_k$较大的时候必须要做scaled。</p>
-<p>那么，极大的点积值是从哪里来的呢?</p>
-<p>对于Mul来说，如果$s$和$h$都分布在[0,1]，在相乘时引入一次对所有位置的$\sum$求和，整体的分布就会扩大到[0, dk]。</p>
-<p>反过来看Add，右侧是被$tanh()$钳位后的值，分布在[-1,1]。整体分布和$d_k$没有关系。</p>
-<p>于是，这才出现了Scaled Dot-Product Attention</p>
-<h5 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h5><p>除以 $\sqrt{d_k}$ 的具体证明则如下，假设输入元素 $x_i$ 转化而来的 $q,k$ 每一维是均值为0、方差为1的独立随机变量，一共有 $d_k$ 维，那么它们的点积 $q·k&#x3D;\sum_{i&#x3D;1}^{d_k}{q_ik_i}$ 的均值为0、方差为 $d_k$<br>$$<br>var(\sum{x_iy_i})&#x3D;kvar(x_1y_1)&#x3D;kE[x_1^2]E[y_1^2]&#x3D;k\sigma^4<br>$$<br>控制方差为1，所以就要除以$\sqrt{d_k}$，即：<br>$$<br>var(\frac{q·k}{\sqrt{d_k}})&#x3D;\frac{d_k}{(\sqrt{d_k})^2}&#x3D;1<br>$$<br>将方差控制为1，也就有效地控制了前面提到的梯度消失的问题</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/366993073?utm_id=0">https://zhuanlan.zhihu.com/p/366993073?utm_id=0</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31547842">https://zhuanlan.zhihu.com/p/31547842</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/379033238">https://zhuanlan.zhihu.com/p/379033238</a></p>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1409.0473">https://arxiv.org/abs/1409.0473</a></p>
-</blockquote>
-<h4 id="Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？"><a href="#Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？" class="headerlink" title="Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？"></a>Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？</h4><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png" srcset="/img/loading.gif" lazyload alt="image-20220915212106860"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212309079.png" srcset="/img/loading.gif" lazyload alt="image-20220915212309079"></p>
-<p>先从点乘的物理意义说，两个向量的点乘表示两个向量的相似度</p>
-<p>Q，K，V物理意义上是一样的，都表示同一个句子中不同token组成的矩阵。矩阵中的每一行，是表示一个token的word embedding向量。假设一个句子”Hello, how are you?”长度是6，embedding维度是300，那么Q，K，V都是(6, 300)的矩阵</p>
-<p>简单的说，K和Q的点乘是为了计算一个句子中每个token相对于句子中其他token的相似度，这个相似度可以理解为attetnion score，关注度得分。比如说 “Hello, how are you?”这句话，当前token为”Hello”的时候，我们可以知道”Hello“对于” , “, “how”, “are”, “you”, “?”这几个token对应的关注度是多少。有了这个attetnion score，可以知道处理到”Hello“的时候，模型在关注句子中的哪些token。</p>
-<p>这个attention score是一个(6, 6)的矩阵。每一行代表每个token相对于其他token的关注度。比如说上图中的第一行，代表的是Hello这个单词相对于本句话中的其他单词的关注度。添加softmax只是为了对关注度进行归一化。</p>
-<p>然后我们拿这个attention score矩阵与代表着句子特征的V相乘，得到的是一个加权后结果。也就是说，原本V里的各个单词只用word embedding表示，相互之间没什么关系。但是经过与attention score相乘后，V中每个token的向量（即一个单词的word embedding向量），在300维的每个维度上（每一列）上，都会对其他token做出调整（关注度不同）。与V相乘这一步，相当于提纯，让每个单词关注该关注的部分。</p>
-<p>好了，该解释为什么不把K和Q用同一个值了。</p>
-<p>经过上面的解释，我们知道K和Q的点乘是为了得到一个attention score 矩阵，用来对V进行提纯。K和Q使用了不同的$W_k$,$ W_Q$来计算，可以理解为是在不同空间上的投影。</p>
-<p>但是如果不用Q，直接拿K和K点乘的话，你会发现attention score 矩阵是一个对称矩阵。因为是同样一个矩阵，都投影到了同样一个空间，通过矩阵相乘的方式并不能获取每个token对其他token的attention score。俩个向量越相似，内积越大，当一个向量与自己做内积，再与其他不同词的向量做内积后(形成一个打分向量)，该向量经过softmax后，就会变为一个有一个位置的值很大(自己与自己相乘)，其他位置的值非常非常小的状况出现，比如[0.98,0.01,0.05,0.05]，那么，这样的得分再与V矩阵相乘后得出的加权向量就是一个基本上跟自己本身差不多的矩阵，那就失去了self attention的意义</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/319339652/answer/730848834">https://www.zhihu.com/question/319339652/answer/730848834</a></p>
-<p><a target="_blank" rel="noopener" href="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3">https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3</a></p>
-</blockquote>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221219221843700.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="任务定义"><a href="#任务定义" class="headerlink" title="任务定义"></a>任务定义</h2><p>FSRE任务：</p>
+<h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221219230137709.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -367,7 +337,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -382,7 +352,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/transformer/">#transformer</a>
+        <a href="/tags/Few-Shot/">#Few-Shot</a>
       
     </div>
   
@@ -394,8 +364,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Transformer相关问题</div>
-      <div>https://lishilong.cc/2022/09/15/Machine Learning/transformer的其他若干问题/</div>
+      <div>Better Few-Shot Relation Extraction with Label Prompt Dropout</div>
+      <div>https://lishilong.cc/2022/12/18/Paper Reading Notes/Better Few-Shot Relation Extraction with Label Prompt Dropout/</div>
     </div>
     <div class="license-meta">
       
@@ -407,7 +377,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月15日</div>
+          <div>2022年12月18日</div>
         </div>
       
       
@@ -439,9 +409,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/18/Algorithm%20Problem/leetcode827/" title="leetcode827 最大人工岛">
+                      <a href="/2022/12/19/Algorithm%20Problem/leetcode1971/" title="leetcode828 寻找图中是否存在路径">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode827 最大人工岛</span>
+                        <span class="hidden-mobile">leetcode828 寻找图中是否存在路径</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -449,8 +419,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/15/Machine%20Learning/transformer%E7%9A%84multi-head/" title="Transformer为什么使用Multi-Head？">
-                        <span class="hidden-mobile">Transformer为什么使用Multi-Head？</span>
+                      <a href="/2022/12/16/Others/hexo%E9%87%8D%E5%BB%BA/" title="hexo出现问题后重建流程">
+                        <span class="hidden-mobile">hexo出现问题后重建流程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -507,6 +477,11 @@
 
 
   
+
+
+  
+  
+
 
 
 
