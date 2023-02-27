@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method</title>
+    <link href="/2023/02/27/Paper%20Reading%20Notes/HRCA+%20Advanced%20Multiple-choice%20Machine%20Reading%20Comprehension%20Method/"/>
+    <url>/2023/02/27/Paper%20Reading%20Notes/HRCA+%20Advanced%20Multiple-choice%20Machine%20Reading%20Comprehension%20Method/</url>
+    
+    <content type="html"><![CDATA[<p><strong>标题：</strong>《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》</p><p><strong>论文来源：</strong> LREC 2022</p><p><strong>原文链接：</strong> <a href="https://aclanthology.org/2022.lrec-1.651/">https://aclanthology.org/2022.lrec-1.651/</a></p><p><strong>源码：</strong> </p><h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png" alt="image-20230227154427405"></p><p>该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章</p><p>基于预训练模型，首先生成（文章，问题，候选选项）三元组$(P,Q,O)$的word embedding，每个word embedding划分为对应于（文章，问题，候选选项）的三部分</p><p>此外，K个HRCA层将以下三个步骤重复K次，从而模拟人类试图在阅读理解考试中获得高分的方式：</p><ol><li>对问题进行多头self-attention（将问题视为q、k和v），这一步的目的是让模型再次确认问题</li><li>对步骤1中显示的选项和更新后的问题进行多头关注（将选项视为q，将更新后的问题视为k和v)。执行此步骤是为了模拟确认问题后对候选选项的理解</li><li>对文章和步骤2中显示的更新选项执行多头关注（将文章视为q，并将更新的选项视为k和v)。这一步为了让模型在理解候选选项后，理解带有问题的文章和相应的候选选项</li></ol><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162248879.png" alt="image-20230227162248879"></p><p>经过预训练模型后，得到：<br>$$<br>[e_1,e_2,…,e_{k+l+m}]<br>$$</p><blockquote><p>HRCA使模型能够学习文章、问题和相应候选选项中每两个部分之间的关系，并将学习到的信息更新到下一个学习步骤</p></blockquote><h3 id="HRCA"><a href="#HRCA" class="headerlink" title="HRCA"></a>HRCA</h3><p>将得到的$E$分为$E^P,E^Q,E^O$</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162549110.png" alt="image-20230227162549110"></p><h3 id="PQO-Matrix"><a href="#PQO-Matrix" class="headerlink" title="PQO Matrix"></a>PQO Matrix</h3><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227163021369.png" alt="image-20230227163021369"></p><p>作者发现HRCA中仅使用了三种attention关系，即问题和问题本身、候选选项和问题、文章和候选选项</p><p>上图中，红色的为HRCA中使用的，浅红色的为自注意力，灰色的为未使用的attention</p><h3 id="HRCA-1"><a href="#HRCA-1" class="headerlink" title="HRCA+"></a>HRCA+</h3><p>使用浅红色和灰色的关系，加强HRCA</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227165008151.png" alt="image-20230227165008151"></p><p>​</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MCQA</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering</title>
+    <link href="/2023/02/27/Paper%20Reading%20Notes/Learning%20to%20Attend%20On%20Essential%20Terms%20An%20Enhanced%20Retriever-Reader%20Model%20for%20Open-domain%20Question%20Answering/"/>
+    <url>/2023/02/27/Paper%20Reading%20Notes/Learning%20to%20Attend%20On%20Essential%20Terms%20An%20Enhanced%20Retriever-Reader%20Model%20for%20Open-domain%20Question%20Answering/</url>
+    
+    <content type="html"><![CDATA[<p><strong>标题：</strong>《Learning to Attend On Essential Terms: An Enhanced Retriever-Reader Model for Open-domain Question Answering》</p><p><strong>论文来源：</strong> NAACL 2019</p><p><strong>原文链接：</strong> <a href="https://aclanthology.org/N19-1030/">https://aclanthology.org/N19-1030/</a></p><p><strong>源码：</strong> </p><h2 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a>METHOD</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227142623454.png" alt="image-20230227142623454"></p><h3 id="基本术语感知检索-阅读器模型-ET-RR-结构"><a href="#基本术语感知检索-阅读器模型-ET-RR-结构" class="headerlink" title="基本术语感知检索-阅读器模型(ET-RR)结构"></a>基本术语感知检索-阅读器模型(ET-RR)结构</h3><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227142809881.png" alt="image-20230227142809881"></p><p>问题$Q$，N个answer choices $C_n$，通过基本术语选择器选出$Q$的一个子集，包含基本术语，称为$E$</p><p>对于每个answer，$E + C_n$送入检索器，选出top k个sentences，连接这k个sentences，称为$P_n$</p><p>然后，对于${Q, C_n, P_n}$三元组，阅读器匹配并获取匹配分数，分数最高的choice作为选择结果</p><h2 id="Reader-Model"><a href="#Reader-Model" class="headerlink" title="Reader Model"></a>Reader Model</h2><h3 id="Input-Layer"><a href="#Input-Layer" class="headerlink" title="Input Layer"></a>Input Layer</h3><ul><li><strong>word embedding</strong>：Glove</li><li><strong>Part-of-Speech Embedding and Named-Entity Embedding</strong></li><li><strong>Relation Embedding</strong>：ConceptNet</li><li><strong>Feature Embeddings</strong>：<ul><li>word match：单词词目在$Q$或$C$中就为1，其他为0</li><li>word frequency：应用词频算法</li><li>essential term：$[e_1,e_2,…]$，在Q中，如果这一个单词是essential term就为1，其他为0</li></ul></li></ul><h3 id="Attention-Layer"><a href="#Attention-Layer" class="headerlink" title="Attention Layer"></a>Attention Layer</h3><p>获得word-level的embedding之后，使用attention加强单词表示。 两个单词$W_U,W_V$，word层面的attention计算如下：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227150133521.png" alt="image-20230227150133521"></p><p>使用上式计算三种类型的attention：</p><ul><li>question-aware passage representation</li><li>question-aware choice representation</li><li>passage-aware choice representation</li></ul><p>…</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>MCQA</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Sentinel</title>
     <link href="/2023/02/27/Redis/Redis-Sentinel/"/>
     <url>/2023/02/27/Redis/Redis-Sentinel/</url>
