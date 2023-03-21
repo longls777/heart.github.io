@@ -16,28 +16,34 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》 论文来源： LREC 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.lrec-1.651&#x2F; 源码：  Method 该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章">
+    <meta name="description" content="IO多路复用IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程  在处理 IO 的时候（也就是将数据从内核复制到应用缓冲的时候），阻塞和非阻塞都是同步 IO 只有使用了特殊的 API 才是异步 IO   基于select、poll、epoll的I&#x2F;O多路复用模型如下：   I&#x2F;O多路复用有很多种实现。在linux上，2.4内核前主要是select">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method">
-<meta property="og:url" content="https://lishilong.cc/2023/02/27/Paper%20Reading%20Notes/HRCA+%20Advanced%20Multiple-choice%20Machine%20Reading%20Comprehension%20Method/index.html">
+<meta property="og:title" content="select、poll、epoll详解">
+<meta property="og:url" content="https://lishilong.cc/2023/03/21/Linux/select_poll_epoll%20/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》 论文来源： LREC 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.lrec-1.651&#x2F; 源码：  Method 该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章">
+<meta property="og:description" content="IO多路复用IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程  在处理 IO 的时候（也就是将数据从内核复制到应用缓冲的时候），阻塞和非阻塞都是同步 IO 只有使用了特殊的 API 才是异步 IO   基于select、poll、epoll的I&#x2F;O多路复用模型如下：   I&#x2F;O多路复用有很多种实现。在linux上，2.4内核前主要是select">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162248879.png">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162549110.png">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227163021369.png">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227165008151.png">
-<meta property="article:published_time" content="2023-02-27T07:34:00.000Z">
-<meta property="article:modified_time" content="2023-02-27T13:22:04.908Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-1ad8e572f0df79ba.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210314724.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-3a36f7cc5e48276a.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-543af9ba5e6e2ba6.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-32af7c797010bf43.jpg">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-20eccf6c314f3c76.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-f5413d2fce88ff00.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-129ddaf93b668a13.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-5fdf94c3582f06ed.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-a5ea34937d73a36a.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321212302170.png">
+<meta property="article:published_time" content="2023-03-21T13:28:00.000Z">
+<meta property="article:modified_time" content="2023-03-21T14:17:49.026Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="MCQA">
+<meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-1ad8e572f0df79ba.png">
   
   
   
-  <title>HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method - Heart</title>
+  <title>select、poll、epoll详解 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -220,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method"></span>
+            <span id="subtitle" data-typed-text="select、poll、epoll详解"></span>
           
         </div>
 
@@ -231,8 +237,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-27 15:34" pubdate>
-          2023年2月27日 下午
+        <time datetime="2023-03-21 21:28" pubdate>
+          2023年3月21日 晚上
         </time>
       </span>
     
@@ -243,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          758 字
+          2.8k 字
         
       </span>
     
@@ -254,7 +260,7 @@
         
         
         
-          7 分钟
+          24 分钟
         
       </span>
     
@@ -292,37 +298,74 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method</h1>
+            <h1 style="display: none">select、poll、epoll详解</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>标题：</strong>《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》</p>
-<p><strong>论文来源：</strong> LREC 2022</p>
-<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.lrec-1.651/">https://aclanthology.org/2022.lrec-1.651/</a></p>
-<p><strong>源码：</strong> </p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png" srcset="/img/loading.gif" lazyload alt="image-20230227154427405"></p>
-<p>该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章</p>
-<p>基于预训练模型，首先生成（文章，问题，候选选项）三元组$(P,Q,O)$的word embedding，每个word embedding划分为对应于（文章，问题，候选选项）的三部分</p>
-<p>此外，K个HRCA层将以下三个步骤重复K次，从而模拟人类试图在阅读理解考试中获得高分的方式：</p>
-<ol>
-<li>对问题进行多头self-attention（将问题视为q、k和v），这一步的目的是让模型再次确认问题</li>
-<li>对步骤1中显示的选项和更新后的问题进行多头关注（将选项视为q，将更新后的问题视为k和v)。执行此步骤是为了模拟确认问题后对候选选项的理解</li>
-<li>对文章和步骤2中显示的更新选项执行多头关注（将文章视为q，并将更新的选项视为k和v)。这一步为了让模型在理解候选选项后，理解带有问题的文章和相应的候选选项</li>
-</ol>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162248879.png" srcset="/img/loading.gif" lazyload alt="image-20230227162248879"></p>
-<p>经过预训练模型后，得到：<br>$$<br>[e_1,e_2,…,e_{k+l+m}]<br>$$</p>
+                <h2 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h2><p>IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程</p>
+<ul>
+<li>在处理 IO 的时候（也就是将数据从内核复制到应用缓冲的时候），阻塞和非阻塞都是同步 IO</li>
+<li>只有使用了特殊的 API 才是异步 IO</li>
+</ul>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-1ad8e572f0df79ba.png" srcset="/img/loading.gif" lazyload alt="同步IO与异步IO"></p>
+<p>基于select、poll、epoll的I&#x2F;O多路复用模型如下：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210314724.png" srcset="/img/loading.gif" lazyload alt="IO多路复用"></p>
 <blockquote>
-<p>HRCA使模型能够学习文章、问题和相应候选选项中每两个部分之间的关系，并将学习到的信息更新到下一个学习步骤</p>
+<p>I&#x2F;O多路复用有很多种实现。在linux上，2.4内核前主要是select和poll，自Linux 2.6内核正式引入epoll以来，epoll已经成为了目前实现高性能网络服务器的必备技术</p>
 </blockquote>
-<h3 id="HRCA"><a href="#HRCA" class="headerlink" title="HRCA"></a>HRCA</h3><p>将得到的$E$分为$E^P,E^Q,E^O$</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162549110.png" srcset="/img/loading.gif" lazyload alt="image-20230227162549110"></p>
-<h3 id="PQO-Matrix"><a href="#PQO-Matrix" class="headerlink" title="PQO Matrix"></a>PQO Matrix</h3><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227163021369.png" srcset="/img/loading.gif" lazyload alt="image-20230227163021369"></p>
-<p>作者发现HRCA中仅使用了三种attention关系，即问题和问题本身、候选选项和问题、文章和候选选项</p>
-<p>上图中，红色的为HRCA中使用的，浅红色的为自注意力，灰色的为未使用的attention</p>
-<h3 id="HRCA-1"><a href="#HRCA-1" class="headerlink" title="HRCA+"></a>HRCA+</h3><p>使用浅红色和灰色的关系，加强HRCA	</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227165008151.png" srcset="/img/loading.gif" lazyload alt="image-20230227165008151"></p>
-<p>​	</p>
+<h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><p>当进程A调用select语句的时候，会将进程A添加到多个监听socket的等待队列中：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-3a36f7cc5e48276a.png" srcset="/img/loading.gif" lazyload alt="select阻塞过程"></p>
+<p>当网卡接收到数据，然后网卡通过中断信号通知cpu有数据到达，执行中断程序，中断程序主要做了两件事：</p>
+<ol>
+<li>将网络数据写入到对应socket的接收缓冲区里面</li>
+<li>唤醒队列中的等待进程(A)，重新将进程A放入工作队列中</li>
+</ol>
+<p>如下图，将所有等待队列的进程移除，并且添加到工作队列中：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-543af9ba5e6e2ba6.png" srcset="/img/loading.gif" lazyload alt="select中断"></p>
+<blockquote>
+<p>上面只是一种情况，当程序调用 Select 时，内核会先遍历一遍 Socket，如果有一个以上的 Socket 接收缓冲区有数据，那么 Select 直接返回，不会阻塞</p>
+</blockquote>
+<p>问题：</p>
+<ul>
+<li>每次调用 Select 都需要将进程加入到所有监视 Socket 的等待队列，每次唤醒都需要从每个队列中移除。这里涉及了两次遍历，而且每次都要将整个 FDS 列表传递给内核，有一定的开销</li>
+<li>进程被唤醒后，程序并不知道哪些 Socket 收到数据，还需要遍历一次</li>
+</ul>
+<h2 id="Poll"><a href="#Poll" class="headerlink" title="Poll"></a>Poll</h2><p>poll的机制与select类似，与select在本质上没有多大差别，管理多个描述符也是进行轮询，根据描述符的状态进行处理，但是poll没有最大文件描述符数量的限制。poll和select同样存在一个缺点就是，包含大量文件描述符的数组被整体复制于用户态和内核的地址空间之间，而不论这些文件描述符是否就绪，它的开销随着文件描述符数量的增加而线性增大</p>
+<blockquote>
+<p>select和poll在内部机制方面并没有太大的差异。相比于select机制，poll只是取消了最大监控文件描述符数限制，并没有从根本上解决select存在的问题</p>
+</blockquote>
+<h2 id="Epoll"><a href="#Epoll" class="headerlink" title="Epoll"></a>Epoll</h2><p>epoll可以理解为event poll(基于事件的轮询)，不同于select&#x2F;poll，epoll正是保存了那些收到数据的Socket到一个双向链表中，这样一来，就少了一次遍历。epoll &#x3D; <font color=Orange>减少遍历</font> + <font color=Orange>保存就绪Socket</font></p>
+<ul>
+<li>减少遍历：将控制与阻塞分离</li>
+<li>保存就绪Socket：维护一个rdlist以及rb_tree，类似于双向链表操作</li>
+</ul>
+<p>epoll 在 Linux 内核中申请了一个简易的文件系统，用于存储相关的对象，每一个 epoll 对象都有一个独立的 eventpoll 结构体，这个结构体会在内核空间中创造独立的内存，用于存储使用epoll_ctl 方法向 epoll 对象中添加进来的事件。这些事件都会挂到 rbr 红黑树中，这样，重复添加的事件就可以通过红黑树而高效地识别出来</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-32af7c797010bf43.jpg" srcset="/img/loading.gif" lazyload alt="epoll数据结构"></p>
+<p>epoll底层实现最重要的两个数据结构：epitem和eventpoll。可以简单的认为epitem是和每个用户态监控IO的fd对应的，eventpoll是用户态创建的管理所有被监控fd的结构</p>
+<h4 id="epoll过程"><a href="#epoll过程" class="headerlink" title="epoll过程"></a>epoll过程</h4><p>调用epoll_create，内核会创建一个eventpoll对象。eventpoll对象也是文件系统中的一员，和socket一样，它也会有等待队列</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-20eccf6c314f3c76.png" srcset="/img/loading.gif" lazyload alt="创建eventpoll对象"></p>
+<p>通过 epoll_ctl 添加 Socket1、Socket2 和 Socket3 的监视，内核会将 eventpoll的<strong>引用</strong> 添加到这三个 Socket 的等待队列中</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-f5413d2fce88ff00.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>当Socket收到数据之后，中断程序会执行将Socket的<strong>引用</strong>添加到eventpoll对象的rdlist就绪列表中</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-129ddaf93b668a13.png" srcset="/img/loading.gif" lazyload alt="添加socket到rdlist"></p>
+<p>假设计算机中正在运行进程 A 和进程 B、C，在某时刻进程 A 运行到了 epoll_wait 语句，会将进程A添加到eventpoll的等待队列中</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-5fdf94c3582f06ed.png" srcset="/img/loading.gif" lazyload alt="阻塞加入等待队列"></p>
+<p>当 Socket 接收到数据，中断程序一方面修改 Rdlist，另一方面唤醒 eventpoll 等待队列中的进程，进程 A 再次进入运行状态。因为Soket包含eventpoll对象的引用，因此可以直接操作eventpoll对象</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-a5ea34937d73a36a.png" srcset="/img/loading.gif" lazyload alt="中断加入就绪队列"></p>
+<p>每次调用poll&#x2F;select系统调用，操作系统都要把current（当前进程）挂到fd对应的所有设备的等待队列上，可以想象，fd多到上千的时候，这样“挂”法很费事；而每次调用epoll_wait则没有这么罗嗦，epoll只在epoll_ctl时把current挂一遍（这第一遍是免不了的）并给每个fd一个命令“好了就调回调函数”，如果设备有事件了，通过回调函数，会把fd放入rdllist，而每次调用epoll_wait就只是收集rdllist里的fd就可以了——epoll巧妙的利用回调函数，实现了更高效的事件驱动模型</p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321212302170.png" srcset="/img/loading.gif" lazyload alt="select、poll、epoll之间的区别"></p>
+<p><strong>传统select&#x2F;poll的另一个致命弱点就是当你拥有一个很大的socket集合，由于网络延时，使得任一时间只有部分的socket是”活跃” 的，而select&#x2F;poll每次调用都会线性扫描全部的集合，导致效率呈现线性下降</strong></p>
+<p><strong>但是epoll不存在这个问题，它只会对”活跃”的socket进 行操作，这是因为在内核实现中epoll是根据每个fd上面的callback函数实现的。于是，只有”活跃”的socket才会主动去调用 callback 函数，其他状态的socket则不会</strong></p>
+<h2 id="触发方式"><a href="#触发方式" class="headerlink" title="触发方式"></a>触发方式</h2><ul>
+<li>**Level_triggered(水平触发)**：当被监控的文件描述符上有可读写事件发生时，epoll_wait()会通知处理程序去读写。如果这次没有把数据一次性全部读写完(如读写缓冲区太小)，那么下次调用 epoll_wait()时，它还会通知你在上没读写完的文件描述符上继续读写，当然如果你一直不去读写，它会一直通知你，如果系统中有大量你不需要读写的就绪文件描述符，而它们每次都会返回，这样会大大降低处理程序检索自己关心的就绪文件描述符的效率</li>
+<li>**Edge_triggered(边缘触发)**：当被监控的文件描述符上有可读写事件发生时，epoll_wait()会通知处理程序去读写。如果这次没有把数据全部读写完(如读写缓冲区太小)，那么下次调用 epoll_wait()时，它不会通知你，也就是它只会通知你一次，直到该文件描述符上出现第二次可读写事件才会通知你，这种模式比水平触发效率高，系统不会充斥大量你不关心的就绪文件描述符</li>
+</ul>
+<p><strong>select，poll模型都是水平触发模式，信号驱动IO是边缘触发模式，epoll模型既支持水平触发，也支持边缘触发，默认是水平触发</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/722819425dbd/">https://www.jianshu.com/p/722819425dbd/</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/U2xJgL7rPqOJ8in-V-Ck6A">https://mp.weixin.qq.com/s/U2xJgL7rPqOJ8in-V-Ck6A</a></p>
+</blockquote>
 
                 
               </div>
@@ -341,7 +384,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
   
   
 
@@ -353,13 +396,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/MCQA/">#MCQA</a>
-      
-    </div>
-  
 </div>
 
 
@@ -368,8 +404,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method</div>
-      <div>https://lishilong.cc/2023/02/27/Paper Reading Notes/HRCA+ Advanced Multiple-choice Machine Reading Comprehension Method/</div>
+      <div>select、poll、epoll详解</div>
+      <div>https://lishilong.cc/2023/03/21/Linux/select_poll_epoll /</div>
     </div>
     <div class="license-meta">
       
@@ -381,7 +417,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年2月27日</div>
+          <div>2023年3月21日</div>
         </div>
       
       
@@ -413,18 +449,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/28/Redis/%E9%9B%86%E7%BE%A4/" title="Redis集群">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Redis集群</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/27/Paper%20Reading%20Notes/Learning%20to%20Attend%20On%20Essential%20Terms%20An%20Enhanced%20Retriever-Reader%20Model%20for%20Open-domain%20Question%20Answering/" title="Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering">
-                        <span class="hidden-mobile">Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering</span>
+                      <a href="/2023/03/21/Linux/Linux%E7%BD%91%E7%BB%9CIO/" title="Linux的五种IO模型">
+                        <span class="hidden-mobile">Linux的五种IO模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
