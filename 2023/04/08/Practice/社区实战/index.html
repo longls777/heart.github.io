@@ -49,8 +49,12 @@
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/clipboard3.png">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230408222728271.png">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230408223129635.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409211754366.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409212111019.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409212332433.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409213257589.png">
 <meta property="article:published_time" content="2023-04-08T12:38:00.000Z">
-<meta property="article:modified_time" content="2023-04-08T14:34:12.005Z">
+<meta property="article:modified_time" content="2023-04-09T14:15:58.176Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +266,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k 字
+          7.9k 字
         
       </span>
     
@@ -273,7 +277,7 @@
         
         
         
-          25 分钟
+          66 分钟
         
       </span>
     
@@ -366,6 +370,19 @@
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230408214812825.png" srcset="/img/loading.gif" lazyload alt="image-20230408214812825"></p>
 <p>这里有一个@PathVariable 注释，可以将请求URL中的占位符（即路径变量）绑定到控制器方法的参数上</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230408215140085.png" srcset="/img/loading.gif" lazyload alt="image-20230408215140085"></p>
+<blockquote>
+<p>为什么要在密码中加salt？<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuzj12345/article/details/84324700">https://blog.csdn.net/zhuzj12345/article/details/84324700</a></p>
+<p>MD5是一种hash算法，以512位分组来处理输入的信息，经过了一系列的处理后，算法的输出由四个32位分组组成，将这四个32位分组级联后将生成一个128位散列值。</p>
+<p>首先需要对齐填充，使字节数%512&#x3D;448 然后加上64位的数据长度信息，最终得到512的整倍数。</p>
+<p>MD5无法反向解密，原因是MD5对原始消息进行的是有损的压缩计算。</p>
+<p>但是可以通过加密庞大的密码数据集来暴力碰撞，暴力破解。</p>
+<p>salt 随机产生，数据库中存储的密码为 MD5( 明文密码 + Salt)，这样就无法直接匹配</p>
+<p>如果想要通过＋salt 再MD5来暴力碰撞 ，那么需要的计算量极其庞大：</p>
+<p>假设用户库有30w条数据，黑客数据字典有600w条数据，那么如果想完全破解所有密码，</p>
+<p>需要加密 300000  * 6000000 &#x3D; 一万八千亿 次MD5运算，因为每条潜在密码都需要＋所有的salt 再进行计算</p>
+<p>当然，如果只想破解一个用户的密码，只需要 600w次MD5运算，那也是比较大的计算量了</p>
+<p>实际项目中，可以把salt加在明文密码中间，这样可以大大提高破解难度</p>
+</blockquote>
 <h2 id="用户登录和退出"><a href="#用户登录和退出" class="headerlink" title="用户登录和退出"></a>用户登录和退出</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/clipboard2.png" srcset="/img/loading.gif" lazyload alt="clipboard2"></p>
 <p><strong>用户登录流程</strong></p>
 <ol>
@@ -407,15 +424,48 @@
 </ol>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230408223129635.png" srcset="/img/loading.gif" lazyload alt="image-20230408223129635"></p>
 <blockquote>
-<p>好处是什么？</p>
-<p>使用ThreadLocal变量代替session的主要原因是为了避免多线程并发访问时的线程安全问题。</p>
-<p>在Web应用程序中，多个用户同时访问同一个Servlet或JSP页面时，每个用户的请求都会在一个独立的线程中执行。如果使用session来存储用户信息，那么多个线程会共享同一个session对象，这就会导致线程安全问题。</p>
-<p>为了解决这个问题，可以使用ThreadLocal变量来存储用户信息。ThreadLocal是Java中的一个线程局部变量，它可以为每个线程提供独立的变量副本，使得多个线程可以同时访问同一个变量，而不会出现线程安全问题。</p>
+<p>好处是什么？<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26713362">https://zhuanlan.zhihu.com/p/26713362</a></p>
+<p>通常在项目中，用户登录后，我们会将用户的信息存到session，如果想在其它地方获取session中的用户信息，我们需要先获取HttpServletRequest，再通过request.getSession得到HttpSession，从而获取到我们想要的用户信息。</p>
+<p>这样就需要需要传入一个HttpServletRequest，</p>
+<p>在SpringMVC中，我们只要在一个controller方法参数里显式加上HttpServletRequest参数也可以轻松获取，</p>
+<p>这样如果想要在service层和dao层就要用到session中的用户信息，就需要调用service的时候，将用户信息以参数形式传过去（service层和dao层都是和web层分离开来，都是单独的工程，不依赖servlet api，）</p>
+<p>如此一来，代码就不够简洁优雅，所有我们想要获取用户信息的方法都要多加一个参数，增强了依赖，和我们想要的“松耦合”背道而弛。</p>
+<p>对于session中的用户信息，我们不仅想要在controller中随用随取，还想在其它普通类中取，即使不依赖servlet api， 我们也要在方法里随用随取，anywhere！</p>
+<p>为了解决这个问题，我们就要采取一种新的方法来存储用户信息—ThreadLocal</p>
+<p>每个请求都会对应一个线程，这个ThreadLocal就是这个线程使用过程中的一个变量，该变量为其所属线程所有，各个线程互不影响</p>
+<p>所以我们可以借助这个ThreadLocal来存储登录用户的信息，在一个请求中，所有调用的方法都在同一个线程中去处理，这样就实现了在任何地方都可以获取到用户信息了，从而摆脱了HttpServletRequest的束缚。</p>
+<p>然后我们在拦截器里就可以根据Ticket获取到的user，将user注册到ThreadLocal里面</p>
+<p>以后就可以在方法里随取随用</p>
 </blockquote>
 <ol start="3">
-<li>设置LoginTicketInterceptor，将用户信息存储到HostHolder</li>
+<li>设置LoginTicketInterceptor，将user存储到HostHolder</li>
 </ol>
-<p>…</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409211754366.png" srcset="/img/loading.gif" lazyload alt="image-20230409211754366"></p>
+<ol start="4">
+<li>设置在postHandle返回登录用户（在请求处理完成后，返回 View 前执行）；afterCompletion清空HostHolder（在请求处理完成后执行，无论是否出现异常，都会执行该方法）</li>
+</ol>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409212111019.png" srcset="/img/loading.gif" lazyload alt="image-20230409212111019"></p>
+<ol start="5">
+<li>在LoginRequiredInterceptor拦截器中，设置登陆验证。首先判断处理器是否为 HandlerMethod，即请求是否被映射到了具体的方法上，如果不是，则直接返回 true，继续处理后续的拦截器或处理器。如果是 HandlerMethod，就通过反射获取该方法上是否有 @LoginRequired 注解。如果有该注解，就判断当前用户是否登录，即判断 HostHolder 中是否存在用户信息。如果 HostHolder 中不存在用户信息，则将请求重定向到登录页面，并返回 false，中断请求的继续传递。如果没有 @LoginRequired 注解或用户已经登录，则直接返回 true，继续处理后续的拦截器或处理器。</li>
+</ol>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409212332433.png" srcset="/img/loading.gif" lazyload alt="image-20230409212332433"></p>
+<blockquote>
+<p>为什么要先判断处理器是否为 HandlerMethod？</p>
+<p>在 Spring MVC 中，一个请求的处理过程需要经过多个处理器的处理，而处理器可以是 Controller 类或方法。而 HandlerInterceptor 的拦截目标是方法，因此在 preHandle 方法中需要判断处理器是否为 HandlerMethod 类型，只有是 HandlerMethod 类型，才能通过反射获取方法上是否有 @LoginRequired 注解，从而实现登录验证功能。</p>
+<p>所有能被分配给 Controller 方法处理的请求都是 HandlerMethod 类型的，而不能被分配给 Controller 方法处理的请求，如静态资源请求，就不是 HandlerMethod 类型。</p>
+<p>如果不判断处理器是否为 HandlerMethod 类型，而是直接通过反射获取方法上是否有 @LoginRequired 注解，那么对于一些静态资源，如图片、css、js 等请求，因为它们并没有对应的方法来处理请求，这个判断就会出现错误，无法正确判断是否需要登录验证，进而影响应用程序的正常运行。</p>
+</blockquote>
+<blockquote>
+<p>这里如何利用反射？</p>
+<p>这里利用反射的原理是通过 <code>HandlerMethod</code> 获取方法对象 <code>Method</code>，再通过 <code>Method</code> 获取方法上的 <code>LoginRequired</code> 注解</p>
+</blockquote>
+<ol start="6">
+<li>配置拦截器，包括拦截顺序，排除一些静态资源申请等</li>
+</ol>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409213257589.png" srcset="/img/loading.gif" lazyload alt="image-20230409213257589"></p>
+<h2 id="敏感词过滤"><a href="#敏感词过滤" class="headerlink" title="敏感词过滤"></a>敏感词过滤</h2><p><strong>Trie树算法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SensitiveFilter</span> &#123;<br><br>    <span class="hljs-comment">//logger日志</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(SensitiveFilter.class);<br><br>    <span class="hljs-comment">//用于替换敏感词的短句</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">REPLACEMENT</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;***&quot;</span>;<br><br>    <span class="hljs-comment">//根节点</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">TrieNode</span> <span class="hljs-variable">rootNode</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TrieNode</span>();<br><br>    <span class="hljs-comment">//该注解表示在构造器执行之后 执行初始化</span><br>    <span class="hljs-meta">@PostConstruct</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span>&#123;<span class="hljs-comment">//初始化用来加载敏感词文件</span><br>        <span class="hljs-keyword">try</span>(<br>                <span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="hljs-string">&quot;sensitive-words.txt&quot;</span>);<br>                <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(is));<br>           ) &#123;<br>            String keyword;<br>            <span class="hljs-keyword">while</span>((keyword = reader.readLine())!=<span class="hljs-literal">null</span>)&#123;<br><br>                <span class="hljs-built_in">this</span>.addKeyword(keyword);<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            logger.error(<span class="hljs-string">&quot;加载敏感词文件失败： &quot;</span> + e.getMessage());<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-comment">//添加敏感词到前缀树，也就是前缀树的初始化</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addKeyword</span><span class="hljs-params">(String Keyword)</span>&#123;<br>        <span class="hljs-type">TrieNode</span> <span class="hljs-variable">tempNode</span> <span class="hljs-operator">=</span> rootNode;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;Keyword.length();i++)&#123;<br>            <span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> Keyword.charAt(i);<br>            <span class="hljs-type">TrieNode</span> <span class="hljs-variable">subNode</span> <span class="hljs-operator">=</span> tempNode.getSubNode(c);<br>            <span class="hljs-keyword">if</span>(subNode==<span class="hljs-literal">null</span>)&#123;<br>                <span class="hljs-comment">//初始化子节点</span><br>                subNode = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TrieNode</span>();<br>                tempNode.addSubNode(c,subNode);<br>            &#125;<br>            tempNode = subNode;<br><br>            <span class="hljs-comment">//结束标识</span><br>            <span class="hljs-keyword">if</span>(i==Keyword.length()-<span class="hljs-number">1</span>)&#123;<br>                tempNode.setKeywordEnd(<span class="hljs-literal">true</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 过滤敏感词</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> text 待过滤文本</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span>  过滤后文本</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">filter</span><span class="hljs-params">(String text)</span>&#123;<br>        <span class="hljs-keyword">if</span>(StringUtils.isBlank(text))&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br><br>        <span class="hljs-type">TrieNode</span> <span class="hljs-variable">tempNode</span> <span class="hljs-operator">=</span> rootNode;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">begin</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">position</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br><br>        <span class="hljs-keyword">while</span>(position&lt;text.length())&#123;<br>            <span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> text.charAt(position);<br><br>            <span class="hljs-comment">//跳过符号</span><br>            <span class="hljs-keyword">if</span>(isSymbol(c))&#123;<br>                 <span class="hljs-keyword">if</span>(tempNode == rootNode)&#123;<span class="hljs-comment">//表示begin==position</span><br>                     sb.append(c);<br>                     begin++;<br>                 &#125;<br>                 position++;<br>                 <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-comment">//检查下级节点</span><br>            tempNode = tempNode.getSubNode(c);<br><br>            <span class="hljs-comment">//分三种情况讨论</span><br>            <span class="hljs-keyword">if</span>(tempNode==<span class="hljs-literal">null</span>) &#123;<span class="hljs-comment">//表示没有以begin开头的敏感词</span><br>                sb.append(text.charAt(begin));<br>                position = ++begin;<br>                tempNode = rootNode;<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(tempNode.isKeywordEnd())&#123;<span class="hljs-comment">//表示查找到一个敏感词</span><br>                sb.append(REPLACEMENT);<br>                begin = ++position;<br>                tempNode = rootNode;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">//查找敏感词的过程中</span><br>                position++;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//为了避免最后position到达length而begin还在前面时 发生的begin之后的文本的丢失</span><br>        <span class="hljs-comment">//当begin=length时，substring方法返回空字符串，不会抛出异常</span><br>        <span class="hljs-comment">//begin&gt;length时，substring才会抛出异常</span><br>        sb.append(text.substring(begin));<br><br>        <span class="hljs-keyword">return</span> sb.toString();<br>    &#125;<br><br><br>    <span class="hljs-comment">//判断是否为符号</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSymbol</span><span class="hljs-params">(Character c)</span>&#123;<br>        <span class="hljs-comment">//0x2E80~0x9FFF 东亚文字范围，表示只有当该字符属于符号且不属于东亚文字时，才返回true，被真正判定为符号</span><br>        <span class="hljs-keyword">return</span> !CharUtils.isAsciiAlphanumeric(c) &amp;&amp; (c &lt; <span class="hljs-number">0x2E80</span> || c &gt;  <span class="hljs-number">0x9FFF</span>);<br>    &#125;<br><br><br>    <span class="hljs-comment">//前缀树节点 内部类</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TrieNode</span>&#123;<br><br>        <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">isKeywordEnd</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<span class="hljs-comment">//关键词结束标志</span><br>        <span class="hljs-keyword">private</span> Map&lt;Character,TrieNode&gt; subNodes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<span class="hljs-comment">//储存下级节点</span><br><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isKeywordEnd</span><span class="hljs-params">()</span> &#123;<br>            <span class="hljs-keyword">return</span> isKeywordEnd;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setKeywordEnd</span><span class="hljs-params">(<span class="hljs-type">boolean</span> keywordEnd)</span> &#123;<br>            isKeywordEnd = keywordEnd;<br>        &#125;<br><br>        <span class="hljs-comment">//添加子节点</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addSubNode</span><span class="hljs-params">(Character c,TrieNode node)</span>&#123;<br>            subNodes.put(c,node);<br>        &#125;<br><br>        <span class="hljs-comment">//获取子节点</span><br>        <span class="hljs-keyword">public</span> TrieNode <span class="hljs-title function_">getSubNode</span><span class="hljs-params">(Character c)</span>&#123;<br>            <span class="hljs-keyword">return</span> subNodes.get(c);<br>        &#125;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -498,6 +548,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/04/09/Practice/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95/" title="敏感词过滤算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">敏感词过滤算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
