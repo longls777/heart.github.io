@@ -16,20 +16,22 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="权重衰减">
-<meta property="og:url" content="https://lishilong.cc/2022/09/30/Machine%20Learning/%E6%9D%83%E9%87%8D%E8%A1%B0%E5%87%8F/index.html">
+    <meta name="description" content="1 标题：《Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond》 论文来源： TACL 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.tacl-1.66.pdf 背景科学研究的一个基本目标是了解因果关系。然而，尽管因果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond">
+<meta property="og:url" content="https://lishilong.cc/2023/04/13/Paper%20Reading%20Notes/Causal%20Inference%20in%20Natural%20Language%20Processing%20Estimation,%20Prediction,%20Interpretation%20and%20Beyond/index.html">
 <meta property="og:site_name" content="Heart">
+<meta property="og:description" content="1 标题：《Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond》 论文来源： TACL 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.tacl-1.66.pdf 背景科学研究的一个基本目标是了解因果关系。然而，尽管因果">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-30T12:33:00.000Z">
-<meta property="article:modified_time" content="2023-04-12T04:45:45.998Z">
+<meta property="article:published_time" content="2023-04-13T06:36:00.000Z">
+<meta property="article:modified_time" content="2023-04-13T07:30:21.438Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="life, think, code">
+<meta property="article:tag" content="Causal Inference">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>权重衰减 - Heart</title>
+  <title>Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="权重衰减"></span>
+            <span id="subtitle" data-typed-text="Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond"></span>
           
         </div>
 
@@ -223,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-30 20:33" pubdate>
-          2022年9月30日 晚上
+        <time datetime="2023-04-13 14:36" pubdate>
+          2023年4月13日 下午
         </time>
       </span>
     
@@ -235,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          791 字
         
       </span>
     
@@ -246,7 +248,7 @@
         
         
         
-          1 分钟
+          7 分钟
         
       </span>
     
@@ -284,12 +286,35 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">权重衰减</h1>
+            <h1 style="display: none">Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <p>1</p>
+<p><strong>标题：</strong>《Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond》</p>
+<p><strong>论文来源：</strong> TACL 2022</p>
+<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.tacl-1.66.pdf">https://aclanthology.org/2022.tacl-1.66.pdf</a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>科学研究的一个基本目标是了解因果关系。然而，尽管因果关系在生命和社会科学中发挥着关键作用，但在自然语言处理(NLP)中<strong>并没有同样的重要性</strong>，传统上更强调<strong>预测任务</strong></p>
+<p><strong>在许多经典的NLP应用程序中，主要目标是做出准确的预测：任何统计相关性都是可接受的，不管潜在的因果关系</strong></p>
+<p>然而，随着NLP系统越来越多地部署在具有挑战性和高风险的场景中，我们<strong>不能依赖于通常的假设，即训练和测试数据是相同分布的</strong>，我们可能不会满足于不可解释的黑盒预测器。对于这两个问题，因果关系提供了一条有希望的前进道路：<strong>数据生成过程的因果结构领域知识可以提出归纳偏置，从而导致更强健的预测器；而对预测器本身的因果视角可以提供有关其内部运作的新见解。</strong></p>
+<p>将因果关系和NLP的交集分为两个领域: <strong>从文本中估计因果影响，以及使用因果形式主义使NLP方法更加可靠</strong></p>
+<h2 id="估计文本中存在的因果效应"><a href="#估计文本中存在的因果效应" class="headerlink" title="估计文本中存在的因果效应"></a>估计文本中存在的因果效应</h2><p><strong>因果效应与文本混淆词</strong></p>
+<p>主要思想是使用NLP方法从文本中提取混淆的方面，然后在倾向分数匹配等估计方法中对这些方面进行调整。然而，这些方法如何以及何时违反因果假设仍然是悬而未决的问题</p>
+<h3 id="使用因果推理帮助解决传统的NLP任务"><a href="#使用因果推理帮助解决传统的NLP任务" class="headerlink" title="使用因果推理帮助解决传统的NLP任务"></a>使用因果推理帮助解决传统的NLP任务</h3><h5 id="数据增强"><a href="#数据增强" class="headerlink" title="数据增强"></a><strong>数据增强</strong></h5><ol>
+<li>构造反事实数据</li>
+</ol>
+<p>反事实数据是一种强大的资源，因为它们直接解决了因果推理中固有的缺失数据问题，</p>
+<p><strong>存在的问题</strong></p>
+<ul>
+<li>在许多情况下，即使是一个流利的人也很难产生有意义的反事实</li>
+<li>无法精确地说明反事实的预期影响</li>
+<li>反事实有可能会引入新的虚假相关性</li>
+</ul>
+<ol start="2">
+<li>设计新的学习算法，直接对观察到的数据进行操作（推导不变性预测器的分布特性，然后确保训练的模型满足这些特性）</li>
+</ol>
+
                 
               </div>
             
@@ -307,7 +332,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -319,6 +344,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Causal-Inference/">#Causal Inference</a>
+      
+    </div>
+  
 </div>
 
 
@@ -327,8 +359,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>权重衰减</div>
-      <div>https://lishilong.cc/2022/09/30/Machine Learning/权重衰减/</div>
+      <div>Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond</div>
+      <div>https://lishilong.cc/2023/04/13/Paper Reading Notes/Causal Inference in Natural Language Processing Estimation, Prediction, Interpretation and Beyond/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +372,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月30日</div>
+          <div>2023年4月13日</div>
         </div>
       
       
@@ -367,6 +399,29 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/14/Practice/springboot/" title="SpringBoot">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringBoot</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/12/Causal%20Inference/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/" title="因果推断">
+                        <span class="hidden-mobile">因果推断</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 
