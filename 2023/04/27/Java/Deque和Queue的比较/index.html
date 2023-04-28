@@ -16,25 +16,26 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="1971. 寻找图中是否存在路径有一个具有 n 个顶点的 双向 图，其中每个顶点标记从 0 到 n - 1（包含 0 和 n - 1）。图中的边用一个二维整数数组 edges 表示，其中 edges[i] &#x3D; [ui, vi] 表示顶点 ui 和顶点 vi 之间的双向边。 每个顶点对由 最多一条 边连接，并且没有顶点存在与自身相连的边。 请你确定是否存在从顶点 source 开始，到顶点 dest">
+    <meta name="description" content="Queue    Modifier and Type Method Description    boolean add(E e) 将指定的元素插入到此队列中，如果可以立即执行此操作，而不会违反容量限制， true在成功后返回  IllegalStateException如果当前没有可用空间，则抛出IllegalStateException。   E element() 检索，但不删除，这个队列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode828 寻找图中是否存在路径">
-<meta property="og:url" content="https://lishilong.cc/2022/12/19/Algorithm%20Problem/leetcode1971/index.html">
+<meta property="og:title" content="Deque和Queue的比较">
+<meta property="og:url" content="https://lishilong.cc/2023/04/27/Java/Deque%E5%92%8CQueue%E7%9A%84%E6%AF%94%E8%BE%83/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="1971. 寻找图中是否存在路径有一个具有 n 个顶点的 双向 图，其中每个顶点标记从 0 到 n - 1（包含 0 和 n - 1）。图中的边用一个二维整数数组 edges 表示，其中 edges[i] &#x3D; [ui, vi] 表示顶点 ui 和顶点 vi 之间的双向边。 每个顶点对由 最多一条 边连接，并且没有顶点存在与自身相连的边。 请你确定是否存在从顶点 source 开始，到顶点 dest">
+<meta property="og:description" content="Queue    Modifier and Type Method Description    boolean add(E e) 将指定的元素插入到此队列中，如果可以立即执行此操作，而不会违反容量限制， true在成功后返回  IllegalStateException如果当前没有可用空间，则抛出IllegalStateException。   E element() 检索，但不删除，这个队列">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/08/14/validpath-ex1.png">
-<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/08/14/validpath-ex2.png">
-<meta property="article:published_time" content="2022-12-19T12:27:39.000Z">
-<meta property="article:modified_time" content="2023-04-27T08:02:45.140Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151132003.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151715632.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151204047.png">
+<meta property="article:published_time" content="2023-04-27T07:07:00.000Z">
+<meta property="article:modified_time" content="2023-04-27T07:25:17.541Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="并查集">
+<meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2021/08/14/validpath-ex1.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151132003.png">
   
   
   
-  <title>leetcode828 寻找图中是否存在路径 - Heart</title>
+  <title>Deque和Queue的比较 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode828 寻找图中是否存在路径"></span>
+            <span id="subtitle" data-typed-text="Deque和Queue的比较"></span>
           
         </div>
 
@@ -228,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-19 20:27" pubdate>
-          2022年12月19日 晚上
+        <time datetime="2023-04-27 15:07" pubdate>
+          2023年4月27日 下午
         </time>
       </span>
     
@@ -240,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          978 字
+          1.9k 字
         
       </span>
     
@@ -251,7 +252,7 @@
         
         
         
-          9 分钟
+          16 分钟
         
       </span>
     
@@ -289,35 +290,197 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">leetcode828 寻找图中是否存在路径</h1>
+            <h1 style="display: none">Deque和Queue的比较</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="1971-寻找图中是否存在路径"><a href="#1971-寻找图中是否存在路径" class="headerlink" title="1971. 寻找图中是否存在路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-if-path-exists-in-graph/description/">1971. 寻找图中是否存在路径</a></h4><p>有一个具有 <code>n</code> 个顶点的 <strong>双向</strong> 图，其中每个顶点标记从 <code>0</code> 到 <code>n - 1</code>（包含 <code>0</code> 和 <code>n - 1</code>）。图中的边用一个二维整数数组 <code>edges</code> 表示，其中 <code>edges[i] = [ui, vi]</code> 表示顶点 <code>ui</code> 和顶点 <code>vi</code> 之间的双向边。 每个顶点对由 <strong>最多一条</strong> 边连接，并且没有顶点存在与自身相连的边。</p>
-<p>请你确定是否存在从顶点 <code>source</code> 开始，到顶点 <code>destination</code> 结束的 <strong>有效路径</strong> 。</p>
-<p>给你数组 <code>edges</code> 和整数 <code>n</code>、<code>source</code> 和 <code>destination</code>，如果从 <code>source</code> 到 <code>destination</code> 存在 <strong>有效路径</strong> ，则返回 <code>true</code>，否则返回 <code>false</code> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/08/14/validpath-ex1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：n = <span class="hljs-number">3</span>, edges = <span class="hljs-string">[[0,1],[1,2],[2,0]]</span>, source = <span class="hljs-number">0</span>, destination = <span class="hljs-number">2</span><br>输出：<span class="hljs-literal">true</span><br>解释：存在由顶点 <span class="hljs-number">0</span> 到顶点 <span class="hljs-number">2</span> 的路径:<br>- <span class="hljs-number">0</span> → <span class="hljs-number">1</span> → <span class="hljs-number">2</span> <br>- <span class="hljs-number">0</span> → <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/08/14/validpath-ex2.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入：n = <span class="hljs-number">6</span>, edges = [[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">5</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">3</span>]], source = <span class="hljs-number">0</span>, destination = <span class="hljs-number">5</span><br>输出：false<br>解释：不存在由顶点 <span class="hljs-number">0</span> 到顶点 <span class="hljs-number">5</span> 的路径.<br></code></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= n &lt;= 2 * 105</code></li>
-<li><code>0 &lt;= edges.length &lt;= 2 * 105</code></li>
-<li><code>edges[i].length == 2</code></li>
-<li><code>0 &lt;= ui, vi &lt;= n - 1</code></li>
-<li><code>ui != vi</code></li>
-<li><code>0 &lt;= source, destination &lt;= n - 1</code></li>
-<li>不存在重复边</li>
-<li>不存在指向顶点自身的边</li>
-</ul>
-<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span>[] p;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">validPath</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span>[][] edges, <span class="hljs-type">int</span> source, <span class="hljs-type">int</span> destination)</span> &#123;<br>        p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>            p[i] = i;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span>[] e : edges) &#123;<br>            p[find(e[<span class="hljs-number">0</span>])] = find(e[<span class="hljs-number">1</span>]);<br>        &#125;	<br>        <span class="hljs-keyword">return</span> find(source) == find(destination);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> &#123;<br>        <span class="hljs-keyword">if</span> (p[x] != x) &#123;<br>            p[x] = find(p[x]);<br>        &#125;<br>        <span class="hljs-keyword">return</span> p[x];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
+                <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151132003.png" srcset="/img/loading.gif" lazyload alt="Deque和Queue的区别"></p>
+<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151715632.png" srcset="/img/loading.gif" lazyload alt="Queue"></p>
+<table>
+<thead>
+<tr>
+<th>Modifier and Type</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+<td><code>add(E e)</code></td>
+<td>将指定的元素插入到此队列中，如果可以立即执行此操作，而不会违反容量限制， <code>true</code>在成功后返回  <code>IllegalStateException</code>如果当前没有可用空间，则抛出IllegalStateException。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>element()</code></td>
+<td>检索，但不删除，这个队列的头。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>offer(E e)</code></td>
+<td>如果在不违反容量限制的情况下立即执行，则将指定的元素插入到此队列中。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>peek()</code></td>
+<td>检索但不删除此队列的头，如果此队列为空，则返回 <code>null</code> 。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>poll()</code></td>
+<td>检索并删除此队列的头，如果此队列为空，则返回 <code>null</code> 。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>remove()</code></td>
+<td>检索并删除此队列的头。</td>
+</tr>
+</tbody></table>
+<h2 id="Deque"><a href="#Deque" class="headerlink" title="Deque"></a>Deque</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151204047.png" srcset="/img/loading.gif" lazyload alt="Deque"></p>
+<table>
+<thead>
+<tr>
+<th>Modifier and Type</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+<td><code>add(E e)</code></td>
+<td>将指定的元素插入此双端队列表示的队列中（换句话说，在此双端队列的尾部），如果它是立即可行且不会违反容量限制，返回  <code>true</code>在成功时和抛出 <code>IllegalStateException</code>如果当前没有空间可用的。</td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td><code>addFirst(E e)</code></td>
+<td>插入此双端队列的前面，如果它是立即可行且不会违反容量限制，抛出一个指定的元素  <code>IllegalStateException</code>如果当前没有空间可用。</td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td><code>addLast(E e)</code></td>
+<td>在插入如果它是立即可行且不会违反容量限制，抛出此双端队列的末尾指定元素  <code>IllegalStateException</code>如果当前没有空间可用。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>contains(Object o)</code></td>
+<td>如果此deque包含指定的元素，则返回 <code>true</code> 。</td>
+</tr>
+<tr>
+<td><code>Iterator&lt;E&gt;</code></td>
+<td><code>descendingIterator()</code></td>
+<td>以相反的顺序返回此deque中的元素的迭代器。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>element()</code></td>
+<td>检索但不删除由此deque表示的队列的头部（换句话说，该deque的第一个元素）。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>getFirst()</code></td>
+<td>检索，但不删除，这个deque的第一个元素。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>getLast()</code></td>
+<td>检索，但不删除，这个deque的最后一个元素。</td>
+</tr>
+<tr>
+<td><code>Iterator&lt;E&gt;</code></td>
+<td><code>iterator()</code></td>
+<td>以正确的顺序返回此deque中的元素的迭代器。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>offer(E e)</code></td>
+<td>将指定的元素插入由此deque表示的队列（换句话说，在该deque的尾部），如果可以立即执行，而不违反容量限制， <code>true</code>在成功时  <code>false</code>如果当前没有可用空间，则返回false。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>offerFirst(E e)</code></td>
+<td>在此deque的前面插入指定的元素，除非它会违反容量限制。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>offerLast(E e)</code></td>
+<td>在此deque的末尾插入指定的元素，除非它会违反容量限制。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>peek()</code></td>
+<td>检索但不删除由此deque表示的队列的头部（换句话说，此deque的第一个元素），如果此deque为空，则返回 <code>null</code> 。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>peekFirst()</code></td>
+<td>检索，但不删除，此deque的第一个元素，或返回 <code>null</code>如果这个deque是空的。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>peekLast()</code></td>
+<td>检索但不删除此deque的最后一个元素，如果此deque为空，则返回 <code>null</code> 。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>poll()</code></td>
+<td>检索并删除由此deque（换句话说，此deque的第一个元素）表示的队列的 <code>null</code>如果此deque为空，则返回  <code>null</code> 。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>pollFirst()</code></td>
+<td>检索并删除此deque的第一个元素，如果此deque为空，则返回 <code>null</code> 。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>pollLast()</code></td>
+<td>检索并删除此deque的最后一个元素，如果此deque为空，则返回 <code>null</code> 。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>pop()</code></td>
+<td>从这个deque表示的堆栈中弹出一个元素。</td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td><code>push(E e)</code></td>
+<td>将元素推送到由此deque表示的堆栈（换句话说，在此deque的头部），如果可以立即执行此操作而不违反容量限制，则抛出  <code>IllegalStateException</code>如果当前没有可用空间）。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>remove()</code></td>
+<td>检索并删除由此deque表示的队列的头（换句话说，该deque的第一个元素）。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>remove(Object o)</code></td>
+<td>从此deque中删除指定元素的第一个出现。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>removeFirst()</code></td>
+<td>检索并删除此deque的第一个元素。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>removeFirstOccurrence(Object o)</code></td>
+<td>从此deque中删除指定元素的第一个出现。</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td><code>removeLast()</code></td>
+<td>检索并删除此deque的最后一个元素。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>removeLastOccurrence(Object o)</code></td>
+<td>从此deque中删除指定元素的最后一次出现。</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>size()</code></td>
+<td>返回此deque中的元素数。</td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -336,7 +499,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
   
   
 
@@ -348,13 +511,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">#并查集</a>
-      
-    </div>
-  
 </div>
 
 
@@ -363,8 +519,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode828 寻找图中是否存在路径</div>
-      <div>https://lishilong.cc/2022/12/19/Algorithm Problem/leetcode1971/</div>
+      <div>Deque和Queue的比较</div>
+      <div>https://lishilong.cc/2023/04/27/Java/Deque和Queue的比较/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +532,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年12月19日</div>
+          <div>2023年4月27日</div>
         </div>
       
       
@@ -408,9 +564,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/14/Redis/Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="Redis的数据类型">
+                      <a href="/2023/04/27/Algorithm%20Problem/%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="并查集">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Redis的数据类型</span>
+                        <span class="hidden-mobile">并查集</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -418,8 +574,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/18/Paper%20Reading%20Notes/Better%20Few-Shot%20Relation%20Extraction%20with%20Label%20Prompt%20Dropout/" title="Better Few-Shot Relation Extraction with Label Prompt Dropout">
-                        <span class="hidden-mobile">Better Few-Shot Relation Extraction with Label Prompt Dropout</span>
+                      <a href="/2023/04/25/Java/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/" title="Java并发知识点详解">
+                        <span class="hidden-mobile">Java并发知识点详解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
