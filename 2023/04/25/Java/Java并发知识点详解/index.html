@@ -28,8 +28,17 @@
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230428172100266.png">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230428172242426.png">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/monitor%E8%8E%B7%E5%8F%96%E9%87%8A%E6%94%BE%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/java%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/AQS.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BD%93%E7%B3%BB.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%A2%9E%E9%95%BF%E7%AD%96%E7%95%A5.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/1368768-20190613220434628-1803630402.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/1368768-20190614000329689-872917045.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/1368768-20190614002358591-1764103391.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/1368768-20190614002426565-1963789099.png">
 <meta property="article:published_time" content="2023-04-25T13:49:00.000Z">
-<meta property="article:modified_time" content="2023-04-28T10:45:35.303Z">
+<meta property="article:modified_time" content="2023-04-30T06:02:08.854Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="八股">
 <meta name="twitter:card" content="summary_large_image">
@@ -243,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.2k 字
+          23k 字
         
       </span>
     
@@ -254,7 +263,7 @@
         
         
         
-          77 分钟
+          192 分钟
         
       </span>
     
@@ -535,7 +544,325 @@
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7020231777721516040">https://juejin.cn/post/7020231777721516040</a></p>
 <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1622813">https://cloud.tencent.com/developer/article/1622813</a></p>
 </blockquote>
-<h1 id="三、线程状态"><a href="#三、线程状态" class="headerlink" title="三、线程状态"></a>三、线程状态</h1>
+<h1 id="三、线程状态"><a href="#三、线程状态" class="headerlink" title="三、线程状态"></a>三、线程状态</h1><p><strong>1. 说说线程的状态？</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/java%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png" srcset="/img/loading.gif" lazyload alt="java线程状态"></p>
+<ul>
+<li>新建（NEW） 创建后尚未启动</li>
+<li>可运行（RUNNABLE）正在 Java 虚拟机中运行。但是在操作系统层面，它可能处于运行状态，也可能等待资源调度（例如处理器资源），资源调度完成就进入运行状态。所以该状态的可运行是指可以被运行，具体有没有运行要看底层操作系统的资源调度</li>
+<li>阻塞（BLOCKED）请求获取 monitor lock 从而<strong>进入 synchronized 函数或者代码块</strong>，但是其它线程已经占用了该 monitor lock，所以处于阻塞状态。要结束该状态进入从而 RUNNABLE 需要其他线程释放 monitor lock</li>
+<li>等待（WAITING）等待其它线程显式地唤醒。阻塞和等待的区别在于，阻塞是被动的，它是在等待获取 monitor lock。而等待是主动的，通过调用 Object.wait() 等方法进入</li>
+<li>限期等待（TIMED_WAITING）无需等待其它线程显式地唤醒，在一定时间之后会被系统自动唤醒</li>
+<li>死亡（TERMINATED）可以是线程结束任务之后自己结束，或者产生了异常而结束</li>
+</ul>
+<p><strong>联系操作系统中线程的状态</strong></p>
+<ul>
+<li>JVM中的RUNNABLE状态对应于操作系统的RUNNING和READY状态，所以说RUNNABLE状态下的线程只是可运行，也有可能没在运行</li>
+<li>操作系统中的WAITING状态包括了JVM的WAITING，TIMED_WAITING和BLOCKED</li>
+</ul>
+<p><strong>2. join() wait() sleep()  yield()的区别？</strong></p>
+<p><strong>join：</strong></p>
+<p>一个线程运行中调用另外线程的join方法，则当前线程停止执行，一直等到新join进来的线程执行完毕，才会继续执行。</p>
+<p><strong>Wait：</strong></p>
+<ul>
+<li>必须在同步代码块中使用，wait()方法会释放对象的“锁标志”。</li>
+<li>当一个线程调用wait的时候，会释放同步锁，然后该线程进入等待状态。其他挂起的线程会竞争这个锁，得到锁的继续执行。</li>
+</ul>
+<p><strong>sleep:</strong></p>
+<p>sleep()方法需要指定等待的时间，它可以让当前正在执行的线程在指定的时间内暂停执行，进入阻塞状态，但是sleep()方法不会释放“锁标志”，也就是说如果有synchronized同步块，其他线程仍然不能访问共享数据。</p>
+<p><strong>yield:</strong></p>
+<ul>
+<li>yield()方法和sleep()方法类似，也不会释放“锁标志</li>
+<li>线程让步，建议线程调度器让出自己的时间片，给优先级更高的线程执行，但不一定会被线程调度器采纳</li>
+</ul>
+<h1 id="四、创建线程的方式"><a href="#四、创建线程的方式" class="headerlink" title="四、创建线程的方式"></a>四、创建线程的方式</h1><p><strong>说说Java创建线程有哪几种方式？</strong></p>
+<p>有三种使用线程的方法：</p>
+<ul>
+<li>实现 Runnable 接口</li>
+<li>实现 Callable 接口</li>
+<li>继承 Thread 类</li>
+</ul>
+<p>实现 Runnable 和 Callable 接口的类只能当做一个可以在线程中运行的任务，不是真正意义上的线程，因此最后还需要通过 Thread 来调用。可以理解为任务是通过线程驱动从而执行的。</p>
+<ul>
+<li>实现 Runnable 接口</li>
+</ul>
+<p>需要实现接口中的 run() 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyRunnable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用 Runnable 实例再创建一个 Thread 实例，然后调用 Thread 实例的 start() 方法来启动线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">MyRunnable</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyRunnable</span>();<br>    <span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(instance);<br>    thread.start();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>实现 Callable 接口</li>
+</ul>
+<p>	</p>
+<p>与 Runnable 相比，Callable 可以有返回值，返回值通过 FutureTask 进行封装</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyCallable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Callable</span>&lt;Integer&gt; &#123;<br>    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">call</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException &#123;<br>    <span class="hljs-type">MyCallable</span> <span class="hljs-variable">mc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyCallable</span>();<br>    FutureTask&lt;Integer&gt; ft = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FutureTask</span>&lt;&gt;(mc);<br>    <span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(ft);<br>    thread.start();<br>    System.out.println(ft.get());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>继承 Thread 类</li>
+</ul>
+<p>同样也是需要实现 run() 方法，因为 Thread 类也实现了 Runable 接口</p>
+<p>当调用 start() 方法启动一个线程时，虚拟机会将该线程放入就绪队列中等待被调度，当一个线程被调度时会执行该线程的 run() 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">MyThread</span> <span class="hljs-variable">mt</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyThread</span>();<br>    mt.start();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>实现接口 VS 继承 Thread</strong></p>
+<p>实现接口会更好一些，因为：</p>
+<ul>
+<li>Java 不支持多重继承，因此继承了 Thread 类就无法继承其它类，但是可以实现多个接口</li>
+<li>类可能只要求可执行就行，继承整个 Thread 类开销过大</li>
+</ul>
+<h1 id="五、乐观锁-悲观锁-读写锁"><a href="#五、乐观锁-悲观锁-读写锁" class="headerlink" title="五、乐观锁 悲观锁 读写锁"></a>五、乐观锁 悲观锁 读写锁</h1><p><strong>1. 说说乐观锁和悲观锁？</strong></p>
+<p>乐观锁和悲观锁是并发状况下的两种不同的策略</p>
+<ul>
+<li><p>乐观锁</p>
+</li>
+<li><ul>
+<li>认为冲突不会发生，所以不会上锁，在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果发现冲突了，则返回给用户错误的信息，让用户决定如何去做</li>
+<li>适合读操作多，写操作少的情况，这样可以省去锁的开销</li>
+<li>在Java中java.util.concurrent.atomic包下面的原子变量类就是使用了乐观锁的一种实现方式<strong>CAS</strong>实现的</li>
+</ul>
+</li>
+<li><p>悲观锁</p>
+</li>
+<li><ul>
+<li>认为冲突一定会发生，所以每次都会上锁，这样线程就会被阻塞，直到悲观锁释放</li>
+<li>适合写操作多，冲突多的情况</li>
+<li>Java中synchronized和ReentrantLock等独占锁就是悲观锁思想的实现</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 说说读写锁？</strong></p>
+<ul>
+<li>读写锁是一组锁，包括读锁和写锁</li>
+<li>读锁可以在没有写锁的时候被多个线程同时持有，写锁是独占的。</li>
+<li>JDK提供ReadWriteLock读写锁接口，唯一一个实现类ReentrantReadWriteLock</li>
+</ul>
+<h1 id="六、ReentrantLock"><a href="#六、ReentrantLock" class="headerlink" title="六、ReentrantLock"></a>六、ReentrantLock</h1><p><strong>1. 对比一下synchronized 和 ReentrantLock？</strong></p>
+<ul>
+<li><p>锁的实现</p>
+</li>
+<li><ul>
+<li>synchronized 是 JVM 实现的，而 ReentrantLock 是 JDK （AQS）实现的</li>
+</ul>
+</li>
+<li><p>性能</p>
+</li>
+<li><ul>
+<li>新版本 Java 对 synchronized 进行了很多优化，例如自旋锁等，synchronized 与 ReentrantLock 的效率大致相同</li>
+</ul>
+</li>
+<li><p>等待可中断</p>
+</li>
+<li><ul>
+<li>当持有锁的线程长期不释放锁的时候，正在等待的线程可以选择放弃等待，改为处理其他事情</li>
+<li>ReentrantLock 可中断，而 synchronized 不行</li>
+</ul>
+</li>
+<li><p>公平锁</p>
+</li>
+<li><ul>
+<li>公平锁是指多个线程在等待同一个锁时，必须按照申请锁的时间顺序来依次获得锁</li>
+<li>synchronized 中的锁是非公平的，ReentrantLock 默认情况下也是非公平的，但是也可以是公平的</li>
+</ul>
+</li>
+<li><p>锁绑定多个条件</p>
+</li>
+<li><ul>
+<li>一个 ReentrantLock 可以同时绑定多个 Condition 对象</li>
+</ul>
+</li>
+<li><p>两者都是可重入锁</p>
+</li>
+<li><ul>
+<li>“可重入锁” 指的是自己可以再次获取自己的内部锁。比如一个线程获得了某个对象的锁，此时这个对象锁还没有释放，当其再次想要获取这个对象的锁的时候还是可以获取的，如果不可锁重入的话，就会造成死锁。同一个线程每次获取锁，锁的计数器都自增 1，所以要等到锁的计数器下降为 0 时才能释放锁</li>
+</ul>
+</li>
+</ul>
+<p><strong>ReentrantLock 比 synchronized 增加了一些高级功能</strong></p>
+<p>主要有三点：</p>
+<ul>
+<li>等待可中断 ：ReentrantLock提供了一种能够中断等待锁的线程的机制，通过 lock.lockInterruptibly() 来实现这个机制。也就是说正在等待的线程可以选择放弃等待，改为处理其他事情。</li>
+<li>可实现公平锁 ：ReentrantLock可以指定是公平锁还是非公平锁。而synchronized只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。ReentrantLock默认情况是非公平的，可以通过 ReentrantLock类的ReentrantLock(boolean fair)构造方法来制定是否是公平的。</li>
+<li>可实现选择性通知（锁可以绑定多个条件）：synchronized关键字与wait()和notify()&#x2F;notifyAll()方法相结合可以实现等待&#x2F;通知机制。ReentrantLock类当然也可以实现，但是需要借助于Condition接口与newCondition()方法。Condition是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个Lock对象中可以创建多个Condition实例（即对象监视器），线程对象可以注册在指定的Condition中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用notify()&#x2F;notifyAll()方法进行通知时，被通知的线程是由 JVM 选择的，用ReentrantLock类结合Condition实例可以实现“选择性通知” ，这个功能非常重要，而且是 Condition 接口默认提供的。而synchronized关键字就相当于整个 Lock 对象中只有一个Condition实例，所有的线程都注册在它一个身上。如果执行notifyAll()方法的话就会通知所有处于等待状态的线程这样会造成很大的效率问题，而Condition实例的signalAll()方法 只会唤醒注册在该Condition实例中的所有等待线程。</li>
+</ul>
+<p><strong>2. ReentrantLock如何实现公平锁？</strong></p>
+<p>ReentrantLock实现公平锁的方式是通过在AQS中维护一个等待队列，当线程请求锁时，会将线程放到等待队列的队尾，等待前面的线程释放锁后依次获取锁。同时，在释放锁时，也会按照队列顺序来通知下一个等待线程获取锁。</p>
+<h1 id="七、AQS"><a href="#七、AQS" class="headerlink" title="七、AQS"></a>七、AQS</h1><p><strong>1.说说AQS？</strong></p>
+<p>AQS（AbstractQueuedSynchronizer） 类如其名，抽象的队列式的同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类实现都依赖于它，如常用的ReentrantLock&#x2F;Semaphore&#x2F;CountDownLatch。</p>
+<p>核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制 AQS 是用 <strong>CLH 队列锁</strong>实现的，即<strong>将暂时获取不到锁的线程加入到队列中</strong>。</p>
+<p>CLH（Craig,Landin,and Hagersten）队列是一个虚拟的双向队列（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系）。AQS 是将每条请求共享资源的线程封装成一个 CLH 锁队列的一个结点（Node）来实现锁的分配。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/AQS.png" srcset="/img/loading.gif" lazyload alt="CLH队列锁"></p>
+<p>AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO 队列来完成获取资源线程的排队工作。AQS 使用 CAS 对该同步状态进行原子操作实现对其值的修改。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">int</span> state;<span class="hljs-comment">//共享变量，使用volatile修饰保证线程可见性</span><br></code></pre></td></tr></table></figure>
+
+<p>状态信息通过 protected 类型的 getState，setState，compareAndSetState 进行操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//返回同步状态的当前值</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getState</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> state;<br>&#125;<br> <span class="hljs-comment">// 设置同步状态的值</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setState</span><span class="hljs-params">(<span class="hljs-type">int</span> newState)</span> &#123;<br>        state = newState;<br>&#125;<br><span class="hljs-comment">//原子地（CAS操作）将同步状态值设置为给定值update如果当前同步状态的值等于expect（期望值）</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">compareAndSetState</span><span class="hljs-params">(<span class="hljs-type">int</span> expect, <span class="hljs-type">int</span> update)</span> &#123;<br>        <span class="hljs-keyword">return</span> unsafe.compareAndSwapInt(<span class="hljs-built_in">this</span>, stateOffset, expect, update);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>AQS 定义两种资源共享方式</strong></p>
+<ul>
+<li><p>Exclusive（独占）：只有一个线程能执行，如 ReentrantLock。又可分为公平锁和非公平锁：</p>
+</li>
+<li><ul>
+<li>公平锁：按照线程在队列中的排队顺序，先到者先拿到锁</li>
+<li>非公平锁：当线程要获取锁时，无视队列顺序直接去抢锁，谁抢到就是谁的</li>
+</ul>
+</li>
+<li><p>Share（共享）：多个线程可同时执行，如 CountDownLatch、Semaphore、 CyclicBarrier、ReadWriteLock</p>
+</li>
+</ul>
+<p><strong>AQS 底层使用了模板方法模式</strong></p>
+<p>同步器的设计是基于模板方法模式的，如果需要自定义同步器一般的方式是这样（模板方法模式很经典的一个应用）：</p>
+<ol>
+<li>使用者继承 AbstractQueuedSynchronizer 并重写指定的方法。（这些重写方法很简单，无非是对于共享资源 state 的获取和释放）</li>
+<li>将 AQS 组合在自定义同步组件的实现中，并调用其模板方法，而这些模板方法会调用使用者重写的方法。</li>
+</ol>
+<p>这和我们以往通过实现接口的方式有很大区别，这是模板方法模式很经典的一个运用。</p>
+<p>AQS 使用了模板方法模式，自定义同步器时需要重写下面几个 AQS 提供的模板方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">isHeldExclusively()<span class="hljs-comment">//该线程是否正在独占资源。只有用到condition才需要去实现它。</span><br>tryAcquire(<span class="hljs-type">int</span>)<span class="hljs-comment">//独占方式。尝试获取资源，成功则返回true，失败则返回false。</span><br>tryRelease(<span class="hljs-type">int</span>)<span class="hljs-comment">//独占方式。尝试释放资源，成功则返回true，失败则返回false。</span><br>tryAcquireShared(<span class="hljs-type">int</span>)<span class="hljs-comment">//共享方式。尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。</span><br>tryReleaseShared(<span class="hljs-type">int</span>)<span class="hljs-comment">//共享方式。尝试释放资源，成功则返回true，失败则返回false。</span><br></code></pre></td></tr></table></figure>
+
+<p>默认情况下，每个方法都抛出 UnsupportedOperationException。 这些方法的实现必须是内部线程安全的，并且通常应该简短而不是阻塞。AQS 类中的其他方法都是 final ，所以无法被其他类使用，只有这几个方法可以被其他类使用。</p>
+<p>以 ReentrantLock 为例，state 初始化为 0，表示未锁定状态。A 线程 lock()时，会调用 tryAcquire()独占该锁并将 state+1。此后，其他线程再 tryAcquire()时就会失败，直到 A 线程 unlock()到 state&#x3D;0（即释放锁）为止，其它线程才有机会获取该锁。当然，释放锁之前，A 线程自己是可以重复获取此锁的（state 会累加），这就是可重入的概念。但要注意，获取多少次就要释放多么次，这样才能保证 state 是能回到零态的。</p>
+<h1 id="八、CAS"><a href="#八、CAS" class="headerlink" title="八、CAS"></a>八、CAS</h1><p><strong>说说CAS?</strong></p>
+<ul>
+<li><p>CAS就是compare and swap，比较和交换，CAS是一种基于锁的操作，而且是乐观锁</p>
+</li>
+<li><p>JVM中的CAS操作利用处理器提供的CMPXCHG指令实现原子操作</p>
+</li>
+<li><p>CAS 指令需要有 3 个操作数，分别是内存地址 V、旧的预期值 A 和新值 B。当执行操作时，只有当 V 的值等于 A，才将 V 的值更新为 B</p>
+</li>
+<li><p>CAS存在三大问题：</p>
+</li>
+<li><ul>
+<li>ABA问题：如果一个值原来是A，变成了B，又变成了A，那么CAS会认为它的值没有发生变化，但是实际上却变化了，解决方法是使用版本号，在变量前追加版本号</li>
+<li>循环时间长开销大：自旋CAS如果长时间不成功，会给CPU带来非常大的执行开销，如果JVM能支持处理器提供的pause指令，那么效率会有一定的提升</li>
+<li>只能保证一个共享变量的原子操作：当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，循环CAS就无法保证操作的原子性，这个时候就可以用锁，或者有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作</li>
+</ul>
+</li>
+</ul>
+<h1 id="九、双重校验锁实现单例模式"><a href="#九、双重校验锁实现单例模式" class="headerlink" title="九、双重校验锁实现单例模式"></a>九、双重校验锁实现单例模式</h1><p><strong>说说双重校验锁实现单例模式（DCL）？</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Li Shilong</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@data</span> 2021/5/4 12:54</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Description</span> 双重检验锁实现单例模式</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span> &#123;<br>    <br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">static</span> Singleton  singleton;<br>    <br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">Singleton</span><span class="hljs-params">()</span>&#123;&#125;;<span class="hljs-comment">//注意私有构造器</span><br>    <br>    <span class="hljs-keyword">public</span> Singleton <span class="hljs-title function_">getSingleton</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">if</span>(singleton==<span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">synchronized</span> (Singleton.class)&#123;<br>                <span class="hljs-keyword">if</span>(singleton==<span class="hljs-literal">null</span>)&#123;<br>                    singleton = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();<br>                    <span class="hljs-keyword">return</span> singleton;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> singleton;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>为什么是双重校验锁实现单例模式呢？</strong></p>
+<ul>
+<li>第一次校验：也就是第一个if（singleton&#x3D;&#x3D;null），这个是为了<strong>提高代码执行效率</strong>，由于单例模式只要一次创建实例即可，所以当创建了一个实例之后，再次调用getInstance方法就不必要进入同步代码块，不用竞争锁。直接返回前面创建的实例即可。</li>
+<li>第二次校验：也就是第二个if（singleton &#x3D;&#x3D; null），这个校验是<strong>防止二次创建实例</strong>，假如有一种情况，当singleton还未被创建时，线程t1调用getInstance方法，由于第一次判断singleton&#x3D;&#x3D;null，此时线程t1准备继续执行，但是由于资源被线程t2抢占了，此时t2页调用getInstance方法，同样的，由于singleton并没有实例化，t2同样可以通过第一个if，然后继续往下执行，同步代码块，第二个if也通过，然后t2线程创建了一个实例singleton。此时t2线程完成任务，资源又回到t1线程，t1此时也进入同步代码块，如果没有这个第二个if，那么，t1就也会创建一个singleton实例，那么，就会出现创建多个实例的情况，但是加上第二个if，就可以完全避免这个多线程导致多次创建实例的问题。</li>
+</ul>
+<p><strong>所以说：两次校验都必不可少</strong></p>
+<p>还有，这里的private static volatile Singleton singleton;中的volatile也必不可少，volatile关键字可以防止JVM指令重排优化，因为 singleton &#x3D; new Singleton() 这句话可以分为三步：</p>
+<ol>
+<li><p>为 singleton 分配内存空间</p>
+</li>
+<li><p>初始化 singleton</p>
+</li>
+<li><p>将 singleton 指向分配的内存空间</p>
+<p>但是由于JVM具有指令重排的特性，执行顺序有可能变成 1-3-2。 指令重排在单线程下不会出现问题，但是在多线程下会导致一个线程获得一个未初始化的实例。例如：线程T1执行了1和3，此时T2调用 getInstance() 后发现 singleton 不为空，因此返回 singleton，但是此时的 singleton 还没有被初始化。</p>
+<p>使用 volatile 会禁止JVM指令重排，从而保证在多线程下也能正常执行</p>
+</li>
+</ol>
+<h1 id="十、线程池"><a href="#十、线程池" class="headerlink" title="十、线程池"></a>十、线程池</h1><p><strong>说说Java的线程池？</strong></p>
+<p><strong>1. 为什么要使用线程池？</strong></p>
+<ul>
+<li>降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
+<li>提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。</li>
+<li>提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
+</ul>
+<p><strong>2.  JUC中的线程池体系</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BD%93%E7%B3%BB.png" srcset="/img/loading.gif" lazyload alt="线程池体系"></p>
+<p><strong>3. ThreadPoolExecutor的创建参数</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadPoolExecutor</span><span class="hljs-params">(<span class="hljs-type">int</span> corePoolSize,//线程池的核心线程数量</span><br><span class="hljs-params">    <span class="hljs-type">int</span> maximumPoolSize,//线程池的最大线程数</span><br><span class="hljs-params">    <span class="hljs-type">long</span> keepAliveTime,//当线程数大于核心线程数时，多余的空闲线程存活的最长时间</span><br><span class="hljs-params">    TimeUnit unit,//时间单位</span><br><span class="hljs-params">    BlockingQueue&lt;Runnable&gt; workQueue,//任务队列，用来储存等待执行任务的队列</span><br><span class="hljs-params">    ThreadFactory threadFactory,//线程工厂，用来创建线程，一般默认即可</span><br><span class="hljs-params">    RejectedExecutionHandler handler//拒绝策略，当提交的任务过多而不能及时处理时，我们可以定制策略来处理任务</span><br><span class="hljs-params">    )</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>corePoolSize：<strong>核心线程数</strong>定义了最小可以同时运行的线程数量。</p>
+</li>
+<li><p>maximumPoolSize：当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为<strong>最大线程数</strong>。</p>
+</li>
+<li><p>workQueue：当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。默认为LinkedBlockingQueue</p>
+</li>
+<li><p>keepAliveTime：默认为0，当线程池中的线程数量大于 corePoolSize 的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了 keepAliveTime才会被回收销毁</p>
+</li>
+<li><p>unit：keepAliveTime 参数的时间单位</p>
+</li>
+<li><p>threadFactory：是构造Thread的方法，可以使用默认的default实现，也可以自己去包装和传递，需要事项newThread方法</p>
+</li>
+<li><p>handler：饱和策略，当线程池中线程数量达到maximumPollSize时采取的抛弃策略，默认是AbortPolicy</p>
+</li>
+</ul>
+<p><strong>3. 线程池增长策略</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%A2%9E%E9%95%BF%E7%AD%96%E7%95%A5.png" srcset="/img/loading.gif" lazyload alt="线程池增长策略"></p>
+<ul>
+<li>如果此时线程池中的数量小于 corePoolSize ，即使线程池中的线程都处于空闲状态，也要创建新的线程来处理被添加的任务。</li>
+<li>如果此时线程池中的数量等于 corePoolSize ，但是缓冲队列 workQueue 未满，那么任务被放入缓冲队列。</li>
+<li>如果此时线程池中的数量大于 corePoolSize ，缓冲队列 workQueue 满，并且线程池中的数量小于maximumPoolSize ，建新的线程来处理被添加的任务。</li>
+<li>如果此时线程池中的数量大于 corePoolSize ，缓冲队列 workQueue 满，并且线程池中的数量等于maximumPoolSize ，那么通过 handler 所指定的策略来处理此任务。</li>
+<li>处理任务的优先级为：核心线程 corePoolSize 、任务队列 workQueue 、最大线程 maximumPoolSize ，如果三者都满了，使用handler 处理被拒绝的任务。</li>
+<li>当线程池中的线程数量大于 corePoolSize 时，如果某线程空闲时间超过keepAliveTime ，线程将被终止。这样，线程池可以动态的调整池中的线程数。</li>
+</ul>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="线程池流程"></p>
+<p><strong>4. 饱和策略</strong></p>
+<p>如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满了任务时，ThreadPoolTaskExecutor 定义一些策略:</p>
+<ul>
+<li>ThreadPoolExecutor.AbortPolicy：抛出 RejectedExecutionException来拒绝新任务的处理。</li>
+<li>ThreadPoolExecutor.CallerRunsPolicy：调用执行自己的线程运行任务，也就是直接在调用execute方法的线程中运行(run)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果您的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。</li>
+<li>ThreadPoolExecutor.DiscardPolicy： 不处理新任务，直接丢弃掉。</li>
+<li>ThreadPoolExecutor.DiscardOldestPolicy： 此策略将丢弃最早的未处理的任务请求，也就是工作队列头部的任务，然后重试执行程序</li>
+</ul>
+<p><strong>5. 线程池参数如何设置（线程池的应用场景）？</strong></p>
+<ul>
+<li>如果任务为IO密集型，比如读取数据库，文件读写以及网络通信等，这样的任务不会占据很多CPU但是会比较耗时，这时候线程数量设置为2倍CPU数以上，充分利用CPU资源</li>
+<li>如果任务为CPU密集型，比如大量计算，压缩，解压等操作，这时候一般设置线程数为CPU数+1，+1有一种说法是备份线程</li>
+<li>如果任务既有IO密集型，又有CPU密集型，那么最好分开处理，IO密集型用IO密集型线程池，CPU密集型用CPU密集型线程池</li>
+</ul>
+<p><strong>6. Executors工厂类实现的线程池</strong></p>
+<p><strong>7. 线程池中使用的BlockingQueue</strong></p>
+<ul>
+<li>ArrayBlockingQueue：使用数组实现的有界阻塞队列，特性先进先出</li>
+<li>LinkedBlockingQueue：使用链表实现的阻塞队列，特性先进先出，可以设置其容量，默认为Interger.MAX_VALUE，特性先进先出</li>
+<li>PriorityBlockingQueue：使用平衡二叉树堆，实现的具有优先级的无界阻塞队列</li>
+<li>DelayQueue：无界阻塞延迟队列，队列中每个元素均有过期时间，当从队列获取元素时，只有过期元素才会出队列。队列头元素是最快要过期的元素。</li>
+<li>SynchronousQueue：一个不存储元素的阻塞队列，每个插入操作，必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态</li>
+</ul>
+<p><strong>8. 说说ArrayBlockingQueue和LinkedBlockingQueue的区别？</strong></p>
+<ul>
+<li>队列大小不同： ArrayBlockingQueue是有界的，必须指定队列的大小，而 LinkedBlockingQueue默认是无界的（Integer.MAX_VALUE）也可以是有界的，若用默认大小且当生产速度大于消费速度时候，有可能会内存溢出</li>
+<li>数据储存容器不同： ArrayBlockingQueue使用的是数组，而 LinkedBlockingQueue使用的是以Node为节点的链表</li>
+<li>队列中锁的实现不同： ArrayBlockingQueue实现的队列中的锁是没有分离的，即生产和消费用的是同一个锁；LinkedBlockingQueue实现的队列中的锁是分离的，即添加用的是putLock，移除是takeLock，这样意味着在高并发的情况下，生产者和消费者可以并行地操作队列中的数据，以此来提高队列的并发性能</li>
+</ul>
+<h1 id="十一、ThreadLocal"><a href="#十一、ThreadLocal" class="headerlink" title="十一、ThreadLocal"></a>十一、ThreadLocal</h1><p>多线程访问同一个共享变量的时候容易出现并发问题，特别是多个线程对一个变量进行写入的时候，为了保证线程安全，一般使用者在访问共享变量的时候需要进行额外的同步措施才能保证线程安全性。ThreadLocal是除了加锁这种同步方式之外的一种保证一种规避多线程访问出现线程不安全的方法，当我们在创建一个变量后，如果每个线程对其进行访问的时候访问的都是线程自己的变量这样就不会存在线程不安全问题。</p>
+<p>　　ThreadLocal是JDK包提供的，它提供线程本地变量，如果创建一个ThreadLocal变量，那么访问这个变量的每个线程都会有这个变量的一个副本，在实际多线程操作的时候，操作的是自己本地内存中的变量，从而规避了线程安全问题，如下图所示</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/1368768-20190613220434628-1803630402.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/1368768-20190614000329689-872917045.png" srcset="/img/loading.gif" lazyload alt="ThreadLocal的类图结构"></p>
+<p>上面是ThreadLocal的类图结构，从图中可知：Thread类中有两个变量threadLocals和inheritableThreadLocals，二者都是ThreadLocal内部类ThreadLocalMap类型的变量，我们通过查看内部内ThreadLocalMap可以发现实际上它类似于一个HashMap。在默认情况下，每个线程中的这两个变量都为null</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/1368768-20190614002358591-1764103391.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/1368768-20190614002426565-1963789099.png" srcset="/img/loading.gif" lazyload></p>
+<p>只有当线程第一次调用ThreadLocal的set或者get方法的时候才会创建他们（后面我们会查看这两个方法的源码）。除此之外，<strong>每个线程的本地变量不是存放在ThreadLocal实例中，而是放在调用线程的ThreadLocals变量里面</strong>（前面也说过，该变量是Thread类的变量）。也就是说，<strong>ThreadLocal类型的本地变量是存放在具体的线程空间上</strong>，其本身相当于一个装载本地变量的工具壳，通过set方法将value添加到调用线程的threadLocals中，当调用线程调用get方法时候能够从它的threadLocals中取出变量。<strong>如果调用线程一直不终止，那么这个本地变量将会一直存放在他的threadLocals中，所以不使用本地变量的时候需要调用remove方法将threadLocals中删除不用的本地变量</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fsmly/p/11020641.html">https://www.cnblogs.com/fsmly/p/11020641.html</a></p>
+</blockquote>
+<h1 id="十二、unsafe"><a href="#十二、unsafe" class="headerlink" title="十二、unsafe"></a>十二、unsafe</h1><p>Unsafe类是在sun.misc包下，不属于Java标准。但是很多Java的基础类库，包括一些被广泛使用的高性能开发库都是基于Unsafe类开发的，比如Netty、Cassandra、Hadoop、Kafka等。Unsafe类在提升Java运行效率，增强Java语言底层操作能力方面起了很大的作用。</p>
+<p>Unsafe类使Java拥有了像C语言的指针一样操作内存空间的能力，同时也带来了指针的问题。过度的使用Unsafe类会使得出错的几率变大，因此Java官方并不建议使用的，官方文档也几乎没有。Oracle正在计划从Java 9中去掉Unsafe类，如果真是如此影响就太大了。</p>
+<p><strong>一、内存管理。</strong>包括分配内存、释放内存等。</p>
+<p>该部分包括了allocateMemory（分配内存）、reallocateMemory（重新分配内存）、copyMemory（拷贝内存）、freeMemory（释放内存 ）、getAddress（获取内存地址）、addressSize、pageSize、getInt（获取内存地址指向的整数）、getIntVolatile（获取内存地址指向的整数，并支持volatile语义）、putInt（将整数写入指定内存地址）、putIntVolatile（将整数写入指定内存地址，并支持volatile语义）、putOrderedInt（将整数写入指定内存地址、有序或者有延迟的方法）等方法。getXXX和putXXX包含了各种基本类型的操作。</p>
+<p>利用copyMemory方法，我们可以实现一个通用的对象拷贝方法，无需再对每一个对象都实现clone方法，当然这通用的方法只能做到对象浅拷贝。</p>
+<p><strong>二、非常规的对象实例化。</strong></p>
+<p>allocateInstance()方法提供了另一种创建实例的途径。通常我们可以用new或者反射来实例化对象，使用allocateInstance()方法可以直接生成对象实例，且无需调用构造方法和其它初始化方法。</p>
+<p>这在对象反序列化的时候会很有用，能够重建和设置final字段，而不需要调用构造方法。</p>
+<p><strong>三、操作类、对象、变量。</strong></p>
+<p>这部分包括了staticFieldOffset（静态域偏移）、defineClass（定义类）、defineAnonymousClass（定义匿名类）、ensureClassInitialized（确保类初始化）、objectFieldOffset（对象域偏移）等方法。</p>
+<p>通过这些方法我们可以获取对象的指针，通过对指针进行偏移，我们不仅可以直接修改指针指向的数据（即使它们是私有的），甚至可以找到JVM已经认定为垃圾、可以进行回收的对象。</p>
+<p><strong>四、数组操作。</strong></p>
+<p>这部分包括了arrayBaseOffset（获取数组第一个元素的偏移地址）、arrayIndexScale（获取数组中元素的增量地址）等方法。arrayBaseOffset与arrayIndexScale配合起来使用，就可以定位数组中每个元素在内存中的位置。</p>
+<p>由于Java的数组最大值为Integer.MAX_VALUE，使用Unsafe类的内存分配方法可以实现超大数组。实际上这样的数据就可以认为是C数组，因此需要注意在合适的时间释放内存。</p>
+<p><strong>五、多线程同步。</strong>包括锁机制、CAS操作等。</p>
+<p>这部分包括了monitorEnter、tryMonitorEnter、monitorExit、compareAndSwapInt、compareAndSwap等方法。</p>
+<p>其中monitorEnter、tryMonitorEnter、monitorExit已经被标记为deprecated，不建议使用。</p>
+<p>Unsafe类的CAS操作可能是用的最多的，它为Java的锁机制提供了一种新的解决办法，比如AtomicInteger等类都是通过该方法来实现的。compareAndSwap方法是原子的，可以避免繁重的锁机制，提高代码效率。这是一种乐观锁，通常认为在大部分情况下不出现竞态条件，如果操作失败，会不断重试直到成功。</p>
+<p><strong>六、挂起与恢复。</strong></p>
+<p>这部分包括了park、unpark等方法。</p>
+<p>将一个线程进行挂起是通过park方法实现的，调用 park后，线程将一直阻塞直到超时或者中断等条件出现。unpark可以终止一个挂起的线程，使其恢复正常。整个并发框架中对线程的挂起操作被封装在 LockSupport类中，LockSupport类中有各种版本pack方法，但最终都调用了Unsafe.park()方法。</p>
+<p><strong>七、内存屏障。</strong></p>
+<p>这部分包括了loadFence、storeFence、fullFence等方法。这是在Java 8新引入的，用于定义内存屏障，避免代码重排序。</p>
+<p>loadFence() 表示该方法之前的所有load操作在内存屏障之前完成。同理storeFence()表示该方法之前的所有store操作在内存屏障之前完成。fullFence()表示该方法之前的所有load、store操作在内存屏障之前完成。</p>
+
                 
               </div>
             

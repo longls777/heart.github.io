@@ -240,6 +240,175 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/02/15/Redis/Redis%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%85%B1%E4%BA%AB/" target="_self">
+          Redis的内存回收和对象共享
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/15/Redis/Redis%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%85%B1%E4%BA%AB/" target="_self">
+        <div>
+          内存回收因为C语言并不具备自动内存回收功能，所以Redis在自己的对象系统中构建了一个引用计数（reference counting）技术实现的内存回收机制，通过这一机制，程序可以通过跟踪对象的引用计数信息，在适当的时候自动释放对象并进行内存回收 对象的引用计数信息会随着对象的使用状态而不断变化：  在创建一个新对象时，引用计数的值会被初始化为1 当对象被一个新程序使用时，它的引用计数值会被增一
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-15 10:05" pubdate>
+              2023-02-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Redis/" class="category-chain-item">Redis</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/02/14/Redis/Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_self">
+          Redis的数据类型
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/14/Redis/Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_self">
+        <div>
+          Redis常用的五种数据类型（五种对象）Redis是一种存储key-value的内存型数据库，它的key都是字符串类型，value支持存储5种类型的数据：  String（字符串类型） List（列表类型） Hash（哈希表类型、即key-value类型） Set（无序集合类型，元素不可重复） Zset（有序集合类型，元素不可重复）  这五种数据类型的对象都由一个redisObject结构表示：
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-14 13:37" pubdate>
+              2023-02-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Redis/" class="category-chain-item">Redis</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/12/19/Algorithm%20Problem/leetcode1971/" target="_self">
+          leetcode828 寻找图中是否存在路径
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/12/19/Algorithm%20Problem/leetcode1971/" target="_self">
+        <div>
+          1971. 寻找图中是否存在路径有一个具有 n 个顶点的 双向 图，其中每个顶点标记从 0 到 n - 1（包含 0 和 n - 1）。图中的边用一个二维整数数组 edges 表示，其中 edges[i] = [ui, vi] 表示顶点 ui 和顶点 vi 之间的双向边。 每个顶点对由 最多一条 边连接，并且没有顶点存在与自身相连的边。 请你确定是否存在从顶点 source 开始，到顶点 dest
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-12-19 20:27" pubdate>
+              2022-12-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">#并查集</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/12/18/Paper%20Reading%20Notes/Better%20Few-Shot%20Relation%20Extraction%20with%20Label%20Prompt%20Dropout/" target="_self">
           Better Few-Shot Relation Extraction with Label Prompt Dropout
         </a>
@@ -620,180 +789,6 @@
               <a href="/tags/Text-Classification/">#Text Classification</a>
             
           </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/13/Machine%20Learning/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/" target="_self">
-          奇异值分解
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/13/Machine%20Learning/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/" target="_self">
-        <div>
-          奇异值分解(Singular Value Decomposition，SVD） $U$的列向量称为左奇异向量，$V$的列向量称为右奇异向量 任意给定一实矩阵，其奇异值分解一定存在  https://zhuanlan.zhihu.com/p/448767610
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-13 17:07" pubdate>
-              2022-10-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/10/13/Machine%20Learning/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" target="_self">
-          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" srcset="/img/loading.gif" lazyload alt="特征值与特征向量">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/13/Machine%20Learning/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" target="_self">
-          特征值与特征向量
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2022/10/13/Machine%20Learning/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" target="_self">
-        <div>
-          特征值与特征向量 特征值分解可以得到特征值与特征向量 特征值表示的是这个特征到底有多重要，而特征向量表示这个特征是什么  矩阵A 的特征值与其特征向量$\vec{v}$, 特征值 λ 满足： $$ A\nu &#x3D; \lambda \nu $$ 将矩阵分解为它的特征值与特征向量的过程被称为“特征分解”（Eigendecomposition），又称**”谱分解”**（Spectral deco
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-13 16:25" pubdate>
-              2022-10-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/10/13/Machine%20Learning/%E8%8C%83%E6%95%B0/" target="_self">
-          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" srcset="/img/loading.gif" lazyload alt="范数">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/13/Machine%20Learning/%E8%8C%83%E6%95%B0/" target="_self">
-          范数
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt " href="/2022/10/13/Machine%20Learning/%E8%8C%83%E6%95%B0/" target="_self">
-        <div>
-          范数的定义 0范数 1范数 1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数 2范数也就是欧氏距离 正无穷范数 正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数对于矩阵$A_{m×n}$， 举例而说: 1234A = [-1, 2, 3;4, -6, 6;]     矩阵的1范数（列范数）：矩阵的每一列上的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-13 16:05" pubdate>
-              2022-10-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
         
       </div>
     </article>
