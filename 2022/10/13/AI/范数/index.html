@@ -16,16 +16,16 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="特征值与特征向量 特征值分解可以得到特征值与特征向量 特征值表示的是这个特征到底有多重要，而特征向量表示这个特征是什么  矩阵A 的特征值与其特征向量$\vec{v}$, 特征值 λ 满足： $$ A\nu &#x3D; \lambda \nu $$ 将矩阵分解为它的特征值与特征向量的过程被称为“特征分解”（Eigendecomposition），又称**”谱分解”**（Spectral deco">
+    <meta name="description" content="范数的定义 0范数 1范数 1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数 2范数也就是欧氏距离 正无穷范数 正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数对于矩阵$A_{m×n}$， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]     矩阵的1范数（列范数）：矩阵的每一列上的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="特征值与特征向量">
-<meta property="og:url" content="https://lishilong.cc/2022/10/13/Machine%20Learning/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/index.html">
+<meta property="og:title" content="范数">
+<meta property="og:url" content="https://lishilong.cc/2022/10/13/AI/%E8%8C%83%E6%95%B0/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="特征值与特征向量 特征值分解可以得到特征值与特征向量 特征值表示的是这个特征到底有多重要，而特征向量表示这个特征是什么  矩阵A 的特征值与其特征向量$\vec{v}$, 特征值 λ 满足： $$ A\nu &#x3D; \lambda \nu $$ 将矩阵分解为它的特征值与特征向量的过程被称为“特征分解”（Eigendecomposition），又称**”谱分解”**（Spectral deco">
+<meta property="og:description" content="范数的定义 0范数 1范数 1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数 2范数也就是欧氏距离 正无穷范数 正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数对于矩阵$A_{m×n}$， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]     矩阵的1范数（列范数）：矩阵的每一列上的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png">
-<meta property="article:published_time" content="2022-10-13T08:25:00.000Z">
-<meta property="article:modified_time" content="2023-04-12T04:45:12.559Z">
+<meta property="article:published_time" content="2022-10-13T08:05:00.000Z">
+<meta property="article:modified_time" content="2023-07-19T09:49:48.571Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
   
   
   
-  <title>特征值与特征向量 - Heart</title>
+  <title>范数 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="特征值与特征向量"></span>
+            <span id="subtitle" data-typed-text="范数"></span>
           
         </div>
 
@@ -227,7 +227,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-13 16:25" pubdate>
+        <time datetime="2022-10-13 16:05" pubdate>
           2022年10月13日 下午
         </time>
       </span>
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          726 字
+          878 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          7 分钟
+          8 分钟
         
       </span>
     
@@ -288,25 +288,36 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">特征值与特征向量</h1>
+            <h1 style="display: none">范数</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="特征值与特征向量"><a href="#特征值与特征向量" class="headerlink" title="特征值与特征向量"></a>特征值与特征向量</h2><ul>
-<li>特征值分解可以得到特征值与特征向量</li>
-<li><strong>特征值表示的是这个特征到底有多重要，而特征向量表示这个特征是什么</strong></li>
+                <h2 id="范数的定义"><a href="#范数的定义" class="headerlink" title="范数的定义"></a>范数的定义</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" srcset="/img/loading.gif" lazyload alt="image-20221013160652989"></p>
+<h2 id="0范数"><a href="#0范数" class="headerlink" title="0范数"></a>0范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160736569.png" srcset="/img/loading.gif" lazyload alt="image-20221013160736569"></p>
+<h2 id="1范数"><a href="#1范数" class="headerlink" title="1范数"></a>1范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160753968.png" srcset="/img/loading.gif" lazyload alt="image-20221013160753968"></p>
+<p>1范数是向量各个元素的绝对值之和，也称为曼哈顿距离</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160924909.png" srcset="/img/loading.gif" lazyload alt="image-20221013160924909"></p>
+<h2 id="2范数"><a href="#2范数" class="headerlink" title="2范数"></a>2范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160945993.png" srcset="/img/loading.gif" lazyload alt="image-20221013160945993"></p>
+<p>2范数也就是欧氏距离</p>
+<h2 id="正无穷范数"><a href="#正无穷范数" class="headerlink" title="正无穷范数"></a>正无穷范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013161336549.png" srcset="/img/loading.gif" lazyload alt="image-20221013161336549"></p>
+<p>正无穷范数表示向量所有元素的绝对值中最大的</p>
+<h2 id="负无穷范数"><a href="#负无穷范数" class="headerlink" title="负无穷范数"></a>负无穷范数</h2><p>负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷</p>
+<h2 id="矩阵的范数"><a href="#矩阵的范数" class="headerlink" title="矩阵的范数"></a>矩阵的范数</h2><p>对于矩阵$A_{m×n}$， 举例而说:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">A = [<br>-<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>;<br><span class="hljs-number">4</span>, -<span class="hljs-number">6</span>, <span class="hljs-number">6</span>;<br>]<br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>矩阵的1范数（列范数）：矩阵的每一列上的元素绝对值先求和，再从中取最大值 $$ \Vert A\Vert_1&#x3D;\max_{1\le j\le n}\sum_{i&#x3D;1}^m|{a_{ij}}| \ \text{举例}: \Vert A\Vert_1 &#x3D; max([5,8,9]) &#x3D; 9 $$</li>
+<li>矩阵的2范数： 矩阵 $A^TA$ 的最大特征值开平方根 $$ \Vert A\Vert_2&#x3D;\sqrt{\lambda_{max}(A^T A)} $$</li>
 </ul>
-<p>矩阵A 的特征值与其特征向量$\vec{v}$, 特征值 λ 满足： $$ A\nu &#x3D; \lambda \nu $$</p>
-<p>将矩阵分解为它的特征值与特征向量的过程被称为<strong>“特征分解”</strong>（Eigendecomposition），又称**”谱分解”**（Spectral decomposition）</p>
-<p>特征值分解是将一个矩阵分解为如下形式：<br>$$<br>A&#x3D;Q\sum Q^{-1}<br>$$<br>$Q$：矩阵A的特征向量组成的矩阵</p>
-<p>$\sum$:一个对角矩阵，每一个对角元素是一个特征值，里面的特征值是由大到小排列的，这些特征值所对应的特征向量就是描述这个矩阵变化方向（从主要的变化到次要的变化排列）。 特征值分解表示矩阵$A$的信息可以由其特征值和特征向量表示。</p>
+<h2 id="扩展——L2范数与模型泛化"><a href="#扩展——L2范数与模型泛化" class="headerlink" title="扩展——L2范数与模型泛化"></a>扩展——L2范数与模型泛化</h2><p>使用L2范数做正则项时，可以削弱强特征，增强弱特征，这样可以避免模型过度依赖于强特征，提高模型的泛化能力，但也不是所有机器学习任务都适合使用L2正则化，在一些结构化数据挖掘任务或特征意义很模糊的机器学习任务（如深度学习）中，特征分布本来就是就是若干强特征与噪声的组合，这时加上L2范数约束反而会引入噪声，降低系统的抗噪性能，导致更差劲</p>
+<p>建议看这篇<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg">https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg</a></p>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/M1yUVXy89vUt0AUBj9SGDQ">https://mp.weixin.qq.com/s/M1yUVXy89vUt0AUBj9SGDQ</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25847123/article/details/90400678">https://blog.csdn.net/qq_25847123/article/details/90400678</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md">https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md">https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg">https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg</a></p>
 </blockquote>
 
                 
@@ -326,7 +337,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
   
   
 
@@ -346,8 +357,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>特征值与特征向量</div>
-      <div>https://lishilong.cc/2022/10/13/Machine Learning/特征值与特征向量/</div>
+      <div>范数</div>
+      <div>https://lishilong.cc/2022/10/13/AI/范数/</div>
     </div>
     <div class="license-meta">
       
@@ -391,9 +402,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/13/Machine%20Learning/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/" title="奇异值分解">
+                      <a href="/2022/10/13/AI/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" title="特征值与特征向量">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">奇异值分解</span>
+                        <span class="hidden-mobile">特征值与特征向量</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -401,8 +412,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/13/Machine%20Learning/%E8%8C%83%E6%95%B0/" title="范数">
-                        <span class="hidden-mobile">范数</span>
+                      <a href="/2022/10/06/Paper%20Reading%20Notes/RoBERTa%20A%20Robustly%20Optimized%20BERT%20Pretraining%20Approach/" title="RoBERTa  A Robustly Optimized BERT Pretraining Approach">
+                        <span class="hidden-mobile">RoBERTa  A Robustly Optimized BERT Pretraining Approach</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

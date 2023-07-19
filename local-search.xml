@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>深度学习中的优化算法概览</title>
+    <link href="/2023/07/19/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/"/>
+    <url>/2023/07/19/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>从 SGD 到 Adam —— 深度学习优化算法概览(一) - 骆梁宸的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/32626442">https://zhuanlan.zhihu.com/p/32626442</a></p></blockquote><h2 id="什么是一阶和二阶动量？"><a href="#什么是一阶和二阶动量？" class="headerlink" title="什么是一阶和二阶动量？"></a>什么是一阶和二阶动量？</h2><p>有多种说法：</p><ul><li><em>一阶动量和二阶动量</em>分别是历史梯度的一阶函数和二阶函数</li><li>来自chatGPT：</li></ul><blockquote><p>一阶动量和二阶动量是Adam优化算法中使用的两个指数移动平均项，用于估计梯度的一阶和二阶矩。</p><ol><li>一阶动量（First Moment）：一阶动量是梯度的一阶矩的估计，通常表示为m。在Adam算法中，一阶动量用于估计梯度的平均值。具体地，对于每个参数的更新，一阶动量通过指数移动平均的方式计算梯度的平均值。它可以被看作是参数梯度的历史平均，用于反映参数在更新过程中的变化趋势。</li><li>二阶动量（Second Moment）：二阶动量是梯度平方的一阶矩的估计，通常表示为v。在Adam算法中，二阶动量用于估计梯度平方的平均值。具体地，对于每个参数的更新，二阶动量通过指数移动平均的方式计算梯度平方的平均值。它可以被看作是参数梯度平方的历史平均，用于反映参数在更新过程中的方差信息</li></ol><p>一阶动量和二阶动量是Adam优化算法中用于估计梯度的一阶和二阶矩的指数移动平均项。它们在Adam算法中用于自适应地调整学习率和规范化参数的更新，以提高优化的性能和稳定性。</p></blockquote><h2 id="什么是指数移动平均？"><a href="#什么是指数移动平均？" class="headerlink" title="什么是指数移动平均？"></a>什么是指数移动平均？</h2><blockquote><p>【炼丹技巧】指数移动平均（EMA）的原理及PyTorch实现 - Nicolas的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/68748778">https://zhuanlan.zhihu.com/p/68748778</a></p></blockquote><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230719180113625.png" alt="什么是EMA"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Reservoir computing approaches for representation and classification of multivariate time series</title>
     <link href="/2023/05/10/Paper%20Reading%20Notes/Reservoir%20computing%20approaches%20for%20representation%20and%20classification%20of%20multivariate%20time%20series/"/>
     <url>/2023/05/10/Paper%20Reading%20Notes/Reservoir%20computing%20approaches%20for%20representation%20and%20classification%20of%20multivariate%20time%20series/</url>
@@ -923,35 +942,16 @@
   
   
   <entry>
-    <title>文本分类</title>
-    <link href="/2022/10/14/Machine%20Learning/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E8%B7%B5/"/>
-    <url>/2022/10/14/Machine%20Learning/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E8%B7%B5/</url>
-    
-    <content type="html"><![CDATA[<p>关于文本分类的概念以及各种知识请看</p><blockquote><p>文本分类综述<a href="https://zhuanlan.zhihu.com/p/370503493">https://zhuanlan.zhihu.com/p/370503493</a></p></blockquote><p>文本分类的应用场景包括：</p><ul><li>情感分析（Sentiment Analyse）</li><li>主题分类（Topic Labeling）</li><li>问答任务(Question Answering)</li><li>意图识别(Dialog Act Classification)</li><li>自然语言推理（Natural Language Inference）</li></ul><p>其分类标签可以是：</p><ul><li>情感分析（积极、消极、中性）</li><li>主题分类（金融、体育、军事、社会）</li><li>问答任务（是、否）</li><li>意图识别（天气查询、歌曲搜索、随机闲聊）</li><li>自然语言推理（导出、矛盾、中立）</li></ul><p>其结构都是基本相似的，主要包括：</p><ol><li>特征表示</li><li>分类模型</li></ol><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-c55b5a4a88ef981027737c2094217291_720w.webp" alt="img"></p>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>Text Classification</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>奇异值分解</title>
-    <link href="/2022/10/13/Machine%20Learning/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/"/>
-    <url>/2022/10/13/Machine%20Learning/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/</url>
+    <link href="/2022/10/13/AI/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/"/>
+    <url>/2022/10/13/AI/%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3/</url>
     
     <content type="html"><![CDATA[<h2 id="奇异值分解-Singular-Value-Decomposition，SVD）"><a href="#奇异值分解-Singular-Value-Decomposition，SVD）" class="headerlink" title="奇异值分解(Singular Value Decomposition，SVD）"></a>奇异值分解(Singular Value Decomposition，SVD）</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013171040186.png" alt="image-20221013171040186"></p><p>$U$的列向量称为左奇异向量，$V$的列向量称为右奇异向量</p><p>任意给定一实矩阵，其奇异值分解一定存在</p><blockquote><p><a href="https://zhuanlan.zhihu.com/p/448767610">https://zhuanlan.zhihu.com/p/448767610</a></p></blockquote>]]></content>
     
     
     <categories>
       
-      <category>Machine Learning</category>
+      <category>AI</category>
       
     </categories>
     
@@ -962,15 +962,15 @@
   
   <entry>
     <title>特征值与特征向量</title>
-    <link href="/2022/10/13/Machine%20Learning/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/"/>
-    <url>/2022/10/13/Machine%20Learning/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/</url>
+    <link href="/2022/10/13/AI/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/"/>
+    <url>/2022/10/13/AI/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/</url>
     
     <content type="html"><![CDATA[<h2 id="特征值与特征向量"><a href="#特征值与特征向量" class="headerlink" title="特征值与特征向量"></a>特征值与特征向量</h2><ul><li>特征值分解可以得到特征值与特征向量</li><li><strong>特征值表示的是这个特征到底有多重要，而特征向量表示这个特征是什么</strong></li></ul><p>矩阵A 的特征值与其特征向量$\vec{v}$, 特征值 λ 满足： $$ A\nu &#x3D; \lambda \nu $$</p><p>将矩阵分解为它的特征值与特征向量的过程被称为<strong>“特征分解”</strong>（Eigendecomposition），又称**”谱分解”**（Spectral decomposition）</p><p>特征值分解是将一个矩阵分解为如下形式：<br>$$<br>A&#x3D;Q\sum Q^{-1}<br>$$<br>$Q$：矩阵A的特征向量组成的矩阵</p><p>$\sum$:一个对角矩阵，每一个对角元素是一个特征值，里面的特征值是由大到小排列的，这些特征值所对应的特征向量就是描述这个矩阵变化方向（从主要的变化到次要的变化排列）。 特征值分解表示矩阵$A$的信息可以由其特征值和特征向量表示。</p><blockquote><p><a href="https://mp.weixin.qq.com/s/M1yUVXy89vUt0AUBj9SGDQ">https://mp.weixin.qq.com/s/M1yUVXy89vUt0AUBj9SGDQ</a></p><p><a href="https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md">https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md</a></p></blockquote><blockquote><p><a href="https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md">https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md</a></p></blockquote>]]></content>
     
     
     <categories>
       
-      <category>Machine Learning</category>
+      <category>AI</category>
       
     </categories>
     
@@ -981,15 +981,15 @@
   
   <entry>
     <title>范数</title>
-    <link href="/2022/10/13/Machine%20Learning/%E8%8C%83%E6%95%B0/"/>
-    <url>/2022/10/13/Machine%20Learning/%E8%8C%83%E6%95%B0/</url>
+    <link href="/2022/10/13/AI/%E8%8C%83%E6%95%B0/"/>
+    <url>/2022/10/13/AI/%E8%8C%83%E6%95%B0/</url>
     
     <content type="html"><![CDATA[<h2 id="范数的定义"><a href="#范数的定义" class="headerlink" title="范数的定义"></a>范数的定义</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" alt="image-20221013160652989"></p><h2 id="0范数"><a href="#0范数" class="headerlink" title="0范数"></a>0范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160736569.png" alt="image-20221013160736569"></p><h2 id="1范数"><a href="#1范数" class="headerlink" title="1范数"></a>1范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160753968.png" alt="image-20221013160753968"></p><p>1范数是向量各个元素的绝对值之和，也称为曼哈顿距离</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160924909.png" alt="image-20221013160924909"></p><h2 id="2范数"><a href="#2范数" class="headerlink" title="2范数"></a>2范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160945993.png" alt="image-20221013160945993"></p><p>2范数也就是欧氏距离</p><h2 id="正无穷范数"><a href="#正无穷范数" class="headerlink" title="正无穷范数"></a>正无穷范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013161336549.png" alt="image-20221013161336549"></p><p>正无穷范数表示向量所有元素的绝对值中最大的</p><h2 id="负无穷范数"><a href="#负无穷范数" class="headerlink" title="负无穷范数"></a>负无穷范数</h2><p>负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷</p><h2 id="矩阵的范数"><a href="#矩阵的范数" class="headerlink" title="矩阵的范数"></a>矩阵的范数</h2><p>对于矩阵$A_{m×n}$， 举例而说:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">A = [<br>-<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>;<br><span class="hljs-number">4</span>, -<span class="hljs-number">6</span>, <span class="hljs-number">6</span>;<br>]<br></code></pre></td></tr></table></figure><ul><li>矩阵的1范数（列范数）：矩阵的每一列上的元素绝对值先求和，再从中取最大值 $$ \Vert A\Vert_1&#x3D;\max_{1\le j\le n}\sum_{i&#x3D;1}^m|{a_{ij}}| \ \text{举例}: \Vert A\Vert_1 &#x3D; max([5,8,9]) &#x3D; 9 $$</li><li>矩阵的2范数： 矩阵 $A^TA$ 的最大特征值开平方根 $$ \Vert A\Vert_2&#x3D;\sqrt{\lambda_{max}(A^T A)} $$</li></ul><h2 id="扩展——L2范数与模型泛化"><a href="#扩展——L2范数与模型泛化" class="headerlink" title="扩展——L2范数与模型泛化"></a>扩展——L2范数与模型泛化</h2><p>使用L2范数做正则项时，可以削弱强特征，增强弱特征，这样可以避免模型过度依赖于强特征，提高模型的泛化能力，但也不是所有机器学习任务都适合使用L2正则化，在一些结构化数据挖掘任务或特征意义很模糊的机器学习任务（如深度学习）中，特征分布本来就是就是若干强特征与噪声的组合，这时加上L2范数约束反而会引入噪声，降低系统的抗噪性能，导致更差劲</p><p>建议看这篇<a href="https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg">https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg</a></p><blockquote><p><a href="https://blog.csdn.net/qq_25847123/article/details/90400678">https://blog.csdn.net/qq_25847123/article/details/90400678</a></p><p><a href="https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md">https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md</a></p><p><a href="https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg">https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg</a></p></blockquote>]]></content>
     
     
     <categories>
       
-      <category>Machine Learning</category>
+      <category>AI</category>
       
     </categories>
     
@@ -1182,15 +1182,15 @@
   
   <entry>
     <title>Transformer相关问题</title>
-    <link href="/2022/09/15/Machine%20Learning/transformer%E7%9A%84%E5%85%B6%E4%BB%96%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/"/>
-    <url>/2022/09/15/Machine%20Learning/transformer%E7%9A%84%E5%85%B6%E4%BB%96%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/</url>
+    <link href="/2022/09/15/AI/transformer%E7%9A%84%E5%85%B6%E4%BB%96%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/"/>
+    <url>/2022/09/15/AI/transformer%E7%9A%84%E5%85%B6%E4%BB%96%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/</url>
     
     <content type="html"><![CDATA[<blockquote><p><a href="https://zhuanlan.zhihu.com/p/82391768">关于Transformer的若干问题整理记录</a></p></blockquote><h4 id="有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？"><a href="#有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？" class="headerlink" title="有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？"></a>有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？</h4><blockquote><p>这个问题也会被分为几个子问题</p><ul><li>加性注意力(Additive Attention、乘性注意力(Dot Product Attention)、缩放点积注意力(Scaled Dot-Product Attention)的公式与计算过程？</li><li>Transformer计算attention的时候为何选择点乘而不是加法？<br>两者计算复杂度和效果上有什么区别？</li><li>为什么在进行之前需要对attention进行scaled (attention计算时为什么要除 ) ？</li></ul></blockquote><p>首先我们来看一下三者的公式：</p><p><strong>Additive Attention</strong>(加性注意力模型)<br>$$<br>S(x_i,q)&#x3D;v^{T}tanh(Wx_i+Uq)<br>$$<br><strong>dot product attention</strong> （乘性注意力&#x2F;点积模型）<br>$$<br>S(x_i,q)&#x3D;x_i^{T}q<br>$$<br><strong>Scaled Dot-Product Attention</strong>(缩放点积模型)<br>$$<br>S(x_i,q)&#x3D;x_i^{T}q&#x2F;\sqrt{d_k}<br>$$<br>其他的还有双线性模型$S(x_i,q)&#x3D;x_i^TWq$等</p><p>想象成一句中文与其对应的英文翻译，每个词为一个向量。两个序列也可以不等长，我们要计算两组序列彼此之间的attention权重。其过程大体可以被抽象为三步：</p><ol><li>信息输入：将语言输入模型，转换为对应的向量如 $q,k,v$ 或者$key, value$，我们这里假设存在两组向量序列来表示一句话与其对应的翻译。 $H:h_1,h_2,…h_n$和$S:s_1,s_2,…,s_n$，任意一个元素的维度为$d_k$</li><li>对于任意的$h_i,s_j$,以某种attention函数计算两者之间的分数</li><li>信息加权平均</li></ol><h5 id="Additive-Attention"><a href="#Additive-Attention" class="headerlink" title="Additive Attention"></a>Additive Attention</h5><p>对于Additive Attention而言，这个过程为：</p><ol><li>计算任意向量$h_i$与向量$s_1,s_2,…,s_n$的attention权重</li><li>然后拼接 $h_i−s_1$通过一个特定的线性层计算出其分数，再拼接 $h_i−s_2$，重复通过线性层计算，…，直到所有的均计算出一个结果</li><li>再把所有结果通过 softmax</li></ol><p>其计算过程公式如下：<br>$$<br>\begin{aligned}<br>\boldsymbol{c}<em>t&amp;&#x3D;\sum</em>{i&#x3D;1}^{n}{\alpha_{t,i}\boldsymbol{h}<em>i} \qquad ;输出的上下文向量\boldsymbol{y}<em>t\<br>\alpha</em>{t,i}&amp;&#x3D;align(y_t,x_i)\qquad;两个单词y_t和x_i的对齐情况\ &amp;&#x3D;\frac{exp(score(s</em>{t-1},\boldsymbol{h}<em>i))}{\sum</em>{i^{‘}&#x3D;1}^{n}{exp(score(s_{t-1},\boldsymbol{h}_{i^{‘}}))}}\quad;对自定义的对齐分数进行softmax<br>\end{aligned}<br>$$</p><p>从这个角度讲，Additive Attention注意力的公式也可以看作：<br>$$<br>f_{score(i,j)}&#x3D;v_a^Ttanh(W_a[h_i;s_j])&#x3D;v^Ttanh(W_1s_i+W_2h_j)<br>$$<br>其中 $v_a$ 和 $W_a$ 是学习的注意参数。这里 $h$ 是指编码器的隐藏状态， $s$ 是解码器的隐藏状态。</p><h5 id="Dot-Product-Attention"><a href="#Dot-Product-Attention" class="headerlink" title="Dot Product Attention"></a>Dot Product Attention</h5><p>同样地，我们也可以将 $f_{score(i,j)}$ 函数替换为乘性注意力，即<br>$$<br>f_{score(i,j)}&#x3D;F(s_i,h_j)&#x3D;s_i^Th_j<br>$$<br>而上述的计算过程不变，依次对任意的 $s_i,h_j$ 求出其乘性注意力分数，然后统一softmax 。这个过程对于序列 $H，S$ 而言,就是矩阵相乘的过程</p><p>Dot Product Attention（Mul）和 Additive Attention（Add）两者在复杂度上是相似的。但是Additive Attention增加了三个可学习的矩阵，所以相比另外两个效果会更好，同时也增加了更多的模型参数，计算效率会较低。</p><p>至于为什么要用Mul来完成Self-attention，Transformer作者的说法是为了计算更快。因为虽然矩阵加法的计算更简单，但是Add套着$tanh$和$v$，相当于一个完整的隐层。在整体计算复杂度上两者接近，但是矩阵乘法已经有了非常成熟的加速实现。在$d_k$(即attention-dim）较小的时候，两者的效果接近。但是随着$d_k$增大，Add开始显著超越Mul。</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-4ce33c847c71c3092e1a557c857369fb_1440w.jpg" alt="img"></p><p>作者分析Mul性能不佳的原因，认为是极大的点积值将整个softmax推向梯度平缓区，使得收敛困难。也就是出现了“梯度消失”。</p><p>这才有了scaled。所以，Add是天然地不需要scaled，Mul在$d_k$较大的时候必须要做scaled。</p><p>那么，极大的点积值是从哪里来的呢?</p><p>对于Mul来说，如果$s$和$h$都分布在[0,1]，在相乘时引入一次对所有位置的$\sum$求和，整体的分布就会扩大到[0, dk]。</p><p>反过来看Add，右侧是被$tanh()$钳位后的值，分布在[-1,1]。整体分布和$d_k$没有关系。</p><p>于是，这才出现了Scaled Dot-Product Attention</p><h5 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h5><p>除以 $\sqrt{d_k}$ 的具体证明则如下，假设输入元素 $x_i$ 转化而来的 $q,k$ 每一维是均值为0、方差为1的独立随机变量，一共有 $d_k$ 维，那么它们的点积 $q·k&#x3D;\sum_{i&#x3D;1}^{d_k}{q_ik_i}$ 的均值为0、方差为 $d_k$<br>$$<br>var(\sum{x_iy_i})&#x3D;kvar(x_1y_1)&#x3D;kE[x_1^2]E[y_1^2]&#x3D;k\sigma^4<br>$$<br>控制方差为1，所以就要除以$\sqrt{d_k}$，即：<br>$$<br>var(\frac{q·k}{\sqrt{d_k}})&#x3D;\frac{d_k}{(\sqrt{d_k})^2}&#x3D;1<br>$$<br>将方差控制为1，也就有效地控制了前面提到的梯度消失的问题</p><blockquote><p><a href="https://zhuanlan.zhihu.com/p/366993073?utm_id=0">https://zhuanlan.zhihu.com/p/366993073?utm_id=0</a></p><p><a href="https://zhuanlan.zhihu.com/p/31547842">https://zhuanlan.zhihu.com/p/31547842</a></p><p><a href="https://zhuanlan.zhihu.com/p/379033238">https://zhuanlan.zhihu.com/p/379033238</a></p><p><a href="https://arxiv.org/abs/1409.0473">https://arxiv.org/abs/1409.0473</a></p></blockquote><h4 id="Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？"><a href="#Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？" class="headerlink" title="Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？"></a>Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？</h4><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png" alt="image-20220915212106860"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212309079.png" alt="image-20220915212309079"></p><p>先从点乘的物理意义说，两个向量的点乘表示两个向量的相似度</p><p>Q，K，V物理意义上是一样的，都表示同一个句子中不同token组成的矩阵。矩阵中的每一行，是表示一个token的word embedding向量。假设一个句子”Hello, how are you?”长度是6，embedding维度是300，那么Q，K，V都是(6, 300)的矩阵</p><p>简单的说，K和Q的点乘是为了计算一个句子中每个token相对于句子中其他token的相似度，这个相似度可以理解为attetnion score，关注度得分。比如说 “Hello, how are you?”这句话，当前token为”Hello”的时候，我们可以知道”Hello“对于” , “, “how”, “are”, “you”, “?”这几个token对应的关注度是多少。有了这个attetnion score，可以知道处理到”Hello“的时候，模型在关注句子中的哪些token。</p><p>这个attention score是一个(6, 6)的矩阵。每一行代表每个token相对于其他token的关注度。比如说上图中的第一行，代表的是Hello这个单词相对于本句话中的其他单词的关注度。添加softmax只是为了对关注度进行归一化。</p><p>然后我们拿这个attention score矩阵与代表着句子特征的V相乘，得到的是一个加权后结果。也就是说，原本V里的各个单词只用word embedding表示，相互之间没什么关系。但是经过与attention score相乘后，V中每个token的向量（即一个单词的word embedding向量），在300维的每个维度上（每一列）上，都会对其他token做出调整（关注度不同）。与V相乘这一步，相当于提纯，让每个单词关注该关注的部分。</p><p>好了，该解释为什么不把K和Q用同一个值了。</p><p>经过上面的解释，我们知道K和Q的点乘是为了得到一个attention score 矩阵，用来对V进行提纯。K和Q使用了不同的$W_k$,$ W_Q$来计算，可以理解为是在不同空间上的投影。</p><p>但是如果不用Q，直接拿K和K点乘的话，你会发现attention score 矩阵是一个对称矩阵。因为是同样一个矩阵，都投影到了同样一个空间，通过矩阵相乘的方式并不能获取每个token对其他token的attention score。俩个向量越相似，内积越大，当一个向量与自己做内积，再与其他不同词的向量做内积后(形成一个打分向量)，该向量经过softmax后，就会变为一个有一个位置的值很大(自己与自己相乘)，其他位置的值非常非常小的状况出现，比如[0.98,0.01,0.05,0.05]，那么，这样的得分再与V矩阵相乘后得出的加权向量就是一个基本上跟自己本身差不多的矩阵，那就失去了self attention的意义</p><blockquote><p><a href="https://www.zhihu.com/question/319339652/answer/730848834">https://www.zhihu.com/question/319339652/answer/730848834</a></p><p><a href="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3">https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3</a></p></blockquote>]]></content>
     
     
     <categories>
       
-      <category>Machine Learning</category>
+      <category>AI</category>
       
     </categories>
     
@@ -1207,15 +1207,15 @@
   
   <entry>
     <title>Transformer为什么使用Multi-Head？</title>
-    <link href="/2022/09/15/Machine%20Learning/transformer%E7%9A%84multi-head/"/>
-    <url>/2022/09/15/Machine%20Learning/transformer%E7%9A%84multi-head/</url>
+    <link href="/2022/09/15/AI/transformer%E7%9A%84multi-head/"/>
+    <url>/2022/09/15/AI/transformer%E7%9A%84multi-head/</url>
     
     <content type="html"><![CDATA[<h2 id="Transformer为何使用多头注意力机制？"><a href="#Transformer为何使用多头注意力机制？" class="headerlink" title="Transformer为何使用多头注意力机制？"></a>Transformer为何使用多头注意力机制？</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201320897.png" alt="image-20220915201320897"></p><p>在原文中，作者发现采用不同的$d_q, d_k, d_v$去线性投射QKV对结果有正向的影响：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201642151.png" alt="image-20220915201642151"></p><p>至于为什么会有正向的影响，作者的理解是多头注意力模型可以关注多个子空间的不同位置的信息，</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915202009494.png" alt="image-20220915202009494">有大量的paper表明，Transformer，或Bert的特定层是有独特的功能的，底层更偏向于关注语法，顶层更偏向于关注语义。假设在同一层Transformer关注的方面是相同的，那么对该方面而言，不同的头关注点应该也是一样的。但是我们发现，同一层中，总有那么一两个头独一无二，和其他头的关注pattern不同，比如下图：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-7ffa5458509e2ea7719774a0f1e6ecdc_720w.jpg" alt="From：https://arxiv.org/pdf/1906.05714.pdf"></p><p>从这张图中我们可以发现，同一层中的多数头的关注模式是一样的（比如第3层的1234头），但是又总会有那么一两个头与众不同（比如第2层的0头）。这种模式是很普遍的，为什么会出现这种情况？</p><p>首先，如果所有头的初始化参数一样，那么最终得到的收敛的参数是一样的，关注模式也就是一样的，那么，关注模式的不同就来自于初始化的不同。</p><p>那么问题来了：</p><ul><li>在一层中，不同头之间的差距有多少（用 $h_i$去度量），怎么去解释这个差距？</li><li>$h_i$是否随着层数的变化而变化?</li></ul><p><a href="https://arxiv.org/pdf/1906.04341v1.pdf">arxiv.org&#x2F;pdf&#x2F;1906.04341…</a> 可视化了这两个问题，如图所示，不同的颜色代表不同的层，同一颜色的分布代表了同一层的头差距。我们可以先看看第一层，也就是深蓝色。在左边出现了一个点，右边和下边都有点出现，分布是比较稀疏的。再看看第六层浅蓝色的点，相对来说分布比较密集了。再看看第十二层，深红色，基本全部集中在下方，分布非常密集。</p><p>根据这篇文章我们可以推论：头之间的差距随着所在层数变大而减少，也就是说，头之间的方差随着所在层数的增大而减小。</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-93198d088182bad94f16aa0802acbd62_720w.jpg" alt="img"></p><p>但是为什么会有这种差距呢？一种可能的解释是，它类似一种noise，或者dropout，而不是去关注不同的方面，也就是说，无论多少层，既然都会出现与众不同的头，那么这个（些）头就是去使得模型收敛（效果最优）的结果。</p><p>最后来看看Transformer原论文中的结果，我们主要看base那一行和（A）组。对于PPL和BLEU，确是8个头&#x2F;16个头最好，1个头最差，4个和32个头稍微差一点，但是差的不多。从这里来看，head也不是越多越好或者越少越好。</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-7aaa68b09cebf9687892958d1cb86859_720w.jpg" alt="img"></p><p><a href="https://arxiv.org/pdf/1905.09418.pdf">arxiv.org&#x2F;pdf&#x2F;1905.09418…</a>这篇文章探究了几个问题，其中包括：</p><ul><li>翻译的质量在何种程度上依赖单个头？</li><li>头的模型是否一致？其中对翻译最重要的是什么模式？</li><li>能否去掉一些头而不失效果？</li></ul><p>文章的结论是：</p><ul><li>只有一小部分头对翻译而言是重要的，其他的头都是次要的（可以丢掉）。</li><li>重要的头有一种或多种专有的关注模式。</li></ul><p>作者使用了自信度和LRP（Layer-wise Relevance Propagation）来描述头的重要度。结果见图1a,1b,2a,2c。除此之外，作者考虑了不同头的功能(functions)。头的功能可以分为三类：</p><ul><li>关注左右的Token（紫色）</li><li>关注语法（绿色）</li><li>关注罕见词（橙色）</li></ul><p>结果见图1c,2b,2d。</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-4b8ac4d733f77898e7ae0b07df52c45b_720w.jpg" alt="img"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-e77bdeed4996ee262fe6f931783d9fdc_720w.jpg" alt="img"></p><p>那么回到问题，为什么需要有Multi-Head。从这篇文章的结果来看，Multi-Head其实不是必须的，去掉一些头效果依然有不错的效果（而且效果下降可能是因为参数量下降），这是因为在头足够的情况下，这些头已经能够有关注位置信息、关注语法信息、关注罕见词的能力了，再多一些头，无非是一种enhance或noise而已。</p><p>简单回答就是，Multi-Head可以让transformer可以注意到不同子空间的信息，捕捉到更加丰富的特征信息。其实本质上是论文原作者发现这样效果确实好。</p><blockquote><p> <a href="https://www.zhihu.com/question/341222779">https://www.zhihu.com/question/341222779</a></p><p><a href="https://arxiv.org/pdf/1906.04341v1.pdf">https://arxiv.org/pdf/1906.04341v1.pdf</a></p><p><a href="https://arxiv.org/pdf/1905.09418.pdf">https://arxiv.org/pdf/1905.09418.pdf</a></p></blockquote>]]></content>
     
     
     <categories>
       
-      <category>Machine Learning</category>
+      <category>AI</category>
       
     </categories>
     
@@ -1376,15 +1376,15 @@
   
   <entry>
     <title>向量矩阵运算法则</title>
-    <link href="/2022/07/11/Machine%20Learning/%E5%90%91%E9%87%8F%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99/"/>
-    <url>/2022/07/11/Machine%20Learning/%E5%90%91%E9%87%8F%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99/</url>
+    <link href="/2022/07/11/AI/%E5%90%91%E9%87%8F%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99/"/>
+    <url>/2022/07/11/AI/%E5%90%91%E9%87%8F%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99/</url>
     
     <content type="html"><![CDATA[<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%90%91%E9%87%8F%E5%BE%AE%E5%88%86%E8%A7%84%E5%88%99.png" alt="向量微分规则"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203344822.png" alt="image-20220711203344822"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203353068.png" alt="image-20220711203353068"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220711203822620.png" alt="image-20220711203822620"></p>]]></content>
     
     
     <categories>
       
-      <category>Machine Learning</category>
+      <category>AI</category>
       
     </categories>
     
@@ -1420,15 +1420,15 @@
   
   <entry>
     <title>skip-gram详解</title>
-    <link href="/2022/07/03/Machine%20Learning/skip-gram/"/>
-    <url>/2022/07/03/Machine%20Learning/skip-gram/</url>
+    <link href="/2022/07/03/AI/skip-gram/"/>
+    <url>/2022/07/03/AI/skip-gram/</url>
     
     <content type="html"><![CDATA[<h2 id="跳字模型-skip-gram"><a href="#跳字模型-skip-gram" class="headerlink" title="跳字模型(skip-gram)"></a>跳字模型(skip-gram)</h2><p>跳字模型的<strong>概念</strong>是在每一次迭代中都取一个词作为中心词汇，尝试去预测它一定范围内的上下文词汇</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-6224dddd34017aee696a88289245604c_720w.jpg" alt="v2-6224dddd34017aee696a88289245604c_720w"></p><p>目标函数为<br>$$<br>\prod_{t&#x3D;1}^{T}{\prod_{-m\le j\le m,j&#x3D;0}{P(W^{(t+j)}|w^{(t)})}}<br>$$</p><p><strong>该函数又称为似然函数，这里表示在给定中心词的情况下，在2m窗口内的所有其他词出现的概率（T表示词库里所有词的总数）。我们的目标是要通过调节参数，从而最大化这个函数（因为这个函数越大，表示与实际情况越吻合）。</strong>（注意：这里假设给定中心词的情况下背景词的生成相互独立）</p><p>另外，根据平时的习惯，我们通常喜欢最小化损失函数，而不是最大化损失函数。因此我们对该函数取负对数，且除以T，得到新的损失函数（对数似然函数）：<br>$$<br>J(\theta)&#x3D;-\frac{1}{T}\prod_{t&#x3D;1}^{T}{\prod_{-m\le j\le m}{\log{P(W_{t+j}|w_{t})}}}<br>$$</p><p>那么具体的训练步骤是怎样的呢？请看下图</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-519ff918b896d441218013b043b6d443_720w.jpg" alt="v2-519ff918b896d441218013b043b6d443_720w"></p><p>例句为”勇哥爱跳舞“，中心词取”爱“，步长m取1，也就是范围内的词为“勇哥”和“跳舞”。</p><p><strong>第一步</strong> ：t表示“爱”这个词在词典中的位置，那么“爱”用wt表示，“勇哥”用wt-1表示，“跳舞”用wt+1表示。</p><p><strong>第二步</strong>：将“爱”这个词首先表示为one-hot编码，方便进行后续的矩阵操作。</p><p>接下来我们构建两个参数矩阵，分别为中心词矩阵和周围词矩阵，这两个矩阵分别是V×D维和D×V维，其中V表示词典的大小，D表示我们要构建的词向量的维度，是一个超参数，我们暂时认为其是固定的，不去管它。</p><p>以中心词矩阵为例，其为V×D维的，而我们的词表里一共有V个词，也就是说，该矩阵的每一行都表示一个单词的中心词向量（低维、稠密的），同理，周围词向量矩阵是D×V维的，每一列表示一个单词的周围词向量表示。</p><p>了解了中心词向量和周围词向量的概念后，我们来看第三步：</p><p><strong>第三步：</strong>用第二步中的得到的，“爱”的one-hot编码乘以中心词向量矩阵W，得到一个1×D维的向量，这个向量可以认为是该词的<strong>中心词向量表示</strong>。</p><p><strong>第四步：</strong> 用该中心词向量乘以周围词向量矩阵w*,该步骤可以理解为对于“爱”这个词，我们分别与每一个词作内积，最终得到的1×V向量中的每一个元素，便是该位置的词与“爱”这个词的内积大小。</p><p><strong>第五步</strong>：对于最终的得到的向量，我们再进一步的做softmax归一化，归一化之后的概率越大，表示该词与“爱”的相关性越大，现在我们的目标就是要使得：“勇哥”这个词的概率较大，我们如何去实现这个目标呢？那就是通过调整参数矩阵w和w*,（这里就可以明白这两个矩阵其实只是辅助矩阵，我们根据损失函数，使用反向传播算法来对参数矩阵进行调节，最终实现损失函数的最小化。</p><p><strong>提问：为什么一个词汇要用两种向量表示（中心词向量和背景词向量）？</strong></p><p>1：<strong>数学上处理更加简单</strong></p><p>让每个单词用两个向量表示，这两个表示是相互独立的，所以在做优化的时候，他们不会相互耦合，让数学处理更加简单。</p><p>2：<strong>实际效果更好</strong></p><p>如果每个单词用一个向量来表示，那么中心词预测下一个词是自己本身的概率就会很大，因为我们是向量内积来定义；两个单词之间的相似性。所以用两种向量表示在通过效果上会比一种向量表示更好。</p><p><strong>在训练结束后，对于词典中任一索引为i的词，我们都会得到两组词向量，在自然语言处理应用中，一般使用跳字模型的中心词向量作为词的表征向量。</strong></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201223162556158.png" alt="20201223162556158"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201223171359404.png" alt="20201223171359404"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201223170652487.png" alt="20201223170652487"></p><h3 id="训练流程"><a href="#训练流程" class="headerlink" title="训练流程"></a>训练流程</h3><p>计算隐藏层：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201224104950761.png" alt="20201224104950761"></p><p>计算输出层：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/2020122410585787.png" alt="2020122410585787"></p><p>反向传播：计算 prediction errors</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201224110848658.png" alt="20201224110848658"></p><p>反向传播：计算$\nabla W_{input}$</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201224111911128.png" alt="20201224111911128"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201224111946423.png" alt="20201224111946423"></p><p>反向传播：计算$\nabla W_{output}$</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201224112405459.png" alt="20201224112405459"></p><p>反向传播：更新矩阵$W_{input}$</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201224113549852.png" alt="20201224113549852"></p><p>反向传播：更新矩阵$W_{output}$</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20201224142640867.png" alt="20201224142640867"></p><p>可以观察到，每次迭代，$W_{input}$ 中只有对应中心词的一行在更新，而$W_{output}$ 里的权重都在更新。</p><blockquote><p><a href="https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling">https://aegis4048.github.io/demystifying_neural_network_in_skip_gram_language_modeling</a></p></blockquote><h2 id="负采样-Negative-Sampling"><a href="#负采样-Negative-Sampling" class="headerlink" title="负采样(Negative Sampling)"></a>负采样(Negative Sampling)</h2><h3 id="为什么采用负采样？"><a href="#为什么采用负采样？" class="headerlink" title="为什么采用负采样？"></a>为什么采用负采样？</h3><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/vanilla-skip-gram-complexity.png" alt="vanilla-skip-gram-complexity"></p><p>采用softmax来归一化，分母上需要计算V次矩阵乘积，V是语料库的大小，一般很大，时间复杂度是$O(V)$，除此之外，对于每个中心词，都要计算一次normalization factor，时间复杂度达到$O(V^2)$，但是在代码实现中，一般只计算一次normalization factor（可能是因为SGD，计算多个中心词之后才更新参数）</p><p>负采样使用sigmoid，可以使问题转化为多个独立的二分类任务，复杂度为$O(K+1)$，K的范围一般是$[5, 20]$</p><h3 id="负采样的具体做法？"><a href="#负采样的具体做法？" class="headerlink" title="负采样的具体做法？"></a>负采样的具体做法？</h3><p>负采样每次会更新$W_{output}$中的$(K+1)*N$个参数</p><p>假设隐藏层维度$N&#x3D;3$，词汇总数$V&#x3D;11$，负样本$K&#x3D;3$</p><p>softmax和negative sampling的对比如下：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/neg_vs_skip.png" alt="neg_vs_skip"></p><p>在负采样中，不再通过给定中心词预测周围的词来学习word vector，而是通过区分positive words和negative words来训练</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/neg_binomial.png" alt="neg_binomial"></p><p>例如，对于中心词regression来说，“logistic”, “machine”, “sigmoid”, “supervised”, “neural” 就是positive words，而”zebra”, “pimples”, “Gangnam-Style”, “toothpaste”, “idiot”就是negative words</p><p>模型训练的目标是最大化$p(D&#x3D;1|w,c_{pos})$，最小化$p(D&#x3D;1|w,c_{neg})$</p><blockquote><p>$w$是center word</p><p>negative words来自噪声分布$P_{n}(w)$</p></blockquote><p>如果模型可以很好的区分positive words和negative words，就可以得到well learned word vectors</p><p>对于给定的word pair$(w,c)$，判断word $c$是不是来自center word $w$的context words，True($D&#x3D;1$) or False($D&#x3D;0$)，使用sigmoid函数来表示：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220705184738156.png" alt="image-20220705184738156"></p><p>$\overline{c}<em>{output</em>{(j)}}$是来自$W_{output}$的word vector</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220705185457497.png" alt="image-20220705185457497"></p><p>对于每个word，需要计算$k+1$次上面的sigmoid，即一个来自context words的$c_{pos}$和$K$个来自$P_{n}(w)$的negative words</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220705185805468.png" alt="image-20220705185805468"></p><blockquote><p>$h$是center word的隐藏层表示</p></blockquote><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/negative_sample_text.png" alt="negative_sample_text"></p><p>对于上图，center word是drilling，$c_{pos}$是engineer，橙色的是context words，黄色的是从噪声分布$P_{n}(w)$随机选出的negative words</p><p>下面是训练过程：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/neg_opt_1.png" alt="neg_opt_1"></p><p>注意，对于每个context word 都要训练，所以上面的例子中，一共要训练$6*5&#x3D;30$个word vector</p><h3 id="噪声分布-P-n-w-是什么？"><a href="#噪声分布-P-n-w-是什么？" class="headerlink" title="噪声分布$P_{n}(w)$是什么？"></a>噪声分布$P_{n}(w)$是什么？</h3><p>$P_{n}(w)$可以表示为如下的形式：<br>$$<br>P_{n}(w) &#x3D; (\frac{U(w)}{Z})^\alpha<br>$$<br>其中每个单词在语料库中出现的次数组成的分布叫做$U(w)$，也叫做unigram分布；$Z$是normalization factor，$\alpha$是平滑因子，其作用如下：</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220705192220777.png" alt="image-20220705192220777"></p><blockquote><p><a href="https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling">https://aegis4048.github.io/optimize_computational_efficiency_of_skip-gram_with_negative_sampling</a></p></blockquote>]]></content>
     
     
     <categories>
       
-      <category>Machine Learning</category>
+      <category>AI</category>
       
     </categories>
     

@@ -16,24 +16,24 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="范数的定义 0范数 1范数 1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数 2范数也就是欧氏距离 正无穷范数 正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数对于矩阵$A_{m×n}$， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]     矩阵的1范数（列范数）：矩阵的每一列上的">
+    <meta name="description" content="Transformer为何使用多头注意力机制？ 在原文中，作者发现采用不同的$d_q, d_k, d_v$去线性投射QKV对结果有正向的影响：  至于为什么会有正向的影响，作者的理解是多头注意力模型可以关注多个子空间的不同位置的信息， 有大量的paper表明，Transformer，或Bert的特定层是有独特的功能的，底层更偏向于关注语法，顶层更偏向于关注语义。假设在同一层Transformer关">
 <meta property="og:type" content="article">
-<meta property="og:title" content="范数">
-<meta property="og:url" content="https://lishilong.cc/2022/10/13/Machine%20Learning/%E8%8C%83%E6%95%B0/index.html">
+<meta property="og:title" content="Transformer为什么使用Multi-Head？">
+<meta property="og:url" content="https://lishilong.cc/2022/09/15/AI/transformer%E7%9A%84multi-head/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="范数的定义 0范数 1范数 1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数 2范数也就是欧氏距离 正无穷范数 正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数对于矩阵$A_{m×n}$， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]     矩阵的1范数（列范数）：矩阵的每一列上的">
+<meta property="og:description" content="Transformer为何使用多头注意力机制？ 在原文中，作者发现采用不同的$d_q, d_k, d_v$去线性投射QKV对结果有正向的影响：  至于为什么会有正向的影响，作者的理解是多头注意力模型可以关注多个子空间的不同位置的信息， 有大量的paper表明，Transformer，或Bert的特定层是有独特的功能的，底层更偏向于关注语法，顶层更偏向于关注语义。假设在同一层Transformer关">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png">
-<meta property="article:published_time" content="2022-10-13T08:05:00.000Z">
-<meta property="article:modified_time" content="2022-12-16T10:23:36.317Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201320897.png">
+<meta property="article:published_time" content="2022-09-15T11:19:30.000Z">
+<meta property="article:modified_time" content="2023-07-19T09:51:04.560Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="life, think, code">
+<meta property="article:tag" content="transformer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201320897.png">
   
   
   
-  <title>范数 - Heart</title>
+  <title>Transformer为什么使用Multi-Head？ - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,13 +210,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201320897.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="范数"></span>
+            <span id="subtitle" data-typed-text="Transformer为什么使用Multi-Head？"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-13 16:05" pubdate>
-          2022年10月13日 下午
+        <time datetime="2022-09-15 19:19" pubdate>
+          2022年9月15日 晚上
         </time>
       </span>
     
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          878 字
+          1.6k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          8 分钟
+          14 分钟
         
       </span>
     
@@ -288,36 +288,56 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">范数</h1>
+            <h1 style="display: none">Transformer为什么使用Multi-Head？</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="范数的定义"><a href="#范数的定义" class="headerlink" title="范数的定义"></a>范数的定义</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" srcset="/img/loading.gif" lazyload alt="image-20221013160652989"></p>
-<h2 id="0范数"><a href="#0范数" class="headerlink" title="0范数"></a>0范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160736569.png" srcset="/img/loading.gif" lazyload alt="image-20221013160736569"></p>
-<h2 id="1范数"><a href="#1范数" class="headerlink" title="1范数"></a>1范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160753968.png" srcset="/img/loading.gif" lazyload alt="image-20221013160753968"></p>
-<p>1范数是向量各个元素的绝对值之和，也称为曼哈顿距离</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160924909.png" srcset="/img/loading.gif" lazyload alt="image-20221013160924909"></p>
-<h2 id="2范数"><a href="#2范数" class="headerlink" title="2范数"></a>2范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160945993.png" srcset="/img/loading.gif" lazyload alt="image-20221013160945993"></p>
-<p>2范数也就是欧氏距离</p>
-<h2 id="正无穷范数"><a href="#正无穷范数" class="headerlink" title="正无穷范数"></a>正无穷范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013161336549.png" srcset="/img/loading.gif" lazyload alt="image-20221013161336549"></p>
-<p>正无穷范数表示向量所有元素的绝对值中最大的</p>
-<h2 id="负无穷范数"><a href="#负无穷范数" class="headerlink" title="负无穷范数"></a>负无穷范数</h2><p>负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷</p>
-<h2 id="矩阵的范数"><a href="#矩阵的范数" class="headerlink" title="矩阵的范数"></a>矩阵的范数</h2><p>对于矩阵$A_{m×n}$， 举例而说:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">A = [<br>-<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>;<br><span class="hljs-number">4</span>, -<span class="hljs-number">6</span>, <span class="hljs-number">6</span>;<br>]<br></code></pre></td></tr></table></figure>
-
-
-
+                <h2 id="Transformer为何使用多头注意力机制？"><a href="#Transformer为何使用多头注意力机制？" class="headerlink" title="Transformer为何使用多头注意力机制？"></a>Transformer为何使用多头注意力机制？</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201320897.png" srcset="/img/loading.gif" lazyload alt="image-20220915201320897"></p>
+<p>在原文中，作者发现采用不同的$d_q, d_k, d_v$去线性投射QKV对结果有正向的影响：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201642151.png" srcset="/img/loading.gif" lazyload alt="image-20220915201642151"></p>
+<p>至于为什么会有正向的影响，作者的理解是多头注意力模型可以关注多个子空间的不同位置的信息，</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915202009494.png" srcset="/img/loading.gif" lazyload alt="image-20220915202009494">有大量的paper表明，Transformer，或Bert的特定层是有独特的功能的，底层更偏向于关注语法，顶层更偏向于关注语义。假设在同一层Transformer关注的方面是相同的，那么对该方面而言，不同的头关注点应该也是一样的。但是我们发现，同一层中，总有那么一两个头独一无二，和其他头的关注pattern不同，比如下图：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-7ffa5458509e2ea7719774a0f1e6ecdc_720w.jpg" srcset="/img/loading.gif" lazyload alt="From：https://arxiv.org/pdf/1906.05714.pdf"></p>
+<p>从这张图中我们可以发现，同一层中的多数头的关注模式是一样的（比如第3层的1234头），但是又总会有那么一两个头与众不同（比如第2层的0头）。这种模式是很普遍的，为什么会出现这种情况？</p>
+<p>首先，如果所有头的初始化参数一样，那么最终得到的收敛的参数是一样的，关注模式也就是一样的，那么，关注模式的不同就来自于初始化的不同。</p>
+<p>那么问题来了：</p>
 <ul>
-<li>矩阵的1范数（列范数）：矩阵的每一列上的元素绝对值先求和，再从中取最大值 $$ \Vert A\Vert_1&#x3D;\max_{1\le j\le n}\sum_{i&#x3D;1}^m|{a_{ij}}| \ \text{举例}: \Vert A\Vert_1 &#x3D; max([5,8,9]) &#x3D; 9 $$</li>
-<li>矩阵的2范数： 矩阵 $A^TA$ 的最大特征值开平方根 $$ \Vert A\Vert_2&#x3D;\sqrt{\lambda_{max}(A^T A)} $$</li>
+<li>在一层中，不同头之间的差距有多少（用 $h_i$去度量），怎么去解释这个差距？</li>
+<li>$h_i$是否随着层数的变化而变化?</li>
 </ul>
-<h2 id="扩展——L2范数与模型泛化"><a href="#扩展——L2范数与模型泛化" class="headerlink" title="扩展——L2范数与模型泛化"></a>扩展——L2范数与模型泛化</h2><p>使用L2范数做正则项时，可以削弱强特征，增强弱特征，这样可以避免模型过度依赖于强特征，提高模型的泛化能力，但也不是所有机器学习任务都适合使用L2正则化，在一些结构化数据挖掘任务或特征意义很模糊的机器学习任务（如深度学习）中，特征分布本来就是就是若干强特征与噪声的组合，这时加上L2范数约束反而会引入噪声，降低系统的抗噪性能，导致更差劲</p>
-<p>建议看这篇<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg">https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg</a></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.04341v1.pdf">arxiv.org&#x2F;pdf&#x2F;1906.04341…</a> 可视化了这两个问题，如图所示，不同的颜色代表不同的层，同一颜色的分布代表了同一层的头差距。我们可以先看看第一层，也就是深蓝色。在左边出现了一个点，右边和下边都有点出现，分布是比较稀疏的。再看看第六层浅蓝色的点，相对来说分布比较密集了。再看看第十二层，深红色，基本全部集中在下方，分布非常密集。</p>
+<p>根据这篇文章我们可以推论：头之间的差距随着所在层数变大而减少，也就是说，头之间的方差随着所在层数的增大而减小。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-93198d088182bad94f16aa0802acbd62_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>但是为什么会有这种差距呢？一种可能的解释是，它类似一种noise，或者dropout，而不是去关注不同的方面，也就是说，无论多少层，既然都会出现与众不同的头，那么这个（些）头就是去使得模型收敛（效果最优）的结果。</p>
+<p>最后来看看Transformer原论文中的结果，我们主要看base那一行和（A）组。对于PPL和BLEU，确是8个头&#x2F;16个头最好，1个头最差，4个和32个头稍微差一点，但是差的不多。从这里来看，head也不是越多越好或者越少越好。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-7aaa68b09cebf9687892958d1cb86859_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.09418.pdf">arxiv.org&#x2F;pdf&#x2F;1905.09418…</a>这篇文章探究了几个问题，其中包括：</p>
+<ul>
+<li>翻译的质量在何种程度上依赖单个头？</li>
+<li>头的模型是否一致？其中对翻译最重要的是什么模式？</li>
+<li>能否去掉一些头而不失效果？</li>
+</ul>
+<p>文章的结论是：</p>
+<ul>
+<li>只有一小部分头对翻译而言是重要的，其他的头都是次要的（可以丢掉）。</li>
+<li>重要的头有一种或多种专有的关注模式。</li>
+</ul>
+<p>作者使用了自信度和LRP（Layer-wise Relevance Propagation）来描述头的重要度。结果见图1a,1b,2a,2c。除此之外，作者考虑了不同头的功能(functions)。头的功能可以分为三类：</p>
+<ul>
+<li>关注左右的Token（紫色）</li>
+<li>关注语法（绿色）</li>
+<li>关注罕见词（橙色）</li>
+</ul>
+<p>结果见图1c,2b,2d。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-4b8ac4d733f77898e7ae0b07df52c45b_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-e77bdeed4996ee262fe6f931783d9fdc_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>那么回到问题，为什么需要有Multi-Head。从这篇文章的结果来看，Multi-Head其实不是必须的，去掉一些头效果依然有不错的效果（而且效果下降可能是因为参数量下降），这是因为在头足够的情况下，这些头已经能够有关注位置信息、关注语法信息、关注罕见词的能力了，再多一些头，无非是一种enhance或noise而已。</p>
+<p>简单回答就是，Multi-Head可以让transformer可以注意到不同子空间的信息，捕捉到更加丰富的特征信息。其实本质上是论文原作者发现这样效果确实好。</p>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25847123/article/details/90400678">https://blog.csdn.net/qq_25847123/article/details/90400678</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md">https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md</a></p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg">https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg</a></p>
+<p> <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/341222779">https://www.zhihu.com/question/341222779</a></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.04341v1.pdf">https://arxiv.org/pdf/1906.04341v1.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.09418.pdf">https://arxiv.org/pdf/1905.09418.pdf</a></p>
 </blockquote>
 
                 
@@ -337,7 +357,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
   
   
 
@@ -349,6 +369,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/transformer/">#transformer</a>
+      
+    </div>
+  
 </div>
 
 
@@ -357,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>范数</div>
-      <div>https://lishilong.cc/2022/10/13/Machine Learning/范数/</div>
+      <div>Transformer为什么使用Multi-Head？</div>
+      <div>https://lishilong.cc/2022/09/15/AI/transformer的multi-head/</div>
     </div>
     <div class="license-meta">
       
@@ -370,7 +397,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月13日</div>
+          <div>2022年9月15日</div>
         </div>
       
       
@@ -402,9 +429,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/13/Machine%20Learning/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" title="特征值与特征向量">
+                      <a href="/2022/09/15/AI/transformer%E7%9A%84%E5%85%B6%E4%BB%96%E8%8B%A5%E5%B9%B2%E9%97%AE%E9%A2%98/" title="Transformer相关问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">特征值与特征向量</span>
+                        <span class="hidden-mobile">Transformer相关问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -412,8 +439,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/06/Paper%20Reading%20Notes/RoBERTa%20A%20Robustly%20Optimized%20BERT%20Pretraining%20Approach/" title="RoBERTa  A Robustly Optimized BERT Pretraining Approach">
-                        <span class="hidden-mobile">RoBERTa  A Robustly Optimized BERT Pretraining Approach</span>
+                      <a href="/2022/09/06/Algorithm%20Problem/leetcode652/" title="leetcode652 寻找重复的子树">
+                        <span class="hidden-mobile">leetcode652 寻找重复的子树</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
