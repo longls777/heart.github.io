@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Hexo一键部署脚本</title>
+    <link href="/2023/07/20/Others/hexo%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/"/>
+    <url>/2023/07/20/Others/hexo%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</url>
+    
+    <content type="html"><![CDATA[<p>一遍一遍敲命令太麻烦了，我怎么之前就没想到写个脚本</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> z: &amp;&amp; <span class="hljs-built_in">cd</span> hexo_ &amp;&amp; hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; git add . &amp;&amp; git commit -m <span class="hljs-string">&quot;7&quot;</span> &amp;&amp; git push origin hexo_<br></code></pre></td></tr></table></figure><p>把这个保存为一个.sh文件，然后放在桌面直接点击即可</p><p>注意需要安装git bash，以及目录和git分支需要改成自己的</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Others</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>权重初始化方法</title>
     <link href="/2023/07/20/AI/02%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95/"/>
     <url>/2023/07/20/AI/02%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95/</url>
