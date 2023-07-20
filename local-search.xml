@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>L1和L2正则化</title>
+    <link href="/2023/07/20/AI/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/"/>
+    <url>/2023/07/20/AI/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0ODAyNjY4" alt="L1正则化参数的选择"></p><ul><li>什么是L1和L2正则化？</li><li>L1正则化的作用是什么？</li><li>L1为什么可以实现稀疏化？</li><li>稀疏化的作用是什么？（特征选择）</li><li>为什么L2不能产生稀疏模型？</li><li>L2正则化如何防止过拟合？</li><li>L1正则化如何防止过拟合？</li><li>什么是shirnk to zero？如何据此选择正则化参数？</li></ul><blockquote><p><a href="https://blog.csdn.net/jinping_shi/article/details/52433975">https://blog.csdn.net/jinping_shi/article/details/52433975</a></p></blockquote><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-e3aab047113ebd0b3dfb6ec014059e64_1440w.webp" alt="L1和L2的几何意义"></p><ul><li>L2的本质是什么？ 权重衰减</li><li>L1和L2的贝叶斯视角？L1-拉普拉斯分布，L2-高斯分布</li><li>Forward Selection &amp; Forward Stagewise &amp; Least Squares Boosting</li><li>LARS 最小角回归是什么？</li><li>Lasso的三种解法</li></ul><blockquote><p>从Lasso开始说起 - 李新春的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/46999826">https://zhuanlan.zhihu.com/p/46999826</a></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>深度学习中的优化算法概览</title>
     <link href="/2023/07/19/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/"/>
     <url>/2023/07/19/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/</url>
@@ -1369,25 +1388,6 @@
       <tag>矩阵</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>L1和L2正则化</title>
-    <link href="/2022/07/20/AI/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/"/>
-    <url>/2022/07/20/AI/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/</url>
-    
-    <content type="html"><![CDATA[<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0ODAyNjY4" alt="L1正则化参数的选择"></p><ul><li>什么是L1和L2正则化？</li><li>L1正则化的作用是什么？</li><li>L1为什么可以实现稀疏化？</li><li>稀疏化的作用是什么？（特征选择）</li><li>为什么L2不能产生稀疏模型？</li><li>L2正则化如何防止过拟合？</li><li>L1正则化如何防止过拟合？</li><li>什么是shirnk to zero？如何据此选择正则化参数？</li></ul><blockquote><p><a href="https://blog.csdn.net/jinping_shi/article/details/52433975">https://blog.csdn.net/jinping_shi/article/details/52433975</a></p></blockquote><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-e3aab047113ebd0b3dfb6ec014059e64_1440w.webp" alt="L1和L2的几何意义"></p><ul><li>L2的本质是什么？ 权重衰减</li><li>L1和L2的贝叶斯视角？L1-拉普拉斯分布，L2-高斯分布</li><li>Forward Selection &amp; Forward Stagewise &amp; Least Squares Boosting</li><li>LARS 最小角回归是什么？</li><li>Lasso的三种解法</li></ul><blockquote><p>从Lasso开始说起 - 李新春的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/46999826">https://zhuanlan.zhihu.com/p/46999826</a></p></blockquote>]]></content>
-    
-    
-    <categories>
-      
-      <category>AI</category>
-      
-    </categories>
-    
     
   </entry>
   
