@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>逻辑回归</title>
+    <link href="/2023/07/20/AI/04%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/"/>
+    <url>/2023/07/20/AI/04%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://blog.csdn.net/perfect1t/article/details/82966647">https://blog.csdn.net/perfect1t/article/details/82966647</a></p></blockquote><p>逻辑回归主要用于二分类，其主要思想是：<strong>根据现有数据对分类边界线建立回归公式，以此进行分类</strong></p><p>将线性回归$z &#x3D; w^Tx + b$ 输入到sigmoid函数$y &#x3D; \frac{1}{1+e^{-z}}$：<br>$$<br>y &#x3D; \frac{1}{1 + e^{-(w^Tx+b)}}<br>$$<br>从而得到：<br>$$<br>ln\frac{y}{1-y} &#x3D; w^Tx+b<br>$$<br>$y$为正例的概率，$1-y$为负例的概率，则$\frac{y}{1-y}$称为几率，反映了作为正例的相对可能性。对几率取对数称为对数几率（logit）</p><p><strong>实际上在利用线性回归模型的预测结果去逼近真实label的对数几率</strong></p><hr><h4 id="使用最大似然估计求解："><a href="#使用最大似然估计求解：" class="headerlink" title="使用最大似然估计求解："></a>使用最大似然估计求解：</h4><blockquote><p>对数损失函数（logLoss，也就是二元交叉熵损失）</p></blockquote><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720200615852.png"></p><p>最小化该损失函数即可</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>损失函数总结</title>
+    <link href="/2023/07/20/AI/03%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/07/20/AI/03%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p><strong>常见的损失函数(loss function)总结 - yyHaker的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/58883095">https://zhuanlan.zhihu.com/p/58883095</a></strong></p><p><a href="https://blog.csdn.net/perfect1t/article/details/88199179">https://blog.csdn.net/perfect1t/article/details/88199179</a></p><p><a href="https://www.cnblogs.com/shixiangwan/p/7953591.html">https://www.cnblogs.com/shixiangwan/p/7953591.html</a></p></blockquote><h2 id="对数损失函数（logLoss-LR-binary-cross-entropy）"><a href="#对数损失函数（logLoss-LR-binary-cross-entropy）" class="headerlink" title="对数损失函数（logLoss, LR, binary cross entropy）"></a>对数损失函数（logLoss, LR, binary cross entropy）</h2><p><strong>用于逻辑回归</strong></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720200723068.png"></p><h2 id="合页损失函数（hinge-loss）"><a href="#合页损失函数（hinge-loss）" class="headerlink" title="合页损失函数（hinge loss）"></a>合页损失函数（hinge loss）</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720200928108.png"></p><h2 id="平方损失函数"><a href="#平方损失函数" class="headerlink" title="平方损失函数"></a>平方损失函数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720201038557.png"></p><p><strong>经常应用于回归问题</strong></p><h2 id="指数损失函数（exponential-loss）"><a href="#指数损失函数（exponential-loss）" class="headerlink" title="指数损失函数（exponential loss）"></a>指数损失函数（exponential loss）</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720201136925.png"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720201316257.png"></p><h2 id="交叉熵损失函数-Cross-entropy-loss-function"><a href="#交叉熵损失函数-Cross-entropy-loss-function" class="headerlink" title="交叉熵损失函数 (Cross-entropy loss function)"></a>交叉熵损失函数 (Cross-entropy loss function)</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720201434140.png"></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-ac627eab5f07ead5144cfaaff7f2163b_1440w.webp"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hexo一键部署脚本</title>
     <link href="/2023/07/20/Others/hexo%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/"/>
     <url>/2023/07/20/Others/hexo%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</url>
