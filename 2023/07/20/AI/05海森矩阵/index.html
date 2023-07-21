@@ -16,24 +16,24 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="网络权重初始化方法总结（上）：梯度消失、梯度爆炸与不良的初始化 网络权重初始化方法总结（下）：Lecun、Xavier与He Kaiming 一文搞懂深度网络初始化（Xavier and Kaiming initialization）  全常数初始化和全0初始化 全常数初始化：每一层的权重都相同，正向传播每一层的输入和输出都相同，反向传播每一层的偏导都相同，导致每层的权重向相同的方向更新，每层更">
+    <meta name="description" content="海森矩阵的作用 请问多元函数比如二元函数为什么海森矩阵正定就可以判断有极小值？ - 大脸阿望的回答 - 知乎 https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;382495850&#x2F;answer&#x2F;1128056601 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37477357&#x2F;article&#x2F;details&#x2F;104750718   一阶导数构成的向量为梯度  二阶导数构成的矩阵">
 <meta property="og:type" content="article">
-<meta property="og:title" content="权重初始化方法">
-<meta property="og:url" content="https://lishilong.cc/2023/07/20/AI/02%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="Hessian矩阵">
+<meta property="og:url" content="https://lishilong.cc/2023/07/20/AI/05%E6%B5%B7%E6%A3%AE%E7%9F%A9%E9%98%B5/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="网络权重初始化方法总结（上）：梯度消失、梯度爆炸与不良的初始化 网络权重初始化方法总结（下）：Lecun、Xavier与He Kaiming 一文搞懂深度网络初始化（Xavier and Kaiming initialization）  全常数初始化和全0初始化 全常数初始化：每一层的权重都相同，正向传播每一层的输入和输出都相同，反向传播每一层的偏导都相同，导致每层的权重向相同的方向更新，每层更">
+<meta property="og:description" content="海森矩阵的作用 请问多元函数比如二元函数为什么海森矩阵正定就可以判断有极小值？ - 大脸阿望的回答 - 知乎 https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;382495850&#x2F;answer&#x2F;1128056601 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37477357&#x2F;article&#x2F;details&#x2F;104750718   一阶导数构成的向量为梯度  二阶导数构成的矩阵">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/zv625pyxrz.png">
-<meta property="article:published_time" content="2023-07-20T07:33:00.000Z">
-<meta property="article:modified_time" content="2023-07-20T08:37:26.602Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230721152015781.png">
+<meta property="article:published_time" content="2023-07-20T06:25:00.000Z">
+<meta property="article:modified_time" content="2023-07-21T07:20:42.416Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/zv625pyxrz.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230721152015781.png">
   
   
   
-  <title>权重初始化方法 - Heart</title>
+  <title>Hessian矩阵 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,13 +210,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/zv625pyxrz.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230721152015781.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="权重初始化方法"></span>
+            <span id="subtitle" data-typed-text="Hessian矩阵"></span>
           
         </div>
 
@@ -227,7 +227,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-20 15:33" pubdate>
+        <time datetime="2023-07-20 14:25" pubdate>
           2023年7月20日 下午
         </time>
       </span>
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          684 字
+          773 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -288,42 +288,51 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">权重初始化方法</h1>
+            <h1 style="display: none">Hessian矩阵</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1535198">网络权重初始化方法总结（上）：梯度消失、梯度爆炸与不良的初始化</a></p>
-<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1542736">网络权重初始化方法总结（下）：Lecun、Xavier与He Kaiming</a></p>
-<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1587082">一文搞懂深度网络初始化（Xavier and Kaiming initialization）</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kieven2008/article/details/97554789">海森矩阵的作用</a></p>
+<p>请问多元函数比如二元函数为什么海森矩阵正定就可以判断有极小值？ - 大脸阿望的回答 - 知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/382495850/answer/1128056601">https://www.zhihu.com/question/382495850/answer/1128056601</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37477357/article/details/104750718">https://blog.csdn.net/qq_37477357/article/details/104750718</a></p>
 </blockquote>
-<h2 id="全常数初始化和全0初始化"><a href="#全常数初始化和全0初始化" class="headerlink" title="全常数初始化和全0初始化"></a>全常数初始化和全0初始化</h2><ul>
-<li>全常数初始化：每一层的权重都相同，正向传播每一层的输入和输出都相同，反向传播每一层的偏导都相同，导致每层的权重向相同的方向更新，每层更新后的权重仍相同，每一层相当于一个神经元，限制了网络的表达能力</li>
-<li>全0初始化：<ul>
-<li>如果激活函数$g(0)&#x3D;0$，那么激活函数输入输出都为0，反向传播梯度为0，权重不会更新</li>
-<li>如果$g(0)!&#x3D;0$，那么权重会更新，但是每层权重的更新方向仍相同，同全常数初始化</li>
+<ul>
+<li><p>一阶导数构成的向量为梯度</p>
+</li>
+<li><p>二阶导数构成的矩阵为Hessian矩阵</p>
+</li>
+<li><p>多元函数的一阶导数构成的矩阵为Jacobian矩阵</p>
+</li>
+<li><p>当海森矩阵的所有特征值都为正时，意味着海森矩阵是正定的，此处为局部极小值</p>
+</li>
+<li><p>当海森矩阵的所有特征值都为负时，意味着海森矩阵是负定的，此处是局部极大值</p>
+</li>
+<li><p>当海森矩阵的特征值有正有负时，意味着海森矩阵既有正特征值也有负特征值，是一个不定矩阵，因此，在这样的点，可能存在一些方向上函数是局部极小值，而在另一些方向上是局部极大值，形成一个鞍点。</p>
+</li>
+</ul>
+<blockquote>
+<p>以上点的梯度都为0，即前提是该点为驻点</p>
+</blockquote>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230721152015781.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>什么是正定矩阵和负定矩阵？</strong></p>
+<ul>
+<li><p>正定矩阵：</p>
+<ul>
+<li><p>对于一个 $n×n$ 实对称矩阵 A，如果对于任意非零向量 $x$，都有 $x^T A x &gt; 0$，则称矩阵 A 是正定的。这也可以表示为 A 的所有特征值均大于 0。</p>
+<p>正定矩阵的定义表明在所有的非零向量 $x$ 上，二次型 $x^T A x$ 的值都是正的，意味着该二次型在整个空间上都是凸的。在优化问题中，如果目标函数的 Hessian 矩阵是正定的，那么这个问题是一个凸优化问题，且一定存在唯一的全局最小值。</p>
+</li>
+</ul>
+</li>
+<li><p>负定矩阵：</p>
+<ul>
+<li><p>对于一个 $n×n$ 实对称矩阵 A，如果对于任意非零向量 $x$，都有 $x^T A x &lt; 0$，则称矩阵 A 是负定的。这也可以表示为 A 的所有特征值均小于 0。</p>
+<p>负定矩阵的定义表明在所有的非零向量 $x$ 上，二次型 $x^T A x$ 的值都是负的，意味着该二次型在整个空间上都是凹的。负定矩阵在一些优化问题和稳定性分析中也具有重要意义。</p>
+</li>
 </ul>
 </li>
 </ul>
-<h2 id="过大或者过小的权重初始化"><a href="#过大或者过小的权重初始化" class="headerlink" title="过大或者过小的权重初始化"></a>过大或者过小的权重初始化</h2><ul>
-<li><p>过大的权重初始化：如果权重初始化过大，可能导致激活函数的输出值在非线性区域接近饱和（如sigmoid函数的饱和区域），导致<strong>梯度消失</strong>问题。在反向传播过程中，由于梯度在饱和区域非常小，权重的更新幅度也很小，使得模型难以学习有效的特征表示，导致训练困难和性能下降。</p>
-</li>
-<li><p>过小的权重初始化：如果权重初始化过小，可能导致激活函数的输出值都接近于零，导致<strong>梯度爆炸</strong>问题。在反向传播过程中，梯度可能会变得非常大，导致权重参数的更新幅度过大，模型的收敛变得不稳定，甚至可能导致数值溢出。</p>
-</li>
-</ul>
-<h2 id="Lecun-amp-Xavier-amp-He-初始化"><a href="#Lecun-amp-Xavier-amp-He-初始化" class="headerlink" title="Lecun &amp; Xavier &amp; He 初始化"></a>Lecun &amp; Xavier &amp; He 初始化</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/zv625pyxrz.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720161215768.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720161255168.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720161334461.png" srcset="/img/loading.gif" lazyload></p>
-<p>只考虑了前向传播时，每层输出的方差保持不变，且适用于tanh等近似线性的激活函数</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720161527662.png" srcset="/img/loading.gif" lazyload></p>
-<p>同时考虑了前向和反向传播过程</p>
-<p>对于ReLU初始化（$E(a) !&#x3D; 0$，a为层的输出），推导得到：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720161807743.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720162156491.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720162213255.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230720162308741.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -362,8 +371,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>权重初始化方法</div>
-      <div>https://lishilong.cc/2023/07/20/AI/02参数初始化方法/</div>
+      <div>Hessian矩阵</div>
+      <div>https://lishilong.cc/2023/07/20/AI/05海森矩阵/</div>
     </div>
     <div class="license-meta">
       
@@ -407,9 +416,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/20/Others/hexo%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/" title="Hexo一键部署脚本">
+                      <a href="/2023/07/20/AI/06%E9%9E%8D%E7%82%B9%E9%97%AE%E9%A2%98/" title="鞍点问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo一键部署脚本</span>
+                        <span class="hidden-mobile">鞍点问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -417,8 +426,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/20/AI/06%E9%9E%8D%E7%82%B9%E9%97%AE%E9%A2%98/" title="鞍点问题">
-                        <span class="hidden-mobile">鞍点问题</span>
+                      <a href="/2023/07/20/AI/01L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/" title="L1和L2正则化">
+                        <span class="hidden-mobile">L1和L2正则化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
