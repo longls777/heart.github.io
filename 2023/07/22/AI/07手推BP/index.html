@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-2d355d35fddfe8bc5fa93a3670cbb5c2_720w.webp">
 <meta property="article:published_time" content="2023-07-22T03:23:00.000Z">
-<meta property="article:modified_time" content="2023-07-22T03:26:32.943Z">
+<meta property="article:modified_time" content="2023-07-22T04:50:16.094Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          227 字
+          2.3k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          2 分钟
+          19 分钟
         
       </span>
     
@@ -299,6 +299,21 @@
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903780157227022">https://juejin.cn/post/6844903780157227022</a></p>
 </blockquote>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-2d355d35fddfe8bc5fa93a3670cbb5c2_720w.webp" srcset="/img/loading.gif" lazyload alt="3 layers MLP"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230722113744785.png" srcset="/img/loading.gif" lazyload></p>
+<p>$w^l_{jk}$ 表示第$l$层的第$j$个神经元连接到第$(l-1)$层的第$k$个神经元的权重，如上图$w^3_{24}$</p>
+<p>$b^l_j$表示第$l$层的第$j$个神经元的偏置（bias）</p>
+<p>$z^l_j$表示第$l$层的第$j$个神经元的输入，即：$z^l_j&#x3D;\sum_{k} w^l_{jk}a^{l-1}_k + b^l_j$</p>
+<p>$a^l_j$表示第$l$层的第$j$个神经元的输出，即：$a^l_j &#x3D; \sigma(z^l_j) &#x3D;\sigma(\sum_{k} w^l_{jk}a^{l-1}_k + b^l_j)$</p>
+<p>$\sigma$表示激活函数</p>
+<p>$C$表示损失函数，用来计算最终输出与实际值的误差</p>
+<p>$L$表示神经网络的最大层数</p>
+<p>第$l$层的第$j$个神经元产生的误差定义为$\delta^l_j &#x3D; \frac{\partial C}{\partial z^l_j}$</p>
+<h2 id="最后一层神经网络产生的误差"><a href="#最后一层神经网络产生的误差" class="headerlink" title="最后一层神经网络产生的误差"></a>最后一层神经网络产生的误差</h2><p>$$<br>\begin{aligned}<br>&amp; \delta_j^L&#x3D;\frac{\partial C}{\partial z_j^L}&#x3D;\frac{\partial C}{\partial a_j^L} \cdot \frac{\partial a_j^L}{\partial z_j^L}&#x3D;\frac{\partial C}{\partial a_j^L} \cdot \sigma^{\prime}\left(z_j^L\right) \<br>&amp; \delta^L&#x3D;\frac{\partial C}{\partial a^L} \odot \frac{\partial a^L}{\partial z^L}&#x3D;\nabla_a C \odot \sigma^{\prime}\left(z^L\right)<br>\end{aligned}<br>$$<br>因此<br>$$<br>\delta^L&#x3D;\nabla_a C \odot \sigma^{\prime}\left(z^L\right)<br>$$<br>其中$ \odot $表示Hadamard乘积，用于矩阵或向量之间点对点的乘法运算</p>
+<h2 id="由后往前，计算前后两层神经网络直接的误差关系"><a href="#由后往前，计算前后两层神经网络直接的误差关系" class="headerlink" title="由后往前，计算前后两层神经网络直接的误差关系"></a>由后往前，计算前后两层神经网络直接的误差关系</h2><p>$$<br>\begin{aligned}<br>\delta_j^l&#x3D;\frac{\partial C}{\partial z_j^l} &amp; &#x3D;\sum_k \frac{\partial C}{\partial z_k^{l+1}} \cdot \frac{\partial z_k^{l+1}}{\partial a_j^l} \cdot \frac{\partial a_j^l}{\partial z_j^l} \<br>&amp; &#x3D;\sum_k \delta_k^{l+1} \cdot \frac{\partial\left(w_{k j}^{l+1} a_j^l+b_k^{l+1}\right)}{\partial a_j^l} \cdot \sigma^{\prime}\left(z_j^l\right) \<br>&amp; &#x3D;\sum_k \delta_k^{l+1} \cdot w_{k j}^{l+1} \cdot \sigma^{\prime}\left(z_j^l\right)<br>\end{aligned}<br>$$<br>因此：<br>$$<br>\delta^l&#x3D;\left(\left(w^{l+1}\right)^T \delta^{l+1}\right) \odot \sigma^{\prime}\left(z^l\right)<br>$$</p>
+<h2 id="计算权重的梯度"><a href="#计算权重的梯度" class="headerlink" title="计算权重的梯度"></a>计算权重的梯度</h2><p>$$<br>\frac{\partial C}{\partial w_{j k}^l}&#x3D;\frac{\partial C}{\partial z_j^l} \cdot \frac{\partial z_j^l}{\partial w_{j k}^l}&#x3D;\delta_j^l \cdot \frac{\partial\left(w_{j k}^l a_k^{l-1}+b_j^l\right)}{\partial w_{j k}^l}&#x3D;a_k^{l-1} \delta_j^l<br>$$</p>
+<p>因此：<br>$$<br>\frac{\partial C}{\partial w_{j k}^l}&#x3D;a_k^{l-1} \delta_j^l<br>$$</p>
+<h2 id="计算偏置的梯度"><a href="#计算偏置的梯度" class="headerlink" title="计算偏置的梯度"></a>计算偏置的梯度</h2><p>$$<br>\frac{\partial C}{\partial b_j^l}&#x3D;\frac{\partial C}{\partial z_j^l} \cdot \frac{\partial z_j^l}{\partial b_j^l}&#x3D;\delta_j^l \cdot \frac{\partial\left(w_{j k}^l a_k^{l-1}+b_j^l\right)}{\partial b_j^l}&#x3D;\delta_j^l<br>$$</p>
+<p>因此：<br>$$<br>\frac{\partial C}{\partial b_j^l}&#x3D;\delta_j^l<br>$$</p>
 
                 
               </div>
