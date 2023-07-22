@@ -16,15 +16,15 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="BERT中的激活函数GELU：高斯误差线性单元 - 清欢鱼的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;349492378">
+    <meta name="description" content="BERT中的激活函数GELU：高斯误差线性单元 - 清欢鱼的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;349492378 为什么GELU激活函数越来越常见？ - 利先生的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;609897428 深度学习中激活函数的导数在不连续可导时的处理 - puppy的文章 - 知乎 https:&#x2F;&#x2F;zhua">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GELU激活函数">
 <meta property="og:url" content="https://lishilong.cc/2023/07/22/AI/11GELU%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="BERT中的激活函数GELU：高斯误差线性单元 - 清欢鱼的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;349492378">
+<meta property="og:description" content="BERT中的激活函数GELU：高斯误差线性单元 - 清欢鱼的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;349492378 为什么GELU激活函数越来越常见？ - 利先生的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;609897428 深度学习中激活函数的导数在不连续可导时的处理 - puppy的文章 - 知乎 https:&#x2F;&#x2F;zhua">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-22T12:51:00.000Z">
-<meta property="article:modified_time" content="2023-07-22T12:51:47.989Z">
+<meta property="article:modified_time" content="2023-07-22T14:19:41.337Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          71 字
+          968 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          1 分钟
+          9 分钟
         
       </span>
     
@@ -293,7 +293,27 @@
                 
                 <blockquote>
 <p>BERT中的激活函数GELU：高斯误差线性单元 - 清欢鱼的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/349492378">https://zhuanlan.zhihu.com/p/349492378</a></p>
+<p>为什么GELU激活函数越来越常见？ - 利先生的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/609897428">https://zhuanlan.zhihu.com/p/609897428</a></p>
+<p>深度学习中激活函数的导数在不连续可导时的处理 - puppy的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/101321997">https://zhuanlan.zhihu.com/p/101321997</a></p>
 </blockquote>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>GELU（Gaussian Error Linear Unit，高斯误差线性单元）于2016年由Hendrycks和Gimpel在论文《Gaussian Error Linear Units (GELUs)》中提出。</p>
+<p>与其他常用的激活函数（如ReLU和sigmoid）相比，GELU具有更平滑的非线性特征，这有助于提高模型的性能。GELU可以看作是一种sigmoid和ReLU的混合体。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>在处理负数时不会像ReLU一样将输入裁剪到0，这可能导致梯度消失的问题</li>
+<li>在大多数情况下比sigmoid和tanh表现更好，因为它在处理较大的输入时，会比sigmoid和tanh产生更强的非线性响应</li>
+<li>在处理较小的输入时，又比ReLU表现更好，因为它有一个非零的梯度</li>
+<li>GELU函数的导数是连续的，这使得在训练深度神经网络时可以更容易地传播梯度，避免了ReLU函数在 $x&#x3D;0$ 处的导数不连续的问题，从而减少了训练过程中出现的梯度消失问题</li>
+</ul>
+<h2 id="延伸问题：激活函数的导数在不可导处怎么处理？"><a href="#延伸问题：激活函数的导数在不可导处怎么处理？" class="headerlink" title="延伸问题：激活函数的导数在不可导处怎么处理？"></a>延伸问题：激活函数的导数在不可导处怎么处理？</h2><p>Q: 深度学习中激活函数在不连续可导时的导数怎么处理呢？</p>
+<p><strong>A: 激活函数不要求处处连续可导，在不连续可导处定义好该处的导数即可。</strong></p>
+<p>sigmoid函数是处处连续可导的。其他如ReLU，在0处不连续可导。</p>
+<p><strong>以caffe中的ReLU为例：</strong></p>
+<p>在caffe中，给定输入x，ReLU层可以表述为：</p>
+<p>$f(x) &#x3D; x$, if $x&gt;0$;</p>
+<p>$f(x) &#x3D; negative_slope * x$, if $x &lt;&#x3D;0$.</p>
+<p>当$negative_slope&gt;0$时，ReLU是leaky ReLU</p>
+<p>$negative_slope$默认为0， 即标准ReLU</p>
+<p>输入$x&#x3D;0$时，导数为$negative_slope$（标准ReLU在$x&#x3D;0$处的导数即为0）</p>
 
                 
               </div>
