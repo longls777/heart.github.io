@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>手推BP(Backpropagation)</title>
+    <link href="/2023/07/22/AI/07%E6%89%8B%E6%8E%A8BP/"/>
+    <url>/2023/07/22/AI/07%E6%89%8B%E6%8E%A8BP/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://towardsdatascience.com/deriving-the-backpropagation-equations-from-scratch-part-1-343b300c585a">https://towardsdatascience.com/deriving-the-backpropagation-equations-from-scratch-part-1-343b300c585a</a></p><p><a href="https://towardsdatascience.com/backpropagation-step-by-step-derivation-99ac8fbdcc28">https://towardsdatascience.com/backpropagation-step-by-step-derivation-99ac8fbdcc28</a></p><p><a href="https://juejin.cn/post/6844903780157227022">https://juejin.cn/post/6844903780157227022</a></p></blockquote><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-2d355d35fddfe8bc5fa93a3670cbb5c2_720w.webp" alt="3 layers MLP"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>鞍点问题</title>
     <link href="/2023/07/21/AI/06%E9%9E%8D%E7%82%B9%E9%97%AE%E9%A2%98/"/>
     <url>/2023/07/21/AI/06%E9%9E%8D%E7%82%B9%E9%97%AE%E9%A2%98/</url>
