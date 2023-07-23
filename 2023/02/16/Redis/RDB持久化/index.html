@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="什么是RDB持久化Redis的RDB持久化功能可以将Redis在内存中的数据库状态保存到磁盘里面，避免数据意外丢失 RDB持久化既可以手动执行，也可以根据服务器配置选项定期执行，该功能可以将某个时间点上的数据库状态保存到一个RDB文件中 RDB持久化功能所生成的RDB文件是一个经过压缩的二进制文件，通过该文件可以还原生成RDB文件时的数据库状态 RDB文件的创建与载入有两个Redis命令可以用于生">
+    <meta name="description" content="什么是RDB持久化 Redis的RDB持久化功能可以将Redis在内存中的数据库状态保存到磁盘里面，避免数据意外丢失 RDB持久化既可以手动执行，也可以根据服务器配置选项定期执行，该功能可以将某个时间点上的数据库状态保存到一个RDB文件中 RDB持久化功能所生成的RDB文件是一个经过压缩的二进制文件，通过该文件可以还原生成RDB文件时的数据库状态 RDB文件的创建与载入 有两个Redis命令可以用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RDB持久化">
 <meta property="og:url" content="https://lishilong.cc/2023/02/16/Redis/RDB%E6%8C%81%E4%B9%85%E5%8C%96/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="什么是RDB持久化Redis的RDB持久化功能可以将Redis在内存中的数据库状态保存到磁盘里面，避免数据意外丢失 RDB持久化既可以手动执行，也可以根据服务器配置选项定期执行，该功能可以将某个时间点上的数据库状态保存到一个RDB文件中 RDB持久化功能所生成的RDB文件是一个经过压缩的二进制文件，通过该文件可以还原生成RDB文件时的数据库状态 RDB文件的创建与载入有两个Redis命令可以用于生">
+<meta property="og:description" content="什么是RDB持久化 Redis的RDB持久化功能可以将Redis在内存中的数据库状态保存到磁盘里面，避免数据意外丢失 RDB持久化既可以手动执行，也可以根据服务器配置选项定期执行，该功能可以将某个时间点上的数据库状态保存到一个RDB文件中 RDB持久化功能所生成的RDB文件是一个经过压缩的二进制文件，通过该文件可以还原生成RDB文件时的数据库状态 RDB文件的创建与载入 有两个Redis命令可以用">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230217100034471.png">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230217100955846.png">
@@ -296,10 +296,12 @@
             
               <div class="markdown-body">
                 
-                <h2 id="什么是RDB持久化"><a href="#什么是RDB持久化" class="headerlink" title="什么是RDB持久化"></a>什么是RDB持久化</h2><p>Redis的RDB持久化功能可以将Redis在内存中的数据库状态保存到磁盘里面，避免数据意外丢失</p>
+                <h2 id="什么是RDB持久化">什么是RDB持久化</h2>
+<p>Redis的RDB持久化功能可以将Redis在内存中的数据库状态保存到磁盘里面，避免数据意外丢失</p>
 <p>RDB持久化既可以手动执行，也可以根据服务器配置选项定期执行，该功能可以将某个时间点上的数据库状态保存到一个RDB文件中</p>
 <p>RDB持久化功能所生成的RDB文件是一个经过压缩的二进制文件，通过该文件可以还原生成RDB文件时的数据库状态</p>
-<h2 id="RDB文件的创建与载入"><a href="#RDB文件的创建与载入" class="headerlink" title="RDB文件的创建与载入"></a>RDB文件的创建与载入</h2><p>有两个Redis命令可以用于生成RDB文件：</p>
+<h2 id="RDB文件的创建与载入">RDB文件的创建与载入</h2>
+<p>有两个Redis命令可以用于生成RDB文件：</p>
 <ul>
 <li>SAVE：会阻塞Redis服务器进程，直到RDB文件创建完毕为止，在服务器进程阻塞期间，服务器不能处理任何命令请求</li>
 <li>BGSAVE：会派生出一个子进程，然后由子进程负责创建RDB文件，服务器进程（父进程）继续处理命令请求</li>
@@ -314,11 +316,14 @@
 </blockquote>
 <p>在BGSAVE命令执行期间，服务器处理<strong>SAVE、BGSAVE、BGREWRITEAOF</strong>三个命令的方式会和平时有所不同：</p>
 <ul>
-<li><p>SAVE：客户端发送的SAVE命令会被服务器拒绝，服务器禁止SAVE命令和BGSAVE命令同时执行是<strong>为了避免父进程（服务器进程）和子进程同时执行两个rdbSave调用，防止产生竞争条件</strong></p>
+<li>
+<p>SAVE：客户端发送的SAVE命令会被服务器拒绝，服务器禁止SAVE命令和BGSAVE命令同时执行是<strong>为了避免父进程（服务器进程）和子进程同时执行两个rdbSave调用，防止产生竞争条件</strong></p>
 </li>
-<li><p>BGSAVE：客户端发送的BGSAVE命令会被服务器拒绝，因为<strong>同时执行两个BGSAVE命令也会产生竞争条件</strong></p>
+<li>
+<p>BGSAVE：客户端发送的BGSAVE命令会被服务器拒绝，因为<strong>同时执行两个BGSAVE命令也会产生竞争条件</strong></p>
 </li>
-<li><p>BGREWRITEAOF：BGREWRITEAOF和BGSAVE两个命令不能同时执行</p>
+<li>
+<p>BGREWRITEAOF：BGREWRITEAOF和BGSAVE两个命令不能同时执行</p>
 <ul>
 <li>如果BGSAVE命令正在执行，那么客户端发送的BGREWRITEAOF命令会被延迟到BGSAVE命令执行完毕之后执行</li>
 <li>如果BGREWRITEAOF命令正在执行，那么客户端发送的BGSAVE命令会被服务器拒绝</li>
@@ -329,13 +334,14 @@
 </li>
 </ul>
 <p>服务器在载入RDB文件期间，会一直处于阻塞状态，直到载入工作完成为止</p>
-<h2 id="自动间隔性保存"><a href="#自动间隔性保存" class="headerlink" title="自动间隔性保存"></a>自动间隔性保存</h2><p>因为BGSAVE命令可以在不阻塞服务器进程的情况下执行，所以Redis允许用户通过设置服务器配置的save选项，让服务器每隔一段时间自动执行一次BGSAVE命令</p>
+<h2 id="自动间隔性保存">自动间隔性保存</h2>
+<p>因为BGSAVE命令可以在不阻塞服务器进程的情况下执行，所以Redis允许用户通过设置服务器配置的save选项，让服务器每隔一段时间自动执行一次BGSAVE命令</p>
 <p>用户可以通过save选项设置多个保存条件，但只要其中任意一个条件被满足，服务器就会执行BGSAVE命令</p>
 <p>例如配置如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">save <span class="hljs-number">900</span> <span class="hljs-number">1</span> <span class="hljs-comment"># 服务器在900秒之内，对数据库进行了至少1次修改</span><br>save <span class="hljs-number">300</span> <span class="hljs-number">10</span> <span class="hljs-comment"># 服务器在300秒之内，对数据库进行了至少10次修改</span><br>save <span class="hljs-number">60</span> <span class="hljs-number">10000</span> <span class="hljs-comment"># 服务器在60秒之内，对数据库进行了至少10000次修改</span><br></code></pre></td></tr></table></figure>
-
 <p>Redis的服务器周期性操作函数serverCron默认每隔100毫秒就会执行一次，该函数用于对正在运行的服务器进行维护，它的其中一项工作就是检查save选项所设置的保存条件是否已经满足，如果满足的话，就执行BGSAVE命令</p>
-<h2 id="RDB文件结构"><a href="#RDB文件结构" class="headerlink" title="RDB文件结构"></a>RDB文件结构</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230217100034471.png" srcset="/img/loading.gif" lazyload alt="image-20230217100034471"></p>
+<h2 id="RDB文件结构">RDB文件结构</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230217100034471.png" srcset="/img/loading.gif" lazyload alt="image-20230217100034471"></p>
 <ul>
 <li>REDIS：常量，五个字符，长度为5字节，通过这五个字符，程序可以在载入文件时，快速检查所载入的文件是否是RDB文件</li>
 <li>db_version：一个字符串表示的整数，长度为4字节，记录了RDB文件的版本号</li>

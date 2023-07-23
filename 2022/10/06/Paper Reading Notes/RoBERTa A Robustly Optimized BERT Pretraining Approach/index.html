@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《RoBERTa:  A Robustly Optimized BERT Pretraining Approach》 论文来源： arxiv 2019 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1907.11692.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;fairseq 概述该文章通过对BERT的实验的复现发现，超参数的选择对BE">
+    <meta name="description" content="标题：《RoBERTa:  A Robustly Optimized BERT Pretraining Approach》 论文来源： arxiv 2019 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1907.11692.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;fairseq 概述 该文章通过对BERT的实验的复现发现，超参数的选择对B">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RoBERTa  A Robustly Optimized BERT Pretraining Approach">
 <meta property="og:url" content="https://lishilong.cc/2022/10/06/Paper%20Reading%20Notes/RoBERTa%20A%20Robustly%20Optimized%20BERT%20Pretraining%20Approach/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《RoBERTa:  A Robustly Optimized BERT Pretraining Approach》 论文来源： arxiv 2019 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1907.11692.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;fairseq 概述该文章通过对BERT的实验的复现发现，超参数的选择对BE">
+<meta property="og:description" content="标题：《RoBERTa:  A Robustly Optimized BERT Pretraining Approach》 论文来源： arxiv 2019 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1907.11692.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;fairseq 概述 该文章通过对BERT的实验的复现发现，超参数的选择对B">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220927142410395.png">
 <meta property="article:published_time" content="2022-10-06T13:22:00.000Z">
@@ -297,17 +297,20 @@
 <p><strong>论文来源：</strong> arxiv 2019</p>
 <p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.11692.pdf">https://arxiv.org/pdf/1907.11692.pdf</a></p>
 <p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/fairseq">https://github.com/facebookresearch/fairseq</a></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>该文章通过对BERT的实验的复现发现，超参数的选择对BERT的最终结果有重大影响，该研究仔细衡量了许多关键超参数和训练数据大小的影响，发现BERT明显训练不足。</p>
+<h2 id="概述">概述</h2>
+<p>该文章通过对BERT的实验的复现发现，超参数的选择对BERT的最终结果有重大影响，该研究仔细衡量了许多关键超参数和训练数据大小的影响，发现BERT明显训练不足。</p>
 <p>从模型上来说，RoBERTa基本没有什么太大创新，主要是在BERT基础上做了几点调整：</p>
 <ol>
 <li>训练数据更多</li>
-<li>训练时间更长，batch size更大 </li>
-<li>移除了next sentence prediction loss </li>
+<li>训练时间更长，batch size更大</li>
+<li>移除了next sentence prediction loss</li>
 <li>动态调整Masking机制</li>
 <li>a larger byte-level BPE</li>
 </ol>
 <p>RoBERTa is trained with dynamic masking (Section 4.1), FULL - SENTENCES without NSP loss (Section 4.2), large mini-batches (Section 4.3) and a larger byte-level BPE (Section 4.4).</p>
-<h2 id="创新细节"><a href="#创新细节" class="headerlink" title="创新细节"></a>创新细节</h2><h3 id="训练数据更多"><a href="#训练数据更多" class="headerlink" title="训练数据更多"></a>训练数据更多</h3><p>BERT：BOOKCORPUS  plus English WIKIPEDIA 16GB</p>
+<h2 id="创新细节">创新细节</h2>
+<h3 id="训练数据更多">训练数据更多</h3>
+<p>BERT：BOOKCORPUS  plus English WIKIPEDIA 16GB</p>
 <p>RoBERTa：</p>
 <ul>
 <li>BOOKCORPUS  plus English WIKIPEDIA 16GB</li>
@@ -315,17 +318,21 @@
 <li>OPEN WEB TEXT 38GB</li>
 <li>STORIES 31GB</li>
 </ul>
-<h3 id="训练时间更长，batch-size更大"><a href="#训练时间更长，batch-size更大" class="headerlink" title="训练时间更长，batch size更大"></a>训练时间更长，batch size更大</h3><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007152640133.png" srcset="/img/loading.gif" lazyload alt="image-20221007152640133"></p>
+<h3 id="训练时间更长，batch-size更大">训练时间更长，batch size更大</h3>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007152640133.png" srcset="/img/loading.gif" lazyload alt="image-20221007152640133"></p>
 <p>在同样运算消耗的条件下，batch-size增大，PPL（困惑度）变小，效果更好</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007154409170.png" srcset="/img/loading.gif" lazyload alt="image-20221007154409170"></p>
 <p>可以看到，预训练时间越长，效果越好</p>
-<h3 id="移除了next-predict-loss"><a href="#移除了next-predict-loss" class="headerlink" title="移除了next predict loss"></a>移除了next predict loss</h3><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007154545994.png" srcset="/img/loading.gif" lazyload alt="image-20221007154545994"></p>
+<h3 id="移除了next-predict-loss">移除了next predict loss</h3>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007154545994.png" srcset="/img/loading.gif" lazyload alt="image-20221007154545994"></p>
 <p>可以看出来，没有NSP loss之后，模型的性能匹配甚至略微优于原来的模型</p>
 <p>与此同时，发现将序列限制为来自单个文档(doc - sentence)的效果略好于从多个文档(full - sentence)打包序列</p>
-<h2 id="动态调整Masking机制-Dynamic-Masking"><a href="#动态调整Masking机制-Dynamic-Masking" class="headerlink" title="动态调整Masking机制 Dynamic Masking"></a>动态调整Masking机制 Dynamic Masking</h2><p>static masking: 原本的BERT采用的是static mask的方式，就是在<code>create pretraining data</code>中，先对数据进行提前的mask，为了充分利用数据，定义了<code>dupe_factor</code>，这样可以将训练数据复制<code>dupe_factor</code>份，然后同一条数据可以有不同的mask。注意这些数据不是全部都喂给同一个epoch，是不同的epoch，例如<code>dupe_factor=10</code>， <code>epoch=40</code>， 则每种mask的方式在训练中会被使用4次</p>
+<h2 id="动态调整Masking机制-Dynamic-Masking">动态调整Masking机制 Dynamic Masking</h2>
+<p>static masking: 原本的BERT采用的是static mask的方式，就是在<code>create pretraining data</code>中，先对数据进行提前的mask，为了充分利用数据，定义了<code>dupe_factor</code>，这样可以将训练数据复制<code>dupe_factor</code>份，然后同一条数据可以有不同的mask。注意这些数据不是全部都喂给同一个epoch，是不同的epoch，例如<code>dupe_factor=10</code>， <code>epoch=40</code>， 则每种mask的方式在训练中会被使用4次</p>
 <p>dynamic masking: 每一次将训练example喂给模型的时候，才进行随机mask</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007155117023.png" srcset="/img/loading.gif" lazyload alt="image-20221007155117023"></p>
-<h2 id="a-larger-byte-level-BPE"><a href="#a-larger-byte-level-BPE" class="headerlink" title="a larger byte-level BPE"></a>a larger byte-level BPE</h2><p>BERT原型使用的是 character-level BPE vocabulary of size 30K, RoBERTa使用了GPT2的 byte BPE 实现，使用的是byte而不是unicode characters作为subword的单位。</p>
+<h2 id="a-larger-byte-level-BPE">a larger byte-level BPE</h2>
+<p>BERT原型使用的是 character-level BPE vocabulary of size 30K, RoBERTa使用了GPT2的 byte BPE 实现，使用的是byte而不是unicode characters作为subword的单位。</p>
 <blockquote>
 <p>learn a subword vocabulary of a modest size (50K units) that can still encode any input text without introducing any “unknown” tokens.</p>
 </blockquote>

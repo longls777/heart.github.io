@@ -248,7 +248,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/07/20/AI/04%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/" target="_self">
         <div>
-          https://blog.csdn.net/perfect1t/article/details/82966647  逻辑回归主要用于二分类，其主要思想是：根据现有数据对分类边界线建立回归公式，以此进行分类 将线性回归$z &#x3D; w^Tx + b$ 输入到sigmoid函数$y &#x3D; \frac{1}{1+e^{-z}}$：$$y &#x3D; \frac{1}{1 + e^{-(
+          https://blog.csdn.net/perfect1t/article/details/82966647  逻辑回归主要用于二分类，其主要思想是：根据现有数据对分类边界线建立回归公式，以此进行分类 将线性回归z=wTx+bz = w^Tx + bz=wTx+b 输入到sigmoid函数y=11+e−zy = \frac{1}{1+e^{-z}}y=1+e−z1​： y=11+e−(wTx
         </div>
       </a>
 
@@ -422,7 +422,7 @@
       
       <a class="index-excerpt " href="/2023/07/20/AI/02%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95/" target="_self">
         <div>
-          网络权重初始化方法总结（上）：梯度消失、梯度爆炸与不良的初始化 网络权重初始化方法总结（下）：Lecun、Xavier与He Kaiming 一文搞懂深度网络初始化（Xavier and Kaiming initialization）  全常数初始化和全0初始化 全常数初始化：每一层的权重都相同，正向传播每一层的输入和输出都相同，反向传播每一层的偏导都相同，导致每层的权重向相同的方向更新，每层更
+          网络权重初始化方法总结（上）：梯度消失、梯度爆炸与不良的初始化 网络权重初始化方法总结（下）：Lecun、Xavier与He Kaiming 一文搞懂深度网络初始化（Xavier and Kaiming initialization）  全常数初始化和全0初始化  全常数初始化：每一层的权重都相同，正向传播每一层的输入和输出都相同，反向传播每一层的偏导都相同，导致每层的权重向相同的方向更新，每层
         </div>
       </a>
 
@@ -536,7 +536,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/07/19/AI/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/" target="_self">
         <div>
-          从 SGD 到 Adam —— 深度学习优化算法概览(一) - 骆梁宸的文章 - 知乎 https://zhuanlan.zhihu.com/p/32626442  什么是一阶和二阶动量？有多种说法：  一阶动量和二阶动量分别是历史梯度的一阶函数和二阶函数 来自chatGPT：   一阶动量和二阶动量是Adam优化算法中使用的两个指数移动平均项，用于估计梯度的一阶和二阶矩。  一阶动量（Firs
+          从 SGD 到 Adam —— 深度学习优化算法概览(一) - 骆梁宸的文章 - 知乎 https://zhuanlan.zhihu.com/p/32626442  什么是一阶和二阶动量？ 有多种说法：  一阶动量和二阶动量分别是历史梯度的一阶函数和二阶函数 来自chatGPT：   一阶动量和二阶动量是Adam优化算法中使用的两个指数移动平均项，用于估计梯度的一阶和二阶矩。  一阶动量（Fir
         </div>
       </a>
 
@@ -644,7 +644,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/05/10/Research/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97/" target="_self">
         <div>
-          概览Reservoir Computing， 也叫Echo state network， 被视为是神经网络(Neural Network)的一种拓展框架。一个reservoir computer由以下三个部分组成：  输入层(input layer): 可以由一个或多个node组成， 属于前馈神经网络(feed-forward Neural network)的一种. 中间层(middle laye
+          概览 Reservoir Computing， 也叫Echo state network， 被视为是神经网络(Neural Network)的一种拓展框架。一个reservoir computer由以下三个部分组成：  输入层(input layer): 可以由一个或多个node组成， 属于前馈神经网络(feed-forward Neural network)的一种. 中间层(middle lay
         </div>
       </a>
 
@@ -684,7 +684,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/05/04/MySQL/MySQL%E5%85%AB%E8%82%A1/" target="_self">
         <div>
-          一、事务ACID特性说说事务的ACID特性？ 数据库事务必须具备ACID特性，ACID是Atomic（原子性）、Consistency（一致性）、Isolation（隔离性）和Durability（持久性）  1. 原子性（Atomicity） 事务被视为不可分割的最小单元，事务的所有操作要么全部提交成功，要么全部失败回滚。 回滚可以用回滚日志（Undo Log）来实现，回滚日志记录着事务所执行的
+          一、事务ACID特性 说说事务的ACID特性？ 数据库事务必须具备ACID特性，ACID是Atomic（原子性）、Consistency（一致性）、Isolation（隔离性）和Durability（持久性）  1. 原子性（Atomicity） 事务被视为不可分割的最小单元，事务的所有操作要么全部提交成功，要么全部失败回滚。 回滚可以用回滚日志（Undo Log）来实现，回滚日志记录着事务所执行
         </div>
       </a>
 
@@ -745,7 +745,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/05/01/Others/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" target="_self">
         <div>
-          一、操作系统概述说说什么是操作系统？  操作系统本质上是一个运行在计算机内核态上的软件程序 ，用于管理计算机硬件和软件资源。 运行在电脑上的所有应用程序都通过操作系统来调用系统内存以及磁盘等等硬件 操作系统存在屏蔽了硬件层的复杂性，它将复杂的硬件抽象为接口提供给用户态程序 操作系统具有对硬件的完全访问权，它可以使用机器指令集的全部指令   说说系统调用？ 根据进程访问资源的特点，我们可以把进程在系
+          一、操作系统概述 说说什么是操作系统？  操作系统本质上是一个运行在计算机内核态上的软件程序 ，用于管理计算机硬件和软件资源。 运行在电脑上的所有应用程序都通过操作系统来调用系统内存以及磁盘等等硬件 操作系统存在屏蔽了硬件层的复杂性，它将复杂的硬件抽象为接口提供给用户态程序 操作系统具有对硬件的完全访问权，它可以使用机器指令集的全部指令   说说系统调用？ 根据进程访问资源的特点，我们可以把进程在
         </div>
       </a>
 

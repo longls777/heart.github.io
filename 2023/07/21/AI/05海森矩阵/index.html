@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="海森矩阵的作用 请问多元函数比如二元函数为什么海森矩阵正定就可以判断有极小值？ - 大脸阿望的回答 - 知乎 https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;382495850&#x2F;answer&#x2F;1128056601 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37477357&#x2F;article&#x2F;details&#x2F;104750718   一阶导数构成的向量为梯度  二阶导数构成的矩阵">
+    <meta name="description" content="海森矩阵的作用 请问多元函数比如二元函数为什么海森矩阵正定就可以判断有极小值？ - 大脸阿望的回答 - 知乎 https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;382495850&#x2F;answer&#x2F;1128056601 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37477357&#x2F;article&#x2F;details&#x2F;104750718    一阶导数构成的向量为梯度   二阶导数构成的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hessian矩阵">
 <meta property="og:url" content="https://lishilong.cc/2023/07/21/AI/05%E6%B5%B7%E6%A3%AE%E7%9F%A9%E9%98%B5/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="海森矩阵的作用 请问多元函数比如二元函数为什么海森矩阵正定就可以判断有极小值？ - 大脸阿望的回答 - 知乎 https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;382495850&#x2F;answer&#x2F;1128056601 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37477357&#x2F;article&#x2F;details&#x2F;104750718   一阶导数构成的向量为梯度  二阶导数构成的矩阵">
+<meta property="og:description" content="海森矩阵的作用 请问多元函数比如二元函数为什么海森矩阵正定就可以判断有极小值？ - 大脸阿望的回答 - 知乎 https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;382495850&#x2F;answer&#x2F;1128056601 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_37477357&#x2F;article&#x2F;details&#x2F;104750718    一阶导数构成的向量为梯度   二阶导数构成的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230721152015781.png">
 <meta property="article:published_time" content="2023-07-21T06:25:00.000Z">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          773 字
+          825 字
         
       </span>
     
@@ -299,36 +299,46 @@
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37477357/article/details/104750718">https://blog.csdn.net/qq_37477357/article/details/104750718</a></p>
 </blockquote>
 <ul>
-<li><p>一阶导数构成的向量为梯度</p>
+<li>
+<p>一阶导数构成的向量为梯度</p>
 </li>
-<li><p>二阶导数构成的矩阵为Hessian矩阵</p>
+<li>
+<p>二阶导数构成的矩阵为Hessian矩阵</p>
 </li>
-<li><p>多元函数的一阶导数构成的矩阵为Jacobian矩阵</p>
+<li>
+<p>多元函数的一阶导数构成的矩阵为Jacobian矩阵</p>
 </li>
-<li><p>当海森矩阵的所有特征值都为正时，意味着海森矩阵是正定的，此处为局部极小值</p>
+<li>
+<p>当海森矩阵的所有特征值都为正时，意味着海森矩阵是正定的，此处为局部极小值</p>
 </li>
-<li><p>当海森矩阵的所有特征值都为负时，意味着海森矩阵是负定的，此处是局部极大值</p>
+<li>
+<p>当海森矩阵的所有特征值都为负时，意味着海森矩阵是负定的，此处是局部极大值</p>
 </li>
-<li><p>当海森矩阵的特征值有正有负时，意味着海森矩阵既有正特征值也有负特征值，是一个不定矩阵，因此，在这样的点，可能存在一些方向上函数是局部极小值，而在另一些方向上是局部极大值，形成一个鞍点。</p>
+<li>
+<p>当海森矩阵的特征值有正有负时，意味着海森矩阵既有正特征值也有负特征值，是一个不定矩阵，因此，在这样的点，可能存在一些方向上函数是局部极小值，而在另一些方向上是局部极大值，形成一个鞍点。</p>
 </li>
 </ul>
 <blockquote>
 <p>以上点的梯度都为0，即前提是该点为驻点</p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230721152015781.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230721152015781.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><strong>什么是正定矩阵和负定矩阵？</strong></p>
 <ul>
-<li><p>正定矩阵：</p>
+<li>
+<p>正定矩阵：</p>
 <ul>
-<li><p>对于一个 $n×n$ 实对称矩阵 A，如果对于任意非零向量 $x$，都有 $x^T A x &gt; 0$，则称矩阵 A 是正定的。这也可以表示为 A 的所有特征值均大于 0。</p>
-<p>正定矩阵的定义表明在所有的非零向量 $x$ 上，二次型 $x^T A x$ 的值都是正的，意味着该二次型在整个空间上都是凸的。在优化问题中，如果目标函数的 Hessian 矩阵是正定的，那么这个问题是一个凸优化问题，且一定存在唯一的全局最小值。</p>
+<li>
+<p>对于一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n×n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 实对称矩阵 A，如果对于任意非零向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>，都有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>T</mi></msup><mi>A</mi><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x^T A x &gt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8804em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">A</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，则称矩阵 A 是正定的。这也可以表示为 A 的所有特征值均大于 0。</p>
+<p>正定矩阵的定义表明在所有的非零向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 上，二次型 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>T</mi></msup><mi>A</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">x^T A x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">A</span><span class="mord mathnormal">x</span></span></span></span> 的值都是正的，意味着该二次型在整个空间上都是凸的。在优化问题中，如果目标函数的 Hessian 矩阵是正定的，那么这个问题是一个凸优化问题，且一定存在唯一的全局最小值。</p>
 </li>
 </ul>
 </li>
-<li><p>负定矩阵：</p>
+<li>
+<p>负定矩阵：</p>
 <ul>
-<li><p>对于一个 $n×n$ 实对称矩阵 A，如果对于任意非零向量 $x$，都有 $x^T A x &lt; 0$，则称矩阵 A 是负定的。这也可以表示为 A 的所有特征值均小于 0。</p>
-<p>负定矩阵的定义表明在所有的非零向量 $x$ 上，二次型 $x^T A x$ 的值都是负的，意味着该二次型在整个空间上都是凹的。负定矩阵在一些优化问题和稳定性分析中也具有重要意义。</p>
+<li>
+<p>对于一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n×n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 实对称矩阵 A，如果对于任意非零向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>，都有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>T</mi></msup><mi>A</mi><mi>x</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x^T A x &lt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8804em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">A</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，则称矩阵 A 是负定的。这也可以表示为 A 的所有特征值均小于 0。</p>
+<p>负定矩阵的定义表明在所有的非零向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 上，二次型 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>T</mi></msup><mi>A</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">x^T A x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">A</span><span class="mord mathnormal">x</span></span></span></span> 的值都是负的，意味着该二次型在整个空间上都是凹的。负定矩阵在一些优化问题和稳定性分析中也具有重要意义。</p>
 </li>
 </ul>
 </li>

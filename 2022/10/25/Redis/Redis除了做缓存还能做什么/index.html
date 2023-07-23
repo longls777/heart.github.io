@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          645 字
+          635 字
         
       </span>
     
@@ -297,14 +297,15 @@
 <li><strong>消息队列</strong> ：Redis 自带的 list 数据结构可以作为一个简单的队列使用。Redis 5.0 中增加的 Stream 类型的数据结构更加适合用来做消息队列。它比较类似于 Kafka，有主题和消费组的概念，支持消息持久化以及 ACK 机制。</li>
 <li><strong>复杂业务场景</strong> ：通过 Redis 以及 Redis 扩展（比如 Redisson）提供的数据结构，我们可以很方便地完成很多复杂的业务场景比如通过 bitmap 统计活跃用户、通过 sorted set 维护排行榜。</li>
 </ul>
-<h3 id="Redis-可以做消息队列么？"><a href="#Redis-可以做消息队列么？" class="headerlink" title="Redis 可以做消息队列么？"></a>Redis 可以做消息队列么？</h3><p>Redis 5.0 新增加的一个数据结构 <code>Stream</code> 可以用来做消息队列，<code>Stream</code> 支持：</p>
+<h3 id="Redis-可以做消息队列么？">Redis 可以做消息队列么？</h3>
+<p>Redis 5.0 新增加的一个数据结构 <code>Stream</code> 可以用来做消息队列，<code>Stream</code> 支持：</p>
 <ul>
-<li>发布 &#x2F; 订阅模式</li>
+<li>发布 / 订阅模式</li>
 <li>按照消费者组进行消费</li>
 <li>消息持久化（ RDB 和 AOF）</li>
 </ul>
 <p>不过，和专业的消息队列相比，还是有很多欠缺的地方比如消息丢失和堆积问题不好解决。因此，我们通常建议是不使用 Redis 来做消息队列的，你完全可以选择市面上比较成熟的一些消息队列比如 RocketMQ、Kafka。</p>
-<p>相关文章推荐：<a target="_blank" rel="noopener" href="https://javakeeper.starfish.ink/data-management/Redis/Redis-MQ.html">Redis 消息队列的三种方案（List、Streams、Pub&#x2F;Sub）open in new window</a></p>
+<p>相关文章推荐：<a target="_blank" rel="noopener" href="https://javakeeper.starfish.ink/data-management/Redis/Redis-MQ.html">Redis 消息队列的三种方案（List、Streams、Pub/Sub）open in new window</a></p>
 
                 
               </div>

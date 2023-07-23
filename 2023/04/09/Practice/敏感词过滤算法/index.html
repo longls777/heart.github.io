@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="敏感词过滤用的使用比较多的有 Trie 树算法 和 DFA 算法 Trie树算法Trie 树 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率  Trie树的特点：  根节点不包含字符，除根节点外每一个节点都只包含一个字符。 从根节点到某一节点，路径上经过的字符连接起来">
+    <meta name="description" content="敏感词过滤用的使用比较多的有 Trie 树算法 和 DFA 算法 Trie树算法 Trie 树 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率  Trie树的特点：  根节点不包含字符，除根节点外每一个节点都只包含一个字符。 从根节点到某一节点，路径上经过的字符连接起">
 <meta property="og:type" content="article">
 <meta property="og:title" content="敏感词过滤算法">
 <meta property="og:url" content="https://lishilong.cc/2023/04/09/Practice/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="敏感词过滤用的使用比较多的有 Trie 树算法 和 DFA 算法 Trie树算法Trie 树 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率  Trie树的特点：  根节点不包含字符，除根节点外每一个节点都只包含一个字符。 从根节点到某一节点，路径上经过的字符连接起来">
+<meta property="og:description" content="敏感词过滤用的使用比较多的有 Trie 树算法 和 DFA 算法 Trie树算法 Trie 树 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率  Trie树的特点：  根节点不包含字符，除根节点外每一个节点都只包含一个字符。 从根节点到某一节点，路径上经过的字符连接起">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/6fc07f9c1d0bc1fd05d6419d1a0f3609.png">
 <meta property="article:published_time" content="2023-04-09T13:46:00.000Z">
@@ -292,7 +292,8 @@
               <div class="markdown-body">
                 
                 <p>敏感词过滤用的使用比较多的有 <strong>Trie 树算法</strong> 和 <strong>DFA 算法</strong></p>
-<h2 id="Trie树算法"><a href="#Trie树算法" class="headerlink" title="Trie树算法"></a>Trie树算法</h2><p><strong>Trie 树</strong> 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。<strong>Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率</strong></p>
+<h2 id="Trie树算法">Trie树算法</h2>
+<p><strong>Trie 树</strong> 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。<strong>Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率</strong></p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/6fc07f9c1d0bc1fd05d6419d1a0f3609.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>Trie树的特点：</p>
 <ol>
@@ -301,12 +302,14 @@
 <li>每个节点的所有子节点包含的字符都不相同。</li>
 </ol>
 <p><strong>Tire树是一种空间换时间的数据结构，查询效率极高但占用内存也高</strong></p>
-<h2 id="DFA-算法"><a href="#DFA-算法" class="headerlink" title="DFA 算法"></a>DFA 算法</h2><p><strong>DFA</strong>（Deterministic Finite Automata)即确定有穷自动机，与之对应的是 NFA（Non-Deterministic Finite Automata，不确定有穷自动机)。</p>
+<h2 id="DFA-算法">DFA 算法</h2>
+<p><strong>DFA</strong>（Deterministic Finite Automata)即确定有穷自动机，与之对应的是 NFA（Non-Deterministic Finite Automata，不确定有穷自动机)。</p>
 <p>有一个有限状态集合和一些从一个状态通向另一个状态的边，每条边上标记有一个符号，其中一个状态是初态，某些状态是终态。但不同于不确定的有限自动机，DFA中不会有从同一状态出发的两条边标志有相同的符号。</p>
 <p>敏感词过滤很适合用DFA算法，用户每次输入都是状态的切换，如果出现敏感词，既是终态，就可以结束判断。</p>
 <p>我们把数组形式的敏感词整理为一个树状结构，准确的说是一个森林。</p>
 <p>这样查找敏感词就变成了一个查找路径的问题，如果用户输入的内容中包含一个从根节点到叶子节点的完整路径，就说明包含敏感词。</p>
-<h2 id="两者对比（来自chatGPT）"><a href="#两者对比（来自chatGPT）" class="headerlink" title="两者对比（来自chatGPT）"></a>两者对比（来自chatGPT）</h2><p>DFA算法的优点包括：</p>
+<h2 id="两者对比（来自chatGPT）">两者对比（来自chatGPT）</h2>
+<p>DFA算法的优点包括：</p>
 <ol>
 <li><strong>精准度高</strong>：DFA算法匹配的结果一定是准确的，不会出现漏匹配或误匹配的情况。</li>
 <li><strong>匹配速度快</strong>：DFA算法匹配的速度非常快，适合处理大量数据。</li>

@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="范数的定义 0范数 1范数 1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数 2范数也就是欧氏距离 正无穷范数 正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数对于矩阵$A_{m×n}$， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]     矩阵的1范数（列范数）：矩阵的每一列上的">
+    <meta name="description" content="范数的定义  0范数  1范数  1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数  2范数也就是欧氏距离 正无穷范数  正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数 负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数 对于矩阵Am×nA_{m×n}Am×n​， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]  矩阵的1范数（列范">
 <meta property="og:type" content="article">
 <meta property="og:title" content="范数">
 <meta property="og:url" content="https://lishilong.cc/2022/10/13/AI/%E8%8C%83%E6%95%B0/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="范数的定义 0范数 1范数 1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数 2范数也就是欧氏距离 正无穷范数 正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数对于矩阵$A_{m×n}$， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]     矩阵的1范数（列范数）：矩阵的每一列上的">
+<meta property="og:description" content="范数的定义  0范数  1范数  1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数  2范数也就是欧氏距离 正无穷范数  正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数 负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数 对于矩阵Am×nA_{m×n}Am×n​， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]  矩阵的1范数（列范">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png">
 <meta property="article:published_time" content="2022-10-13T08:05:00.000Z">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          878 字
+          784 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          8 分钟
+          7 分钟
         
       </span>
     
@@ -293,30 +293,35 @@
             
               <div class="markdown-body">
                 
-                <h2 id="范数的定义"><a href="#范数的定义" class="headerlink" title="范数的定义"></a>范数的定义</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" srcset="/img/loading.gif" lazyload alt="image-20221013160652989"></p>
-<h2 id="0范数"><a href="#0范数" class="headerlink" title="0范数"></a>0范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160736569.png" srcset="/img/loading.gif" lazyload alt="image-20221013160736569"></p>
-<h2 id="1范数"><a href="#1范数" class="headerlink" title="1范数"></a>1范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160753968.png" srcset="/img/loading.gif" lazyload alt="image-20221013160753968"></p>
+                <h2 id="范数的定义">范数的定义</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" srcset="/img/loading.gif" lazyload alt="image-20221013160652989"></p>
+<h2 id="0范数">0范数</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160736569.png" srcset="/img/loading.gif" lazyload alt="image-20221013160736569"></p>
+<h2 id="1范数">1范数</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160753968.png" srcset="/img/loading.gif" lazyload alt="image-20221013160753968"></p>
 <p>1范数是向量各个元素的绝对值之和，也称为曼哈顿距离</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160924909.png" srcset="/img/loading.gif" lazyload alt="image-20221013160924909"></p>
-<h2 id="2范数"><a href="#2范数" class="headerlink" title="2范数"></a>2范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160945993.png" srcset="/img/loading.gif" lazyload alt="image-20221013160945993"></p>
+<h2 id="2范数">2范数</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160945993.png" srcset="/img/loading.gif" lazyload alt="image-20221013160945993"></p>
 <p>2范数也就是欧氏距离</p>
-<h2 id="正无穷范数"><a href="#正无穷范数" class="headerlink" title="正无穷范数"></a>正无穷范数</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013161336549.png" srcset="/img/loading.gif" lazyload alt="image-20221013161336549"></p>
+<h2 id="正无穷范数">正无穷范数</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013161336549.png" srcset="/img/loading.gif" lazyload alt="image-20221013161336549"></p>
 <p>正无穷范数表示向量所有元素的绝对值中最大的</p>
-<h2 id="负无穷范数"><a href="#负无穷范数" class="headerlink" title="负无穷范数"></a>负无穷范数</h2><p>负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷</p>
-<h2 id="矩阵的范数"><a href="#矩阵的范数" class="headerlink" title="矩阵的范数"></a>矩阵的范数</h2><p>对于矩阵$A_{m×n}$， 举例而说:</p>
+<h2 id="负无穷范数">负无穷范数</h2>
+<p>负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷</p>
+<h2 id="矩阵的范数">矩阵的范数</h2>
+<p>对于矩阵<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>m</mi><mo>×</mo><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{m×n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2583em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span>， 举例而说:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">A = [<br>-<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>;<br><span class="hljs-number">4</span>, -<span class="hljs-number">6</span>, <span class="hljs-number">6</span>;<br>]<br></code></pre></td></tr></table></figure>
-
-
-
 <ul>
-<li>矩阵的1范数（列范数）：矩阵的每一列上的元素绝对值先求和，再从中取最大值 $$ \Vert A\Vert_1&#x3D;\max_{1\le j\le n}\sum_{i&#x3D;1}^m|{a_{ij}}| \ \text{举例}: \Vert A\Vert_1 &#x3D; max([5,8,9]) &#x3D; 9 $$</li>
-<li>矩阵的2范数： 矩阵 $A^TA$ 的最大特征值开平方根 $$ \Vert A\Vert_2&#x3D;\sqrt{\lambda_{max}(A^T A)} $$</li>
+<li>矩阵的1范数（列范数）：矩阵的每一列上的元素绝对值先求和，再从中取最大值 $$ \Vert A\Vert_1=\max_{1\le j\le n}\sum_{i=1}^m|{a_{ij}}| \ \text{举例}: \Vert A\Vert_1 = max([5,8,9]) = 9 $$</li>
+<li>矩阵的2范数： 矩阵 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>A</mi><mi>T</mi></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">A^TA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">A</span></span></span></span> 的最大特征值开平方根 $$ \Vert A\Vert_2=\sqrt{\lambda_{max}(A^T A)} $$</li>
 </ul>
-<h2 id="扩展——L2范数与模型泛化"><a href="#扩展——L2范数与模型泛化" class="headerlink" title="扩展——L2范数与模型泛化"></a>扩展——L2范数与模型泛化</h2><p>使用L2范数做正则项时，可以削弱强特征，增强弱特征，这样可以避免模型过度依赖于强特征，提高模型的泛化能力，但也不是所有机器学习任务都适合使用L2正则化，在一些结构化数据挖掘任务或特征意义很模糊的机器学习任务（如深度学习）中，特征分布本来就是就是若干强特征与噪声的组合，这时加上L2范数约束反而会引入噪声，降低系统的抗噪性能，导致更差劲</p>
+<h2 id="扩展——L2范数与模型泛化">扩展——L2范数与模型泛化</h2>
+<p>使用L2范数做正则项时，可以削弱强特征，增强弱特征，这样可以避免模型过度依赖于强特征，提高模型的泛化能力，但也不是所有机器学习任务都适合使用L2正则化，在一些结构化数据挖掘任务或特征意义很模糊的机器学习任务（如深度学习）中，特征分布本来就是就是若干强特征与噪声的组合，这时加上L2范数约束反而会引入噪声，降低系统的抗噪性能，导致更差劲</p>
 <p>建议看这篇<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg">https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg</a></p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25847123/article/details/90400678">https://blog.csdn.net/qq_25847123/article/details/90400678</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md">https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/songyingxin/NLPer-Interview/blob/master/1-%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.md">https://github.com/songyingxin/NLPer-Interview/blob/master/1-基础数学知识/线性代数.md</a></p>
 <p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg">https://mp.weixin.qq.com/s/E1Z3K3jrGLoj80ABSma6bg</a></p>
 </blockquote>
 

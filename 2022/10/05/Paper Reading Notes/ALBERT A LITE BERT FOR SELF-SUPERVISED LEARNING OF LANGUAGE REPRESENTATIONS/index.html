@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《ALBERT: A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS》 论文来源： ICLR 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1909.11942.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;google-research&#x2F;ALBERT 概述在预训练自然语言表示时">
+    <meta name="description" content="标题：《ALBERT: A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS》 论文来源： ICLR 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1909.11942.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;google-research&#x2F;ALBERT 概述 在预训练自然语言表示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ALBERT A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS">
 <meta property="og:url" content="https://lishilong.cc/2022/10/05/Paper%20Reading%20Notes/ALBERT%20A%20LITE%20BERT%20FOR%20SELF-SUPERVISED%20LEARNING%20OF%20LANGUAGE%20REPRESENTATIONS/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《ALBERT: A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS》 论文来源： ICLR 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1909.11942.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;google-research&#x2F;ALBERT 概述在预训练自然语言表示时">
+<meta property="og:description" content="标题：《ALBERT: A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS》 论文来源： ICLR 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1909.11942.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;google-research&#x2F;ALBERT 概述 在预训练自然语言表示">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221006163318194.png">
 <meta property="article:published_time" content="2022-10-05T07:46:00.000Z">
@@ -297,30 +297,36 @@
 <p><strong>论文来源：</strong> ICLR 2020</p>
 <p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.11942.pdf">https://arxiv.org/pdf/1909.11942.pdf</a></p>
 <p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/google-research/ALBERT">https://github.com/google-research/ALBERT</a></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在预训练自然语言表示时增加模型大小通常会提高下游任务的性能。然而，由于GPU&#x2F;TPU内存的限制和更长的训练时间，在某些时候进一步增加模型变得更加困难。为了解决这些问题，本文提出了两种减少参数的技术，以降低内存消耗并提高BERT的训练速度</p>
+<h2 id="概述">概述</h2>
+<p>在预训练自然语言表示时增加模型大小通常会提高下游任务的性能。然而，由于GPU/TPU内存的限制和更长的训练时间，在某些时候进一步增加模型变得更加困难。为了解决这些问题，本文提出了两种减少参数的技术，以降低内存消耗并提高BERT的训练速度</p>
 <p>除此之外，本文还使用了一种专注于建模句子间连贯性的自我监督loss，并表明它始终有助于多句输入的下游任务</p>
 <p>两种减少参数技术：</p>
 <ul>
 <li>factorized embedding parameterization（矩阵分解）</li>
 <li>cross-layer parameter sharing（跨层参数共享）</li>
 </ul>
-<h2 id="模型细节"><a href="#模型细节" class="headerlink" title="模型细节"></a>模型细节</h2><h3 id="factorized-embedding-parameterization（矩阵分解）"><a href="#factorized-embedding-parameterization（矩阵分解）" class="headerlink" title="factorized embedding parameterization（矩阵分解）"></a>factorized embedding parameterization（矩阵分解）</h3><p>wordpiece embeedings的大小$E$  与 隐藏层embeedings的大小$H$的关系？</p>
-<p>XLNet和RoBERTa都遵循了$E≡H$，但是这样有什么道理呢？本文作者也提出了这样的疑问，在作者看来，从建模的角度来看，WordPiece嵌入是为了学习与上下文无关的表示，而隐藏层嵌入是为了学习与上下文相关的表示。RoBERTa论文中阐述了类bert表示的力量来自于使用上下文为学习这种上下文相关表示提供信号。因此，将WordPiece嵌入大小E从隐藏层大小H中分离出来，可以使我们根据建模需求更有效地使用总模型参数，这就决定了$H&gt;&gt;E$</p>
-<p>从实用的角度来看，自然语言处理通常要求词汇量V较大，如果$E≡H$，那么增加H就增加了嵌入矩阵$V$x$E$的大小，这很容易导致一个具有数十亿个参数的模型，其中大多数参数只在训练过程中很少更新</p>
+<h2 id="模型细节">模型细节</h2>
+<h3 id="factorized-embedding-parameterization（矩阵分解）">factorized embedding parameterization（矩阵分解）</h3>
+<p>wordpiece embeedings的大小<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>  与 隐藏层embeedings的大小<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span>的关系？</p>
+<p>XLNet和RoBERTa都遵循了<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>≡</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">E≡H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span>，但是这样有什么道理呢？本文作者也提出了这样的疑问，在作者看来，从建模的角度来看，WordPiece嵌入是为了学习与上下文无关的表示，而隐藏层嵌入是为了学习与上下文相关的表示。RoBERTa论文中阐述了类bert表示的力量来自于使用上下文为学习这种上下文相关表示提供信号。因此，将WordPiece嵌入大小E从隐藏层大小H中分离出来，可以使我们根据建模需求更有效地使用总模型参数，这就决定了<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>&gt;</mo><mo>&gt;</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">H&gt;&gt;E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span></p>
+<p>从实用的角度来看，自然语言处理通常要求词汇量V较大，如果<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>≡</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">E≡H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span>，那么增加H就增加了嵌入矩阵<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span>x<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>的大小，这很容易导致一个具有数十亿个参数的模型，其中大多数参数只在训练过程中很少更新</p>
 <p>由此，作者提出了矩阵分解，将一个非常大的词汇向量矩阵分解为两个小矩阵，例如词汇量大小是V，向量维度是E，隐藏层向量为H，则原始词汇向量参数大小为V x H，ALBert想将原始embedding映射到V x E（低纬度的向量），然后映射到隐藏空间H，这样参数量从 V x H下降到V x E + E x H，参数量大大下降。</p>
-<h3 id="cross-layer-parameter-sharing（跨层参数共享）"><a href="#cross-layer-parameter-sharing（跨层参数共享）" class="headerlink" title="cross-layer parameter sharing（跨层参数共享）"></a>cross-layer parameter sharing（跨层参数共享）</h3><p>在Bert中，我们共有12个self-attention层，每一层的结构如下所示：</p>
+<h3 id="cross-layer-parameter-sharing（跨层参数共享）">cross-layer parameter sharing（跨层参数共享）</h3>
+<p>在Bert中，我们共有12个self-attention层，每一层的结构如下所示：</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/2906939-20220815131824715-431109172.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>Albert的作者经过研究发现，虽然Bert中有着12个self-attention层，但是，如果把每一层的参数都提取出来，会发现每一层的参数都基本相似。因此Albert的作者索性将一个self-attention层复制12次，用这12个完全相同的self-attention层取代原先12个不同的self-attention层。在训练时，我们其实只对一层self-attention进行训练，但在计算时，由于我们将这一层计算了12次，所以计算速度并没有显著地降低。</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221006162451080.png" srcset="/img/loading.gif" lazyload alt="image-20221006162451080"></p>
 <p>上图是几种不同的共享形式，all-shared降低的参数量最大，但同时会对最后的效果产生一定的影响，而通过观察发现，shared-FFN可能是降低模型性能的主要原因，shared-attention影响并不大，如果担心影响实际效果，可以选择shared-attention。Albert默认使用的是all-shared。</p>
-<h3 id="sentence-order-prediction-SOP"><a href="#sentence-order-prediction-SOP" class="headerlink" title="sentence-order prediction, SOP"></a>sentence-order prediction, SOP</h3><p>我们知道原始的Bert预训练的loss由两个任务组成，maskLM和NSP(Next Sentence Prediction)，maskLM通过预测mask掉的词语来实现真正的双向transformer，NSP类似于语义匹配的任务，预测句子A和句子B是否匹配，是一个二分类的任务，其中正样本从原始语料获得，负样本随机负采样。NSP任务可以提高下游任务的性能，比如句子对的关系预测。但是也有论文指出NSP任务其实可以去掉，反而可以提高性能，比如RoBert。</p>
+<h3 id="sentence-order-prediction-SOP">sentence-order prediction, SOP</h3>
+<p>我们知道原始的Bert预训练的loss由两个任务组成，maskLM和NSP(Next Sentence Prediction)，maskLM通过预测mask掉的词语来实现真正的双向transformer，NSP类似于语义匹配的任务，预测句子A和句子B是否匹配，是一个二分类的任务，其中正样本从原始语料获得，负样本随机负采样。NSP任务可以提高下游任务的性能，比如句子对的关系预测。但是也有论文指出NSP任务其实可以去掉，反而可以提高性能，比如RoBert。</p>
 <p>本文以为NSP任务相对于MLM任务太简单了，学习到的东西也有限，因此本文提出了一个新的loss，sentence-order prediction(SOP)，SOP关注于句子间的连贯性，而非句子间的匹配性。SOP正样本也是从原始语料中获得，负样本是原始语料的句子A和句子B交换顺序。举个例子说明NSP和SOP的区别，原始语料句子 A和B， NSP任务正样本是 AB，负样本是AC；SOP任务正样本是AB，负样本是BA。可以看出SOP任务更加难，学习到的东西更多了（句子内部排序）</p>
-<h2 id="模型性能"><a href="#模型性能" class="headerlink" title="模型性能"></a>模型性能</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20190929114615757.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="模型性能">模型性能</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20190929114615757.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ol>
 <li>对于non-shared下(BERT-style)，更大的嵌入尺寸能够取得更好的结果，但是提升的幅度其实不大。</li>
 <li>对于all-shared(ALBERT-style)，嵌入大小128是最好的。</li>
 </ol>
-<p>基于上述这些结果，本文在后续的实验中的嵌入大小统一选用 E &#x3D; 128 。</p>
+<p>基于上述这些结果，本文在后续的实验中的嵌入大小统一选用 E = 128 。</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/20190929114712400.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>本文这里对比了3种策略：没有句子间损失(比如XLNet和RoBERTa)、NSP(比如BERT)，SOP(ALBERT)。这里采用的ALBERT也是ALBERT-base。对比过程，一方面对比自身任务中的准确率，另一方面是下游任务的性能表现。</p>
 <ul>

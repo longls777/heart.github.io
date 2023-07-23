@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《Graph Neural Networks for Natural Language Processing - A Survey》 论文来源： arxiv 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2106.06090.pdf 源码：  Introductions图神经网络在NLP中的应用： 文本序列中的句子结构信息（语法解析树，例如dependency and c">
+    <meta name="description" content="标题：《Graph Neural Networks for Natural Language Processing - A Survey》 论文来源： arxiv 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2106.06090.pdf 源码： Introductions 图神经网络在NLP中的应用：  文本序列中的句子结构信息（语法解析树，例如dependency and">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Graph Neural Networks for Natural Language Processing - A Survey">
 <meta property="og:url" content="https://lishilong.cc/2022/12/16/Paper%20Reading%20Notes/Graph%20Neural%20Networks%20for%20Natural%20Language%20Processing%20A%20Survey/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《Graph Neural Networks for Natural Language Processing - A Survey》 论文来源： arxiv 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2106.06090.pdf 源码：  Introductions图神经网络在NLP中的应用： 文本序列中的句子结构信息（语法解析树，例如dependency and c">
+<meta property="og:description" content="标题：《Graph Neural Networks for Natural Language Processing - A Survey》 论文来源： arxiv 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2106.06090.pdf 源码： Introductions 图神经网络在NLP中的应用：  文本序列中的句子结构信息（语法解析树，例如dependency and">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221216163344103.png">
 <meta property="article:published_time" content="2022-12-16T08:06:00.000Z">
@@ -296,19 +296,23 @@
                 <p><strong>标题：</strong>《Graph Neural Networks for Natural Language Processing - A Survey》</p>
 <p><strong>论文来源：</strong> arxiv 2022</p>
 <p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.06090.pdf">https://arxiv.org/pdf/2106.06090.pdf</a></p>
-<p><strong>源码：</strong> </p>
-<h2 id="Introductions"><a href="#Introductions" class="headerlink" title="Introductions"></a>Introductions</h2><h5 id="图神经网络在NLP中的应用："><a href="#图神经网络在NLP中的应用：" class="headerlink" title="图神经网络在NLP中的应用："></a>图神经网络在NLP中的应用：</h5><ul>
+<p><strong>源码：</strong></p>
+<h2 id="Introductions">Introductions</h2>
+<h5 id="图神经网络在NLP中的应用：">图神经网络在NLP中的应用：</h5>
+<ul>
 <li>文本序列中的句子结构信息（语法解析树，例如dependency and constituency parsing trees）用于加强原始序列信息</li>
 <li>文本序列中的语义信息（如抽象意义表示图和信息提取图等语义解析图）用于增强原始序列信息</li>
 </ul>
 <p>这些图结构数据可以编码实体token之间复杂的成对关系，以学习更多信息的表示</p>
-<h5 id="在NLP任务中应用图神经网络的难点"><a href="#在NLP任务中应用图神经网络的难点" class="headerlink" title="在NLP任务中应用图神经网络的难点"></a>在NLP任务中应用图神经网络的难点</h5><ul>
+<h5 id="在NLP任务中应用图神经网络的难点">在NLP任务中应用图神经网络的难点</h5>
+<ul>
 <li>自动将原始文本序列数据转换为高度图形结构的数据。这种挑战在自然语言处理中是深刻的，因为大多数自然语言处理任务都涉及使用文本序列作为原始输入。从文本序列自动构造图以利用底层结构信息是利用图神经网络解决自然语言处理问题的关键步骤。</li>
 <li>正确确定图表示学习技术。提出专门设计的GNN来学习不同图结构数据(如无向图、有向图、多关系图和异构图)的独特特征是至关重要的</li>
 <li>有效地建模复杂的数据。这样的挑战很重要，因为许多NLP任务涉及学习基于图的输入和其他高度结构化的输出数据之间的映射，如序列、树，以及节点和边都有多类型的图数据。</li>
 </ul>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221216163344103.png" srcset="/img/loading.gif" lazyload alt="图的应用分类"></p>
-<h2 id="基于图的NLP算法"><a href="#基于图的NLP算法" class="headerlink" title="基于图的NLP算法"></a>基于图的NLP算法</h2>
+<h2 id="基于图的NLP算法">基于图的NLP算法</h2>
+
                 
               </div>
             

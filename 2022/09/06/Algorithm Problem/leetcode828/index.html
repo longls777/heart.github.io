@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="828. 统计子串中的唯一字符我们定义了一个函数 countUniqueChars(s) 来统计字符串 s 中的唯一字符，并返回唯一字符的个数。 例如：s &#x3D; &quot;LEETCODE&quot; ，则其中 &quot;L&quot;, &quot;T&quot;,&quot;C&quot;,&quot;O&quot;,&quot;D&quot; 都是唯一字符，因为它们只出现一次，所以 cou">
+    <meta name="description" content="828. 统计子串中的唯一字符 我们定义了一个函数 countUniqueChars(s) 来统计字符串 s 中的唯一字符，并返回唯一字符的个数。 例如：s &#x3D; &quot;LEETCODE&quot; ，则其中 &quot;L&quot;, &quot;T&quot;,&quot;C&quot;,&quot;O&quot;,&quot;D&quot; 都是唯一字符，因为它们只出现一次，所以 co">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode828 统计子串中的唯一字符">
 <meta property="og:url" content="https://lishilong.cc/2022/09/06/Algorithm%20Problem/leetcode828/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="828. 统计子串中的唯一字符我们定义了一个函数 countUniqueChars(s) 来统计字符串 s 中的唯一字符，并返回唯一字符的个数。 例如：s &#x3D; &quot;LEETCODE&quot; ，则其中 &quot;L&quot;, &quot;T&quot;,&quot;C&quot;,&quot;O&quot;,&quot;D&quot; 都是唯一字符，因为它们只出现一次，所以 cou">
+<meta property="og:description" content="828. 统计子串中的唯一字符 我们定义了一个函数 countUniqueChars(s) 来统计字符串 s 中的唯一字符，并返回唯一字符的个数。 例如：s &#x3D; &quot;LEETCODE&quot; ，则其中 &quot;L&quot;, &quot;T&quot;,&quot;C&quot;,&quot;O&quot;,&quot;D&quot; 都是唯一字符，因为它们只出现一次，所以 co">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-06T13:02:39.000Z">
 <meta property="article:modified_time" content="2022-12-19T12:32:56.881Z">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.6k 字
         
       </span>
     
@@ -291,32 +291,34 @@
             
               <div class="markdown-body">
                 
-                <h4 id="828-统计子串中的唯一字符"><a href="#828-统计子串中的唯一字符" class="headerlink" title="828. 统计子串中的唯一字符"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-unique-characters-of-all-substrings-of-a-given-string/">828. 统计子串中的唯一字符</a></h4><p>我们定义了一个函数 <code>countUniqueChars(s)</code> 来统计字符串 <code>s</code> 中的唯一字符，并返回唯一字符的个数。</p>
+                <h4 id="828-统计子串中的唯一字符"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-unique-characters-of-all-substrings-of-a-given-string/">828. 统计子串中的唯一字符</a></h4>
+<p>我们定义了一个函数 <code>countUniqueChars(s)</code> 来统计字符串 <code>s</code> 中的唯一字符，并返回唯一字符的个数。</p>
 <p>例如：<code>s = &quot;LEETCODE&quot;</code> ，则其中 <code>&quot;L&quot;</code>, <code>&quot;T&quot;</code>,<code>&quot;C&quot;</code>,<code>&quot;O&quot;</code>,<code>&quot;D&quot;</code> 都是唯一字符，因为它们只出现一次，所以 <code>countUniqueChars(s) = 5</code> 。</p>
 <p>本题将会给你一个字符串 <code>s</code> ，我们需要返回 <code>countUniqueChars(t)</code> 的总和，其中 <code>t</code> 是 <code>s</code> 的子字符串。输入用例保证返回值为 32 位整数。</p>
 <p>注意，某些子字符串可能是重复的，但你统计时也必须算上这些重复的子字符串（也就是说，你必须统计 <code>s</code> 的所有子字符串中的唯一字符）。</p>
 <p><strong>示例 1：</strong></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入: <span class="hljs-attr">s</span> = <span class="hljs-string">&quot;ABC&quot;</span><br>输出: <span class="hljs-number">10</span><br>解释: 所有可能的子串为：<span class="hljs-string">&quot;A&quot;</span>,<span class="hljs-string">&quot;B&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>,<span class="hljs-string">&quot;AB&quot;</span>,<span class="hljs-string">&quot;BC&quot;</span> 和 <span class="hljs-string">&quot;ABC&quot;</span>。<br>     其中，每一个子串都由独特字符构成。<br>     所以其长度总和为：<span class="hljs-number">1</span> + <span class="hljs-number">1</span> + <span class="hljs-number">1</span> + <span class="hljs-number">2</span> + <span class="hljs-number">2</span> + <span class="hljs-number">3</span> = <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>示例 2：</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">输入: s = <span class="hljs-string">&quot;ABA&quot;</span><br>输出: <span class="hljs-number">8</span><br>解释: 除了 <span class="hljs-built_in">countUniqueChars</span>(<span class="hljs-string">&quot;ABA&quot;</span>) = <span class="hljs-number">1</span> 之外，其余与示例 <span class="hljs-number">1</span> 相同。<br></code></pre></td></tr></table></figure>
-
 <p><strong>示例 3：</strong></p>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">输入：s <span class="hljs-operator">=</span> <span class="hljs-string">&quot;LEETCODE&quot;</span><br>输出：<span class="hljs-number">92</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 10^5</code></li>
 <li><code>s</code> 只包含大写英文字符</li>
 </ul>
-<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">uniqueLetterString</span><span class="hljs-params">(String s)</span> &#123;<br>        <span class="hljs-type">char</span>[] cs = s.toCharArray();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> cs.length, ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span>[] l = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n], r = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n];<br>        <span class="hljs-type">int</span>[] idx = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<br>        Arrays.fill(idx, -<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">u</span> <span class="hljs-operator">=</span> cs[i] - <span class="hljs-string">&#x27;A&#x27;</span>;<br>            l[i] = idx[u];<br>            idx[u] = i;<br>        &#125;<br>        Arrays.fill(idx, n);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">u</span> <span class="hljs-operator">=</span> cs[i] - <span class="hljs-string">&#x27;A&#x27;</span>;<br>            r[i] = idx[u];<br>            idx[u] = i;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++) ans += (i - l[i]) * (r[i] - i);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<h4 id="题解">题解</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">uniqueLetterString</span><span class="hljs-params">(String s)</span> &#123;<br>        <span class="hljs-type">char</span>[] cs = s.toCharArray();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> cs.length, ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span>[] l = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n], r = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n];<br>        <span class="hljs-type">int</span>[] idx = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<br>        Arrays.fill(idx, -<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">u</span> <span class="hljs-operator">=</span> cs[i] - <span class="hljs-string">&#x27;A&#x27;</span>;<br>            l[i] = idx[u];<br>            idx[u] = i;<br>        &#125;<br>        Arrays.fill(idx, n);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">u</span> <span class="hljs-operator">=</span> cs[i] - <span class="hljs-string">&#x27;A&#x27;</span>;<br>            r[i] = idx[u];<br>            idx[u] = i;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++) ans += (i - l[i]) * (r[i] - i);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>原问题为求所有子数组的唯一字符数量和，其可等价为求每个 s[i]s[i] 对答案的贡献，即每个 s[i]s[i] 可作为多少个子数组的唯一元素。</p>
 <p>假定我们能预处理出两数组 l 和 r 分别代表 s[i]s[i] 作为子数组唯一字符时，其所能到达的最远两端：</p>
-<p>l[i] &#x3D; a 代表下标 aa 为 s[i]s[i] 能够作为子数组唯一字符时的最远左边界，即为 s[i]s[i] 左边第一个与 s[i]s[i] 值相同的位置（若不存在，则为 a &#x3D; -1a&#x3D;−1）<br>r[i] &#x3D; b 代表跳表 bb 为 s[i]s[i] 能够作为子数组唯一字符时的最远右边界，即为 s[i]s[i] 右边第一个与 s[i]s[i] 值相同的位置（若不存在，则为 b &#x3D; nb&#x3D;n）<br>子数组左端点个数为 (i - a)(i−a) 个，右端点个数为 (b - i)(b−i) 个，根据乘法原理可知，子数组个数为两者乘积。</p>
+<p>l[i] = a 代表下标 aa 为 s[i]s[i] 能够作为子数组唯一字符时的最远左边界，即为 s[i]s[i] 左边第一个与 s[i]s[i] 值相同的位置（若不存在，则为 a = -1a=−1）<br>
+r[i] = b 代表跳表 bb 为 s[i]s[i] 能够作为子数组唯一字符时的最远右边界，即为 s[i]s[i] 右边第一个与 s[i]s[i] 值相同的位置（若不存在，则为 b = nb=n）<br>
+子数组左端点个数为 (i - a)(i−a) 个，右端点个数为 (b - i)(b−i) 个，根据乘法原理可知，子数组个数为两者乘积。</p>
 <p>预处理 l 和 r 只需要使用遍历计数即可。</p>
 <blockquote>
-<p>作者：AC_OIer<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-unique-characters-of-all-substrings-of-a-given-string/solution/by-ac_oier-922k/">https://leetcode.cn/problems/count-unique-characters-of-all-substrings-of-a-given-string/solution/by-ac_oier-922k/</a><br>来源：力扣（LeetCode）</p>
+<p>作者：AC_OIer<br>
+链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-unique-characters-of-all-substrings-of-a-given-string/solution/by-ac_oier-922k/">https://leetcode.cn/problems/count-unique-characters-of-all-substrings-of-a-given-string/solution/by-ac_oier-922k/</a><br>
+来源：力扣（LeetCode）</p>
 </blockquote>
 
                 

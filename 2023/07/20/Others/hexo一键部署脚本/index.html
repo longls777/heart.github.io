@@ -293,9 +293,6 @@
                 
                 <p>一遍一遍敲命令太麻烦了，我怎么之前就没想到写个脚本</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> z: &amp;&amp; <span class="hljs-built_in">cd</span> hexo_ &amp;&amp; hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; git add . &amp;&amp; git commit -m <span class="hljs-string">&quot;7&quot;</span> &amp;&amp; git push origin hexo_<br></code></pre></td></tr></table></figure>
-
-
-
 <p>把这个保存为一个.sh文件，然后放在桌面直接点击即可</p>
 <p>效果是自动更新生成hexo文件并部署到服务器，之后保存源文件到git仓库（通常仓库master分支为hexo生成的静态页面文件，另外新建一个分支放源文件，比如我的hexo_）</p>
 <p>注意需要安装git bash，以及目录和git分支需要改成自己的</p>

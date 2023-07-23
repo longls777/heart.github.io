@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="652. 寻找重复的子树给定一棵二叉树 root，返回所有重复的子树。 对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。 如果两棵树具有相同的结构和相同的结点值，则它们是重复的。 示例 1：  12输入：root &#x3D; [1,2,3,4,null,2,4,null,null,4]输出：[[2,4],[4]]  示例 2：  12输入：root &#x3D; [2,1,1]输出：[[1]]  示例">
+    <meta name="description" content="652. 寻找重复的子树 给定一棵二叉树 root，返回所有重复的子树。 对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。 如果两棵树具有相同的结构和相同的结点值，则它们是重复的。 示例 1：  12输入：root &#x3D; [1,2,3,4,null,2,4,null,null,4]输出：[[2,4],[4]] 示例 2：  12输入：root &#x3D; [2,1,1]输出：[[1]] 示例 3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode652 寻找重复的子树">
 <meta property="og:url" content="https://lishilong.cc/2022/09/06/Algorithm%20Problem/leetcode652/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="652. 寻找重复的子树给定一棵二叉树 root，返回所有重复的子树。 对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。 如果两棵树具有相同的结构和相同的结点值，则它们是重复的。 示例 1：  12输入：root &#x3D; [1,2,3,4,null,2,4,null,null,4]输出：[[2,4],[4]]  示例 2：  12输入：root &#x3D; [2,1,1]输出：[[1]]  示例">
+<meta property="og:description" content="652. 寻找重复的子树 给定一棵二叉树 root，返回所有重复的子树。 对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。 如果两棵树具有相同的结构和相同的结点值，则它们是重复的。 示例 1：  12输入：root &#x3D; [1,2,3,4,null,2,4,null,null,4]输出：[[2,4],[4]] 示例 2：  12输入：root &#x3D; [2,1,1]输出：[[1]] 示例 3">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/e1.jpg">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/e2.jpg">
@@ -295,32 +295,31 @@
             
               <div class="markdown-body">
                 
-                <h4 id="652-寻找重复的子树"><a href="#652-寻找重复的子树" class="headerlink" title="652. 寻找重复的子树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-duplicate-subtrees/">652. 寻找重复的子树</a></h4><p>给定一棵二叉树 <code>root</code>，返回所有<strong>重复的子树</strong>。</p>
+                <h4 id="652-寻找重复的子树"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-duplicate-subtrees/">652. 寻找重复的子树</a></h4>
+<p>给定一棵二叉树 <code>root</code>，返回所有<strong>重复的子树</strong>。</p>
 <p>对于同一类的重复子树，你只需要返回其中任意<strong>一棵</strong>的根结点即可。</p>
 <p>如果两棵树具有<strong>相同的结构</strong>和<strong>相同的结点值</strong>，则它们是<strong>重复</strong>的。</p>
 <p><strong>示例 1：</strong></p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：root = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,null,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,null,null,<span class="hljs-number">4</span>]<br>输出：<span class="hljs-string">[[2,4],[4]]</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>示例 2：</strong></p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：root = [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br>输出：<span class="hljs-string">[[1]]</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>示例 3：</strong></p>
 <p><strong><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e33.jpg" srcset="/img/loading.gif" lazyload alt="img"></strong></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：root = [<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,null,<span class="hljs-number">3</span>,null]<br>输出：<span class="hljs-string">[[2,3],[3]]</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>提示：</strong></p>
 <ul>
 <li>树中的结点数在<code>[1,10^4]</code>范围内。</li>
 <li><code>-200 &lt;= Node.val &lt;= 200</code></li>
 </ul>
-<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    Map&lt;String, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    List&lt;TreeNode&gt; ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-keyword">public</span> List&lt;TreeNode&gt; <span class="hljs-title function_">findDuplicateSubtrees</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        dfs(root);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    String <span class="hljs-title function_">dfs</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot; &quot;</span>;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>        sb.append(root.val).append(<span class="hljs-string">&quot;_&quot;</span>);<br>        sb.append(dfs(root.left)).append(dfs(root.right));<br>        <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> sb.toString();<br>        map.put(key, map.getOrDefault(key, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span> (map.get(key) == <span class="hljs-number">2</span>) ans.add(root);<br>        <span class="hljs-keyword">return</span> key;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
+<h4 id="题解">题解</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    Map&lt;String, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    List&lt;TreeNode&gt; ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-keyword">public</span> List&lt;TreeNode&gt; <span class="hljs-title function_">findDuplicateSubtrees</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        dfs(root);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    String <span class="hljs-title function_">dfs</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot; &quot;</span>;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>        sb.append(root.val).append(<span class="hljs-string">&quot;_&quot;</span>);<br>        sb.append(dfs(root.left)).append(dfs(root.right));<br>        <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> sb.toString();<br>        map.put(key, map.getOrDefault(key, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span> (map.get(key) == <span class="hljs-number">2</span>) ans.add(root);<br>        <span class="hljs-keyword">return</span> key;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p>作者：AC_OIer<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-duplicate-subtrees/solution/by-ac_oier-ly58/">https://leetcode.cn/problems/find-duplicate-subtrees/solution/by-ac_oier-ly58/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>作者：AC_OIer<br>
+链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-duplicate-subtrees/solution/by-ac_oier-ly58/">https://leetcode.cn/problems/find-duplicate-subtrees/solution/by-ac_oier-ly58/</a><br>
+来源：力扣（LeetCode）<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 </blockquote>
 
                 

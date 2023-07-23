@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="调试文件设置launch.json 基本配置 123456&amp;#123;    &quot;name&quot;: &quot;Python: Current File&quot;,    &quot;type&quot;: &quot;python&quot;,    &quot;request&quot;: &quot;launch&quot;,    &quot;program&quot;:">
+    <meta name="description" content="调试文件设置 launch.json 基本配置 123456&amp;#123;    &quot;name&quot;: &quot;Python: Current File&quot;,    &quot;type&quot;: &quot;python&quot;,    &quot;request&quot;: &quot;launch&quot;,    &quot;program&quot;:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vscode python调试">
 <meta property="og:url" content="https://lishilong.cc/2022/09/29/Others/vscode%20python%E8%B0%83%E8%AF%95/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="调试文件设置launch.json 基本配置 123456&amp;#123;    &quot;name&quot;: &quot;Python: Current File&quot;,    &quot;type&quot;: &quot;python&quot;,    &quot;request&quot;: &quot;launch&quot;,    &quot;program&quot;:">
+<meta property="og:description" content="调试文件设置 launch.json 基本配置 123456&amp;#123;    &quot;name&quot;: &quot;Python: Current File&quot;,    &quot;type&quot;: &quot;python&quot;,    &quot;request&quot;: &quot;launch&quot;,    &quot;program&quot;:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-29T12:30:00.000Z">
 <meta property="article:modified_time" content="2022-12-16T10:23:36.317Z">
@@ -291,10 +291,10 @@
             
               <div class="markdown-body">
                 
-                <h2 id="调试文件设置"><a href="#调试文件设置" class="headerlink" title="调试文件设置"></a>调试文件设置</h2><p>launch.json</p>
+                <h2 id="调试文件设置">调试文件设置</h2>
+<p>launch.json</p>
 <p><strong>基本配置</strong></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Python: Current File&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>自定义配置</strong></p>
 <p><code>name</code></p>
 <p>出现在vscode调试下拉列表中的调试配置名称，可以根据名称选择不同的调试配置文件</p>
@@ -309,10 +309,8 @@
 <p><code>program</code></p>
 <p>提供python程序入口模块的完全限定路径。推荐值为<code>$&#123;file&#125;</code>，它使用编辑器中的活动文件。但是，对于具有多个文件的程序，可以指定程序的启动文件。例如：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/Users/Me/Projects/PokemonGo-Bot/pokemongo_bot/event_handlers/__init__.py&quot;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
-
 <p>还可以依赖工作区根目录中的相对路径。例如，如果根是<code>/Users/Me/Projects/PokemonGo-Bot</code>那么你可以使用以下内容：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/pokemongo_bot/event_handlers/__init__.py&quot;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
-
 <p><code>pythonPath</code></p>
 <p>指向Python解释器用于调试目的。如果未指定，则默认为<code>python.pythonPath</code>设置中标识的解释器，这相当于使用该值<code>$&#123;config:python.pythonPath&#125;</code>。要使用不同的解释器，请改为指定其路径。</p>
 <blockquote>
@@ -321,7 +319,6 @@
 <p><code>args</code></p>
 <p>指定传递给Python程序的参数，例如：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">&quot;--quiet&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;--norepeat&quot;</span><br><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
-
 <p><code>cwd</code></p>
 <p>指定调试器的当前工作目录，它是代码中使用的任何相对路径的基础文件夹。如果省略，默认为<code>$&#123;workspaceFolder&#125;</code>（在VS代码中打开的文件夹）。</p>
 <p>作为一个例子，说<code>$&#123;workspaceFolder&#125;</code>包含一个<code>py_code</code>文件夹包含<code>app.py</code>，和一个<code>data</code>文件夹包含<code>salaries.csv</code>。如果启动调试器<code>py_code/app.py</code>，则数据文件的相对路径根据以下值而变化<code>cwd</code>：</p>
@@ -332,7 +329,8 @@
 <th>数据文件的相对路径</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>省略或 <code>$&#123;workspaceFolder&#125;</code></td>
 <td><code>data/salaries.csv</code></td>
 </tr>
@@ -344,13 +342,11 @@
 <td><code>$&#123;workspaceFolder&#125;/data</code></td>
 <td><code>salaries.csv</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><code>env</code></p>
 <p>为除调试器始终继承的系统环境变量之外的调试器进程设置可选的环境变量。例如：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;CUDA_VISIBLE_DEVIECES&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;0, 1&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;DATA_DIR&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;../dream/data&quot;</span><br><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
-
-
-
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/it-tsz/p/9022456.html">https://www.cnblogs.com/it-tsz/p/9022456.html</a></p>
 </blockquote>

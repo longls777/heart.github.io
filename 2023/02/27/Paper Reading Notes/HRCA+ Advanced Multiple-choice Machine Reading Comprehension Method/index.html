@@ -16,12 +16,12 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》 论文来源： LREC 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.lrec-1.651&#x2F; 源码：  Method 该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章">
+    <meta name="description" content="标题：《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》 论文来源： LREC 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.lrec-1.651&#x2F; 源码： Method  该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method">
 <meta property="og:url" content="https://lishilong.cc/2023/02/27/Paper%20Reading%20Notes/HRCA+%20Advanced%20Multiple-choice%20Machine%20Reading%20Comprehension%20Method/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》 论文来源： LREC 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.lrec-1.651&#x2F; 源码：  Method 该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章">
+<meta property="og:description" content="标题：《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》 论文来源： LREC 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.lrec-1.651&#x2F; 源码： Method  该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162248879.png">
@@ -243,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          758 字
+          821 字
         
       </span>
     
@@ -300,10 +300,11 @@
                 <p><strong>标题：</strong>《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》</p>
 <p><strong>论文来源：</strong> LREC 2022</p>
 <p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.lrec-1.651/">https://aclanthology.org/2022.lrec-1.651/</a></p>
-<p><strong>源码：</strong> </p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png" srcset="/img/loading.gif" lazyload alt="image-20230227154427405"></p>
+<p><strong>源码：</strong></p>
+<h2 id="Method">Method</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png" srcset="/img/loading.gif" lazyload alt="image-20230227154427405"></p>
 <p>该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章</p>
-<p>基于预训练模型，首先生成（文章，问题，候选选项）三元组$(P,Q,O)$的word embedding，每个word embedding划分为对应于（文章，问题，候选选项）的三部分</p>
+<p>基于预训练模型，首先生成（文章，问题，候选选项）三元组<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>P</mi><mo separator="true">,</mo><mi>Q</mi><mo separator="true">,</mo><mi>O</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(P,Q,O)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mclose">)</span></span></span></span>的word embedding，每个word embedding划分为对应于（文章，问题，候选选项）的三部分</p>
 <p>此外，K个HRCA层将以下三个步骤重复K次，从而模拟人类试图在阅读理解考试中获得高分的方式：</p>
 <ol>
 <li>对问题进行多头self-attention（将问题视为q、k和v），这一步的目的是让模型再次确认问题</li>
@@ -311,18 +312,23 @@
 <li>对文章和步骤2中显示的更新选项执行多头关注（将文章视为q，并将更新的选项视为k和v)。这一步为了让模型在理解候选选项后，理解带有问题的文章和相应的候选选项</li>
 </ol>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162248879.png" srcset="/img/loading.gif" lazyload alt="image-20230227162248879"></p>
-<p>经过预训练模型后，得到：<br>$$<br>[e_1,e_2,…,e_{k+l+m}]<br>$$</p>
+<p>经过预训练模型后，得到：</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>e</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>e</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>e</mi><mrow><mi>k</mi><mo>+</mo><mi>l</mi><mo>+</mo><mi>m</mi></mrow></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[e_1,e_2,...,e_{k+l+m}]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span></p>
 <blockquote>
 <p>HRCA使模型能够学习文章、问题和相应候选选项中每两个部分之间的关系，并将学习到的信息更新到下一个学习步骤</p>
 </blockquote>
-<h3 id="HRCA"><a href="#HRCA" class="headerlink" title="HRCA"></a>HRCA</h3><p>将得到的$E$分为$E^P,E^Q,E^O$</p>
+<h3 id="HRCA">HRCA</h3>
+<p>将得到的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>分为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi><mi>P</mi></msup><mo separator="true">,</mo><msup><mi>E</mi><mi>Q</mi></msup><mo separator="true">,</mo><msup><mi>E</mi><mi>O</mi></msup></mrow><annotation encoding="application/x-tex">E^P,E^Q,E^O</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0358em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">O</span></span></span></span></span></span></span></span></span></span></span></p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162549110.png" srcset="/img/loading.gif" lazyload alt="image-20230227162549110"></p>
-<h3 id="PQO-Matrix"><a href="#PQO-Matrix" class="headerlink" title="PQO Matrix"></a>PQO Matrix</h3><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227163021369.png" srcset="/img/loading.gif" lazyload alt="image-20230227163021369"></p>
+<h3 id="PQO-Matrix">PQO Matrix</h3>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227163021369.png" srcset="/img/loading.gif" lazyload alt="image-20230227163021369"></p>
 <p>作者发现HRCA中仅使用了三种attention关系，即问题和问题本身、候选选项和问题、文章和候选选项</p>
 <p>上图中，红色的为HRCA中使用的，浅红色的为自注意力，灰色的为未使用的attention</p>
-<h3 id="HRCA-1"><a href="#HRCA-1" class="headerlink" title="HRCA+"></a>HRCA+</h3><p>使用浅红色和灰色的关系，加强HRCA	</p>
+<h3 id="HRCA-2">HRCA+</h3>
+<p>使用浅红色和灰色的关系，加强HRCA</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227165008151.png" srcset="/img/loading.gif" lazyload alt="image-20230227165008151"></p>
-<p>​	</p>
+<p>​</p>
 
                 
               </div>
