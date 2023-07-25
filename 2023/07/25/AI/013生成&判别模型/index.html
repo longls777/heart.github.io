@@ -16,20 +16,22 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="Heart">
-<meta property="og:url" content="https://lishilong.cc/2023/07/24/AI/015%E6%84%9F%E7%9F%A5%E6%9C%BA/index.html">
+    <meta name="description" content="生成式模型  目标是学习数据的联合概率分布，即通过观察输入数据 XXX 和输出数据 YYY 之间的关系来建模 P(X,Y)P(X,Y)P(X,Y)。生成模型可以用于生成新的数据样本，因为它们包含了数据的完整概率分布信息 可以处理无标签数据，因为它们学习了数据的完整分布，所以可以用于无监督学习任务，例如聚类和生成新样本 需要建模整个数据的联合概率分布，学习效率通常比判别式模型低 在样本不平衡的情况下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成式模型和判别式模型">
+<meta property="og:url" content="https://lishilong.cc/2023/07/25/AI/013%E7%94%9F%E6%88%90&%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Heart">
+<meta property="og:description" content="生成式模型  目标是学习数据的联合概率分布，即通过观察输入数据 XXX 和输出数据 YYY 之间的关系来建模 P(X,Y)P(X,Y)P(X,Y)。生成模型可以用于生成新的数据样本，因为它们包含了数据的完整概率分布信息 可以处理无标签数据，因为它们学习了数据的完整分布，所以可以用于无监督学习任务，例如聚类和生成新样本 需要建模整个数据的联合概率分布，学习效率通常比判别式模型低 在样本不平衡的情况下">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-24T15:08:09.098Z">
-<meta property="article:modified_time" content="2023-07-24T15:08:09.098Z">
+<meta property="article:published_time" content="2023-07-25T06:32:00.000Z">
+<meta property="article:modified_time" content="2023-07-25T06:42:42.842Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Heart</title>
+  <title>生成式模型和判别式模型 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -40,6 +42,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
 
 
 
@@ -210,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="生成式模型和判别式模型"></span>
           
         </div>
 
@@ -221,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-24 23:08" pubdate>
-          2023年7月24日 晚上
+        <time datetime="2023-07-25 14:32" pubdate>
+          2023年7月25日 下午
         </time>
       </span>
     
@@ -233,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          562 字
         
       </span>
     
@@ -244,7 +248,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -282,18 +286,57 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">生成式模型和判别式模型</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h2 id="生成式模型">生成式模型</h2>
+<ul>
+<li>目标是学习数据的<strong>联合概率分布</strong>，即通过观察输入数据 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 和输出数据 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span></span> 之间的关系来建模 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X,Y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span></span></span></span>。生成模型可以用于生成新的数据样本，因为它们包含了数据的完整概率分布信息</li>
+<li>可以处理无标签数据，因为它们学习了数据的完整分布，所以可以用于<strong>无监督学习</strong>任务，例如聚类和生成新样本</li>
+<li>需要建模整个数据的联合概率分布，学习效率通常比判别式模型低</li>
+<li>在样本不平衡的情况下，生成模型可能表现更好，因为它们能够通过学习整体分布来综合考虑输入和输出之间的关系，从而更好地处理罕见类别</li>
+<li>通常更适合处理数据的<strong>低级特征表示</strong>，因为它们需要建模整个数据分布</li>
+<li>包括朴素贝叶斯、高斯混合模型和生成对抗网络（GANs）等</li>
+</ul>
+<h2 id="判别式模型">判别式模型</h2>
+<ul>
+<li>目标是学习<strong>条件概率分布</strong>，即通过观察输入数据 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 来建模 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(Y|X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>，即给定输入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 下输出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span></span> 的条件概率。判别式模型关注的是决策边界，即如何最好地对输入进行分类</li>
+<li>需要有标签的数据来学习条件概率分布，因此通常用于<strong>有监督学习</strong>任务，例如分类和回归</li>
+<li>判别式模型仅关注输入和输出之间的关系，学习效率通常比生成式模型高</li>
+<li>在样本不平衡的情况下可能需要额外的技术处理来解决分类中的偏差问题</li>
+<li>通常对于<strong>高级特征表示</strong>更加适应，因为它们只需关注输入和输出之间的条件概率</li>
+<li>逻辑回归、支持向量机（SVM）和各种深度神经网络</li>
+</ul>
+
                 
               </div>
             
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -304,8 +347,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>https://lishilong.cc/2023/07/24/AI/015感知机/</div>
+      <div>生成式模型和判别式模型</div>
+      <div>https://lishilong.cc/2023/07/25/AI/013生成&amp;判别模型/</div>
     </div>
     <div class="license-meta">
       
@@ -317,7 +360,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年7月24日</div>
+          <div>2023年7月25日</div>
         </div>
       
       
@@ -349,9 +392,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/24/AI/016%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM/" title="">
+                      <a href="/2023/07/25/AI/014%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" title="线性回归公式推导">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">线性回归公式推导</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -359,7 +402,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/24/AI/014%E5%86%B3%E7%AD%96%E6%A0%91/" title="">
+                      <a href="/2023/07/25/Untitled/" title="">
                         <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -417,6 +460,11 @@
 
 
   
+
+
+  
+  
+
 
 
 
