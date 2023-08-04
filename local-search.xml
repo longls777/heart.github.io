@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>BERT</title>
+    <link href="/2023/08/04/NLP/008BERT/"/>
+    <url>/2023/08/04/NLP/008BERT/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>NLP</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>八股</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Transformer代码解读</title>
     <link href="/2023/08/04/NLP/007Transformer%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
     <url>/2023/08/04/NLP/007Transformer%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB/</url>
@@ -67,25 +92,6 @@
       <tag>八股</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>PTMs</title>
-    <link href="/2023/08/02/NLP/004PTMs/"/>
-    <url>/2023/08/02/NLP/004PTMs/</url>
-    
-    <content type="html"><![CDATA[<blockquote><p>NLP算法面试必备！PTMs：NLP预训练模型的全面总结 - JayJay的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/115014536">https://zhuanlan.zhihu.com/p/115014536</a></p></blockquote>]]></content>
-    
-    
-    <categories>
-      
-      <category>NLP</category>
-      
-    </categories>
-    
     
   </entry>
   
