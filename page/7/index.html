@@ -240,6 +240,60 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/02/15/Redis/Redis%E9%94%AE%E7%9A%84%E8%BF%87%E6%9C%9F%E5%AE%9E%E7%8E%B0/" target="_self">
+          Redis键的过期实现
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/15/Redis/Redis%E9%94%AE%E7%9A%84%E8%BF%87%E6%9C%9F%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          1. 过期时间的保存 redisDb结构的expires字典保存了数据库中所有键的过期时间，我们称这个字典为过期字典：  过期字典的键是一个指针，这个指针指向键空间中的某个键对象（也即是某个数据库键) 过期字典的值是一个long long类型的整数，这个整数保存了键所指向的数据库键的过期时间——一个毫秒精度的UNIX时间戳   2. 过期键的删除策略  定时删除：在设置键的过期时间的同时，创建一个
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-15 11:40" pubdate>
+              2023-02-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Redis/" class="category-chain-item">Redis</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2023/02/15/Redis/Redis%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" target="_self">
           Redis操作命令总结
         </a>
@@ -742,67 +796,6 @@
 
           </div>
         
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/24/Algorithm%20Problem/leetcode300/" target="_self">
-          leetcode300 最长递增子序列
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/24/Algorithm%20Problem/leetcode300/" target="_self">
-        <div>
-          300. 最长递增子序列 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。 子序列 是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。 示例 1： 123输入：nums = [10,9,2,5,3,7,101,18]输出：4解释：最长递增子序列是 [2,3,7,101]，因此长度为
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-24 20:00" pubdate>
-              2022-10-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/DP/">#DP</a>
-            
-          </div>
         
       </div>
     </article>
