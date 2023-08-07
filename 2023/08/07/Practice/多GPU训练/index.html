@@ -16,24 +16,27 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="分式 \frac {分子} {分母} 加粗 \boldsymbol{} 根号 \sqrt[m]{n} nm\sqrt[m]{n} mn​ 花体字母 \mathcal{} ABCDEFGHIJKLMNOPQRSTUVWXYZ\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ} ABCDEFGHIJKLMNOPQRSTUVWXYZ 对数 \log_{对数底数}{表达式} 累加累乘并">
+    <meta name="description" content="https:&#x2F;&#x2F;github.com&#x2F;jia-zhuang&#x2F;pytorch-multi-gpu-training 上手Distributed Data Parallel的详尽教程 - ZachZhang的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;486346821  Distributed Data Parallel 123rm &#x2F;home&#x2F;xx&#x2F;anaconda">
 <meta property="og:type" content="article">
-<meta property="og:title" content="latex">
-<meta property="og:url" content="https://lishilong.cc/2022/07/03/Others/latex/index.html">
+<meta property="og:title" content="多GPU训练">
+<meta property="og:url" content="https://lishilong.cc/2023/08/07/Practice/%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="分式 \frac {分子} {分母} 加粗 \boldsymbol{} 根号 \sqrt[m]{n} nm\sqrt[m]{n} mn​ 花体字母 \mathcal{} ABCDEFGHIJKLMNOPQRSTUVWXYZ\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ} ABCDEFGHIJKLMNOPQRSTUVWXYZ 对数 \log_{对数底数}{表达式} 累加累乘并">
+<meta property="og:description" content="https:&#x2F;&#x2F;github.com&#x2F;jia-zhuang&#x2F;pytorch-multi-gpu-training 上手Distributed Data Parallel的详尽教程 - ZachZhang的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;486346821  Distributed Data Parallel 123rm &#x2F;home&#x2F;xx&#x2F;anaconda">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png">
-<meta property="article:published_time" content="2022-07-03T02:09:31.000Z">
-<meta property="article:modified_time" content="2023-08-05T09:04:05.425Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153304750.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153057827.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807152623767.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153214829.png">
+<meta property="article:published_time" content="2023-08-07T07:27:00.000Z">
+<meta property="article:modified_time" content="2023-08-07T09:06:30.078Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153304750.png">
   
   
   
-  <title>latex - Heart</title>
+  <title>多GPU训练 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -44,8 +47,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
 
 
 
@@ -210,13 +211,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="latex"></span>
+            <span id="subtitle" data-typed-text="多GPU训练"></span>
           
         </div>
 
@@ -227,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-03 10:09" pubdate>
-          2022年7月3日 上午
+        <time datetime="2023-08-07 15:27" pubdate>
+          2023年8月7日 下午
         </time>
       </span>
     
@@ -239,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          352 字
+          2.2k 字
         
       </span>
     
@@ -250,7 +251,7 @@
         
         
         
-          3 分钟
+          19 分钟
         
       </span>
     
@@ -288,59 +289,27 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">latex</h1>
+            <h1 style="display: none">多GPU训练</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="分式">分式</h4>
-<p>\frac {分子} {分母}</p>
-<h4 id="加粗">加粗</h4>
-<p>\boldsymbol{}</p>
-<h4 id="根号">根号</h4>
-<p>\sqrt[m]{n}</p>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mroot><mi>n</mi><mi>m</mi></mroot></mrow><annotation encoding="application/x-tex">\sqrt[m]{n}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1908em;"></span><span class="mord sqrt"><span class="root"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6103em;"><span style="top:-2.895em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span></span></span></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8492em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">n</span></span></span><span style="top:-2.8092em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
-c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
-c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
-c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
-s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
-c69,-144,104.5,-217.7,106.5,-221
-l0 -0
-c5.3,-9.3,12,-14,20,-14
-H400000v40H845.2724
-s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
-c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
-M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1908em;"><span></span></span></span></span></span></span></span></span></span></p>
-<h4 id="花体字母">花体字母</h4>
-<p>\mathcal{}</p>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">A</mi><mi mathvariant="script">B</mi><mi mathvariant="script">C</mi><mi mathvariant="script">D</mi><mi mathvariant="script">E</mi><mi mathvariant="script">F</mi><mi mathvariant="script">G</mi><mi mathvariant="script">H</mi><mi mathvariant="script">I</mi><mi mathvariant="script">J</mi><mi mathvariant="script">K</mi><mi mathvariant="script">L</mi><mi mathvariant="script">M</mi><mi mathvariant="script">N</mi><mi mathvariant="script">O</mi><mi mathvariant="script">P</mi><mi mathvariant="script">Q</mi><mi mathvariant="script">R</mi><mi mathvariant="script">S</mi><mi mathvariant="script">T</mi><mi mathvariant="script">U</mi><mi mathvariant="script">V</mi><mi mathvariant="script">W</mi><mi mathvariant="script">X</mi><mi mathvariant="script">Y</mi><mi mathvariant="script">Z</mi></mrow><annotation encoding="application/x-tex">\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7805em;vertical-align:-0.0972em;"></span><span class="mord"><span class="mord mathcal">A</span><span class="mord mathcal" style="margin-right:0.05834em;">BC</span><span class="mord mathcal" style="margin-right:0.02778em;">D</span><span class="mord mathcal" style="margin-right:0.00965em;">EFGH</span><span class="mord mathcal" style="margin-right:0.07382em;">I</span><span class="mord mathcal" style="margin-right:0.18472em;">J</span><span class="mord mathcal" style="margin-right:0.01445em;">K</span><span class="mord mathcal">LM</span><span class="mord mathcal" style="margin-right:0.14736em;">N</span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mord mathcal" style="margin-right:0.08222em;">P</span><span class="mord mathcal">Q</span><span class="mord mathcal">R</span><span class="mord mathcal" style="margin-right:0.075em;">S</span><span class="mord mathcal" style="margin-right:0.25417em;">T</span><span class="mord mathcal" style="margin-right:0.09931em;">U</span><span class="mord mathcal" style="margin-right:0.08222em;">V</span><span class="mord mathcal" style="margin-right:0.08222em;">W</span><span class="mord mathcal" style="margin-right:0.14643em;">X</span><span class="mord mathcal" style="margin-right:0.08222em;">Y</span><span class="mord mathcal" style="margin-right:0.07944em;">Z</span></span></span></span></span></span></p>
-<h4 id="对数">对数</h4>
-<p>\log_{对数底数}{表达式}</p>
-<h4 id="累加累乘并集交集">累加累乘并集交集</h4>
-<p>\sum_{下标表达式}^{上标表达式}{累加表达式}</p>
-<p>\prod_{下标表达式}^{上标表达式}{累加表达式}</p>
-<p>\bigcup_{下标表达式}^{上标表达式}{累加表达式}</p>
-<p>\bigcap_{下标表达式}^{上标表达式}{累加表达式}</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101253562.png" srcset="/img/loading.gif" lazyload alt="image-20220703101253562"></p>
-<h4 id="公式标号">公式标号</h4>
-<p>\tag{}</p>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>=</mo><mi>c</mi></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">a+b=c \tag{1}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span><span class="tag"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">1</span></span><span class="mord">)</span></span></span></span></span></span></p>
-<h4 id="希腊字母">希腊字母</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101623488.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h4 id="运算符">运算符</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101722800.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101742492.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101839932.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703101939025.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102002751.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102015626.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102035627.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h4 id="不常用符号">不常用符号</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220703102118077.png" srcset="/img/loading.gif" lazyload alt=""></p>
-
+                <blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/jia-zhuang/pytorch-multi-gpu-training">https://github.com/jia-zhuang/pytorch-multi-gpu-training</a></p>
+<p>上手Distributed Data Parallel的详尽教程 - ZachZhang的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/486346821">https://zhuanlan.zhihu.com/p/486346821</a></p>
+</blockquote>
+<h2 id="Distributed-Data-Parallel">Distributed Data Parallel</h2>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">rm</span> /home/xx/anaconda3/bin/../lib/libstdc++.so.6<br><span class="hljs-built_in">cp</span> /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.29 /home/xx/anaconda3/bin/../lib<br><span class="hljs-built_in">ln</span> -s /home/xx/anaconda3/bin/../lib/libstdc++.so.6.0.29 /home/xx/anaconda3/bin/../lib/libstdc++.so.6<br></code></pre></td></tr></table></figure>
+<p>发现一个BUG，单机单GPU训练时没问题，但是转换成多GPU训练，以下的pq_end_pos就传不进model里面</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153304750.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>经过研究后发现，单机单GPU训练的时候，model的type为：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153057827.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但是多GPU训练时，model的type变为：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807152623767.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>原因是model经过torch.nn.parallel.DistributedDataParallel后转变了类型</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153214829.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>DDP完整示例代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br>os.environ[<span class="hljs-string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>]=<span class="hljs-string">&quot;0,1,2,3&quot;</span><br><span class="hljs-keyword">import</span> argparse<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">from</span> torch.utils.data.distributed <span class="hljs-keyword">import</span> DistributedSampler<br><span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter<br><br><span class="hljs-keyword">from</span> model <span class="hljs-keyword">import</span> Net<br><span class="hljs-keyword">from</span> data <span class="hljs-keyword">import</span> train_dataset, test_dataset<br><br>parser = argparse.ArgumentParser()<br>parser.add_argument(<span class="hljs-string">&quot;--local_rank&quot;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">int</span>, default=-<span class="hljs-number">1</span>)<br>args = parser.parse_args()<br><br>torch.cuda.set_device(args.local_rank)<br>device = torch.device(<span class="hljs-string">&#x27;cuda&#x27;</span>, args.local_rank)<br>torch.distributed.init_process_group(backend=<span class="hljs-string">&#x27;nccl&#x27;</span>)<br><br><span class="hljs-comment"># 固定随机种子</span><br>seed = <span class="hljs-number">42</span><br>random.seed(seed)<br>np.random.seed(seed)<br>torch.manual_seed(seed)<br>torch.cuda.manual_seed_all(seed)<br><br>batch_size = <span class="hljs-number">64</span><br><br>model = Net()<br>model.to(device)<br>criterion = nn.CrossEntropyLoss()<br>optimizer = optim.SGD(model.parameters(), lr=<span class="hljs-number">0.1</span>)<br><br><span class="hljs-comment"># training!</span><br><span class="hljs-keyword">if</span> args.local_rank == <span class="hljs-number">0</span>:<br>    tb_writer = SummaryWriter(comment=<span class="hljs-string">&#x27;ddp-3&#x27;</span>)<br><br>train_sampler = DistributedSampler(train_dataset)<br>train_loader = torch.utils.data.DataLoader(train_dataset, sampler=train_sampler, batch_size=batch_size)<br><br>model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank], output_device=args.local_rank, find_unused_parameters=<span class="hljs-literal">True</span>)<br><br><span class="hljs-keyword">for</span> i, (inputs, labels) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(train_loader):<br>    <span class="hljs-comment"># forward</span><br>    inputs = inputs.to(device)<br>    labels = labels.to(device)<br>    outputs = model(inputs)<br>    loss = criterion(outputs, labels)<br>    <span class="hljs-comment"># backward</span><br>    optimizer.zero_grad()<br>    loss.backward()<br>    optimizer.step()<br>    <span class="hljs-comment"># log</span><br>    <span class="hljs-keyword">if</span> args.local_rank == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> i % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>:<br>        tb_writer.add_scalar(<span class="hljs-string">&#x27;loss&#x27;</span>, loss.item(), i)<br><br><span class="hljs-keyword">if</span> args.local_rank == <span class="hljs-number">0</span>:<br>    tb_writer.close()<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -358,7 +327,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
     
       <span class="category-chain">
         
-  <a href="/categories/Others/" class="category-chain-item">Others</a>
+  <a href="/categories/Practice/" class="category-chain-item">Practice</a>
   
   
 
@@ -378,8 +347,8 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>latex</div>
-      <div>https://lishilong.cc/2022/07/03/Others/latex/</div>
+      <div>多GPU训练</div>
+      <div>https://lishilong.cc/2023/08/07/Practice/多GPU训练/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +360,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月3日</div>
+          <div>2023年8月7日</div>
         </div>
       
       
@@ -423,18 +392,12 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/11/Machine%20Learning/002%E5%90%91%E9%87%8F%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99/" title="向量矩阵运算法则">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">向量矩阵运算法则</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/03/NLP/001skip-gram/" title="skip-gram详解">
-                        <span class="hidden-mobile">skip-gram详解</span>
+                      <a href="/2023/08/06/Others/%E5%BE%85%E7%9C%8B%E7%9A%84%E4%B9%A6/" title="待看的书">
+                        <span class="hidden-mobile">待看的书</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -491,11 +454,6 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 
   
-
-
-  
-  
-
 
 
 
