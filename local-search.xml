@@ -4,6 +4,94 @@
   
   
   <entry>
+    <title>RoFormer - Enhanced Transformer with Rotary Position Embedding</title>
+    <link href="/2023/08/09/Paper%20Reading%20Notes/RoFormer%20Enhanced%20Transformer%20with%20Rotary%20Position%20Embedding/"/>
+    <url>/2023/08/09/Paper%20Reading%20Notes/RoFormer%20Enhanced%20Transformer%20with%20Rotary%20Position%20Embedding/</url>
+    
+    <content type="html"><![CDATA[<p><strong>标题：</strong>《RoFormer: Enhanced Transformer with Rotary Position Embedding》</p><p><strong>论文来源：</strong> arXiv:2104.09864</p><p>**原文链接： ** <a href="https://arxiv.org/pdf/2104.09864.pdf">https://arxiv.org/pdf/2104.09864.pdf</a></p><p><strong>源码：</strong> <a href="https://github.com/ZhuiyiTechnology/roformer">https://github.com/ZhuiyiTechnology/roformer</a></p><h2 id="参考链接（建议按顺序阅读）">参考链接（建议按顺序阅读）</h2><blockquote><p><a href="https://kexue.fm/archives/8130">让研究人员绞尽脑汁的Transformer位置编码</a></p><p><a href="https://kexue.fm/archives/8265">Transformer升级之路：2、博采众长的旋转式位置编码</a></p><p><a href="https://kexue.fm/archives/9403">Transformer升级之路：6、旋转位置编码的完备性分析</a></p><p>[<a href="https://kexue.fm/archives/9675">Transformer升级之路：10、RoPE是一种β进制编码</a></p><p>[<a href="https://kexue.fm/archives/9708">Transformer升级之路：12、无限外推的ReRoPE？</a>](<a href="https://kexue.fm/archives/9009">https://kexue.fm/archives/9009</a>)</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LLMs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LLaMA - Open and Efficient Foundation Language Models</title>
+    <link href="/2023/08/09/Paper%20Reading%20Notes/LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/"/>
+    <url>/2023/08/09/Paper%20Reading%20Notes/LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/</url>
+    
+    <content type="html"><![CDATA[<p><strong>标题：</strong>《LLaMA: Open and Efficient Foundation Language Models》</p><p><strong>论文来源：</strong> arXiv:2302.13971</p><p>**原文链接： ** <a href="https://arxiv.org/pdf/2302.13971.pdf">https://arxiv.org/pdf/2302.13971.pdf</a></p><p><strong>源码：</strong> <a href="https://github.com/facebookresearch/llama">https://github.com/facebookresearch/llama</a></p><h2 id="参考链接">参考链接</h2><blockquote><p><a href="https://blog.csdn.net/weixin_44826203/article/details/129255185">https://blog.csdn.net/weixin_44826203/article/details/129255185</a></p><p>[为什么Pre Norm的效果不如Post Norm？</p><p>[<a href="https://kexue.fm/archives/8265">Transformer升级之路：2、博采众长的旋转式位置编码</a>](<a href="https://kexue.fm/archives/9009">https://kexue.fm/archives/9009</a>)</p></blockquote><h2 id="概述">概述</h2><p>用的Transformer的decoder，和GPT很类似</p><h2 id="模型细节">模型细节</h2><h3 id="RMS-Pre-Norm">RMS Pre-Norm</h3><p>首先LLama采用了RMS Norm，是LayerNorm的一种变体，作用是可以在梯度下降时令损失更加平滑，具体细节不讲</p><p>Pre-Norm和Post-Norm哪个更好呢？<a href="https://kexue.fm/archives/9009">为什么Pre Norm的效果不如Post Norm？</a>这篇文章给出了解释：</p><p>重点是在这个式子</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809161116042.png" alt=""></p><ul><li>同一设置之下，Pre Norm结构往往更容易训练，但最终效果通常不如Post Norm</li><li>Pre Norm结构无形地增加了模型的宽度而降低了模型的深度，而我们知道深度通常比宽度更重要，所以是无形之中的降低深度导致最终效果变差了</li></ul><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809160712945.png" style="zoom:15%;" /><p>但是为什么LLaMA中却采用了Pre-Norm，这个还没有找到合理的解释</p><h3 id="SwiGLU激活函数">SwiGLU激活函数</h3><blockquote><p><a href="https://arxiv.org/pdf/1710.05941.pdf">https://arxiv.org/pdf/1710.05941.pdf</a></p></blockquote><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809161453203.png" alt=""></p><h3 id="RoPE旋转位置编码">RoPE旋转位置编码</h3><p>RoPE（Rotary Position Embedding）旋转位置编码，是苏剑林老师提出的一种旋转位置编码方法<a href="https://kexue.fm/archives/8265">Transformer升级之路：2、博采众长的旋转式位置编码</a>，其思想是采用绝对位置编码的形式，实现相对位置编码</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LLMs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LLMs</title>
+    <link href="/2023/08/08/NLP/012LLMs/"/>
+    <url>/2023/08/08/NLP/012LLMs/</url>
+    
+    <content type="html"><![CDATA[<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/tree.png" alt=""></p><blockquote><p><a href="https://github.com/Mooler0410/LLMsPracticalGuide">https://github.com/Mooler0410/LLMsPracticalGuide</a></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>NLP</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>GPT大模型相关知识</title>
+    <link href="/2023/08/08/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/"/>
+    <url>/2023/08/08/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="总结">总结</h2><blockquote><p><a href="https://github.com/dalinvip/Awesome-ChatGPT">https://github.com/dalinvip/Awesome-ChatGPT</a></p></blockquote><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/chatgpt-3.jpg" alt=""></p><h2 id="LLMs">LLMs</h2><blockquote><p>通向AGI之路：大型语言模型（LLM）技术精要 - 张俊林的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/597586623">https://zhuanlan.zhihu.com/p/597586623</a></p></blockquote><h2 id="RLHF">RLHF</h2><blockquote><p><a href="https://huggingface.co/blog/zh/rlhf">https://huggingface.co/blog/zh/rlhf</a></p><p>从零实现ChatGPT——RLHF技术笔记 - Akiko的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/591474085">https://zhuanlan.zhihu.com/p/591474085</a></p></blockquote><h2 id="PPO">PPO</h2><blockquote><p>ChatGPT内核：InstructGPT，基于反馈指令的PPO强化学习 - HeptaAI的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/589747432">https://zhuanlan.zhihu.com/p/589747432</a></p><p><a href="https://blog.csdn.net/qq_33302004/article/details/115666895">【详解+推导！！】PPO 近端策略优化</a></p><p>从零实现ChatGPT——RLHF技术笔记 - Akiko的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/591474085">https://zhuanlan.zhihu.com/p/591474085</a></p></blockquote><h2 id="Prompt-tuning">Prompt tuning</h2><blockquote><p>近代自然语言处理技术发展的“第四范式” - 刘鹏飞的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/395115779">https://zhuanlan.zhihu.com/p/395115779</a></p><p>五万字综述！Prompt-Tuning：深度解读一种新的微调范式 - kaiyuan的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/618871247">https://zhuanlan.zhihu.com/p/618871247</a></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>NLP</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>多GPU训练</title>
     <link href="/2023/08/07/Practice/%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"/>
     <url>/2023/08/07/Practice/%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/</url>
@@ -27,7 +115,7 @@
     <link href="/2023/08/06/Others/%E5%BE%85%E7%9C%8B%E7%9A%84%E4%B9%A6/"/>
     <url>/2023/08/06/Others/%E5%BE%85%E7%9C%8B%E7%9A%84%E4%B9%A6/</url>
     
-    <content type="html"><![CDATA[<ul><li>《亲密关系：通往灵魂的桥梁》 done</li><li>《亲密关系》   ing</li><li>《放弃的艺术》</li><li>《安全感》</li><li>《爱的艺术》</li><li>《读懂恋人心》</li><li></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li>《亲密关系：通往灵魂的桥梁》 done</li><li>《亲密关系》   ing</li><li>《窄门》</li><li>《放弃的艺术》</li><li>《安全感》</li><li>《爱的艺术》</li><li>《读懂恋人心》</li><li></li></ul>]]></content>
     
     
     <categories>
