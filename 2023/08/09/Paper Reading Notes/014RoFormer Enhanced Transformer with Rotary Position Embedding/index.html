@@ -23,11 +23,16 @@
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《RoFormer: Enhanced Transformer with Rotary Position Embedding》 论文来源：  arXiv:2104.09864 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2104.09864.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;ZhuiyiTechnology&#x2F;roformer 参考链接（建议按顺序阅读）  让研">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164152570.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164221414.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164311152.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/1347893165.png">
 <meta property="article:published_time" content="2023-08-09T08:46:00.000Z">
-<meta property="article:modified_time" content="2023-08-10T07:57:54.399Z">
+<meta property="article:modified_time" content="2023-08-10T08:55:51.796Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="Position Embedding">
+<meta property="article:tag" content="Position Encoding">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164152570.png">
   
   
   
@@ -237,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          364 字
+          992 字
         
       </span>
     
@@ -248,7 +253,7 @@
         
         
         
-          4 分钟
+          9 分钟
         
       </span>
     
@@ -299,10 +304,26 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/8130">让研究人员绞尽脑汁的Transformer位置编码</a></p>
 <p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/8265">Transformer升级之路：2、博采众长的旋转式位置编码</a></p>
+<p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/8397">Transformer升级之路：4、二维位置的旋转式位置编码</a></p>
 <p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/9403">Transformer升级之路：6、旋转位置编码的完备性分析</a></p>
-<p>[<a target="_blank" rel="noopener" href="https://kexue.fm/archives/9675">Transformer升级之路：10、RoPE是一种β进制编码</a></p>
-<p>[<a target="_blank" rel="noopener" href="https://kexue.fm/archives/9708">Transformer升级之路：12、无限外推的ReRoPE？</a>](<a target="_blank" rel="noopener" href="https://kexue.fm/archives/9009">https://kexue.fm/archives/9009</a>)</p>
+<p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/9675">Transformer升级之路：10、RoPE是一种β进制编码</a></p>
+<p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/9708">Transformer升级之路：12、无限外推的ReRoPE？</a></p>
 </blockquote>
+<h2 id="概述">概述</h2>
+<p>RoPE：Rotary Position Embedding，旋转位置编码</p>
+<p>目的是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo separator="true">,</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">Q,K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>通过Attention后携带相对位置信息，也可以在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span>中添加，使得最终结果带有绝对位置信息，是Transformer式的Sinusoidal编码的一种优化，目前唯一一种可用于线性Attention的相对位置编码</p>
+<h2 id="定义">定义</h2>
+<p>二维情况：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164152570.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>多维偶数维情况：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164221414.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>推荐实现方式：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164311152.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>可以看到，RoPE形式上和Sinusoidal位置编码有点相似，只不过Sinusoidal位置编码是加性的，而RoPE可以视为乘性的，其中在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>θ</mi><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">\theta^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span></span></span></span>的选择上，RoPE沿用了Sinusoidal位置编码的方案，即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>θ</mi><mi>i</mi></msup><mo>=</mo><mn>1000</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>2</mn><mi>i</mi><mi mathvariant="normal">/</mi><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\theta^i=10000^{-2i/d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord">1000</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">2</span><span class="mord mathnormal mtight">i</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span>，它可以带来一定的远程衰减性</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/1347893165.png" srcset="/img/loading.gif" lazyload alt="RoPE的远程衰减性（d=128）"></p>
+<p>最后，文章指出，RoPE是目前唯一一种可以用于线性Attention的相对位置编码。这是因为其他的相对位置编码，都是直接基于Attention矩阵进行操作的，但是线性Attention并没有事先算出Attention矩阵，因此也就不存在操作Attention矩阵的做法，所以其他的方案无法应用到线性Attention中。而对于RoPE来说，它是用绝对位置编码的方式来实现相对位置编码，不需要操作Attention矩阵，因此有了应用到线性Attention的可能性</p>
+<p>尽管理论上RoFormer能处理任意长度的序列，但目前RoFormer还是具有平方复杂度的</p>
+<p>未完待续…</p>
 
                 
               </div>
@@ -336,7 +357,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Position-Embedding/">#Position Embedding</a>
+        <a href="/tags/Position-Encoding/">#Position Encoding</a>
       
     </div>
   
@@ -393,11 +414,17 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/08/10/NLP/014SwiGLU/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/09/Paper%20Reading%20Notes/016LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" title="LLaMA - Open and Efficient Foundation Language Models">
+                      <a href="/2023/08/09/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" title="LLaMA - Open and Efficient Foundation Language Models">
                         <span class="hidden-mobile">LLaMA - Open and Efficient Foundation Language Models</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
