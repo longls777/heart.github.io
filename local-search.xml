@@ -4,13 +4,25 @@
   
   
   <entry>
-    <title></title>
+    <title>SwiGLU激活函数</title>
     <link href="/2023/08/10/NLP/014SwiGLU/"/>
     <url>/2023/08/10/NLP/014SwiGLU/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<blockquote><p><a href="https://mltalks.medium.com/swiglu%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-4a9e2d55e250">https://mltalks.medium.com/swiglu论文阅读-4a9e2d55e250</a></p></blockquote>]]></content>
     
     
+    <categories>
+      
+      <category>NLP</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Activation Function</tag>
+      
+    </tags>
     
   </entry>
   
@@ -515,6 +527,12 @@
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>Activation Function</tag>
+      
+    </tags>
     
   </entry>
   
@@ -1710,7 +1728,7 @@
     
     <tags>
       
-      <tag>PrLms</tag>
+      <tag>prLms</tag>
       
     </tags>
     
