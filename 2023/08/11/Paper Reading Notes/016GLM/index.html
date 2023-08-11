@@ -18,22 +18,22 @@
   
     <meta name="description" content="标题：《GLM: General Language Model Pretraining with Autoregressive Blank Infilling》 论文来源： ACL 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10360 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;GLM 标题：《GLM-130B: An Open Bilingual">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GLM &amp;&amp; chatGLM">
-<meta property="og:url" content="https://lishilong.cc/2023/08/11/Paper%20Reading%20Notes/016chatglm/index.html">
+<meta property="og:title" content="GLM &amp;&amp; GLM-130B">
+<meta property="og:url" content="https://lishilong.cc/2023/08/11/Paper%20Reading%20Notes/016GLM/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《GLM: General Language Model Pretraining with Autoregressive Blank Infilling》 论文来源： ACL 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10360 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;GLM 标题：《GLM-130B: An Open Bilingual">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811142624851.png">
 <meta property="article:published_time" content="2023-08-11T06:06:00.000Z">
-<meta property="article:modified_time" content="2023-08-11T07:30:05.306Z">
+<meta property="article:modified_time" content="2023-08-11T14:56:36.979Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="prLMs">
+<meta property="article:tag" content="LLMs">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811142624851.png">
   
   
   
-  <title>GLM &amp;&amp; chatGLM - Heart</title>
+  <title>GLM &amp;&amp; GLM-130B - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GLM &amp;&amp; chatGLM"></span>
+            <span id="subtitle" data-typed-text="GLM &amp;&amp; GLM-130B"></span>
           
         </div>
 
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.1k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          13 分钟
+          18 分钟
         
       </span>
     
@@ -288,7 +288,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">GLM &amp;&amp; chatGLM</h1>
+            <h1 style="display: none">GLM &amp;&amp; GLM-130B</h1>
             
             
               <div class="markdown-body">
@@ -351,6 +351,40 @@
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811151127770.png" srcset="/img/loading.gif" lazyload alt="NLG能力"></p>
 <p>NLU上效果超越BERT，NLG上效果超越T5，基本和BART持平</p>
 <h2 id="GLM-130B">GLM-130B</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811223922032.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="GLM-as-Backbone">GLM as Backbone</h3>
+<p>使用GLM架构作为骨架</p>
+<ul>
+<li>MASK：句子中的短空格，其长度加起来等于输入的特定部分 （NLU）</li>
+<li>gMASK：句子末尾有随机长度的长空格，并提供前缀上下文   （NLG）</li>
+</ul>
+<h3 id="Layer-Normalization">Layer Normalization</h3>
+<p>使用postNorm，并且采用DeepNorm（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.00555.pdf%EF%BC%89">https://arxiv.org/pdf/2203.00555.pdf）</a></p>
+<h3 id="Positional-Encoding-and-FFNs">Positional Encoding and FFNs</h3>
+<ul>
+<li>
+<p>使用RoPE位置编码</p>
+</li>
+<li>
+<p>FFNs使用GeLU激活的GLU</p>
+</li>
+</ul>
+<h3 id="PRE-TRAINING-SETUP">PRE-TRAINING SETUP</h3>
+<ul>
+<li>
+<p><strong>Self-Supervised Blank Infilling (95% tokens)</strong>：</p>
+<ul>
+<li>30%的tokens使用[MASK]随机掩盖句子中的span，span的长度服从<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\lambda=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>的Poisson分布，且掩盖的tokens占15%（30%的15%）</li>
+<li>70%的tokens，每个序列的前缀被保留为上下文，并且[gMASK]用于掩盖其余部分。掩盖的长度是从均匀分布中抽样得到的</li>
+</ul>
+</li>
+<li>
+<p><strong>Multi-Task Instruction Pre-Training (MIP, 5% tokens)：</strong></p>
+<ul>
+<li>T5等文章指出，在预训练中进行多任务学习可能比微调更有帮助，所以GLM-130B利用了一些 instruction prompted datasets 在预训练阶段进行多任务学习，目的是提高模型的zero-shot和few-shot能力</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
@@ -384,7 +418,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/prLMs/">#prLMs</a>
+        <a href="/tags/LLMs/">#LLMs</a>
       
     </div>
   
@@ -396,8 +430,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GLM &amp;&amp; chatGLM</div>
-      <div>https://lishilong.cc/2023/08/11/Paper Reading Notes/016chatglm/</div>
+      <div>GLM &amp;&amp; GLM-130B</div>
+      <div>https://lishilong.cc/2023/08/11/Paper Reading Notes/016GLM/</div>
     </div>
     <div class="license-meta">
       
