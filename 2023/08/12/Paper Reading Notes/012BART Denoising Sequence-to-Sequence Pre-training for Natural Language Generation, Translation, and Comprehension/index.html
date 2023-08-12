@@ -16,24 +16,27 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《GLM: General Language Model Pretraining with Autoregressive Blank Infilling》 论文来源： ACL 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10360 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;GLM 标题：《GLM-130B: An Open Bilingual">
+    <meta name="description" content="标题：《BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension》 论文来源： ACL 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1910.13461v1.pdf 概述 训练seq2seq模型的降噪自编码器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GLM &amp;&amp; GLM-130B">
-<meta property="og:url" content="https://lishilong.cc/2023/08/11/Paper%20Reading%20Notes/016GLM/index.html">
+<meta property="og:title" content="BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension">
+<meta property="og:url" content="https://lishilong.cc/2023/08/12/Paper%20Reading%20Notes/012BART%20Denoising%20Sequence-to-Sequence%20Pre-training%20for%20Natural%20Language%20Generation,%20Translation,%20and%20Comprehension/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《GLM: General Language Model Pretraining with Autoregressive Blank Infilling》 论文来源： ACL 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10360 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;GLM 标题：《GLM-130B: An Open Bilingual">
+<meta property="og:description" content="标题：《BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension》 论文来源： ACL 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1910.13461v1.pdf 概述 训练seq2seq模型的降噪自编码器">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811142624851.png">
-<meta property="article:published_time" content="2023-08-11T06:06:00.000Z">
-<meta property="article:modified_time" content="2023-08-11T14:56:36.979Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812151354794.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812160619071.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162224014.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162836537.png">
+<meta property="article:published_time" content="2023-08-12T08:29:00.000Z">
+<meta property="article:modified_time" content="2023-08-12T09:28:11.803Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="LLMs">
+<meta property="article:tag" content="prLMs">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811142624851.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812151354794.png">
   
   
   
-  <title>GLM &amp;&amp; GLM-130B - Heart</title>
+  <title>BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,13 +213,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811142624851.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GLM &amp;&amp; GLM-130B"></span>
+            <span id="subtitle" data-typed-text="BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension"></span>
           
         </div>
 
@@ -227,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-11 14:06" pubdate>
-          2023年8月11日 下午
+        <time datetime="2023-08-12 16:29" pubdate>
+          2023年8月12日 下午
         </time>
       </span>
     
@@ -239,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          1.1k 字
         
       </span>
     
@@ -250,7 +253,7 @@
         
         
         
-          18 分钟
+          10 分钟
         
       </span>
     
@@ -288,103 +291,63 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">GLM &amp;&amp; GLM-130B</h1>
+            <h1 style="display: none">BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>标题：</strong>《GLM: General Language Model Pretraining with Autoregressive Blank Infilling》</p>
-<p><strong>论文来源：</strong> ACL 2022</p>
-<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.10360">https://arxiv.org/abs/2103.10360</a></p>
-<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/THUDM/GLM">https://github.com/THUDM/GLM</a></p>
-<p><strong>标题：</strong>《GLM-130B: An Open Bilingual Pre-trained Model》</p>
-<p><strong>论文来源：</strong> ICLR 2023</p>
-<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.02414">https://arxiv.org/abs/2210.02414</a></p>
-<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/THUDM/GLM-130B">https://github.com/THUDM/GLM-130B</a></p>
-<h2 id="参考链接">参考链接</h2>
-<blockquote>
-<p>【报告笔记】 大规模语言模型系列技术：以GLM-130B为例 - 严昕的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/636329188">https://zhuanlan.zhihu.com/p/636329188</a></p>
-<p><a target="_blank" rel="noopener" href="https://keg.cs.tsinghua.edu.cn/glm-130b/zh/posts/glm-130b/">https://keg.cs.tsinghua.edu.cn/glm-130b/zh/posts/glm-130b/</a></p>
-</blockquote>
-<h2 id="GLM">GLM</h2>
-<p>使用自回归填空作为预训练目标，综合GPT，BERT，T5的优点，更好地解决NLG和NLU问题</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811142624851.png" srcset="/img/loading.gif" lazyload alt="GLM架构"></p>
-<h3 id="预训练目标">预训练目标</h3>
-<h4 id="Autoregressive-Blank-Infilling">Autoregressive Blank Infilling</h4>
-<p>目标是训练模型的NLU能力</p>
+                <p><strong>标题：</strong>《BART: Denoising Sequence-to-Sequence Pre-training for Natural<br>
+Language Generation, Translation, and Comprehension》</p>
+<p><strong>论文来源：</strong> ACL 2020</p>
+<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.13461v1.pdf">https://arxiv.org/pdf/1910.13461v1.pdf</a></p>
+<h2 id="概述">概述</h2>
+<p>训练seq2seq模型的降噪自编码器</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812151354794.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="架构">架构</h2>
 <ul>
-<li>随机将一段token替换为一个[MASK]，替换的长度服从<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\lambda=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>的Poisson分布</li>
-<li>重复采样span，直到15%的tokens被mask</li>
-<li>模型自回归地预测被mask的tokens</li>
-<li>span的预测顺序会被随机排布，类似排列语言模型（应该是通过位置编码实现的）</li>
+<li>使用标准Transformer结构</li>
+<li>和GPT一样，将ReLU替换为GeLUs</li>
+<li>模型参数初始化<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0.02</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N(0,0.02)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.02</span><span class="mclose">)</span></span></span></span></li>
+<li>比BERT多大约10%的参数</li>
 </ul>
-<h4 id="Multi-Task-Pretraining">Multi-Task Pretraining</h4>
-<p>目标是训练模型的NLG能力</p>
+<h2 id="预训练任务">预训练任务</h2>
 <ul>
-<li>文档层面：对单个span进行采样，其长度是从超过原始长度 50%–100% 的均匀分布中采样的，目标是生成长文本</li>
-<li>句子层面：限制mask span必须是完整的句子，同样覆盖tokens的15%。 该目标针对 seq2seq 任务，其预测通常是完整的句子或段落</li>
+<li>Token Masking：与BERT相同</li>
+<li>Token Deletion：随机删除token，且不保留被删除token的位置信息</li>
+<li>Text Infilling：一段span被替换为一个[MASK]，span的长度服从<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\lambda = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>的poisson分布</li>
+<li>Sentence Permutation：打乱句子的顺序</li>
+<li>Document Rotation：统一随机选择一个token，并旋转文档以使其以该token开始。 此任务训练模型来识别文档的开头</li>
 </ul>
-<h3 id="模型架构">模型架构</h3>
-<p>Transformer改型</p>
-<ul>
-<li>重新安排了LN和残差连接的顺序（preNorm），参考<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1909.08053.pdf%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84">https://arxiv.org/pdf/1909.08053.pdf中的模型结构</a></li>
-<li>使用单个线性层输出token预测</li>
-<li>使用GELU替换RELU</li>
-</ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/12343545987543.png" srcset="/img/loading.gif" lazyload alt="左边是GLM的连接顺序，右边是原始Transformer"></p>
-<h3 id="2D-Positional-Encoding">2D Positional Encoding</h3>
-<ul>
-<li>每个token有两个位置编码</li>
-<li>一个表示了在原文本中的位置，第二个表示在span中的位置</li>
-<li>通过可学习的embedding实现</li>
-</ul>
-<blockquote>
-<p>The two positional ids are projected into two vectors via learnable embedding tables, which are both added to the input token embeddings.</p>
-<p>Our encoding method ensures that the model is not aware of the length of the masked span when reconstructing them. … Our design fits downstream tasks as usually the length of the generated text is unknown beforehand.</p>
-</blockquote>
-<p>优点是自回归的预测span时无需知道span的总长度，更符合实际的生成任务</p>
-<h3 id="Finetuning-GLM">Finetuning GLM</h3>
-<p>对于NLU任务，遵循PET（PatternExploiting Training，<a target="_blank" rel="noopener" href="https://aclanthology.org/2021.eacl-main.20/%EF%BC%89%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%AE%8C%E5%BD%A2%E5%A1%AB%E7%A9%BA%E4%BB%BB%E5%8A%A1%E6%9D%A5%E5%BE%AE%E8%B0%83">https://aclanthology.org/2021.eacl-main.20/），使用完形填空任务来微调</a></p>
-<p>对于NLG任务，给定的上下文构成了输入的A部分，末尾附加了一个掩码标记。模型自回归地生成B部分的文本</p>
-<h3 id="Experiments">Experiments</h3>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811151017255.png" srcset="/img/loading.gif" lazyload alt="NLU能力"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811151127770.png" srcset="/img/loading.gif" lazyload alt="NLG能力"></p>
-<p>NLU上效果超越BERT，NLG上效果超越T5，基本和BART持平</p>
-<h2 id="GLM-130B">GLM-130B</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230811223922032.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h3 id="GLM-as-Backbone">GLM as Backbone</h3>
-<p>使用GLM架构作为骨架</p>
-<ul>
-<li>MASK：句子中的短空格，其长度加起来等于输入的特定部分 （NLU）</li>
-<li>gMASK：句子末尾有随机长度的长空格，并提供前缀上下文   （NLG）</li>
-</ul>
-<h3 id="Layer-Normalization">Layer Normalization</h3>
-<p>使用postNorm，并且采用DeepNorm（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.00555.pdf%EF%BC%89">https://arxiv.org/pdf/2203.00555.pdf）</a></p>
-<h3 id="Positional-Encoding-and-FFNs">Positional Encoding and FFNs</h3>
+<h2 id="微调">微调</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812160619071.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>
-<p>使用RoPE位置编码</p>
+<p>Sequence Classification Tasks：encoder和decoder接收相同的输入，decoder输出的最后一个token的最后隐层状态做分类（类似BERT的[CLS]分类），不同的是BART将附加token添加到末尾，以便解码器中令牌的表示可以关注完整输入中的解码器状态</p>
 </li>
 <li>
-<p>FFNs使用GeLU激活的GLU</p>
-</li>
-</ul>
-<h3 id="PRE-TRAINING-SETUP">PRE-TRAINING SETUP</h3>
-<ul>
-<li>
-<p><strong>Self-Supervised Blank Infilling (95% tokens)</strong>：</p>
-<ul>
-<li>30%的tokens使用[MASK]随机掩盖句子中的span，span的长度服从<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\lambda=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>的Poisson分布，且掩盖的tokens占15%（30%的15%）</li>
-<li>70%的tokens，每个序列的前缀被保留为上下文，并且[gMASK]用于掩盖其余部分。掩盖的长度是从均匀分布中抽样得到的</li>
-</ul>
+<p>Token Classification Tasks：将完整的文本输入encoder和decoder，取decoder最上面的隐层状态来为每个token分类</p>
 </li>
 <li>
-<p><strong>Multi-Task Instruction Pre-Training (MIP, 5% tokens)：</strong></p>
+<p>Sequence Generation Tasks：encoder输入input，decoder自回归生成输出序列</p>
+</li>
+<li>
+<p>Machine Translation：用一个随机初始化的encoder替换BART的encoder的embedding层</p>
 <ul>
-<li>T5等文章指出，在预训练中进行多任务学习可能比微调更有帮助，所以GLM-130B利用了一些 instruction prompted datasets 在预训练阶段进行多任务学习，目的是提高模型的zero-shot和few-shot能力</li>
+<li>第一步先冻结BART绝大部分，只训练这个随机初始化的encoder，BART的positional embedding和BART encoder第一层的自注意力层</li>
+<li>第二步训练所有参数，但是只训练很少的iterations</li>
 </ul>
 </li>
 </ul>
+<h2 id="预训练目标的对比">预训练目标的对比</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162224014.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>结论：</p>
+<ul>
+<li>Performance of pre-training methods varies significantly across tasks ：在ELI5上表现得最好可能在SQuAD表现得最差</li>
+<li>Token masking is crucial</li>
+<li>Left-to-right pre-training improves generation</li>
+<li>Bidirectional encoders are crucial for SQuAD</li>
+</ul>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162836537.png" srcset="/img/loading.gif" lazyload alt="BART优于BERT，和RoBERTa互有优势"></p>
 
                 
               </div>
@@ -418,7 +381,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/LLMs/">#LLMs</a>
+        <a href="/tags/prLMs/">#prLMs</a>
       
     </div>
   
@@ -430,8 +393,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GLM &amp;&amp; GLM-130B</div>
-      <div>https://lishilong.cc/2023/08/11/Paper Reading Notes/016GLM/</div>
+      <div>BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</div>
+      <div>https://lishilong.cc/2023/08/12/Paper Reading Notes/012BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension/</div>
     </div>
     <div class="license-meta">
       
@@ -443,7 +406,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月11日</div>
+          <div>2023年8月12日</div>
         </div>
       
       
@@ -475,18 +438,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/12/Paper%20Reading%20Notes/012BART%20Denoising%20Sequence-to-Sequence%20Pre-training%20for%20Natural%20Language%20Generation,%20Translation,%20and%20Comprehension/" title="BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/10/NLP/014SwiGLU/" title="SwiGLU激活函数">
-                        <span class="hidden-mobile">SwiGLU激活函数</span>
+                      <a href="/2023/08/11/Paper%20Reading%20Notes/016GLM/" title="GLM &amp;&amp; GLM-130B">
+                        <span class="hidden-mobile">GLM &amp;&amp; GLM-130B</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

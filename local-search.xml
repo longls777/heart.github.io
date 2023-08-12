@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</title>
+    <link href="/2023/08/12/Paper%20Reading%20Notes/012BART%20Denoising%20Sequence-to-Sequence%20Pre-training%20for%20Natural%20Language%20Generation,%20Translation,%20and%20Comprehension/"/>
+    <url>/2023/08/12/Paper%20Reading%20Notes/012BART%20Denoising%20Sequence-to-Sequence%20Pre-training%20for%20Natural%20Language%20Generation,%20Translation,%20and%20Comprehension/</url>
+    
+    <content type="html"><![CDATA[<p><strong>标题：</strong>《BART: Denoising Sequence-to-Sequence Pre-training for Natural<br>Language Generation, Translation, and Comprehension》</p><p><strong>论文来源：</strong> ACL 2020</p><p><strong>原文链接：</strong> <a href="https://arxiv.org/pdf/1910.13461v1.pdf">https://arxiv.org/pdf/1910.13461v1.pdf</a></p><h2 id="概述">概述</h2><p>训练seq2seq模型的降噪自编码器</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812151354794.png" alt=""></p><h2 id="架构">架构</h2><ul><li>使用标准Transformer结构</li><li>和GPT一样，将ReLU替换为GeLUs</li><li>模型参数初始化<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0.02</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N(0,0.02)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.02</span><span class="mclose">)</span></span></span></span></li><li>比BERT多大约10%的参数</li></ul><h2 id="预训练任务">预训练任务</h2><ul><li>Token Masking：与BERT相同</li><li>Token Deletion：随机删除token，且不保留被删除token的位置信息</li><li>Text Infilling：一段span被替换为一个[MASK]，span的长度服从<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\lambda = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>的poisson分布</li><li>Sentence Permutation：打乱句子的顺序</li><li>Document Rotation：统一随机选择一个token，并旋转文档以使其以该token开始。 此任务训练模型来识别文档的开头</li></ul><h2 id="微调">微调</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812160619071.png" alt=""></p><ul><li><p>Sequence Classification Tasks：encoder和decoder接收相同的输入，decoder输出的最后一个token的最后隐层状态做分类（类似BERT的[CLS]分类），不同的是BART将附加token添加到末尾，以便解码器中令牌的表示可以关注完整输入中的解码器状态</p></li><li><p>Token Classification Tasks：将完整的文本输入encoder和decoder，取decoder最上面的隐层状态来为每个token分类</p></li><li><p>Sequence Generation Tasks：encoder输入input，decoder自回归生成输出序列</p></li><li><p>Machine Translation：用一个随机初始化的encoder替换BART的encoder的embedding层</p><ul><li>第一步先冻结BART绝大部分，只训练这个随机初始化的encoder，BART的positional embedding和BART encoder第一层的自注意力层</li><li>第二步训练所有参数，但是只训练很少的iterations</li></ul></li></ul><h2 id="预训练目标的对比">预训练目标的对比</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162224014.png" alt=""></p><p>结论：</p><ul><li>Performance of pre-training methods varies significantly across tasks ：在ELI5上表现得最好可能在SQuAD表现得最差</li><li>Token masking is crucial</li><li>Left-to-right pre-training improves generation</li><li>Bidirectional encoders are crucial for SQuAD</li></ul><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162836537.png" alt="BART优于BERT，和RoBERTa互有优势"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>prLMs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>GLM &amp;&amp; GLM-130B</title>
     <link href="/2023/08/11/Paper%20Reading%20Notes/016GLM/"/>
     <url>/2023/08/11/Paper%20Reading%20Notes/016GLM/</url>
