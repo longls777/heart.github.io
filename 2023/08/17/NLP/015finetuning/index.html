@@ -16,28 +16,24 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="https:&#x2F;&#x2F;mltalks.medium.com&#x2F;swiglu论文阅读-4a9e2d55e250 谷歌大脑提出新型激活函数Swish惹争议：可直接替换并优于ReLU？（附机器之心测试） - 机器之心的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;30332306  SWISH激活函数 定义： f(x)&#x3D;x⋅σ(x)f(x) &#x3D; x \cdot \sigma(x)">
+    <meta name="description" content="大模型微调（finetune）方法总结-LoRA,Adapter,Prefix-tuning，P-tuning，Prompt-tuning - YBH的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;636481171  LoRA 自然语言处理目前存在一个重要范式：一般领域数据的大规模预训练，对特定任务或领域的适应（finetune）。但是随着预训练语言模型越来越大，这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SwiGLU激活函数">
-<meta property="og:url" content="https://lishilong.cc/2023/08/13/NLP/014SwiGLU/index.html">
+<meta property="og:title" content="LLMs fine tuning方法总结">
+<meta property="og:url" content="https://lishilong.cc/2023/08/17/NLP/015finetuning/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="https:&#x2F;&#x2F;mltalks.medium.com&#x2F;swiglu论文阅读-4a9e2d55e250 谷歌大脑提出新型激活函数Swish惹争议：可直接替换并优于ReLU？（附机器之心测试） - 机器之心的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;30332306  SWISH激活函数 定义： f(x)&#x3D;x⋅σ(x)f(x) &#x3D; x \cdot \sigma(x)">
+<meta property="og:description" content="大模型微调（finetune）方法总结-LoRA,Adapter,Prefix-tuning，P-tuning，Prompt-tuning - YBH的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;636481171  LoRA 自然语言处理目前存在一个重要范式：一般领域数据的大规模预训练，对特定任务或领域的适应（finetune）。但是随着预训练语言模型越来越大，这">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813134234053.png">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813134336831.png">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813135619287.png">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813135727628.png">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813135908336.png">
-<meta property="article:published_time" content="2023-08-13T06:28:00.000Z">
-<meta property="article:modified_time" content="2023-08-13T06:28:45.813Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817203959034.png">
+<meta property="article:published_time" content="2023-08-17T12:17:00.000Z">
+<meta property="article:modified_time" content="2023-08-17T13:29:36.052Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="Activation Function">
+<meta property="article:tag" content="fine tuning">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813134234053.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817203959034.png">
   
   
   
-  <title>SwiGLU激活函数 - Heart</title>
+  <title>LLMs fine tuning方法总结 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,13 +210,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817203959034.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SwiGLU激活函数"></span>
+            <span id="subtitle" data-typed-text="LLMs fine tuning方法总结"></span>
           
         </div>
 
@@ -231,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-13 14:28" pubdate>
-          2023年8月13日 下午
+        <time datetime="2023-08-17 20:17" pubdate>
+          2023年8月17日 晚上
         </time>
       </span>
     
@@ -243,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          426 字
+          2.2k 字
         
       </span>
     
@@ -254,7 +250,7 @@
         
         
         
-          4 分钟
+          19 分钟
         
       </span>
     
@@ -292,34 +288,63 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SwiGLU激活函数</h1>
+            <h1 style="display: none">LLMs fine tuning方法总结</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://mltalks.medium.com/swiglu%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-4a9e2d55e250">https://mltalks.medium.com/swiglu论文阅读-4a9e2d55e250</a></p>
-<p>谷歌大脑提出新型激活函数Swish惹争议：可直接替换并优于ReLU？（附机器之心测试） - 机器之心的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30332306">https://zhuanlan.zhihu.com/p/30332306</a></p>
+<p>大模型微调（finetune）方法总结-LoRA,Adapter,Prefix-tuning，P-tuning，Prompt-tuning - YBH的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/636481171">https://zhuanlan.zhihu.com/p/636481171</a></p>
 </blockquote>
-<h2 id="SWISH激活函数">SWISH激活函数</h2>
-<p>定义：</p>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo>⋅</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x) = x \cdot \sigma(x)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></span></p>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><mo>−</mo><mi>x</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\sigma(x)=(1+exp(-x))^{-1}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal">x</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813134234053.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>SWISH激活函数的一次求导结果为：</p>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f&#x27;(x) = f(x) + \sigma(x)(1-f(x))
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0519em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">))</span></span></span></span></span></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813134336831.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>比ReLU好</p>
-<h2 id="GLU（Gated-Linear-Unit）">GLU（Gated Linear Unit）</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813135619287.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>GLU的定义：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813135727628.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="SwiGLU">SwiGLU</h2>
-<p>SwiGLU主要是为了提升transformer中的FFN层的实现</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230813135908336.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>LoRA</h1>
+<p>自然语言处理目前存在一个重要范式：一般领域数据的大规模预训练，对特定任务或领域的适应（finetune）。但是随着预训练语言模型越来越大，这个范式存在以下问题：</p>
+<ul>
+<li>当我们finetune大模型时，由于训练成本太高，不太可能重新训练所有模型参数</li>
+<li>以前的方法都或多或少有其它性能问题，如adapter增加了模型层数，引入了额外的推理延迟；prefix-tuning比较难训练，效果不如直接finetune</li>
+</ul>
+<p>基于上述背景，论文作者得益于前人的一些关于内在维度（intrinsic dimension）的发现：模型是过参数化的，它们有更小的内在维度，模型主要依赖于这个低的内在维度（low intrinsic dimension）去做任务适配。假设模型在任务适配过程中权重的改变量是低秩（low rank）的，由此提出低秩自适应（LoRA）方法，LoRA允许我们通过优化适应过程中dense层变化的秩分解矩阵来间接训练神经网络中的一些密集层，同时保持预先训练的权重不变</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812164721483.png" srcset="/img/loading.gif" lazyload alt="Lora"></p>
+<p>LoRA的实现思想很简单，就是冻结一个prLM的矩阵参数，并选择用A和B矩阵来替代，下游任务微调时只训练A和B，推理时prLM和LoRA矩阵一起推理</p>
+<h2 id="Adapter">Adapter</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.00751.pdf">Parameter-Efficient Transfer Learning for NLP</a></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00052.pdf">MAD-X: An Adapter-Based Framework for Multi-Task Cross-Lingual Transfer</a></p>
+</blockquote>
+<p>2019年，Houlsby N等人将Adapter引入NLP领域，作为全模型微调的一种替代方案。Adapter主体架构下图所示</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817203959034.png" srcset="/img/loading.gif" lazyload alt="Adapter"></p>
+<p>在预训练模型每一层（或某些层）中添加Adapter模块（如上图左侧结构所示），微调时冻结预训练模型主体，由Adapter模块学习特定下游任务的知识。每个Adapter模块由两个前馈子层组成，第一个前馈子层将Transformer块的输出作为输入，将原始输入维度d投影到m，通过控制m的大小来限制Adapter模块的参数量，通常情况下m&lt;&lt;d。在输出阶段，通过第二个前馈子层还原输入维度，将m重新投影到d，作为Adapter模块的输出（如上图右侧结构）。通过添加Adapter模块来产生一个易于扩展的下游模型，每当出现新的下游任务，通过添加Adapter模块来避免全模型微调与灾难性遗忘的问题。Adapter方法不需要微调预训练模型的全部参数，通过引入少量针对特定任务的参数，来存储有关该任务的知识，降低对模型微调的算力要求</p>
+<h2 id="Prefix-tuning">Prefix-tuning</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00190.pdf">Prefix-Tuning: Optimizing Continuous Prompts for Generation</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/XiangLi1999/PrefixTuning">GitHub - XiangLi1999/PrefixTuning: Prefix-Tuning: Optimizing Continuous Prompts for Generation</a></p>
+</blockquote>
+<p>前缀微调（prefix-tunning），用于生成任务的轻量微调。前缀微调将一个连续的特定于任务的向量序列添加到输入，称之为前缀，如下图中的红色块所示。与提示（prompt）不同的是，前缀完全由自由参数组成，与真正的token不对应。相比于传统的微调，前缀微调只优化了前缀。因此，我们只需要存储一个大型Transformer和已知任务特定前缀的副本，对每个额外任务产生非常小的开销</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817210525153.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="P-tuning">P-tuning</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.10385">GPT Understands, Too</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/THUDM/P-tuning">GitHub - THUDM/P-tuning: A novel method to tune language models. Codes and datasets for paper ``GPT understands, too’'.</a></p>
+</blockquote>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817211156195.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>P-tuning是稍晚些的工作，主要针对NLU任务</p>
+<ul>
+<li>对于BERT类双向语言模型采用模版（P1, x, P2, [MASK], P3）</li>
+<li>对于单向语言模型采用（P1, x, P2, [MASK]）</li>
+</ul>
+<p>同时加了两个改动：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码</li>
+<li>在输入上加入了anchor，比如对于RTE任务，加上一个问号变成[ PRE ] [  prompt tokens  ] [  HYP  ] ? [  prompt tokens  ] [ MASK ]后效果会更好</li>
+</ul>
+<p>P-tuning的效果很好，之前的Prompt模型都是主打小样本效果，而P-tuning终于在整个数据集上超越了精调的效果：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817212600189.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="prompt-tuning">prompt-tuning</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.08691">The Power of Scale for Parameter-Efficient Prompt Tuning</a></p>
+</blockquote>
+<p>Prompt-tuning给每个任务定义了自己的Prompt，拼接到数据上作为输入，同时freeze预训练模型进行训练，<strong>在没有加额外层的情况下</strong>，可以看到随着模型体积增大效果越来越好，最终追上了精调的效果：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817212740069.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>同时，Prompt-tuning还提出了Prompt-ensembling，也就是在一个batch里同时训练同一个任务的不同prompt，这样相当于训练了不同「模型」，比模型集成的成本小多了</p>
 
                 
               </div>
@@ -353,7 +378,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Activation-Function/">#Activation Function</a>
+        <a href="/tags/fine-tuning/">#fine tuning</a>
       
     </div>
   
@@ -365,8 +390,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SwiGLU激活函数</div>
-      <div>https://lishilong.cc/2023/08/13/NLP/014SwiGLU/</div>
+      <div>LLMs fine tuning方法总结</div>
+      <div>https://lishilong.cc/2023/08/17/NLP/015finetuning/</div>
     </div>
     <div class="license-meta">
       
@@ -378,7 +403,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月13日</div>
+          <div>2023年8月17日</div>
         </div>
       
       
@@ -410,18 +435,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/17/Paper%20Reading%20Notes/017LoRA/" title="LORA - LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LORA - LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/12/Paper%20Reading%20Notes/012BART%20Denoising%20Sequence-to-Sequence%20Pre-training%20for%20Natural%20Language%20Generation,%20Translation,%20and%20Comprehension/" title="BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension">
-                        <span class="hidden-mobile">BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</span>
+                      <a href="/2023/08/17/Paper%20Reading%20Notes/017LoRA/" title="LORA - LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS">
+                        <span class="hidden-mobile">LORA - LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
