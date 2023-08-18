@@ -16,16 +16,16 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《GPT Understands, Too》 论文来源： arXiv:2103.10385 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10385 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;P-tuning 概述 本文提出了P-tuning方法，证明了GPT等自回归的生成式模型也可以具有和BERT等MLM相同甚至更好的NLU能力 随着GPT3 175B等">
+    <meta name="description" content="标题：《GPT Understands, Too》 论文来源： arXiv:2103.10385 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10385 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;P-tuning 参考链接  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;gogoSandy&#x2F;p&#x2F;17202169.html  概述 本文提出了P-tuning方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GPT Understands, Too">
 <meta property="og:url" content="https://lishilong.cc/2023/08/18/Paper%20Reading%20Notes/018p-tuning/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《GPT Understands, Too》 论文来源： arXiv:2103.10385 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10385 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;P-tuning 概述 本文提出了P-tuning方法，证明了GPT等自回归的生成式模型也可以具有和BERT等MLM相同甚至更好的NLU能力 随着GPT3 175B等">
+<meta property="og:description" content="标题：《GPT Understands, Too》 论文来源： arXiv:2103.10385 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10385 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;P-tuning 参考链接  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;gogoSandy&#x2F;p&#x2F;17202169.html  概述 本文提出了P-tuning方">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818115703123.png">
 <meta property="article:published_time" content="2023-08-18T04:19:00.000Z">
-<meta property="article:modified_time" content="2023-08-18T04:19:50.353Z">
+<meta property="article:modified_time" content="2023-08-18T14:25:04.671Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="fine tuning">
 <meta name="twitter:card" content="summary_large_image">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          732 字
+          1k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          7 分钟
+          9 分钟
         
       </span>
     
@@ -297,6 +297,10 @@
 <p><strong>论文来源：</strong> arXiv:2103.10385</p>
 <p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.10385">https://arxiv.org/abs/2103.10385</a></p>
 <p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/THUDM/P-tuning">https://github.com/THUDM/P-tuning</a></p>
+<h2 id="参考链接">参考链接</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html">https://www.cnblogs.com/gogoSandy/p/17202169.html</a></p>
+</blockquote>
 <h2 id="概述">概述</h2>
 <p>本文提出了P-tuning方法，证明了GPT等自回归的生成式模型也可以具有和BERT等MLM相同甚至更好的NLU能力</p>
 <p>随着GPT3 175B等的大模型陆续出现，全参数微调是非常困难的，很多prompt微调依靠手工设计的模板，但是这不靠谱</p>
@@ -310,6 +314,11 @@
 <p>两个问题：</p>
 <ul>
 <li>离散性：LLM的原始词嵌入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">e</span></span></span></span>经过预训练后已变得高度离散化。如果<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>用随机分布初始化，然后通过随机梯度下降（SGD）进行优化（已被证明仅在一个小的邻域内改变参数），优化器很容易陷入局部最小值</li>
+</ul>
+<blockquote>
+<p>这里到底是<strong>局部最优</strong>还是<strong>有效信息prior</strong>其实很难分清</p>
+</blockquote>
+<ul>
 <li>关联性：直觉上认为提示嵌入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>的值应该是相互依赖而不是独立的，需要一些机制来将提示嵌入彼此关联起来</li>
 </ul>
 <p><strong>解决方法</strong></p>
@@ -323,6 +332,15 @@
 <h2 id="Experiments">Experiments</h2>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818121735943.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>效果超群</p>
+<h2 id="局限性">局限性</h2>
+<blockquote>
+<ul>
+<li>可解释性差：这是所有连续型prompt的统一问题</li>
+<li>收敛更慢：更少的参数想要撬动更大的模型，需要更复杂的空间搜索</li>
+<li>可能存在过拟合：只微调prompt，理论上是作为探针，但实际模型是否真的使用prompt部分作为探针，而不是直接去拟合任务导致过拟合是个待确认的问题</li>
+<li>微调可能存在不稳定性：prompt-tuning和p-tuning的github里都有提到结果在SuperGLUE上无法复现的问题</li>
+</ul>
+</blockquote>
 
                 
               </div>
