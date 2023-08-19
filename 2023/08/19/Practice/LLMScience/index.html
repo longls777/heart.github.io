@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819164406358.png">
 <meta property="article:published_time" content="2023-08-19T06:53:00.000Z">
-<meta property="article:modified_time" content="2023-08-19T08:45:57.752Z">
+<meta property="article:modified_time" content="2023-08-19T08:52:47.917Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          523 字
+          675 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -340,6 +340,12 @@
 </blockquote>
 <p>39600</p>
 <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819164406358.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="STEP1">STEP1</h2>
+<p>使用官方的200条数据和收集到的额外数据，基于llama2-7b lora微调，然后推理</p>
+<h2 id="STEP2">STEP2</h2>
+<p>依然是LORA微调，但是修改模型结构，用最后一个token的embedding + 分类器做分类来训练和推理</p>
+<h2 id="STEP3">STEP3</h2>
+<p>改进分类器，可以套DUMA或者CDUMA，还有就是损失函数，因为评估指标是MAP@3</p>
 
                 
               </div>
