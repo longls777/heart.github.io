@@ -16,24 +16,26 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《GPT Understands, Too》 论文来源： arXiv:2103.10385 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10385 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;P-tuning 参考链接  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;gogoSandy&#x2F;p&#x2F;17202169.html  概述 本文提出了P-tuning方">
+    <meta name="description" content="标题：《Training language models to follow instructions with human feedback》 论文来源： arXiv:2203.02155 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2203.02155 参考链接  https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;2216036  概述 Ins">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GPT Understands, Too">
-<meta property="og:url" content="https://lishilong.cc/2023/08/18/Paper%20Reading%20Notes/018p-tuning/index.html">
+<meta property="og:title" content="Training language models to follow instructions with human feedback">
+<meta property="og:url" content="https://lishilong.cc/2023/08/18/Paper%20Reading%20Notes/021instructGPT/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《GPT Understands, Too》 论文来源： arXiv:2103.10385 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10385 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;P-tuning 参考链接  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;gogoSandy&#x2F;p&#x2F;17202169.html  概述 本文提出了P-tuning方">
+<meta property="og:description" content="标题：《Training language models to follow instructions with human feedback》 论文来源： arXiv:2203.02155 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2203.02155 参考链接  https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;2216036  概述 Ins">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818115703123.png">
-<meta property="article:published_time" content="2023-08-18T04:19:00.000Z">
-<meta property="article:modified_time" content="2023-08-18T15:25:17.115Z">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819134617723.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819134840589.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819142529044.png">
+<meta property="article:published_time" content="2023-08-18T06:29:00.000Z">
+<meta property="article:modified_time" content="2023-08-19T06:51:19.261Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="fine tuning">
+<meta property="article:tag" content="LLMs">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818115703123.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819134617723.png">
   
   
   
-  <title>GPT Understands, Too - Heart</title>
+  <title>Training language models to follow instructions with human feedback - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,13 +212,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818115703123.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GPT Understands, Too"></span>
+            <span id="subtitle" data-typed-text="Training language models to follow instructions with human feedback"></span>
           
         </div>
 
@@ -227,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-18 12:19" pubdate>
-          2023年8月18日 中午
+        <time datetime="2023-08-18 14:29" pubdate>
+          2023年8月18日 下午
         </time>
       </span>
     
@@ -239,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.3k 字
         
       </span>
     
@@ -250,7 +252,7 @@
         
         
         
-          9 分钟
+          11 分钟
         
       </span>
     
@@ -288,59 +290,55 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">GPT Understands, Too</h1>
+            <h1 style="display: none">Training language models to follow instructions with human feedback</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>标题：</strong>《GPT Understands, Too》</p>
-<p><strong>论文来源：</strong> arXiv:2103.10385</p>
-<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.10385">https://arxiv.org/abs/2103.10385</a></p>
-<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/THUDM/P-tuning">https://github.com/THUDM/P-tuning</a></p>
+                <p><strong>标题：</strong>《Training language models to follow instructions with human feedback》</p>
+<p><strong>论文来源：</strong> arXiv:2203.02155</p>
+<p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.02155">https://arxiv.org/abs/2203.02155</a></p>
 <h2 id="参考链接">参考链接</h2>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html">https://www.cnblogs.com/gogoSandy/p/17202169.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2216036">https://cloud.tencent.com/developer/article/2216036</a></p>
 </blockquote>
 <h2 id="概述">概述</h2>
-<p>本文提出了P-tuning方法，证明了GPT等自回归的生成式模型也可以具有和BERT等MLM相同甚至更好的NLU能力</p>
-<p>随着GPT3 175B等的大模型陆续出现，全参数微调是非常困难的，很多prompt微调依靠手工设计的模板，但是这不靠谱</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817222040174.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>本文做的相关实验证明了prompt的设计对于LLM的效果具有很大影响</p>
+<p>InstructGPT和后面的ChatGPT，都是OpenAI在<strong>大模型alignment问题</strong>上的研究成果，什么是模型的alignment呢？在InstructGPT论文中作者是这么说的：</p>
+<blockquote>
+<p>“For example, large language models can <strong>generate outputs that are untruthful, toxic, or simply not helpful to the user</strong>. In other words, these models are not <strong>aligned</strong> with their users.</p>
+<p>ChatGPT翻译：大型语言模型可以生成不真实、有毒、或者对用户没有帮助的输出。换句话说，这些模型与用户不匹配。</p>
+</blockquote>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819134617723.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>1.3B的PPO-ptx model比175B的GPT-3表现得更好</p>
+<ul>
+<li>instructGPT以GPT3为基础</li>
+<li>chatGPT以GPT3.5为基础</li>
+</ul>
 <h2 id="Method">Method</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818115703123.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>给定上下文（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>），目标（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>），要求搜索prompt</p>
-<p>相比于离散prompt搜索，P-tuning使用可训练的Prompt Encoder生成prompt embedding，比LLM vocab space的词汇可能具有更好的效果</p>
-<p><strong>优化过程</strong></p>
-<p>两个问题：</p>
-<ul>
-<li>离散性：LLM的原始词嵌入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">e</span></span></span></span>经过预训练后已变得高度离散化。如果<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>用随机分布初始化，然后通过随机梯度下降（SGD）进行优化（已被证明仅在一个小的邻域内改变参数），优化器很容易陷入局部最小值</li>
-</ul>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819134840589.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="supervised-fine-tuning-SFT">supervised fine-tuning (SFT)</h3>
+<p>人工给prompt打上人类偏好的输出标签，然后用这些数据监督微调GPT-3</p>
+<h3 id="reward-model-RM-training">reward model (RM) training</h3>
+<p>收集模型在相同prompt下的多个输出，人工给这些输出排序，然后用排序后的数据训练奖励模型RM</p>
 <blockquote>
-<p>这里到底是<strong>局部最优</strong>还是<strong>有效信息prior</strong>其实很难分清</p>
+<p>RM模型也是基于GPT-3进行训练的，使用的是6B的版本，具体就是在进行SFT训练之后，把最后的embedding层去掉，改成输出一个标量</p>
 </blockquote>
+<h3 id="reinforcement-learning-via-proximal-policy-optimization-PPO">reinforcement learning via proximal policy optimization (PPO)</h3>
+<p>使用RM的输出作为奖励分数，使用PPO算法优化模型</p>
+<h2 id="Data">Data</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819142529044.png" srcset="/img/loading.gif" lazyload alt="="></p>
 <ul>
-<li>关联性：直觉上认为提示嵌入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>的值应该是相互依赖而不是独立的，需要一些机制来将提示嵌入彼此关联起来</li>
+<li><strong>SFT数据集</strong>（即第一步人类根据prompt自己写理想的输出，SFT：supervised fine-tuning），包含<strong>13K</strong>的prompts；</li>
+<li><strong>RM数据集</strong>（即第二步用来训练打分模型的数据），包含<strong>33K</strong>的prompts；</li>
+<li><strong>PPO数据集</strong>（即第三步用来训练强化学习PPO模型的数据），包含<strong>31K</strong>的prompts。</li>
 </ul>
-<p><strong>解决方法</strong></p>
-<p>P-tuning使用一个包含轻量级神经网络的Prompt Encoder将<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>建模为一个序列，以解决离散性和关联性问题</p>
-<blockquote>
-<p>LSTM + ReLU + 2-layer MLP</p>
-</blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818121124142.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>LSTM的参数比LLM小了好几个数量级，而且推理时只需要<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>，可以丢弃LSTM</p>
-<p>同时，作者发现增加几个anchor tokens可以提高模型在NLU任务上的表现，例如capital</p>
-<h2 id="Experiments">Experiments</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818121735943.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>效果超群</p>
-<h2 id="局限性">局限性</h2>
-<blockquote>
+<h2 id="Conclusion">Conclusion</h2>
 <ul>
-<li>可解释性差：这是所有连续型prompt的统一问题</li>
-<li>收敛更慢：更少的参数想要撬动更大的模型，需要更复杂的空间搜索</li>
-<li>可能存在过拟合：只微调prompt，理论上是作为探针，但实际模型是否真的使用prompt部分作为探针，而不是直接去拟合任务导致过拟合是个待确认的问题</li>
-<li>微调可能存在不稳定性：prompt-tuning和p-tuning的github里都有提到结果在SuperGLUE上无法复现的问题</li>
+<li>这种“调教”，会降低模型在常见NLP任务上的效果，作者称之为“对齐税”——alignment tax（实际上之前很多研究都发现了这个问题）。但是，通过改善RLHF的过程，比如在预训练过程也混合RLHF的方法，可以缓解这种损失</li>
+<li>常见的公开NLP数据集，跟人类实际使用语言模型的场景，差别很大。因此单纯在公开NLP数据集进行指令微调，效果依然不够</li>
+<li>虽然人类标注只有几十K，远远不能覆盖所有可能的prompts，但是实验发现InstructGPT的域外泛化能力很强，对于没有见过的prompt类型，依然有比较好的泛化能力</li>
+<li>instructGPT在真实性方面有改进，但在毒性方面改进不是很大</li>
 </ul>
-</blockquote>
 
                 
               </div>
@@ -374,7 +372,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/fine-tuning/">#fine tuning</a>
+        <a href="/tags/LLMs/">#LLMs</a>
       
     </div>
   
@@ -386,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GPT Understands, Too</div>
-      <div>https://lishilong.cc/2023/08/18/Paper Reading Notes/018p-tuning/</div>
+      <div>Training language models to follow instructions with human feedback</div>
+      <div>https://lishilong.cc/2023/08/18/Paper Reading Notes/021instructGPT/</div>
     </div>
     <div class="license-meta">
       
@@ -426,29 +424,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2023/08/18/Paper%20Reading%20Notes/019prefix-tuning/" title="Prefix-Tuning - Optimizing Continuous Prompts for Generation">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Prefix-Tuning - Optimizing Continuous Prompts for Generation</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2023/08/17/NLP/015finetuning/" title="LLMs fine tuning方法总结">
-                        <span class="hidden-mobile">LLMs fine tuning方法总结</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
