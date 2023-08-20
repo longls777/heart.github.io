@@ -18,22 +18,26 @@
   
     <meta name="description" content="LLM PEFT https:&#x2F;&#x2F;github.com&#x2F;hiyouga&#x2F;LLaMA-Efficient-Tuning Kaggle competition https:&#x2F;&#x2F;www.kaggle.com&#x2F;competitions&#x2F;kaggle-llm-science-exam&#x2F;overview  Data    Dataset train test     LLMscience 200 200">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LLMScienc">
+<meta property="og:title" content="LLMScience">
 <meta property="og:url" content="https://lishilong.cc/2023/08/19/Practice/LLMScience/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="LLM PEFT https:&#x2F;&#x2F;github.com&#x2F;hiyouga&#x2F;LLaMA-Efficient-Tuning Kaggle competition https:&#x2F;&#x2F;www.kaggle.com&#x2F;competitions&#x2F;kaggle-llm-science-exam&#x2F;overview  Data    Dataset train test     LLMscience 200 200">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230820163347651.png">
 <meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819164406358.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/training_loss1.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230820163801773.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230820163856986.png">
 <meta property="article:published_time" content="2023-08-19T06:53:00.000Z">
-<meta property="article:modified_time" content="2023-08-19T08:52:47.917Z">
+<meta property="article:modified_time" content="2023-08-20T08:39:07.518Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819164406358.png">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230820163347651.png">
   
   
   
-  <title>LLMScienc - Heart</title>
+  <title>LLMScience - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="LLMScienc"></span>
+            <span id="subtitle" data-typed-text="LLMScience"></span>
           
         </div>
 
@@ -237,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          675 字
+          1.6k 字
         
       </span>
     
@@ -248,7 +252,7 @@
         
         
         
-          6 分钟
+          14 分钟
         
       </span>
     
@@ -286,7 +290,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">LLMScienc</h1>
+            <h1 style="display: none">LLMScience</h1>
             
             
               <div class="markdown-body">
@@ -338,14 +342,27 @@
 <p>15k <a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/radek1/15k-high-quality-examples">https://www.kaggle.com/datasets/radek1/15k-high-quality-examples</a></p>
 <p>6k <a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/radek1/sci-or-not-sci-hypthesis-testing-pack">https://www.kaggle.com/datasets/radek1/sci-or-not-sci-hypthesis-testing-pack</a></p>
 </blockquote>
-<p>39600</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819164406358.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h2 id="STEP1">STEP1</h2>
 <p>使用官方的200条数据和收集到的额外数据，基于llama2-7b lora微调，然后推理</p>
 <h2 id="STEP2">STEP2</h2>
 <p>依然是LORA微调，但是修改模型结构，用最后一个token的embedding + 分类器做分类来训练和推理</p>
 <h2 id="STEP3">STEP3</h2>
 <p>改进分类器，可以套DUMA或者CDUMA，还有就是损失函数，因为评估指标是MAP@3</p>
+<h2 id="2023-8-19">2023.8.19</h2>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230820163347651.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>使用全部39600条数据进行LoRA微调</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230819164406358.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>参数如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs sh">CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \<br>    --stage sft \<br>    --model_name_or_path /home/lsl/projects/Finetune_LLAMA/LLAMA_Model/llama-2-7b-chat-hf \<br>    --do_train \<br>    --dataset llmscience \<br>    --template llama2 \<br>    --finetuning_type lora \<br>    --output_dir sft_checkpoint \<br>    --overwrite_cache \<br>    --per_device_train_batch_size 1 \<br>    --gradient_accumulation_steps 4 \<br>    --lr_scheduler_type cosine \<br>    --logging_steps 10 \<br>    --save_steps 1000 \<br>    --learning_rate 5e-5 \<br>    --num_train_epochs 3.0 \<br>    --plot_loss \<br>    --fp16<br></code></pre></td></tr></table></figure>
+<p>推理结果</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;predict_accuracy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0.36</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;predict_bleu-4&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12.353524999999998</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;predict_rouge-1&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">36.0</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;predict_rouge-2&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0.0</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;predict_rouge-l&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">35.166667</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;predict_runtime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">29.113</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;predict_samples_per_second&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3.435</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;predict_steps_per_second&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3.435</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/training_loss1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>效果一般</p>
+<h2 id="2023-8-20">2023.8.20</h2>
+<p>推测可能是有些数据质量比较差，所以选用高质量的数据集（作者说的质量比较高）</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230820163801773.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>10500条数据，epoch改成2</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230820163856986.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -384,7 +401,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>LLMScienc</div>
+      <div>LLMScience</div>
       <div>https://lishilong.cc/2023/08/19/Practice/LLMScience/</div>
     </div>
     <div class="license-meta">
