@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>The Wisdom of Hindsight Makes Language Models Better Instruction Followers</title>
+    <link href="/2023/08/23/Paper%20Reading%20Notes/022The%20Wisdom%20of%20Hindsight%20Makes%20Language%20Models%20Better%20Instruction%20Followers/"/>
+    <url>/2023/08/23/Paper%20Reading%20Notes/022The%20Wisdom%20of%20Hindsight%20Makes%20Language%20Models%20Better%20Instruction%20Followers/</url>
+    
+    <content type="html"><![CDATA[<p><strong>标题：</strong>《The Wisdom of Hindsight Makes Language Models Better Instruction Followers》</p><p><strong>论文来源：</strong> ICML 2023</p><p><strong>原文链接：</strong> <a href="https://arxiv.org/abs/2302.05206">https://arxiv.org/abs/2302.05206</a></p><p><strong>源码：</strong> <a href="https://github.com/tianjunz/HIR">https://github.com/tianjunz/HIR</a></p><h2 id="概述">概述</h2><p>强化学习如RLHF帮助GPT等LLM在下游任务上获得良好的表现，但是RLHF过程过于复杂，需要构建奖励模型，本文提出另一种方式：将反馈转化为指导，通过重新标记原始反馈并以监督方式训练模型以实现更好的对齐</p><blockquote><p>converting feedback to instruction by relabeling the original one and training the model for better alignment in a supervised manner.</p></blockquote><p>这种方式不需要额外的训练参数，并且可以reuse预训练pipeline。为了实现这一目标，本文将语言模型的指令对齐问题表述为决策制定中的目标达成问题，提出了HIR算法（Hindsight Instruction Relabeling）</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823114946253.png" alt=""></p><h2 id="Method">Method</h2><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823115153238.png" alt=""></p><h3 id="Instruction-Following-as-Goal-conditioned-RL">Instruction Following as Goal-conditioned RL</h3><p>将大模型的对齐看作是给定目标的RL问题</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823120125490.png" alt=""></p><p>Prompt作为目标Goal， Query作为状态空间S，输出token作为动作空间，转移概率也就是模型的预测概率，奖励R可以通过人类反馈得到，但是HIR不需要这一步</p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823120142886.png" alt=""></p><p>G， S和A都是词向量空间，所以也可以将其看作给定目标的RL问题</p><h3 id="Algorithm-Overview">Algorithm Overview</h3><p>HIR包括两阶段：</p><ul><li>online sampling 在线采样</li><li>offline relabeling 离线重标记</li></ul><h4 id="Online-Sampling">Online Sampling</h4><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823121229161.png" alt=""></p><p>这个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">P_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，好像在代码里就是一句话：</p><blockquote><p>Solve the question with correct answer.</p></blockquote><p>这个采样怎么感觉就是加了个prompt</p><h4 id="Offline-Relabeling">Offline Relabeling</h4><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823121440395.png" alt=""></p><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823121507921.png" alt=""></p><p>重标记看起来是替换了<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>，新的prompt 通过奖励函数R和提示生成函数生成（可以学习也可以固定）</p><p>这个生成函数看起来是固定的，类似FARL</p><p>HIR和FARL的区别是是否使用<strong>事后的经验</strong>（hindsight）：</p><ul><li>FARL过滤了正确的instruction-output对</li><li>HIR允许从错误case中学习</li></ul><p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823122325727.png" alt="整个HIR算法的流程"></p><h2 id="总结">总结</h2><p>强化学习，PPO的改进，但是感觉数据集有点少，而且大多是MCQA的形式</p><p>（RL看不懂一点）</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading Notes</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>手撕系列！！！</title>
     <link href="/2023/08/20/NLP/016%E6%89%8B%E6%92%95%E7%B3%BB%E5%88%97/"/>
     <url>/2023/08/20/NLP/016%E6%89%8B%E6%92%95%E7%B3%BB%E5%88%97/</url>
