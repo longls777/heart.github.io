@@ -16,24 +16,24 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="Books  [x] 《亲密关系：通往灵魂的桥梁》 [ ] 《亲密关系》   ing [ ] 《窄门》 [ ] 《放弃的艺术》 [ ] 《安全感》 [ ] 《爱的艺术》 [ ] 《读懂恋人心》 [ ] 《经济学原理：微观经济学分册》 [ ] 《经济学原理：宏观经济学分册》 [ ]  Knowledge  [x] BART [x] instructGPT [x] chatglm [x] Lora [">
+    <meta name="description" content="标题：《Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks》 论文来源： EMNLP 2019 **原文链接： **https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1908.10084 源码： https:&#x2F;&#x2F;github.com&#x2F;UKPLab&#x2F;sentence-transformers 概述 BERT和RoBERTa等需要在计">
 <meta property="og:type" content="article">
-<meta property="og:title" content="待看的书 &amp;&amp; 待学习的知识点">
-<meta property="og:url" content="https://lishilong.cc/2023/08/06/Others/%E5%BE%85%E7%9C%8B/index.html">
+<meta property="og:title" content="Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks">
+<meta property="og:url" content="https://lishilong.cc/2023/08/25/Paper%20Reading%20Notes/024Sentence-BERT%20Sentence%20Embeddings%20using%20Siamese%20BERT-Networks/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="Books  [x] 《亲密关系：通往灵魂的桥梁》 [ ] 《亲密关系》   ing [ ] 《窄门》 [ ] 《放弃的艺术》 [ ] 《安全感》 [ ] 《爱的艺术》 [ ] 《读懂恋人心》 [ ] 《经济学原理：微观经济学分册》 [ ] 《经济学原理：宏观经济学分册》 [ ]  Knowledge  [x] BART [x] instructGPT [x] chatglm [x] Lora [">
+<meta property="og:description" content="标题：《Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks》 论文来源： EMNLP 2019 **原文链接： **https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1908.10084 源码： https:&#x2F;&#x2F;github.com&#x2F;UKPLab&#x2F;sentence-transformers 概述 BERT和RoBERTa等需要在计">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/013.jpg">
-<meta property="article:published_time" content="2023-08-06T09:35:00.000Z">
-<meta property="article:modified_time" content="2023-08-24T08:03:52.135Z">
+<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825130739299.png">
+<meta property="article:published_time" content="2023-08-25T04:55:00.000Z">
+<meta property="article:modified_time" content="2023-08-25T06:43:14.054Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/013.jpg">
+<meta name="twitter:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825130739299.png">
   
   
   
-  <title>待看的书 &amp;&amp; 待学习的知识点 - Heart</title>
+  <title>Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -44,6 +44,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
 
 
 
@@ -208,13 +210,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/013.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="待看的书 &amp;&amp; 待学习的知识点"></span>
+            <span id="subtitle" data-typed-text="Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks"></span>
           
         </div>
 
@@ -225,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-06 17:35" pubdate>
-          2023年8月6日 下午
+        <time datetime="2023-08-25 12:55" pubdate>
+          2023年8月25日 下午
         </time>
       </span>
     
@@ -237,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          309 字
+          402 字
         
       </span>
     
@@ -248,7 +250,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -286,38 +288,38 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">待看的书 &amp;&amp; 待学习的知识点</h1>
+            <h1 style="display: none">Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Books">Books</h2>
+                <p><strong>标题：</strong>《Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks》</p>
+<p><strong>论文来源：</strong> EMNLP 2019</p>
+<p>**原文链接： **<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1908.10084">https://arxiv.org/abs/1908.10084</a></p>
+<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/UKPLab/sentence-transformers">https://github.com/UKPLab/sentence-transformers</a></p>
+<h2 id="概述">概述</h2>
+<p>BERT和RoBERTa等需要在计算句子语义相似性时，需要将两个句子同时输入，不适合句子级别的语义相似度搜索</p>
+<p>本文提出了Sentence-BERT，使用孪生和三元组网络结构来生成句子级别的表征，可以用来进行余弦相似度计算，大大降低了BERT搜索最相似的两个句子所用的时间</p>
+<h2 id="Method">Method</h2>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825130739299.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="pooling">pooling</h3>
+<p>SBERT尝试了三种pooling操作：</p>
 <ul>
-<li>[x] 《亲密关系：通往灵魂的桥梁》</li>
-<li>[ ] 《亲密关系》   ing</li>
-<li>[ ] 《窄门》</li>
-<li>[ ] 《放弃的艺术》</li>
-<li>[ ] 《安全感》</li>
-<li>[ ] 《爱的艺术》</li>
-<li>[ ] 《读懂恋人心》</li>
-<li>[ ] 《经济学原理：微观经济学分册》</li>
-<li>[ ] 《经济学原理：宏观经济学分册》</li>
-<li>[ ]</li>
+<li>取[cls]token</li>
+<li>取均值</li>
+<li>计算max-over-time</li>
 </ul>
-<h2 id="Knowledge">Knowledge</h2>
-<ul>
-<li>[x] BART</li>
-<li>[x] instructGPT</li>
-<li>[x] chatglm</li>
-<li>[x] Lora</li>
-<li>[x] p-tuning</li>
-<li>[x] 手撕MultiheadAttention</li>
-<li>[x] 手撕softmax</li>
-<li>[x] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.04954.pdf">https://arxiv.org/pdf/2306.04954.pdf</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.01595">https://arxiv.org/abs/2307.01595</a></li>
-<li>[ ] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1409.7495">https://arxiv.org/abs/1409.7495</a></li>
-<li>[ ]</li>
-</ul>
+<p>默认配置是取均值</p>
+<h3 id="分类目标函数">分类目标函数</h3>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825133040935.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="回归目标函数">回归目标函数</h3>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825133812655.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="三元组目标函数">三元组目标函数</h3>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825133929233.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="Experments">Experments</h2>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825140500047.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825140522106.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825140607981.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -336,7 +338,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Others/" class="category-chain-item">Others</a>
+  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -356,8 +358,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>待看的书 &amp;&amp; 待学习的知识点</div>
-      <div>https://lishilong.cc/2023/08/06/Others/待看/</div>
+      <div>Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks</div>
+      <div>https://lishilong.cc/2023/08/25/Paper Reading Notes/024Sentence-BERT Sentence Embeddings using Siamese BERT-Networks/</div>
     </div>
     <div class="license-meta">
       
@@ -369,7 +371,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月6日</div>
+          <div>2023年8月25日</div>
         </div>
       
       
@@ -401,9 +403,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/07/Practice/%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/" title="多GPU训练">
+                      <a href="/2023/08/25/Paper%20Reading%20Notes/025ZS-BERT/" title="ZS-BERT - Towards Zero-Shot Relation Extraction with Attribute Representation Learning">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">多GPU训练</span>
+                        <span class="hidden-mobile">ZS-BERT - Towards Zero-Shot Relation Extraction with Attribute Representation Learning</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -411,8 +413,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/05/NLP/010RoBERTa&amp;ALBERT&amp;ELECTRA/" title="RoBERTa &amp; ALBERT &amp; ELECTRA">
-                        <span class="hidden-mobile">RoBERTa &amp; ALBERT &amp; ELECTRA</span>
+                      <a href="/2023/08/23/Paper%20Reading%20Notes/023RE-Matching%20A%20Fine-Grained%20Semantic%20Matching%20Method%20for%20Zero-Shot%20Relation%20Extraction/" title="RE-Matching - A Fine-Grained Semantic Matching Method for Zero-Shot Relation Extraction">
+                        <span class="hidden-mobile">RE-Matching - A Fine-Grained Semantic Matching Method for Zero-Shot Relation Extraction</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -469,6 +471,11 @@
 
 
   
+
+
+  
+  
+
 
 
 
