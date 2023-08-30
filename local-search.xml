@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Enriching Pre-trained Language Model with Entity Information for Relation Classification</title>
+    <link href="/2023/08/30/Paper%20Reading%20Notes/026R-BERT/"/>
+    <url>/2023/08/30/Paper%20Reading%20Notes/026R-BERT/</url>
+    
+    <content type="html"><![CDATA[<p><strong>标题：</strong>《Enriching Pre-trained Language Model with Entity Information for Relation Classification》</p><p><strong>论文来源：</strong> CIKM 2019</p><p>**原文链接： **<a href="https://arxiv.org/abs/1905.08284">https://arxiv.org/abs/1905.08284</a></p><h2 id="概述">概述</h2><p>relation classification问题，在本文之前大多次采用卷积和RNN来做，本文首先提出BERT来解决</p><h2 id="Method">Method</h2><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830132809565.png" alt=""></p><ul><li>Entity 1前后加个$</li><li>Entity 2 前后加个#</li><li>每一句前后加个[CLS]</li></ul><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830133147303.png" alt=""></p><ul><li>Mean Pool 得到 Entity 的representation，注意是先activate，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span>共享参数</li></ul><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830133429555.png" alt=""></p><ul><li>同样的方法取句向量</li></ul><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830133712545.png" alt=""></p><ul><li>把它们三个拼接起来，经过一个MLP和Softmax层</li></ul><h2 id="Experiments">Experiments</h2><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830135000823.png" alt=""></p><h2 id="Ablation-Studies">Ablation Studies</h2><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830135037102.png" alt=""></p><ul><li><strong>R-BERT-NO-SEP-NO-ENT</strong>：去掉$ 和 # ，只用[CLS]分类</li><li><strong>R-BERT-NO-SEP</strong>：去掉$和#，依然拼接[cls]和两个entity的representation</li><li><strong>R-BERT-NO-ENT</strong>：去掉实体拼接，但是保留$和#，也是只用[CLS]分类</li><li><strong>R-BERT</strong>：原版</li></ul><p>可以看到，只要标记了Entity的位置或者提供了Entity的表征，都能大幅提高分类的准确率</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>RE</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ZS-BERT - Towards Zero-Shot Relation Extraction with Attribute Representation Learning</title>
     <link href="/2023/08/25/Paper%20Reading%20Notes/025ZS-BERT/"/>
     <url>/2023/08/25/Paper%20Reading%20Notes/025ZS-BERT/</url>
