@@ -16,24 +16,27 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《ZS-BERT: Towards Zero-Shot Relation Extraction with Attribute Representation Learning》 论文来源： NAACL  2021 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;2021.naacl-main.272 源码： https:&#x2F;&#x2F;github.com&#x2F;dinobby&#x2F;ZS-">
+    <meta name="description" content="标题：《RCL: Relation Contrastive Learning for Zero-Shot Relation Extraction》 论文来源： NAACL Findings 2022 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.findings-naacl.188&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;ShusenWang&#x2F;NAAC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ZS-BERT - Towards Zero-Shot Relation Extraction with Attribute Representation Learning">
-<meta property="og:url" content="https://lishilong.cc/2023/08/25/Paper%20Reading%20Notes/025ZS-BERT/index.html">
+<meta property="og:title" content="RCL - Relation Contrastive Learning for Zero-Shot Relation Extraction">
+<meta property="og:url" content="https://lishilong.cc/2023/08/31/Paper%20Reading%20Notes/029RCL/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《ZS-BERT: Towards Zero-Shot Relation Extraction with Attribute Representation Learning》 论文来源： NAACL  2021 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;2021.naacl-main.272 源码： https:&#x2F;&#x2F;github.com&#x2F;dinobby&#x2F;ZS-">
+<meta property="og:description" content="标题：《RCL: Relation Contrastive Learning for Zero-Shot Relation Extraction》 论文来源： NAACL Findings 2022 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.findings-naacl.188&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;ShusenWang&#x2F;NAAC">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825160632508.png">
-<meta property="article:published_time" content="2023-08-25T06:43:00.000Z">
-<meta property="article:modified_time" content="2023-08-31T03:28:10.438Z">
+<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114340962.png">
+<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114455586.png">
+<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114657707.png">
+<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114734536.png">
+<meta property="article:published_time" content="2023-08-31T03:38:00.000Z">
+<meta property="article:modified_time" content="2023-08-31T03:56:39.575Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="RE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825160632508.png">
+<meta name="twitter:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114340962.png">
   
   
   
-  <title>ZS-BERT - Towards Zero-Shot Relation Extraction with Attribute Representation Learning - Heart</title>
+  <title>RCL - Relation Contrastive Learning for Zero-Shot Relation Extraction - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ZS-BERT - Towards Zero-Shot Relation Extraction with Attribute Representation Learning"></span>
+            <span id="subtitle" data-typed-text="RCL - Relation Contrastive Learning for Zero-Shot Relation Extraction"></span>
           
         </div>
 
@@ -227,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-25 14:43" pubdate>
-          2023年8月25日 下午
+        <time datetime="2023-08-31 11:38" pubdate>
+          2023年8月31日 中午
         </time>
       </span>
     
@@ -239,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          693 字
+          230 字
         
       </span>
     
@@ -250,7 +253,7 @@
         
         
         
-          6 分钟
+          2 分钟
         
       </span>
     
@@ -288,59 +291,23 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ZS-BERT - Towards Zero-Shot Relation Extraction with Attribute Representation Learning</h1>
+            <h1 style="display: none">RCL - Relation Contrastive Learning for Zero-Shot Relation Extraction</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>标题：</strong>《ZS-BERT: Towards Zero-Shot Relation Extraction with Attribute Representation Learning》</p>
-<p><strong>论文来源：</strong> NAACL  2021</p>
-<p>**原文链接： **  <a target="_blank" rel="noopener" href="https://aclanthology.org/2021.naacl-main.272">https://aclanthology.org/2021.naacl-main.272</a></p>
-<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/dinobby/ZS-BERT">https://github.com/dinobby/ZS-BERT</a></p>
+                <p><strong>标题：</strong>《RCL: Relation Contrastive Learning for Zero-Shot Relation Extraction》</p>
+<p><strong>论文来源：</strong> NAACL Findings 2022</p>
+<p>**原文链接： **  <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.findings-naacl.188/">https://aclanthology.org/2022.findings-naacl.188/</a></p>
+<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/ShusenWang/NAACL2022-RCL">https://github.com/ShusenWang/NAACL2022-RCL</a></p>
 <h2 id="概述">概述</h2>
-<p>很少有研究关注于如何预测训练阶段没见过的实体关系，本文提出了zero-shot BERT来解决这一问题</p>
-<p>给定输入的句子和其中实体关系的描述，zs-bert学习两个函数：</p>
-<ul>
-<li>最小化它们之间的距离</li>
-<li>分类可见关系</li>
-</ul>
-<p>以此来将句子和关系描述映射到一个向量空间</p>
-<p>通过基于这两个函数生成未见过的关系和新出现的句子的嵌入，使用最近邻搜索来获得未见过的关系的预测</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825155107275.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>通过对比学习，增强对相似关系的区分能力</p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114340962.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h2 id="Method">Method</h2>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825160632508.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>ZS-BERT Encoder</p>
-<ul>
-<li>取[cls]，entity对应token的embedding，得到a</li>
-</ul>
-<p>Sentence-BERT Encoder</p>
-<ul>
-<li>编码关系描述，得到a’</li>
-</ul>
-<p>多任务学习架构</p>
-<ul>
-<li>最小化a和a’之间的距离</li>
-<li>在训练阶段最小化类别分类损失，测试阶段通过新句子的表征a寻找最接近的关系表征，来得到分类结果</li>
-</ul>
-<h3 id="Learning-Relation-Attribute-Vectors">Learning Relation Attribute Vectors</h3>
-<p>使用Sentence-BERT，固定参数</p>
-<h3 id="Input-Sentence-Encoder">Input Sentence Encoder</h3>
-<p>提取三部分：</p>
-<ul>
-<li>[cls]对应的embedding（句向量）</li>
-<li>head entity对应的向量</li>
-<li>tail entity对应的向量</li>
-</ul>
-<p>实现方式是均值pooling</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825201528010.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>最后总的输入sentence表示：</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825201709763.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h3 id="训练Loss">训练Loss</h3>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825201755637.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span></span></span></span>的作用？</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825201852129.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114455586.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h2 id="Experiments">Experiments</h2>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230825164018590.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114657707.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230831114734536.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -386,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ZS-BERT - Towards Zero-Shot Relation Extraction with Attribute Representation Learning</div>
-      <div>https://lishilong.cc/2023/08/25/Paper Reading Notes/025ZS-BERT/</div>
+      <div>RCL - Relation Contrastive Learning for Zero-Shot Relation Extraction</div>
+      <div>https://lishilong.cc/2023/08/31/Paper Reading Notes/029RCL/</div>
     </div>
     <div class="license-meta">
       
@@ -399,7 +366,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月25日</div>
+          <div>2023年8月31日</div>
         </div>
       
       
@@ -431,9 +398,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/30/Paper%20Reading%20Notes/026R-BERT/" title="Enriching Pre-trained Language Model with Entity Information for Relation Classification">
+                      <a href="/2023/08/31/Paper%20Reading%20Notes/030MTB/" title="Matching the Blanks - Distributional Similarity for Relation Learning">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Enriching Pre-trained Language Model with Entity Information for Relation Classification</span>
+                        <span class="hidden-mobile">Matching the Blanks - Distributional Similarity for Relation Learning</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -441,8 +408,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/25/Paper%20Reading%20Notes/024Sentence-BERT%20Sentence%20Embeddings%20using%20Siamese%20BERT-Networks/" title="Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks">
-                        <span class="hidden-mobile">Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks</span>
+                      <a href="/2023/08/30/Paper%20Reading%20Notes/028REPrompt/" title="RelationPrompt - Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction">
+                        <span class="hidden-mobile">RelationPrompt - Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
