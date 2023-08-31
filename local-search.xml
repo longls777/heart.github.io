@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>BF16和FP16的区别</title>
+    <link href="/2023/08/31/NLP/017bf16/"/>
+    <url>/2023/08/31/NLP/017bf16/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>为什么很多新发布的LLM模型默认不用float16呢？ - DMRio3Uziy5c90dy的回答 - 知乎 <a href="https://www.zhihu.com/question/616600181/answer/3160547952">https://www.zhihu.com/question/616600181/answer/3160547952</a></p></blockquote><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-b5dedadc752de827fa74cb8ee4cbd5e8_1440w.webp" alt=""></p><p>bfloat16 和 float32 浮点数都拥有 8 位指数位，而 float16 仅拥有 5 个指数位，这能使得 bfloat16 相比 float16 表示更加大的范围</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">&gt;&gt; torch.finfo(torch.float32)<br>&gt;&gt; finfo(resolution=<span class="hljs-number">1e-06</span>, <span class="hljs-built_in">min</span>=-<span class="hljs-number">3.40282e+38</span>, <span class="hljs-built_in">max</span>=<span class="hljs-number">3.40282e+38</span>, eps=<span class="hljs-number">1.19209e-07</span>, smallest_normal=<span class="hljs-number">1.17549e-38</span>, tiny=<span class="hljs-number">1.17549e-38</span>, dtype=float32)<br>&gt;&gt; torch.finfo(torch.float16)<br>&gt;&gt; finfo(resolution=<span class="hljs-number">0.001</span>, <span class="hljs-built_in">min</span>=-<span class="hljs-number">65504</span>, <span class="hljs-built_in">max</span>=<span class="hljs-number">65504</span>, eps=<span class="hljs-number">0.000976562</span>, smallest_normal=<span class="hljs-number">6.10352e-05</span>, tiny=<span class="hljs-number">6.10352e-05</span>, dtype=float16)<br>&gt;&gt; torch.finfo(torch.bfloat16)<br>&gt;&gt; finfo(resolution=<span class="hljs-number">0.01</span>, <span class="hljs-built_in">min</span>=-<span class="hljs-number">3.38953e+38</span>, <span class="hljs-built_in">max</span>=<span class="hljs-number">3.38953e+38</span>, eps=<span class="hljs-number">0.0078125</span>, smallest_normal=<span class="hljs-number">1.17549e-38</span>, tiny=<span class="hljs-number">1.17549e-38</span>, dtype=bfloat16)<br></code></pre></td></tr></table></figure><p>其中，<code>min</code> <code>max</code> 字段为该数据类型可表示的最大最小值。</p><p><code>tiny</code> 和 <code>smallest_normal</code> 含义相同，表示该数据类型可以表示的最小正数。</p><p><code>eps</code> 字段为该数据类型的最小可表示数，满足 <code>1.0 + eps != 1.0</code> 。</p><p><code>resolution</code> 数据类型对应的近似十进制精度。</p><p>可以看到，虽然精度比 float16 要差很多，但 bfloat16 数据类型拥有和 float32 相同的表示范围。</p><p>这一特性在现代 LLM 学习任务中是更重要的，由于自注意力机制中使用了大量的 exp 运算，因此很多情况下，更大的范围比精度重要很多（能够有效防止上下溢出）</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>NLP</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Matching the Blanks - Distributional Similarity for Relation Learning</title>
     <link href="/2023/08/31/Paper%20Reading%20Notes/030MTB/"/>
     <url>/2023/08/31/Paper%20Reading%20Notes/030MTB/</url>
