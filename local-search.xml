@@ -4,6 +4,50 @@
   
   
   <entry>
+    <title>Matching the Blanks - Distributional Similarity for Relation Learning</title>
+    <link href="/2023/09/02/Paper%20Reading%20Notes/030MTB/"/>
+    <url>/2023/09/02/Paper%20Reading%20Notes/030MTB/</url>
+    
+    <content type="html"><![CDATA[<p><strong>标题：</strong>《Matching the Blanks: Distributional Similarity for Relation Learning》</p><p><strong>论文来源：</strong> ACL  2019</p><p>**原文链接： **  <a href="https://aclanthology.org/P19-1279/">https://aclanthology.org/P19-1279/</a></p><p><strong>源码：</strong> <a href="https://github.com/plkmo/BERT-Relation-Extraction">https://github.com/plkmo/BERT-Relation-Extraction</a></p><h2 id="概述">概述</h2><p>基于对Harris的分布假设进行的扩展，以及在学习文本表示方面的进展（具体来说，是BERT），仅从与实体相关联的文本构建了与任务无关的关系表示</p><blockquote><p>(来自ChatGPT)</p><p>Harris’ distributional hypothesis是一种语言学假设，最早由美国语言学家Zellig Harris于1954年提出。这一假设的核心思想是：</p><p>“Words that occur in the same contexts tend to have similar meanings.”</p><p>也就是说，如果两个词在语境中出现的模式（即它们周围的其他词汇）相似，那么这两个词可能具有相似的含义或关联性。这一假设强调了词汇的语境和共现关系在理解词义和语言中的作用。根据这一观点，我们可以通过分析词汇在大量文本中的共现模式来推断它们之间的语义关系。</p><p>Harris’ distributional hypothesis在自然语言处理和计算语言学领域中具有重要影响，因为它为词嵌入（word embeddings）和语言模型的发展提供了理论基础。例如，Word2Vec和GloVe等词嵌入模型就是基于这一假设的思想构建的，它们通过分析词汇在大规模语料库中的共现来生成词向量，以捕捉词汇之间的语义相似性。</p></blockquote><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902124125243.png" alt=""></p><h2 id="Method">Method</h2><h3 id="Relation-Classification-and-Extraction-Tasks">Relation Classification and Extraction Tasks</h3><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png" alt=""></p><p>上图是使用的两个Loss，左边是监督学习分类loss，右边是用于训练few-shot能力的相似度loss</p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125408063.png" alt=""></p><p>这里有6种Encoder的输入输出变体，它们的结果如下：</p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125811635.png" alt=""></p><p>可以看到使用Entity Markers（[E1] [/E1] [E2] [/E2]）并且提取实体开头的Markers（[E1] [E2]）作为关系表征效果最好</p><h3 id="Learning-by-Matching-the-Blanks">Learning by Matching the Blanks</h3><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131715740.png" alt=""></p><p>通过最小化下面的Loss来学习<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">f_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131815843.png" alt=""></p><p>这个Loss很像逻辑回归Loss呀</p><blockquote><p><a href="http://lishilong.xyz/2023/07/20/Deep%20Learning/005%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/">损失函数总结</a></p></blockquote><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132640904.png" alt=""></p><p>其实就是上图这样，必须两个实体都一样才是正例，否则都是反例</p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132949914.png" alt=""></p><p>这里就是以概率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>随机替换entity为[BLANK]，从而构建新的数据集，目的是让<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">f_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>学会entity span</p><h3 id="Matching-the-Blanks-Training">Matching the Blanks Training</h3><p>训练的时候，类似BERT，使用两个Loss：</p><ul><li>the masked language model loss</li><li>the matching the blanks loss</li></ul><p>从Wikipedia提取文本，并使用Google Cloud Natural Language API 标记实体（NER）</p><blockquote><p>The span annotations include <strong>not only proper names</strong>, but other referential entities such as common <strong>nouns</strong> and <strong>pronouns</strong>. From this annotated corpus we extract relation statements where each statement contains <strong>at least two grounded entities</strong> within <strong>a fixed sized window</strong> of tokens. To prevent a large bias towards relation statements that involve popular entities, we limit the number of relation statements that contain the same entity by randomly sampling a constant number of relation statements that contain any given entity.</p></blockquote><p>此外还有一些实现细节：由于无法比较每对关系陈述，采用了噪声-对比估计方法。考虑所有包含相同实体的正对关系陈述对，而对于不包含相同实体对的关系陈述对，进行了随机采样或从共享一个实体的关系陈述中采样。还以一定概率将实体的提及替换为[BLANK]符号，以确保模型不会受到[BLANK]符号缺失的干扰</p><p>最终生成了600m个关系陈述对，其中约50%为正对，50%为强负对</p><h2 id="Experiments">Experiments</h2><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902133948579.png" alt=""></p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134237692.png" alt=""></p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134314867.png" alt=""></p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134329630.png" alt=""></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading Notes</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>RE</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>RLHF相关问题</title>
+    <link href="/2023/09/02/NLP/018RLHF/"/>
+    <url>/2023/09/02/NLP/018RLHF/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>ChatGPT 为什么不用 Reward-Model 的数据直接 fine-tune，而用 RL？ - 知乎 <a href="https://www.zhihu.com/question/596230048">https://www.zhihu.com/question/596230048</a></p></blockquote><h2 id="ChatGPT-为什么不用-Reward-Model-的数据直接-fine-tune，而用-RL？">ChatGPT 为什么不用 Reward-Model 的数据直接 fine-tune，而用 RL？</h2><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902113546548.png" alt=""></p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902113653835.png" alt=""></p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902113716582.png" alt=""></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>NLP</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>RCL - Relation Contrastive Learning for Zero-Shot Relation Extraction</title>
     <link href="/2023/09/01/Paper%20Reading%20Notes/029RCL/"/>
     <url>/2023/09/01/Paper%20Reading%20Notes/029RCL/</url>
