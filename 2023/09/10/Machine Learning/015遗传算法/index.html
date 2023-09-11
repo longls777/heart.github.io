@@ -16,24 +16,24 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="标题：《Matching the Blanks: Distributional Similarity for Relation Learning》 论文来源： ACL  2019 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;P19-1279&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;plkmo&#x2F;BERT-Relation-Extraction 概述 基于对Har">
+    <meta name="description" content="遗传算法 (Genetic Algorithm, GA) 详解与实现 - 盼小辉丶的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;436453994 干货 | 遗传算法(Genetic Algorithm) （附代码及注释） - tigerqin1980的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;555431690  **遗传算法（Ge">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Matching the Blanks - Distributional Similarity for Relation Learning">
-<meta property="og:url" content="https://lishilong.cc/2023/09/02/Paper%20Reading%20Notes/030MTB/index.html">
+<meta property="og:title" content="遗传算法">
+<meta property="og:url" content="https://lishilong.cc/2023/09/10/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="标题：《Matching the Blanks: Distributional Similarity for Relation Learning》 论文来源： ACL  2019 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;P19-1279&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;plkmo&#x2F;BERT-Relation-Extraction 概述 基于对Har">
+<meta property="og:description" content="遗传算法 (Genetic Algorithm, GA) 详解与实现 - 盼小辉丶的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;436453994 干货 | 遗传算法(Genetic Algorithm) （附代码及注释） - tigerqin1980的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;555431690  **遗传算法（Ge">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png">
-<meta property="article:published_time" content="2023-09-02T05:45:00.000Z">
-<meta property="article:modified_time" content="2023-09-02T05:47:52.301Z">
+<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-03dd88b303d2f4d2c613366ed09bda89.jpg">
+<meta property="article:published_time" content="2023-09-10T10:38:00.000Z">
+<meta property="article:modified_time" content="2023-09-11T00:32:00.393Z">
 <meta property="article:author" content="Aaron">
-<meta property="article:tag" content="RE">
+<meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png">
+<meta name="twitter:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-03dd88b303d2f4d2c613366ed09bda89.jpg">
   
   
   
-  <title>Matching the Blanks - Distributional Similarity for Relation Learning - Heart</title>
+  <title>遗传算法 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Matching the Blanks - Distributional Similarity for Relation Learning"></span>
+            <span id="subtitle" data-typed-text="遗传算法"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-02 13:45" pubdate>
-          2023年9月2日 下午
+        <time datetime="2023-09-10 18:38" pubdate>
+          2023年9月10日 晚上
         </time>
       </span>
     
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.2k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          16 分钟
+          19 分钟
         
       </span>
     
@@ -288,62 +288,70 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Matching the Blanks - Distributional Similarity for Relation Learning</h1>
+            <h1 style="display: none">遗传算法</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>标题：</strong>《Matching the Blanks: Distributional Similarity for Relation Learning》</p>
-<p><strong>论文来源：</strong> ACL  2019</p>
-<p>**原文链接： **  <a target="_blank" rel="noopener" href="https://aclanthology.org/P19-1279/">https://aclanthology.org/P19-1279/</a></p>
-<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/plkmo/BERT-Relation-Extraction">https://github.com/plkmo/BERT-Relation-Extraction</a></p>
-<h2 id="概述">概述</h2>
-<p>基于对Harris的分布假设进行的扩展，以及在学习文本表示方面的进展（具体来说，是BERT），仅从与实体相关联的文本构建了与任务无关的关系表示</p>
-<blockquote>
-<p>(来自ChatGPT)</p>
-<p>Harris’ distributional hypothesis是一种语言学假设，最早由美国语言学家Zellig Harris于1954年提出。这一假设的核心思想是：</p>
-<p>“Words that occur in the same contexts tend to have similar meanings.”</p>
-<p>也就是说，如果两个词在语境中出现的模式（即它们周围的其他词汇）相似，那么这两个词可能具有相似的含义或关联性。这一假设强调了词汇的语境和共现关系在理解词义和语言中的作用。根据这一观点，我们可以通过分析词汇在大量文本中的共现模式来推断它们之间的语义关系。</p>
-<p>Harris’ distributional hypothesis在自然语言处理和计算语言学领域中具有重要影响，因为它为词嵌入（word embeddings）和语言模型的发展提供了理论基础。例如，Word2Vec和GloVe等词嵌入模型就是基于这一假设的思想构建的，它们通过分析词汇在大规模语料库中的共现来生成词向量，以捕捉词汇之间的语义相似性。</p>
+                <blockquote>
+<p>遗传算法 (Genetic Algorithm, GA) 详解与实现 - 盼小辉丶的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/436453994">https://zhuanlan.zhihu.com/p/436453994</a></p>
+<p>干货 | 遗传算法(Genetic Algorithm) （附代码及注释） - tigerqin1980的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/555431690">https://zhuanlan.zhihu.com/p/555431690</a></p>
 </blockquote>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902124125243.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="Method">Method</h2>
-<h3 id="Relation-Classification-and-Extraction-Tasks">Relation Classification and Extraction Tasks</h3>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>上图是使用的两个Loss，左边是监督学习分类loss，右边是用于训练few-shot能力的相似度loss</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125408063.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>这里有6种Encoder的输入输出变体，它们的结果如下：</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125811635.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>可以看到使用Entity Markers（[E1] [/E1] [E2] [/E2]）并且提取实体开头的Markers（[E1] [E2]）作为关系表征效果最好</p>
-<h3 id="Learning-by-Matching-the-Blanks">Learning by Matching the Blanks</h3>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131715740.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>通过最小化下面的Loss来学习<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">f_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131815843.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>这个Loss很像逻辑回归Loss呀</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://lishilong.xyz/2023/07/20/Deep%20Learning/005%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/">损失函数总结</a></p>
-</blockquote>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132640904.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>其实就是上图这样，必须两个实体都一样才是正例，否则都是反例</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132949914.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>这里就是以概率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>随机替换entity为[BLANK]，从而构建新的数据集，目的是让<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">f_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>学会entity span</p>
-<h3 id="Matching-the-Blanks-Training">Matching the Blanks Training</h3>
-<p>训练的时候，类似BERT，使用两个Loss：</p>
+<p>**遗传算法（Genetic Algorithm, GA）**是模拟达尔文生物进化论的自然选择和遗传学机理的生物进化过程的计算模型，<strong>是一种通过模拟自然进化过程搜索最优解的方法。</strong></p>
+<p>其主要特点是直接对结构对象进行操作，不存在求导和函数连续性的限定；具有内在的隐并行性和更好的全局寻优能力；采用概率化的寻优方法，<strong>不需要确定的规则就能自动获取和指导优化的搜索空间，自适应地调整搜索方向。</strong></p>
+<p>遗传算法以一种群体中的所有个体为对象，并利用随机化技术指导对一个被编码的参数空间进行高效搜索。其中，选择、交叉和变异构成了遗传算法的遗传操作；<strong>参数编码、初始群体的设定、适应度函数的设计、遗传操作设计、控制参数设定五个要素</strong>组成了遗传算法的核心内容。</p>
+<h2 id="执行过程">执行过程</h2>
+<p>遗传算法是从代表问题可能潜在的解集的一个种群（population）开始的，而一个种群则由经过基因（gene）编码的一定数目的个体(individual)组成</p>
+<p><strong>在每一代，根据问题域中个体的适应度（fitness）大小选择（selection）个体，并借助于自然遗传学的遗传算子（genetic operators）进行组合交叉（crossover）和变异（mutation），产生出代表新的解集的种群</strong></p>
+<p><strong>末代种群中的最优个体经过解码（decoding），可以作为问题近似最优解</strong></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-03dd88b303d2f4d2c613366ed09bda89.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="编码方式">编码方式</h2>
+<h3 id="二进制编码法">二进制编码法</h3>
 <ul>
-<li>the masked language model loss</li>
-<li>the matching the blanks loss</li>
+<li>编码、解码操作简单</li>
+<li>交叉、变异等遗传操作便于实现</li>
 </ul>
-<p>从Wikipedia提取文本，并使用Google Cloud Natural Language API 标记实体（NER）</p>
-<blockquote>
-<p>The span annotations include <strong>not only proper names</strong>, but other referential entities such as common <strong>nouns</strong> and <strong>pronouns</strong>. From this annotated corpus we extract relation statements where each statement contains <strong>at least two grounded entities</strong> within <strong>a fixed sized window</strong> of tokens. To prevent a large bias towards relation statements that involve popular entities, we limit the number of relation statements that contain the same entity by randomly sampling a constant number of relation statements that contain any given entity.</p>
-</blockquote>
-<p>此外还有一些实现细节：由于无法比较每对关系陈述，采用了噪声-对比估计方法。考虑所有包含相同实体的正对关系陈述对，而对于不包含相同实体对的关系陈述对，进行了随机采样或从共享一个实体的关系陈述中采样。还以一定概率将实体的提及替换为[BLANK]符号，以确保模型不会受到[BLANK]符号缺失的干扰</p>
-<p>最终生成了600m个关系陈述对，其中约50%为正对，50%为强负对</p>
-<h2 id="Experiments">Experiments</h2>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902133948579.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134237692.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134314867.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134329630.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>缺点：对于一些连续函数的优化问题，由于其随机性使得其局部搜索能力较差，如对于一些高精度的问题，<strong>当解迫近于最优解后，由于其变异后表现型变化很大，不连续，所以会远离最优解，达不到稳定</strong></p>
+<h3 id="浮点编码法">浮点编码法</h3>
+<p>**所谓浮点法，是指个体的每个基因值用某一范围内的一个浮点数来表示。**在浮点数编码方法中，必须保证基因值在给定的区间限制范围内，遗传算法中所使用的交叉、变异等遗传算子也必须保证其运算结果所产生的新个体的基因值也在这个区间限制范围内</p>
+<ul>
+<li>适用于在遗传算法中表示范围较大的数</li>
+<li>适用于精度要求较高的遗传算法</li>
+<li>便于较大空间的遗传搜索</li>
+</ul>
+<h3 id="符号编码法">符号编码法</h3>
+<p><strong>符号编码法是指个体染色体编码串中的基因值取自一个无数值含义、而只有代码含义的符号集如｛A,B,C…｝</strong></p>
+<ul>
+<li>符合有意义积术块编码原则</li>
+<li>便于在遗传算法中利用所求解问题的专门知识</li>
+</ul>
+<h2 id="适应度函数（Fitness-function）">适应度函数（Fitness function）</h2>
+<p>**适应度函数主要是通过个体特征从而判断个体的适应度，**适应度函数也称评价函数，是根据目标函数确定的用于区分群体中个体好坏的标准。<strong>适应度函数总是非负的，而目标函数可能有正有负，故需要在目标函数与适应度函数之间进行变换</strong></p>
+<p>在算法的每次迭代中，使用适应度函数对个体进行评估。适应度函数是用于优化的函数或试图解决的问题。</p>
+<p>适应度得分更高的个体代表了更好的解，其更有可能被选择繁殖并且其性状会在下一代中得到表现。随着遗传算法的进行，解的质量会提高，适应度会增加，一旦找到具有令人满意的适应度值的解，终止遗传算法。</p>
+<h2 id="选择（Selection）">选择（Selection）</h2>
+<p>在计算出种群中每个个体的适应度后，使用选择过程来确定种群中的哪个个体将用于繁殖并产生下一代，具有较高值的个体更有可能被选中，并将其遗传物质传递给下一代。</p>
+<p>仍然有机会选择低适应度值的个体，但概率较低。这样，就不会完全摒弃其遗传物质</p>
+<h2 id="交叉（Crossover）">交叉（Crossover）</h2>
+<p>为了创建一对新个体，通常将从当前代中选择的双亲样本的部分染色体互换（交叉），以创建代表后代的两个新染色体。此操作称为交叉或重组：</p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-145291fe412063445c57636a88759187_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="突变（Mutation）">突变（Mutation）</h2>
+<p>突变操作的目的是定期随机更新种群，将新模式引入染色体，并鼓励在解空间的未知区域中进行搜索。</p>
+<p>突变可能表现为基因的随机变化。变异是通过随机改变一个或多个染色体值来实现的。例如，翻转二进制串中的一位：</p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/1e5b5b14ca18290a7a7a174b1ece72a7_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="图式定理（schema-theorem）">图式定理（schema theorem）</h3>
+<p>要素假设的一个更形式化的表达是 Holland 图式定理，也称为遗传算法的基本定理。</p>
+<p>该定理是指图式是可以在染色体内找到的模式（或模板）。每个图式代表染色体中具有一定相似性的子集。</p>
+<p>例如，如果一组染色体用长度为 4 的二进制串表示，则图式 1*01 表示所有这些染色体，其中最左边的位置为1，最右边的两个位置为01，从左边数的第二个位置为 1 或 0，其中 * 表示通配符。</p>
+<p>对于每个图式，具有以下两个度量：</p>
+<ol>
+<li>阶（Order）：固定数字的数量</li>
+<li>定义长度（Defining length）：最远的两个固定数字之间的距离</li>
+</ol>
+<p>下表提供了四位二进制图式及其度量的几个示例：</p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230911083055825.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>种群中的每个染色体都对应于多个图式。例如，染色体1101对应于该表中出现的每个图式，因为它与它们代表的每个模式匹配。如果该染色体具有较高的适应度，则它及其代表的所有图式都更有可能从选择操作中幸存。当这条染色体与另一条染色体交叉或发生突变时，某些图式将保留下来，而另一些则将消失。低阶图式和定义长度短的图式更有可能幸存。</p>
+<p>因此，图式定理指出，<strong>低阶、定义长度短且适合度高于平均值的图式频率在连续的世代中呈指数增长</strong>。换句话说，随着遗传算法的发展，代表更有效解决方案的属性的更小、更简单的要素基块将越来越多地出现在群体中。</p>
 
                 
               </div>
@@ -362,7 +370,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
   
   
 
@@ -374,13 +382,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/RE/">#RE</a>
-      
-    </div>
-  
 </div>
 
 
@@ -389,8 +390,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Matching the Blanks - Distributional Similarity for Relation Learning</div>
-      <div>https://lishilong.cc/2023/09/02/Paper Reading Notes/030MTB/</div>
+      <div>遗传算法</div>
+      <div>https://lishilong.cc/2023/09/10/Machine Learning/015遗传算法/</div>
     </div>
     <div class="license-meta">
       
@@ -402,7 +403,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月2日</div>
+          <div>2023年9月10日</div>
         </div>
       
       
@@ -434,18 +435,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/10/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="遗传算法">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">遗传算法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/02/NLP/018RLHF/" title="RLHF相关问题">
-                        <span class="hidden-mobile">RLHF相关问题</span>
+                      <a href="/2023/09/02/Paper%20Reading%20Notes/030MTB/" title="Matching the Blanks - Distributional Similarity for Relation Learning">
+                        <span class="hidden-mobile">Matching the Blanks - Distributional Similarity for Relation Learning</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
