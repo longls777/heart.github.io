@@ -16,24 +16,24 @@
   <meta name="author" content="Aaron">
   <meta name="keywords" content="life, think, code">
   
-    <meta name="description" content="pytorch中交叉熵损失nn.CrossEntropyLoss()的真正计算过程 - 月光下的小趴菜的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;415829154  CrossEntropyLoss公式  代码如下： 12345678910111213141516171819202122232425import torchimport torch.nn as n">
+    <meta name="description" content="对比学习损失（InfoNCE loss）与交叉熵损失的联系，以及温度系数的作用 - Youngshell的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;506544456 CVPR2021自监督学习论文: 理解对比损失的性质以及温度系数的作用 - 片翼之鸟的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;357071960 https:&#x2F;&#x2F;a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CrossEntropyLoss">
-<meta property="og:url" content="https://lishilong.cc/2023/09/12/Deep%20Learning/012CrossEntropy/index.html">
+<meta property="og:title" content="对比学习infoNCE Loss的温度系数">
+<meta property="og:url" content="https://lishilong.cc/2023/09/12/Deep%20Learning/013%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%B8%A9%E5%BA%A6%E7%B3%BB%E6%95%B0/index.html">
 <meta property="og:site_name" content="Heart">
-<meta property="og:description" content="pytorch中交叉熵损失nn.CrossEntropyLoss()的真正计算过程 - 月光下的小趴菜的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;415829154  CrossEntropyLoss公式  代码如下： 12345678910111213141516171819202122232425import torchimport torch.nn as n">
+<meta property="og:description" content="对比学习损失（InfoNCE loss）与交叉熵损失的联系，以及温度系数的作用 - Youngshell的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;506544456 CVPR2021自监督学习论文: 理解对比损失的性质以及温度系数的作用 - 片翼之鸟的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;357071960 https:&#x2F;&#x2F;a">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-c63bf0c8bbb078faff7bee6cba28b4ee_720w.webp">
-<meta property="article:published_time" content="2023-09-12T13:27:00.000Z">
-<meta property="article:modified_time" content="2023-09-12T13:31:36.052Z">
+<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912220303751.png">
+<meta property="article:published_time" content="2023-09-12T13:52:00.000Z">
+<meta property="article:modified_time" content="2023-09-12T14:08:57.696Z">
 <meta property="article:author" content="Aaron">
 <meta property="article:tag" content="life, think, code">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-c63bf0c8bbb078faff7bee6cba28b4ee_720w.webp">
+<meta name="twitter:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912220303751.png">
   
   
   
-  <title>CrossEntropyLoss - Heart</title>
+  <title>对比学习infoNCE Loss的温度系数 - Heart</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CrossEntropyLoss"></span>
+            <span id="subtitle" data-typed-text="对比学习infoNCE Loss的温度系数"></span>
           
         </div>
 
@@ -227,7 +227,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-12 21:27" pubdate>
+        <time datetime="2023-09-12 21:52" pubdate>
           2023年9月12日 晚上
         </time>
       </span>
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          762 字
+          361 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          7 分钟
+          4 分钟
         
       </span>
     
@@ -288,18 +288,25 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CrossEntropyLoss</h1>
+            <h1 style="display: none">对比学习infoNCE Loss的温度系数</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>pytorch中交叉熵损失nn.CrossEntropyLoss()的真正计算过程 - 月光下的小趴菜的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/415829154">https://zhuanlan.zhihu.com/p/415829154</a></p>
+<p>对比学习损失（InfoNCE loss）与交叉熵损失的联系，以及温度系数的作用 - Youngshell的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/506544456">https://zhuanlan.zhihu.com/p/506544456</a></p>
+<p>CVPR2021自监督学习论文: 理解对比损失的性质以及温度系数的作用 - 片翼之鸟的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/357071960">https://zhuanlan.zhihu.com/p/357071960</a></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.09740.pdf">https://arxiv.org/pdf/2012.09740.pdf</a></p>
 </blockquote>
-<h2 id="CrossEntropyLoss公式">CrossEntropyLoss公式</h2>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-c63bf0c8bbb078faff7bee6cba28b4ee_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>entroy=nn.CrossEntropyLoss()<br><span class="hljs-built_in">input</span>=torch.Tensor([[<span class="hljs-number">0.1234</span>, <span class="hljs-number">0.5555</span>,<span class="hljs-number">0.3211</span>],[<span class="hljs-number">0.1234</span>, <span class="hljs-number">0.5555</span>,<span class="hljs-number">0.3211</span>],[<span class="hljs-number">0.1234</span>, <span class="hljs-number">0.5555</span>,<span class="hljs-number">0.3211</span>],])<br>target = torch.tensor([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])<br>output = entroy(<span class="hljs-built_in">input</span>, target)<br><span class="hljs-built_in">print</span>(output)<br><span class="hljs-comment">#输出 tensor(1.1142)</span><br><span class="hljs-comment"># ----------------------------------------------------------------------------</span><br><span class="hljs-built_in">input</span>=np.array(<span class="hljs-built_in">input</span>)<br>target = np.array(target)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cross_entorpy</span>(<span class="hljs-params"><span class="hljs-built_in">input</span>, target</span>):<br>    output = <span class="hljs-number">0</span><br>    length = <span class="hljs-built_in">len</span>(target)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(length):<br>        hou = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">input</span>[i]:<br>            hou += np.exp(j)<br>        output += -<span class="hljs-built_in">input</span>[i][target[i]] + np.log(hou)<br>    <span class="hljs-keyword">return</span> np.around(output / length, <span class="hljs-number">4</span>)<br><span class="hljs-built_in">print</span>(cross_entorpy(<span class="hljs-built_in">input</span>, target))<br><span class="hljs-comment">#输出 1.1142</span><br></code></pre></td></tr></table></figure>
+<h2 id="InfoNCE-Loss">InfoNCE Loss</h2>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912215542591.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>or</p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912220326299.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>NCE = noise contrastive estimation</p>
+<h2 id="温度系数的作用">温度系数的作用</h2>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912215944247.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912220303751.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>温度系数决定了对比损失对困难负样本的关注程度，越大的温度系数，往往一视同仁，不会太过关注更困难的负样本；而温度系数越小，则越关注与该样本相似度非常大的困难负样本，给予困难负样本更大的梯度与正样本分离</p>
 
                 
               </div>
@@ -338,8 +345,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CrossEntropyLoss</div>
-      <div>https://lishilong.cc/2023/09/12/Deep Learning/012CrossEntropy/</div>
+      <div>对比学习infoNCE Loss的温度系数</div>
+      <div>https://lishilong.cc/2023/09/12/Deep Learning/013对比学习的温度系数/</div>
     </div>
     <div class="license-meta">
       
@@ -383,18 +390,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/12/Deep%20Learning/013%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%B8%A9%E5%BA%A6%E7%B3%BB%E6%95%B0/" title="对比学习infoNCE Loss的温度系数">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">对比学习infoNCE Loss的温度系数</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/10/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="遗传算法">
-                        <span class="hidden-mobile">遗传算法</span>
+                      <a href="/2023/09/12/Deep%20Learning/012CrossEntropy/" title="CrossEntropyLoss">
+                        <span class="hidden-mobile">CrossEntropyLoss</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

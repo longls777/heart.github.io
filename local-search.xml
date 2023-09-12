@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>对比学习infoNCE Loss的温度系数</title>
+    <link href="/2023/09/12/Deep%20Learning/013%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%B8%A9%E5%BA%A6%E7%B3%BB%E6%95%B0/"/>
+    <url>/2023/09/12/Deep%20Learning/013%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%B8%A9%E5%BA%A6%E7%B3%BB%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>对比学习损失（InfoNCE loss）与交叉熵损失的联系，以及温度系数的作用 - Youngshell的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/506544456">https://zhuanlan.zhihu.com/p/506544456</a></p><p>CVPR2021自监督学习论文: 理解对比损失的性质以及温度系数的作用 - 片翼之鸟的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/357071960">https://zhuanlan.zhihu.com/p/357071960</a></p><p><a href="https://arxiv.org/pdf/2012.09740.pdf">https://arxiv.org/pdf/2012.09740.pdf</a></p></blockquote><h2 id="InfoNCE-Loss">InfoNCE Loss</h2><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912215542591.png" alt=""></p><p>or</p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912220326299.png" alt=""></p><p>NCE = noise contrastive estimation</p><h2 id="温度系数的作用">温度系数的作用</h2><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912215944247.png" alt=""></p><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912220303751.png" alt=""></p><p>温度系数决定了对比损失对困难负样本的关注程度，越大的温度系数，往往一视同仁，不会太过关注更困难的负样本；而温度系数越小，则越关注与该样本相似度非常大的困难负样本，给予困难负样本更大的梯度与正样本分离</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Deep Learning</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CrossEntropyLoss</title>
     <link href="/2023/09/12/Deep%20Learning/012CrossEntropy/"/>
     <url>/2023/09/12/Deep%20Learning/012CrossEntropy/</url>
