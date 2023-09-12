@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>CrossEntropyLoss</title>
+    <link href="/2023/09/12/Deep%20Learning/012CrossEntropy/"/>
+    <url>/2023/09/12/Deep%20Learning/012CrossEntropy/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>pytorch中交叉熵损失nn.CrossEntropyLoss()的真正计算过程 - 月光下的小趴菜的文章 - 知乎 <a href="https://zhuanlan.zhihu.com/p/415829154">https://zhuanlan.zhihu.com/p/415829154</a></p></blockquote><h2 id="CrossEntropyLoss公式">CrossEntropyLoss公式</h2><p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-c63bf0c8bbb078faff7bee6cba28b4ee_720w.webp" alt="img"></p><p>代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>entroy=nn.CrossEntropyLoss()<br><span class="hljs-built_in">input</span>=torch.Tensor([[<span class="hljs-number">0.1234</span>, <span class="hljs-number">0.5555</span>,<span class="hljs-number">0.3211</span>],[<span class="hljs-number">0.1234</span>, <span class="hljs-number">0.5555</span>,<span class="hljs-number">0.3211</span>],[<span class="hljs-number">0.1234</span>, <span class="hljs-number">0.5555</span>,<span class="hljs-number">0.3211</span>],])<br>target = torch.tensor([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])<br>output = entroy(<span class="hljs-built_in">input</span>, target)<br><span class="hljs-built_in">print</span>(output)<br><span class="hljs-comment">#输出 tensor(1.1142)</span><br><span class="hljs-comment"># ----------------------------------------------------------------------------</span><br><span class="hljs-built_in">input</span>=np.array(<span class="hljs-built_in">input</span>)<br>target = np.array(target)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cross_entorpy</span>(<span class="hljs-params"><span class="hljs-built_in">input</span>, target</span>):<br>    output = <span class="hljs-number">0</span><br>    length = <span class="hljs-built_in">len</span>(target)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(length):<br>        hou = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">input</span>[i]:<br>            hou += np.exp(j)<br>        output += -<span class="hljs-built_in">input</span>[i][target[i]] + np.log(hou)<br>    <span class="hljs-keyword">return</span> np.around(output / length, <span class="hljs-number">4</span>)<br><span class="hljs-built_in">print</span>(cross_entorpy(<span class="hljs-built_in">input</span>, target))<br><span class="hljs-comment">#输出 1.1142</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Deep Learning</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>遗传算法</title>
     <link href="/2023/09/10/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/"/>
     <url>/2023/09/10/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/</url>
