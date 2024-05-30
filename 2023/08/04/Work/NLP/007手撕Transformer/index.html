@@ -1,0 +1,672 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta name="description" content="Transformer模型的输入输出(训练和推理) - zx1116的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;622714425  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手撕Transformer">
+<meta property="og:url" content="https://lishilong.cc/2023/08/04/Work/NLP/007%E6%89%8B%E6%92%95Transformer/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:description" content="Transformer模型的输入输出(训练和推理) - zx1116的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;622714425  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802141733150.png">
+<meta property="article:published_time" content="2023-08-04T06:15:00.000Z">
+<meta property="article:modified_time" content="2024-05-30T06:57:31.249Z">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="手撕系列">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802141733150.png">
+  
+  
+  
+  <title>手撕Transformer - Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802141733150.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="手撕Transformer"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-04 14:15" pubdate>
+          2023年8月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">手撕Transformer</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802141733150.png" srcset="/img/loading.gif" lazyload alt="Transformer"></p>
+<blockquote>
+<p>Transformer模型的输入输出(训练和推理) - zx1116的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622714425">https://zhuanlan.zhihu.com/p/622714425</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br><br><span class="hljs-keyword">from</span> utils <span class="hljs-keyword">import</span> utils<br><br><span class="hljs-comment"># pylint: disable=arguments-differ</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">initialize_weight</span>(<span class="hljs-params">x</span>):<br>    nn.init.xavier_uniform_(x.weight)<span class="hljs-comment"># xavier初始化</span><br>    <span class="hljs-keyword">if</span> x.bias <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        nn.init.constant_(x.bias, <span class="hljs-number">0</span>)<span class="hljs-comment"># 偏置初始化为0</span><br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">FeedForwardNetwork</span>(nn.Module): <span class="hljs-comment"># 两层的MLP</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size, filter_size, dropout_rate</span>):<br>        <span class="hljs-built_in">super</span>(FeedForwardNetwork, self).__init__()<br><br>        self.layer1 = nn.Linear(hidden_size, filter_size)<br>        self.relu = nn.ReLU()<br>        self.dropout = nn.Dropout(dropout_rate)<br>        self.layer2 = nn.Linear(filter_size, hidden_size)<br><br>        initialize_weight(self.layer1)<br>        initialize_weight(self.layer2)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = self.layer1(x)<br>        x = self.relu(x)<br>        x = self.dropout(x)<br>        x = self.layer2(x)<br>        <span class="hljs-keyword">return</span> x<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MultiHeadAttention</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size, dropout_rate, head_size=<span class="hljs-number">8</span></span>):<br>        <span class="hljs-built_in">super</span>(MultiHeadAttention, self).__init__()<br><br>        self.head_size = head_size<br><br>        self.att_size = att_size = hidden_size // head_size <span class="hljs-comment"># d_k</span><br>        self.scale = att_size ** -<span class="hljs-number">0.5</span> <span class="hljs-comment"># 根号下d_k分之一</span><br><br>        self.linear_q = nn.Linear(hidden_size, head_size * att_size, bias=<span class="hljs-literal">False</span>) <span class="hljs-comment"># head size降维</span><br>        self.linear_k = nn.Linear(hidden_size, head_size * att_size, bias=<span class="hljs-literal">False</span>)<br>        self.linear_v = nn.Linear(hidden_size, head_size * att_size, bias=<span class="hljs-literal">False</span>)<br>        initialize_weight(self.linear_q)<br>        initialize_weight(self.linear_k)<br>        initialize_weight(self.linear_v)<br><br>        self.att_dropout = nn.Dropout(dropout_rate)<br><br>        self.output_layer = nn.Linear(head_size * att_size, hidden_size,<br>                                      bias=<span class="hljs-literal">False</span>)<br>        initialize_weight(self.output_layer)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, q, k, v, mask, cache=<span class="hljs-literal">None</span></span>):<br>        orig_q_size = q.size() <span class="hljs-comment"># [batch_size, max_length, embedding_dim] [1, 512, 768]</span><br><br>        d_k = self.att_size <span class="hljs-comment"># 96</span><br>        d_v = self.att_size <span class="hljs-comment"># 96</span><br>        batch_size = q.size(<span class="hljs-number">0</span>) <span class="hljs-comment"># 1</span><br><br>        <span class="hljs-comment"># head_i = Attention(Q(W^Q)_i, K(W^K)_i, V(W^V)_i)</span><br>        q = self.linear_q(q).view(batch_size, -<span class="hljs-number">1</span>, self.head_size, d_k) <span class="hljs-comment"># [1, 512, 8, 96]</span><br>        <span class="hljs-keyword">if</span> cache <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">and</span> <span class="hljs-string">&#x27;encdec_k&#x27;</span> <span class="hljs-keyword">in</span> cache:<br>            k, v = cache[<span class="hljs-string">&#x27;encdec_k&#x27;</span>], cache[<span class="hljs-string">&#x27;encdec_v&#x27;</span>]<br>        <span class="hljs-keyword">else</span>:<br>            k = self.linear_k(k).view(batch_size, -<span class="hljs-number">1</span>, self.head_size, d_k)<span class="hljs-comment"># [1, 512, 8, 96]</span><br>            v = self.linear_v(v).view(batch_size, -<span class="hljs-number">1</span>, self.head_size, d_v)<span class="hljs-comment"># [1, 512, 8, 96]</span><br><br>            <span class="hljs-keyword">if</span> cache <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>                cache[<span class="hljs-string">&#x27;encdec_k&#x27;</span>], cache[<span class="hljs-string">&#x27;encdec_v&#x27;</span>] = k, v<br><br>        q = q.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)                  <span class="hljs-comment"># [b, h, q_len, d_k] # [1, 8, 512, 96]</span><br>        v = v.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)                  <span class="hljs-comment"># [b, h, v_len, d_v] # [1, 8, 512, 96]</span><br>        k = k.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).transpose(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)  <span class="hljs-comment"># [b, h, d_k, k_len] # [1, 8, 96, 512]</span><br><br>        <span class="hljs-comment"># Scaled Dot-Product Attention.</span><br>        <span class="hljs-comment"># Attention(Q, K, V) = softmax((QK^T)/sqrt(d_k))V</span><br>        q.mul_(self.scale)<br>        x = torch.matmul(q, k)  <span class="hljs-comment"># [b, h, q_len, k_len] # [1, 8, 512, 96] x [1, 8, 96, 512] = [1, 8, 512, 512]</span><br>        x.masked_fill_(mask.unsqueeze(<span class="hljs-number">1</span>), -<span class="hljs-number">1e9</span>)<span class="hljs-comment"># masked_fill_函数将在x中将对应于掩码为True（非零）的位置的值设为-1e9（一个很大的负值）。</span><br>        <span class="hljs-comment"># 换句话说，它将在注意力得分中屏蔽掉掩码为True的位置</span><br>        x = torch.softmax(x, dim=<span class="hljs-number">3</span>)<br>        x = self.att_dropout(x)<br>        x = x.matmul(v)  <span class="hljs-comment"># [b, h, q_len, attn] # [1, 8, 512, 512] x [1, 8, 512, 96] = [1, 8, 512, 96]</span><br><br>        x = x.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>).contiguous()  <span class="hljs-comment"># [b, q_len, h, attn] # [1, 512, 8, 96]</span><br>        x = x.view(batch_size, -<span class="hljs-number">1</span>, self.head_size * d_v) <span class="hljs-comment"># [1, 512, 768]</span><br><br>        x = self.output_layer(x) <span class="hljs-comment"># [1, 512, 768]</span><br><br>        <span class="hljs-keyword">assert</span> x.size() == orig_q_size <span class="hljs-comment"># [1, 512, 768] == [1, 512, 768]</span><br>        <span class="hljs-keyword">return</span> x<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">EncoderLayer</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size, filter_size, dropout_rate</span>):<br>        <span class="hljs-built_in">super</span>(EncoderLayer, self).__init__()<br><br>        self.self_attention_norm = nn.LayerNorm(hidden_size, eps=<span class="hljs-number">1e-6</span>)<br>        self.self_attention = MultiHeadAttention(hidden_size, dropout_rate)<br>        self.self_attention_dropout = nn.Dropout(dropout_rate)<br><br>        self.ffn_norm = nn.LayerNorm(hidden_size, eps=<span class="hljs-number">1e-6</span>)<br>        self.ffn = FeedForwardNetwork(hidden_size, filter_size, dropout_rate)<br>        self.ffn_dropout = nn.Dropout(dropout_rate)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x, mask</span>):  <span class="hljs-comment"># pylint: disable=arguments-differ # 就是Encoder的结构</span><br>        y = self.self_attention_norm(x)<br>        y = self.self_attention(y, y, y, mask)<br>        y = self.self_attention_dropout(y)<br>        x = x + y<br><br>        y = self.ffn_norm(x)<br>        y = self.ffn(y)<br>        y = self.ffn_dropout(y)<br>        x = x + y<br>        <span class="hljs-keyword">return</span> x<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DecoderLayer</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size, filter_size, dropout_rate</span>):<br>        <span class="hljs-built_in">super</span>(DecoderLayer, self).__init__()<br><br>        self.self_attention_norm = nn.LayerNorm(hidden_size, eps=<span class="hljs-number">1e-6</span>)<br>        self.self_attention = MultiHeadAttention(hidden_size, dropout_rate)<br>        self.self_attention_dropout = nn.Dropout(dropout_rate)<br><br>        self.enc_dec_attention_norm = nn.LayerNorm(hidden_size, eps=<span class="hljs-number">1e-6</span>)<br>        self.enc_dec_attention = MultiHeadAttention(hidden_size, dropout_rate)<br>        self.enc_dec_attention_dropout = nn.Dropout(dropout_rate)<br><br>        self.ffn_norm = nn.LayerNorm(hidden_size, eps=<span class="hljs-number">1e-6</span>)<br>        self.ffn = FeedForwardNetwork(hidden_size, filter_size, dropout_rate)<br>        self.ffn_dropout = nn.Dropout(dropout_rate)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x, enc_output, self_mask, i_mask, cache</span>):<br>        y = self.self_attention_norm(x)<br>        y = self.self_attention(y, y, y, self_mask)<br>        y = self.self_attention_dropout(y)<br>        x = x + y<br><br>        <span class="hljs-keyword">if</span> enc_output <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>            y = self.enc_dec_attention_norm(x)<br>            y = self.enc_dec_attention(y, enc_output, enc_output, i_mask,<br>                                       cache) <span class="hljs-comment"># q k v</span><br>            y = self.enc_dec_attention_dropout(y)<br>            x = x + y<br><br>        y = self.ffn_norm(x)<br>        y = self.ffn(y)<br>        y = self.ffn_dropout(y)<br>        x = x + y<br>        <span class="hljs-keyword">return</span> x<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Encoder</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size, filter_size, dropout_rate, n_layers</span>):<br>        <span class="hljs-built_in">super</span>(Encoder, self).__init__()<br><br>        encoders = [EncoderLayer(hidden_size, filter_size, dropout_rate)<br>                    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_layers)]<br>        self.layers = nn.ModuleList(encoders)<br><br>        self.last_norm = nn.LayerNorm(hidden_size, eps=<span class="hljs-number">1e-6</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs, mask</span>):<br>        encoder_output = inputs<br>        <span class="hljs-keyword">for</span> enc_layer <span class="hljs-keyword">in</span> self.layers:<br>            encoder_output = enc_layer(encoder_output, mask)<br>        <span class="hljs-keyword">return</span> self.last_norm(encoder_output) <span class="hljs-comment"># 最后还要来个LN</span><br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Decoder</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size, filter_size, dropout_rate, n_layers</span>):<br>        <span class="hljs-built_in">super</span>(Decoder, self).__init__()<br><br>        decoders = [DecoderLayer(hidden_size, filter_size, dropout_rate)<br>                    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n_layers)]<br>        self.layers = nn.ModuleList(decoders)<br><br>        self.last_norm = nn.LayerNorm(hidden_size, eps=<span class="hljs-number">1e-6</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, targets, enc_output, i_mask, t_self_mask, cache</span>):<br>        decoder_output = targets<br>        <span class="hljs-keyword">for</span> i, dec_layer <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(self.layers):<br>            layer_cache = <span class="hljs-literal">None</span><br>            <span class="hljs-keyword">if</span> cache <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>                <span class="hljs-keyword">if</span> i <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> cache:<br>                    cache[i] = &#123;&#125;<br>                layer_cache = cache[i]<br>            decoder_output = dec_layer(decoder_output, enc_output,<br>                                       t_self_mask, i_mask, layer_cache)<br>        <span class="hljs-keyword">return</span> self.last_norm(decoder_output)<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Transformer</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, i_vocab_size, t_vocab_size,</span><br><span class="hljs-params">                 n_layers=<span class="hljs-number">6</span>,</span><br><span class="hljs-params">                 hidden_size=<span class="hljs-number">512</span>,</span><br><span class="hljs-params">                 filter_size=<span class="hljs-number">2048</span>,</span><br><span class="hljs-params">                 dropout_rate=<span class="hljs-number">0.1</span>,</span><br><span class="hljs-params">                 share_target_embedding=<span class="hljs-literal">True</span>,</span><br><span class="hljs-params">                 has_inputs=<span class="hljs-literal">True</span>,</span><br><span class="hljs-params">                 src_pad_idx=<span class="hljs-literal">None</span>,</span><br><span class="hljs-params">                 trg_pad_idx=<span class="hljs-literal">None</span></span>):<br>        <span class="hljs-built_in">super</span>(Transformer, self).__init__()<br><br>        self.hidden_size = hidden_size<br>        self.emb_scale = hidden_size ** <span class="hljs-number">0.5</span><br>        self.has_inputs = has_inputs<br>        self.src_pad_idx = src_pad_idx<br>        self.trg_pad_idx = trg_pad_idx<br><br>        self.t_vocab_embedding = nn.Embedding(t_vocab_size, hidden_size)<br>        nn.init.normal_(self.t_vocab_embedding.weight, mean=<span class="hljs-number">0</span>,<br>                        std=hidden_size**-<span class="hljs-number">0.5</span>)<br>        self.t_emb_dropout = nn.Dropout(dropout_rate)<br>        self.decoder = Decoder(hidden_size, filter_size,<br>                               dropout_rate, n_layers)<br><br>        <span class="hljs-keyword">if</span> has_inputs:<br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> share_target_embedding:<br>                self.i_vocab_embedding = nn.Embedding(i_vocab_size,<br>                                                      hidden_size)<br>                nn.init.normal_(self.i_vocab_embedding.weight, mean=<span class="hljs-number">0</span>,<br>                                std=hidden_size**-<span class="hljs-number">0.5</span>)<br>            <span class="hljs-keyword">else</span>:<br>                self.i_vocab_embedding = self.t_vocab_embedding<br><br>            self.i_emb_dropout = nn.Dropout(dropout_rate)<br><br>            self.encoder = Encoder(hidden_size, filter_size,<br>                                   dropout_rate, n_layers)<br><br>        <span class="hljs-comment"># For positional encoding</span><br>        num_timescales = self.hidden_size // <span class="hljs-number">2</span><br>        max_timescale = <span class="hljs-number">10000.0</span><br>        min_timescale = <span class="hljs-number">1.0</span><br>        log_timescale_increment = (<br>            math.log(<span class="hljs-built_in">float</span>(max_timescale) / <span class="hljs-built_in">float</span>(min_timescale)) /<br>            <span class="hljs-built_in">max</span>(num_timescales - <span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<br>        inv_timescales = min_timescale * torch.exp(<br>            torch.arange(num_timescales, dtype=torch.float32) *<br>            -log_timescale_increment)<br>        self.register_buffer(<span class="hljs-string">&#x27;inv_timescales&#x27;</span>, inv_timescales)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, inputs, targets</span>):<br>        enc_output, i_mask = <span class="hljs-literal">None</span>, <span class="hljs-literal">None</span><br>        <span class="hljs-keyword">if</span> self.has_inputs:<br>            i_mask = utils.create_pad_mask(inputs, self.src_pad_idx)<br>            enc_output = self.encode(inputs, i_mask)<br><br>        t_mask = utils.create_pad_mask(targets, self.trg_pad_idx)<br>        target_size = targets.size()[<span class="hljs-number">1</span>]<br>        t_self_mask = utils.create_trg_self_mask(target_size,<br>                                                 device=targets.device)<br>        <span class="hljs-keyword">return</span> self.decode(targets, enc_output, i_mask, t_self_mask, t_mask)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">encode</span>(<span class="hljs-params">self, inputs, i_mask</span>):<br>        <span class="hljs-comment"># Input embedding</span><br>        input_embedded = self.i_vocab_embedding(inputs)<br>        input_embedded.masked_fill_(i_mask.squeeze(<span class="hljs-number">1</span>).unsqueeze(-<span class="hljs-number">1</span>), <span class="hljs-number">0</span>)<br>        input_embedded *= self.emb_scale<br>        input_embedded += self.get_position_encoding(inputs)<br>        input_embedded = self.i_emb_dropout(input_embedded)<br><br>        <span class="hljs-keyword">return</span> self.encoder(input_embedded, i_mask)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">decode</span>(<span class="hljs-params">self, targets, enc_output, i_mask, t_self_mask, t_mask,</span><br><span class="hljs-params">               cache=<span class="hljs-literal">None</span></span>):<br>        <span class="hljs-comment"># target embedding</span><br>        target_embedded = self.t_vocab_embedding(targets)<br>        target_embedded.masked_fill_(t_mask.squeeze(<span class="hljs-number">1</span>).unsqueeze(-<span class="hljs-number">1</span>), <span class="hljs-number">0</span>)<br><br>        <span class="hljs-comment"># Shifting</span><br>        target_embedded = target_embedded[:, :-<span class="hljs-number">1</span>]<span class="hljs-comment"># 将目标序列向左移动一个位置。在解码过程中，模型需要预测下一个目标词汇，因此将目标序列向左移动一个位置，丢弃最后一个目标词汇。</span><br>        target_embedded = F.pad(target_embedded, (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>))<span class="hljs-comment"># 在序列的最左侧添加了一个填充（padding），将序列的长度增加1。这样做是为了保持解码器的输入序列与编码器输出的形状一致。</span><br><br>        target_embedded *= self.emb_scale<br>        target_embedded += self.get_position_encoding(targets)<br>        target_embedded = self.t_emb_dropout(target_embedded)<br><br>        <span class="hljs-comment"># decoder</span><br>        decoder_output = self.decoder(target_embedded, enc_output, i_mask,<br>                                      t_self_mask, cache) <span class="hljs-comment"># [1, 512, 768]</span><br>        <span class="hljs-comment"># linear</span><br>        output = torch.matmul(decoder_output,<br>                              self.t_vocab_embedding.weight.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)) <span class="hljs-comment"># [1, 512, 768] x [768, t_vocab_size] = [1, 512, t_vocab_size]</span><br>        <span class="hljs-comment">#将解码器的输出与目标词汇嵌入层的权重进行矩阵乘法操作，得到最终的解码器输出。这一步是为了将解码器输出转换回目标词汇空间，生成下一个目标词汇的概率分布</span><br>        <span class="hljs-keyword">return</span> output<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_position_encoding</span>(<span class="hljs-params">self, x</span>):<br>        max_length = x.size()[<span class="hljs-number">1</span>]<br>        position = torch.arange(max_length, dtype=torch.float32,<br>                                device=x.device)<br>        scaled_time = position.unsqueeze(<span class="hljs-number">1</span>) * self.inv_timescales.unsqueeze(<span class="hljs-number">0</span>)<br>        signal = torch.cat([torch.sin(scaled_time), torch.cos(scaled_time)],<br>                           dim=<span class="hljs-number">1</span>)<br>        signal = F.pad(signal, (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, self.hidden_size % <span class="hljs-number">2</span>))<br>        signal = signal.view(<span class="hljs-number">1</span>, max_length, self.hidden_size)<br>        <span class="hljs-keyword">return</span> signal<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%89%8B%E6%92%95%E7%B3%BB%E5%88%97/" class="print-no-link">#手撕系列</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>手撕Transformer</div>
+      <div>https://lishilong.cc/2023/08/04/Work/NLP/007手撕Transformer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Aaron</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/04/Work/NLP/008BERT/" title="BERT">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">BERT</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/02/Work/NLP/006Transformer/" title="Transformer">
+                        <span class="hidden-mobile">Transformer</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
