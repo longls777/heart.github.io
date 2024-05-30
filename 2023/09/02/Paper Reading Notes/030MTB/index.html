@@ -1,0 +1,718 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta name="description" content="标题：《Matching the Blanks: Distributional Similarity for Relation Learning》 论文来源： ACL  2019 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;P19-1279&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;plkmo&#x2F;BERT-Relation-Extraction 概述 基于对Har">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matching the Blanks - Distributional Similarity for Relation Learning">
+<meta property="og:url" content="https://lishilong.cc/2023/09/02/Paper%20Reading%20Notes/030MTB/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:description" content="标题：《Matching the Blanks: Distributional Similarity for Relation Learning》 论文来源： ACL  2019 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;P19-1279&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;plkmo&#x2F;BERT-Relation-Extraction 概述 基于对Har">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png">
+<meta property="article:published_time" content="2023-09-02T05:45:00.000Z">
+<meta property="article:modified_time" content="2024-05-30T06:57:31.259Z">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="RE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png">
+  
+  
+  
+  <title>Matching the Blanks - Distributional Similarity for Relation Learning - Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Matching the Blanks - Distributional Similarity for Relation Learning"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-02 13:45" pubdate>
+          2023年9月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          710 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Matching the Blanks - Distributional Similarity for Relation Learning</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>标题：</strong>《Matching the Blanks: Distributional Similarity for Relation Learning》</p>
+<p><strong>论文来源：</strong> ACL  2019</p>
+<p>**原文链接： **  <a target="_blank" rel="noopener" href="https://aclanthology.org/P19-1279/">https://aclanthology.org/P19-1279/</a></p>
+<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/plkmo/BERT-Relation-Extraction">https://github.com/plkmo/BERT-Relation-Extraction</a></p>
+<h2 id="概述">概述</h2>
+<p>基于对Harris的分布假设进行的扩展，以及在学习文本表示方面的进展（具体来说，是BERT），仅从与实体相关联的文本构建了与任务无关的关系表示</p>
+<blockquote>
+<p>(来自ChatGPT)</p>
+<p>Harris’ distributional hypothesis是一种语言学假设，最早由美国语言学家Zellig Harris于1954年提出。这一假设的核心思想是：</p>
+<p>“Words that occur in the same contexts tend to have similar meanings.”</p>
+<p>也就是说，如果两个词在语境中出现的模式（即它们周围的其他词汇）相似，那么这两个词可能具有相似的含义或关联性。这一假设强调了词汇的语境和共现关系在理解词义和语言中的作用。根据这一观点，我们可以通过分析词汇在大量文本中的共现模式来推断它们之间的语义关系。</p>
+<p>Harris’ distributional hypothesis在自然语言处理和计算语言学领域中具有重要影响，因为它为词嵌入（word embeddings）和语言模型的发展提供了理论基础。例如，Word2Vec和GloVe等词嵌入模型就是基于这一假设的思想构建的，它们通过分析词汇在大规模语料库中的共现来生成词向量，以捕捉词汇之间的语义相似性。</p>
+</blockquote>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902124125243.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="Method">Method</h2>
+<h3 id="Relation-Classification-and-Extraction-Tasks">Relation Classification and Extraction Tasks</h3>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>上图是使用的两个Loss，左边是监督学习分类loss，右边是用于训练few-shot能力的相似度loss</p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125408063.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这里有6种Encoder的输入输出变体，它们的结果如下：</p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125811635.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>可以看到使用Entity Markers（[E1] [/E1] [E2] [/E2]）并且提取实体开头的Markers（[E1] [E2]）作为关系表征效果最好</p>
+<h3 id="Learning-by-Matching-the-Blanks">Learning by Matching the Blanks</h3>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131715740.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>通过最小化下面的Loss来学习<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">f_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131815843.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这个Loss很像逻辑回归Loss呀</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://lishilong.xyz/2023/07/20/Deep%20Learning/005%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/">损失函数总结</a></p>
+</blockquote>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132640904.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>其实就是上图这样，必须两个实体都一样才是正例，否则都是反例</p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132949914.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这里就是以概率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>随机替换entity为[BLANK]，从而构建新的数据集，目的是让<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">f_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>学会entity span</p>
+<h3 id="Matching-the-Blanks-Training">Matching the Blanks Training</h3>
+<p>训练的时候，类似BERT，使用两个Loss：</p>
+<ul>
+<li>the masked language model loss</li>
+<li>the matching the blanks loss</li>
+</ul>
+<p>从Wikipedia提取文本，并使用Google Cloud Natural Language API 标记实体（NER）</p>
+<blockquote>
+<p>The span annotations include <strong>not only proper names</strong>, but other referential entities such as common <strong>nouns</strong> and <strong>pronouns</strong>. From this annotated corpus we extract relation statements where each statement contains <strong>at least two grounded entities</strong> within <strong>a fixed sized window</strong> of tokens. To prevent a large bias towards relation statements that involve popular entities, we limit the number of relation statements that contain the same entity by randomly sampling a constant number of relation statements that contain any given entity.</p>
+</blockquote>
+<p>此外还有一些实现细节：由于无法比较每对关系陈述，采用了噪声-对比估计方法。考虑所有包含相同实体的正对关系陈述对，而对于不包含相同实体对的关系陈述对，进行了随机采样或从共享一个实体的关系陈述中采样。还以一定概率将实体的提及替换为[BLANK]符号，以确保模型不会受到[BLANK]符号缺失的干扰</p>
+<p>最终生成了600m个关系陈述对，其中约50%为正对，50%为强负对</p>
+<h2 id="Experiments">Experiments</h2>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902133948579.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134237692.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134314867.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134329630.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/RE/" class="print-no-link">#RE</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Matching the Blanks - Distributional Similarity for Relation Learning</div>
+      <div>https://lishilong.cc/2023/09/02/Paper Reading Notes/030MTB/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Aaron</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/10/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="遗传算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">遗传算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/02/NLP/018RLHF/" title="RLHF相关问题">
+                        <span class="hidden-mobile">RLHF相关问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

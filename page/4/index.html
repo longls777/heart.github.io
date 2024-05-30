@@ -1,0 +1,991 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Heart">
+<meta property="og:url" content="https://lishilong.cc/page/4/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="life, think, code">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Born sensitive, lonely and happy."></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/08/09/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" target="_self">
+          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Tanganyika_Alpaca_2021_CS2-683x1024.jpg" srcset="/img/loading.gif" lazyload alt="LLaMA - Open and Efficient Foundation Language Models">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/09/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" target="_self">
+          LLaMA - Open and Efficient Foundation Language Models
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/08/09/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" target="_self">
+        <div>
+          标题：《LLaMA: Open and Efficient Foundation Language Models》 论文来源： arXiv:2302.13971 原文链接：  https://arxiv.org/pdf/2302.13971.pdf 源码： https://github.com/facebookresearch/llama 参考链接  https://blog.csdn.net/w
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-09 15:34" pubdate>
+              2023-08-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/LLMs/">#LLMs</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/08/09/Paper%20Reading%20Notes/013Root%20Mean%20Square%20Layer%20Normalization/" target="_self">
+          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810154017115.png" srcset="/img/loading.gif" lazyload alt="Root Mean Square Layer Normalization">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/09/Paper%20Reading%20Notes/013Root%20Mean%20Square%20Layer%20Normalization/" target="_self">
+          Root Mean Square Layer Normalization
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/08/09/Paper%20Reading%20Notes/013Root%20Mean%20Square%20Layer%20Normalization/" target="_self">
+        <div>
+          标题：《Root Mean Square Layer Normalization》 论文来源： NeurIPS 2019 原文链接： https://arxiv.org/pdf/1910.07467.pdf 概述 层归一化（LayerNorm）已成功应用于各种深度神经网络，以帮助稳定训练并促进模型收敛，因为它能够处理输入和权重矩阵的重新居中和重新缩放。 然而，LayerNorm 引入的计算开销使得
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-09 15:31" pubdate>
+              2023-08-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Normalization/">#Normalization</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/08/08/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/" target="_self">
+          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/chatgpt-3.jpg" srcset="/img/loading.gif" lazyload alt="GPT大模型相关知识">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/08/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/" target="_self">
+          GPT大模型相关知识
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/08/08/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/" target="_self">
+        <div>
+          总结  https://github.com/dalinvip/Awesome-ChatGPT   LLMs  通向AGI之路：大型语言模型（LLM）技术精要 - 张俊林的文章 - 知乎 https://zhuanlan.zhihu.com/p/597586623  RLHF  https://huggingface.co/blog/zh/rlhf 从零实现ChatGPT——RLHF技术笔记 -
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-08 13:40" pubdate>
+              2023-08-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/07/Practice/%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/" target="_self">
+          多GPU训练
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/07/Practice/%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/" target="_self">
+        <div>
+          https://github.com/jia-zhuang/pytorch-multi-gpu-training  有一些点没放过来，可以进去看一下 上手Distributed Data Parallel的详尽教程 - ZachZhang的文章 - 知乎 https://zhuanlan.zhihu.com/p/486346821  方案一：nn.DataParallel 核心在于使用nn.Da
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-07 15:27" pubdate>
+              2023-08-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Practice/" class="category-chain-item">Practice</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/08/06/Others/%E5%BE%85%E7%9C%8B/" target="_self">
+          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/013.jpg" srcset="/img/loading.gif" lazyload alt="待看的书 &amp;&amp; 待学习的知识点">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/06/Others/%E5%BE%85%E7%9C%8B/" target="_self">
+          待看的书 &amp;&amp; 待学习的知识点
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/08/06/Others/%E5%BE%85%E7%9C%8B/" target="_self">
+        <div>
+          Books  [x] 《亲密关系：通往灵魂的桥梁》 [ ] 《亲密关系》   ing [ ] 《窄门》 [ ] 《放弃的艺术》 [ ] 《安全感》 [ ] 《爱的艺术》 [ ] 《读懂恋人心》 [ ] 《经济学原理：微观经济学分册》 [ ] 《经济学原理：宏观经济学分册》 [ ]  Knowledge  [x] BART [x] instructGPT [x] chatglm [x] Lora [
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-06 17:35" pubdate>
+              2023-08-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Others/" class="category-chain-item">Others</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/08/05/NLP/010RoBERTa&amp;ALBERT&amp;ELECTRA/" target="_self">
+          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-e4a49c933af91793292ca6ba2e6c08db_r.jpg" srcset="/img/loading.gif" lazyload alt="RoBERTa &amp; ALBERT &amp; ELECTRA">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/05/NLP/010RoBERTa&amp;ALBERT&amp;ELECTRA/" target="_self">
+          RoBERTa &amp; ALBERT &amp; ELECTRA
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/08/05/NLP/010RoBERTa&amp;ALBERT&amp;ELECTRA/" target="_self">
+        <div>
+          Bert/Albert/Roberta系列论文阅读对比笔记 - 中森的文章 - 知乎 https://zhuanlan.zhihu.com/p/416210663 http://lishilong.xyz/2022/10/05/Paper Reading Notes/ALBERT A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRE
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-05 16:43" pubdate>
+              2023-08-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%85%AB%E8%82%A1/">#八股</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/08/05/NLP/009Transformer-XL&amp;XLNET/" target="_self">
+          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805145917736.png" srcset="/img/loading.gif" lazyload alt="Transformer-XL &amp; XLNet">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/05/NLP/009Transformer-XL&amp;XLNET/" target="_self">
+          Transformer-XL &amp; XLNet
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/08/05/NLP/009Transformer-XL&amp;XLNET/" target="_self">
+        <div>
+          https://carlos9310.github.io/2019/11/11/transformer-xl-and-xlnet/ NLP系列之预训练模型（二）：Transformer-XL及其进化XLNet - 周星星的文章 - 知乎 https://zhuanlan.zhihu.com/p/355366424 https://blog.csdn.net/weixin_43269174/art
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-05 16:43" pubdate>
+              2023-08-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%85%AB%E8%82%A1/">#八股</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/04/Deep%20Learning/011warmup/" target="_self">
+          warmup
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/08/04/Deep%20Learning/011warmup/" target="_self">
+        <div>
+          神经网络中 warmup 策略为什么有效；有什么理论解释么？ - 香侬科技的回答 - 知乎 https://www.zhihu.com/question/338066667/answer/771252708   有助于减缓模型在初始阶段对mini-batch的提前过拟合现象，保持分布的平稳 有助于保持模型深层的稳定性  如果来总结一下现在大batch size和大learning rate下的学
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-04 21:07" pubdate>
+              2023-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/08/04/NLP/008BERT/" target="_self">
+          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230804202041393.png" srcset="/img/loading.gif" lazyload alt="BERT">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/04/NLP/008BERT/" target="_self">
+          BERT
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/08/04/NLP/008BERT/" target="_self">
+        <div>
+          ​  【NLP】Google BERT模型原理详解 - 李rumor的文章 - 知乎 https://zhuanlan.zhihu.com/p/46652512 https://www.6aiq.com/article/1594176245885 http://fancyerii.github.io/2019/03/09/bert-theory/ BERT常见面试题总结（细节） - 魔法学院的Ch
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-04 16:19" pubdate>
+              2023-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%85%AB%E8%82%A1/">#八股</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/08/04/NLP/007%E6%89%8B%E6%92%95Transformer/" target="_self">
+          <img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802141733150.png" srcset="/img/loading.gif" lazyload alt="手撕Transformer">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/08/04/NLP/007%E6%89%8B%E6%92%95Transformer/" target="_self">
+          手撕Transformer
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/08/04/NLP/007%E6%89%8B%E6%92%95Transformer/" target="_self">
+        <div>
+          Transformer模型的输入输出(训练和推理) - zx1116的文章 - 知乎 https://zhuanlan.zhihu.com/p/622714425  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-08-04 14:15" pubdate>
+              2023-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%89%8B%E6%92%95%E7%B3%BB%E5%88%97/">#手撕系列</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#board">13</a><a class="extend next" rel="next" href="/page/5/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

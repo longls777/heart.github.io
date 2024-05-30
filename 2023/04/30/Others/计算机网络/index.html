@@ -1,0 +1,1587 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta name="description" content="一、计算机网络分层 1. 说说计算机网络的分层模型？ OSI模型有七层，TCP&#x2F;IP协议簇有四层，综合起来是一个五层的网络模型  应用层 为特定应用程序提供数据传输服务，有一些应用层协议定义应用程序间的通信和交互的规则，比如HTTP、DNS、SMTP等，数据单位是报文 运输层 为两台主机的进程之间的通信提供通用的数据传输服务，向高层用户屏蔽了下面网络层的核心细节，运输层包括两种协议：  传输控制协">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="https://lishilong.cc/2023/04/30/Others/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:description" content="一、计算机网络分层 1. 说说计算机网络的分层模型？ OSI模型有七层，TCP&#x2F;IP协议簇有四层，综合起来是一个五层的网络模型  应用层 为特定应用程序提供数据传输服务，有一些应用层协议定义应用程序间的通信和交互的规则，比如HTTP、DNS、SMTP等，数据单位是报文 运输层 为两台主机的进程之间的通信提供通用的数据传输服务，向高层用户屏蔽了下面网络层的核心细节，运输层包括两种协议：  传输控制协">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/OSI%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E5%92%8CUDP%E7%9A%84%E5%AF%B9%E6%AF%94.jpeg">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E6%8A%A5%E6%96%87%E5%A4%B4%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/kehuduantcp.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/fuwuduantcp.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/yongsekongzhi.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E6%A3%80%E9%AA%8C%E5%92%8C.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/DNS%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/DNS%E8%BF%AD%E4%BB%A3%E6%9F%A5%E8%AF%A2.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/z1.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/z2.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/z3.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/z4.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTPS.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTPS%E5%8A%A0%E5%AF%86%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E9%98%9F%E5%88%97%E5%A4%B4%E9%98%BB%E5%A1%9E.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTP%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%BC%BA%E7%BC%93%E5%AD%98.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/x112.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/x21x1.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/x1231.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/x123x13.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%AF%B9%E6%AF%94%E7%BC%93%E5%AD%98.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/zvzcvz.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/16557061-1d928232b633f5db.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/16557061-8c6a2b96018f11e1.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/16557061-fa3f545ed70675e2.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/16557061-ecc687f9680c11c3.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTP%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%8F%91%E9%80%81KEY.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTP_HTTPS.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTPS%E5%8A%A0%E8%A7%A3%E5%AF%86.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230501213045098.png">
+<meta property="og:image" content="c:%5CUsers%5CLenovo%5CDesktop%5C12312313131.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTP2.0%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%86%E5%B8%A7.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A8%E9%80%81.jpeg">
+<meta property="article:published_time" content="2023-04-30T06:02:00.000Z">
+<meta property="article:modified_time" content="2024-05-30T06:57:31.254Z">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="八股">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82.png">
+  
+  
+  
+  <title>计算机网络 - Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机网络"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-30 14:02" pubdate>
+          2023年4月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          21k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          173 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">计算机网络</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>一、计算机网络分层</h1>
+<p><strong>1. 说说计算机网络的分层模型？</strong></p>
+<p>OSI模型有七层，TCP/IP协议簇有四层，综合起来是一个五层的网络模型</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82.png" srcset="/img/loading.gif" lazyload alt="计算机网络协议分层"></p>
+<p><strong>应用层</strong></p>
+<p>为特定应用程序提供数据传输服务，有一些应用层协议定义应用程序间的通信和交互的规则，比如HTTP、DNS、SMTP等，数据单位是报文</p>
+<p><strong>运输层</strong></p>
+<p>为两台主机的<strong>进程</strong>之间的通信提供<strong>通用</strong>的数据传输服务，向高层用户屏蔽了下面网络层的核心细节，运输层包括两种协议：</p>
+<ul>
+<li>传输控制协议TCP：提供面向连接的，可靠的数据传输服务</li>
+<li>用户数据报协议UDP：提供无连接的，尽最大努力的数据传输服务</li>
+</ul>
+<p>数据单位是报文段</p>
+<p><strong>网络层</strong></p>
+<p>在计算机网络中进行通信的两个计算机之间可能会经过很多个数据链路，也可能还要经过很多通信子网。网络层的任务就是选择合适的网间路由和交换结点， 确保数据及时传送。 在发送数据时，网络层把运输层产生的报文段或用户数据报封装成分组和包进行传送。在 TCP/IP 体系结构中，由于网络层使用 IP 协议，因此分组也叫 IP 数据报 ，简称数据报</p>
+<p><strong>链路层</strong></p>
+<p>数据链路层（data link layer）通常简称为链路层。两台主机之间的数据传输，总是在一段一段的链路上传送的，这就需要使用专门的链路层的协议。 在两个相邻节点（主机或路由器）之间传送数据时，数据链路层将网络层交下来的 IP 数据报组装成帧，在两个相邻节点间的链路上传送帧。每一帧包括数据和必要的控制信息（如同步信息，地址信息，差错控制等），提供物理地址寻址功能（ARP）</p>
+<p><strong>物理层</strong></p>
+<p>在物理层上所传送的数据单位是比特。物理层就是数据实际传输的通道。</p>
+<p>物理层（physical layer）的作用是实现相邻计算机节点之间比特流的透明传送，尽可能屏蔽掉具体传输介质和物理设备的差异， 使其上面的数据链路层不必考虑网络的具体传输介质是什么。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/OSI%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE.png" srcset="/img/loading.gif" lazyload alt="OSI七层协议"></p>
+<p><strong>2. 会话层的作用？</strong></p>
+<ul>
+<li>建立会话：<strong>身份验证</strong>，<strong>权限鉴定</strong>等；</li>
+<li>保持会话：对该会话进行维护，在会话维持期间两者可以随时使用这条会话传输；</li>
+<li>断开会话：当应用程序或应用层规定的超时时间到期后，OSI会话层才会释放这条会话。</li>
+</ul>
+<h1>二、TCP和UDP</h1>
+<p><strong>1. 说说TCP和UDP的区别？</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E5%92%8CUDP%E7%9A%84%E5%AF%B9%E6%AF%94.jpeg" srcset="/img/loading.gif" lazyload alt="TCP和UDP的对比"></p>
+<p><strong>UDP</strong></p>
+<p>是无连接的，尽最大努力交付，没有拥塞控制，是面向报文的，对于应用层传输下来的报文只添加UDP首部，支持广播和多播，UDP包的最大传输数据量：1500 - IP头(20) - UDP头(8) = 1472(Bytes)</p>
+<p><strong>TCP</strong></p>
+<p>是面向连接的，在传送数据之前必须先建立连接，数据传送结束后要释放连接。 提供可靠数据交付服务，有流量控制，拥塞控制，提供全双工通信，是面向字节流的，把应用层传输下来的报文看成字节流，把这些字节流组织成大小不等的数据块，只支持点对点通信（单播），TCP包的最大传输数据量1500 - IP头(20) - TCP头(20) = 1460 (Bytes)</p>
+<p><strong>2. UDP的使用场景？</strong></p>
+<ul>
+<li>某些实时应用要求最小的发送速率，<strong>不希望延迟</strong>报文段的传送，且<strong>能容忍一些报文段的丢失</strong>，UDP会立即将数据传递给网络层，而TCP有拥塞控制，可能会遏制数据报的发送</li>
+<li><strong>UDP无连接</strong>，相比需要三次握手的TCP，UDP不会引入连接的时延，这是DNS使用UDP的主要原因，而HTTP要求传输数据的可靠性，所以使用TCP</li>
+<li>UDP无需维持连接状态，因此省去了一些资源，所以有些特定服务器使用UDP以服务更多用户</li>
+<li>UDP分组首部开销只有8字节，而TCP有20字节</li>
+</ul>
+<p><strong>3. TCP粘包？</strong></p>
+<p><strong>什么是TCP粘包？</strong></p>
+<p>TCP粘包就是指发送方发送的若干包数据到达接收方时粘成了一包，从接收缓冲区来看，后一包数据的头紧接着前一包数据的尾，出现粘包的原因是多方面的，可能是来自发送方，也可能是来自接收方。</p>
+<p><strong>为什么会发生TCP粘包？</strong></p>
+<ul>
+<li>发送方：TCP默认使用Nagle算法来减少网络中报文段的数量，将多次间隔较小且数据量小的数据，合并成一个大的数据块，然后进行封包</li>
+<li>接收方：TCP将接收到的数据包保存在接收缓存里，然后应用程序主动从缓存读取收到的分组。这样一来，如果TCP接收数据包到缓存的速度大于应用程序从缓存中读取数据包的速度，多个包就会被缓存，应用程序就有可能读取到多个首尾相接粘到一起的包。</li>
+</ul>
+<p><strong>什么时候要处理粘包？</strong></p>
+<ul>
+<li>如果发送方发送的多组数据本来就是同一块数据的不同部分，比如说一个文件被分成多个部分发送，这时当然不需要处理粘包现象</li>
+<li>如果多个分组毫不相干，甚至是并列关系，那么这个时候就一定要处理粘包现象</li>
+</ul>
+<p><strong>如何处理粘包？</strong></p>
+<ul>
+<li>
+<p>发送方：关闭Nagle算法</p>
+</li>
+<li>
+<p>应用层：</p>
+</li>
+<li>
+<ul>
+<li>每条数据有固定的格式（开始符，结束符），这种方法简单易行，但是选择开始符和结束符时一定要确保每条数据的内部不包含开始符和结束符</li>
+<li>发送每条数据时，将数据的长度一并发送，例如规定数据的前4位是数据的长度，应用层在处理时可以根据长度来判断每个分组的开始和结束位置</li>
+</ul>
+</li>
+</ul>
+<p><strong>为什么UDP没有粘包现象？</strong></p>
+<ul>
+<li>TCP为了保证可靠传输并减少额外的开销，采用了基于流的传输，基于流的传输不认为消息是一条一条的，是无保护消息边界的</li>
+<li>UDP则是面向消息传输的，是有保护消息边界的，接收方一次只接受一条独立的信息，所以不存在粘包问题</li>
+</ul>
+<blockquote>
+<p>保护消息边界：指传输协议把数据当做一条独立的消息在网上传输，接收端一次只能接受一条独立的消息</p>
+</blockquote>
+<h1>三、TCP报文头</h1>
+<p><strong>TCP报文头格式</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E6%8A%A5%E6%96%87%E5%A4%B4%E6%A0%BC%E5%BC%8F.png" srcset="/img/loading.gif" lazyload alt="TCP报文头格式"></p>
+<p><strong>相关字段的作用</strong></p>
+<p><strong>序号</strong></p>
+<p>一个报文段的序号（sequence number）是该报文段首字节的字节流编号</p>
+<p><strong>确认号</strong></p>
+<p>主机A填充进报文段的确认号（ack number）是主机A期望从主机B收到的下一报文段的序号</p>
+<p><strong>ACK</strong></p>
+<p>确认标志，用于指示确认字段中的值是有效的，即该报文段包括一个对已被成功接收报文段的确认</p>
+<p><strong>SYN</strong></p>
+<p>同步标志，该标志仅在三次握手建立TCP连接时有效。它提示TCP连接的服务端检查序列编号，该序列编号为TCP连接初始端（一般是客户端）的初始序列编号</p>
+<p><strong>FIN</strong></p>
+<p>结束标志，带有该标志置位的数据包用来结束一个TCP回话，但对应端口仍处于开放状态，准备接收后续数据</p>
+<h1>四、TCP三次握手四次挥手</h1>
+<p><strong>1.说说TCP的三次握手和四次挥手？</strong></p>
+<p><strong>三次握手</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>第一次握手：客户端将标志位SYN置为1，随机产生一个值序列号seq=x，并将该数据包发送给服务端，客户端进入syn_sent状态，等待服务端确认。</li>
+<li>第二次握手：服务端收到数据包后由标志位SYN=1知道客户端请求建立连接，服务端将标志位SYN和ACK都置为1，ack=x+1，随机产生一个值seq=y，并将该数据包发送给客户端以确认连接请求，服务端进入syn_rcvd状态。</li>
+<li>第三次握手：客户端收到确认后检查，如果正确则将标志位ACK为1，ack=y+1，并将该数据包发送给服务端，服务端进行检查如果正确则连接建立成功，客户端和服务端进入established状态，完成三次握手，随后客户端和服务端之间可以开始传输数据了</li>
+</ol>
+<p><strong>为什么要三次握手？</strong></p>
+<p>1.在谢希仁著《计算机网络》第四版中讲**“三次握手”的目的是“为了防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误”<strong>。在另一部经典的《计算机网络》一书中讲“三次握手”的目的是为</strong>了解决“网络中存在延迟的重复分组”的问题**。这两种不用的表述其实阐明的是同一个问题。</p>
+<p>谢希仁版《计算机网络》中的例子是这样的，“已失效的连接请求报文段”的产生在这样一种情况下：client发出的第一个连接请求报文段并没有丢失，而是在某个网络结点长时间的滞留了，以致延误到连接释放以后的某个时间才到达server。本来这是一个早已失效的报文段。但server收到此失效的连接请求报文段后，就误认为是client再次发出的一个新的连接请求。于是就向client发出确认报文段，同意建立连接。假设不采用“三次握手”，那么只要server发出确认，新的连接就建立了。由于现在client并没有发出建立连接的请求，因此不会理睬server的确认，也不会向server发送数据。但server却以为新的运输连接已经建立，并一直等待client发来数据。这样，server的很多资源就白白浪费掉了。采用“三次握手”的办法可以防止上述现象发生。例如刚才那种情况，client不会向server的确认发出确认。server由于收不到确认，就知道client并没有要求建立连接。”这个例子很清晰的阐释了“三次握手”对于建立可靠连接的意义。</p>
+<p>2.这个问题的本质是，信道不可靠，但是通信双方需要就某个问题达成一致，而要解决这个问题，无论你在消息中包含什么信息，三次通信是理论上的最小值。所以三次握手不是TCP本身的要求，而是<strong>为了满足&quot;在不可靠信道上可靠地传输信息&quot;这一需求</strong>所导致的。请注意这里的本质需求，信道不可靠，数据传输要可靠。三次达到了，那后面你想接着握手也好，发数据也好，跟进行可靠信息传输的需求就没关系了。因此，如果信道是可靠的，即无论什么时候发出消息，对方一定能收到，或者你不关心是否要保证对方收到你的消息，那就能像UDP那样直接发送消息就可以了”。这可视为对“三次握手”目的的另一种解答思路。（三次以上握手造成资源浪费）</p>
+<p><strong>四次挥手</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>以下描述不讨论序号和确认号，因为序号和确认号的规则比较简单。并且不讨论 ACK，因为 ACK 在连接建立之后都为 1</p>
+<ul>
+<li>A 发送连接释放报文，FIN=1</li>
+<li>B 收到之后发出确认，此时 TCP 属于半关闭状态，B 能向 A 发送数据但是 A 不能向 B 发送数据</li>
+<li>当 B 不再需要连接时，发送连接释放报文，FIN=1</li>
+<li>A 收到后发出确认，进入 TIME-WAIT 状态，等待 2 MSL（最大报文存活时间）后释放连接</li>
+<li>B 收到 A 的确认后释放连接</li>
+</ul>
+<p><strong>为什么要四次挥手？</strong></p>
+<p>因为TCP是全双工模式，接收到FIN时意味将没有数据再发来，但是还是可以继续发送数据。TCP在断开连接时，需要客户端和服务器都确定对方将不再发送数据。</p>
+<p>当服务器收到FIN报文时，它可能还有数据没发送完，可能并不会立即关闭socket，所以先回复一个ACK报文，告诉客户端，“你发的FIN报文我收到了”，然后等数据都发送完了，服务器再发送FIN报文，告诉客户端，“我的数据发送完了”。</p>
+<p>当服务器收到FIN报文之后，它就进入了CLOSE_WAIT状态，这个状态就是为了让服务器发送还未传输完毕的数据，发送完毕之后，服务器就会发送FIN报文</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/kehuduantcp.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/fuwuduantcp.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>2.说说TIME_WAIT和CLOSE_WAIT?</strong></p>
+<p><strong>TIME_WAIT</strong></p>
+<p>客户端收到服务器端的FIN报文后进入此状态，之后等待2MSL的时间，这样做的原因是：</p>
+<ul>
+<li>为使旧的数据包在网络因过期而消失：如果客户端不存在TIME_WAIT，假设关闭一条TCP连接之后立即以相同的四元组(local_ip, local_port, remote_ip,remote_port)建立一条新的连接，在这种情况下，可能有延迟的旧TCP连接的包在新TCP连接建立之后到达，服务器端不能分辨来自前后两条TCP连接的包，可能会将之前TCP连接中发来的包上传到应用层，这样就可能引起数据错乱，TIME_WAIT正是为了避免这种情况的发生</li>
+<li>为实现TCP全双工连接的可靠释放：确保最后一个确认报文能够到达，如果服务器端没收到客户端发送来的ACK报文，那么就会重发FIN报文，客户端等待一段时间就是为了处理这种情况，收到重发的FIN报文后，客户端可以再发一个ACK报文</li>
+</ul>
+<p><strong>出现大量TIME_WAIT有什么危害？如何解决？</strong></p>
+<p>危害：</p>
+<ul>
+<li>在socket的TIME_WAIT状态结束之前，该socket所占用的本地端口号将一直无法释放。</li>
+<li>在高并发（每秒几万qps）并且采用短连接方式进行交互的系统中运行一段时间后，系统中就会存在大量的time_wait状态，如果time_wait状态把系统所有可用端口都占完了且尚未被系统回收时，就会出现无法向服务端创建新的socket连接的情况。此时系统几乎停转，任何链接都不能建立。</li>
+<li>大量的time_wait状态也会占有系统一定的fd，内存和cpu资源</li>
+</ul>
+<p>解决方法：</p>
+<ul>
+<li>调整系统内核参数，比如：开启重用，允许将TIME-WAIT sockets重新用于新的TCP连接</li>
+<li>开启TCP连接中TIME-WAIT sockets的快速回收</li>
+<li>调整短连接为长连接</li>
+</ul>
+<p><strong>CLOSE_WAIT</strong></p>
+<p>close_wait是被动关闭连接形成的，服务器端收到客户端发送的FIN，TCP协议栈会自动发送ACK，连接进入close_wait状态。但如果服务器端不执行socket的close()操作，状态就不能由close_wait迁移到last_ack，则系统中会存在很多close_wait状态的连接</p>
+<p>出现大量close_wait可能的原因：</p>
+<ul>
+<li>代码层面忘记了 close 相应的 socket 连接</li>
+<li>如果Server端一直没有向client端发送FIN消息(调用close() API)，那么这个CLOSE_WAIT会一直存在下去</li>
+</ul>
+<p><strong>3. 什么是SYN泛洪攻击？如何防御？</strong></p>
+<p>SYN泛洪攻击是当前网络上最为常见的DDoS（分布式拒绝服务）攻击，SYN攻击利用TCP协议缺陷，通过发送大量的半连接请求，占用半连接队列（SYN-RECIEVED队列），耗费CPU和内存资源。</p>
+<p>应对方法：</p>
+<ul>
+<li>缩短SYN Timeout时间，使得主机尽快释放半连接的占用</li>
+<li>IP黑名单，若连续受到某个IP的重复SYN报文，从这个IP地址来的包会被一概丢弃</li>
+<li>CDN 将网站访问流量分配到了各个节点中，这样一方面隐藏网站的真实 IP，另一方面即使遭遇 DDoS 攻击，也可以将流量分散到各个节点中，防止源站崩溃</li>
+</ul>
+<h1>五、TCP协议的传输可靠性</h1>
+<p><strong>1.说说TCP协议如何保证传输的可靠性？</strong></p>
+<ul>
+<li><strong>校验和</strong>：TCP 将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输过程中的任何变化。如果收到段的检验和有差错，TCP 将丢弃这个报文段和不确认收到此报文段</li>
+<li><strong>序列号</strong>：TCP 给发送的每一个包进行编号，接收端会根据序列号排序，并丢弃重复的数据</li>
+<li><strong>确认应答</strong>：收到一条报文后，向发送端发送一条确认ACK，此ACK的作用就是告诉发送端：接收端已经成功的收到了消息，并且希望收到下一条报文的序列号是什么</li>
+<li><strong>超时重传</strong>：当 TCP 发出一个报文段后，它启动一个定时器，等待目的端确认收到这个报文段。如果不能及时收到一个ACK，将重发这个报文段</li>
+<li>**流量控制：**TCP 连接的每一方都有固定大小的缓冲空间，TCP根据接收端对数据的处理能力，也就是接收端剩余缓存空间的大小来控制发送端的发送速度，TCP报文头有一个16位的窗口字段，接收端用它来告诉发送端自己剩余的缓存空间大小，这个流量控制协议就是滑动窗口协议</li>
+<li><strong>拥塞控制：</strong>
+<ul>
+<li><strong>慢启动：</strong> 刚开始时，发送端的拥塞窗口（cwnd）设置为一个MSS（最大报文长度），随后收到一个ACK就增加一个MSS，即成指数增长。当出现一个超时丢包时，将此时cwnd的一半设置为慢启动阈值，然后将cwnd设置为1，重新开启慢启动过程：当cwnd到达慢启动阈值时，就进入拥塞避免模式，或者检测到三个冗余ACK，此时执行快速重传并进入快速恢复状态</li>
+<li>**拥塞避免：**这时cwnd大概是上次遇到拥塞时的一半，所以要稳妥的增加cwnd，经过每个RTT，将cwnd增加一个MSS，当出现超时丢包时，与慢启动的策略一样；当检测到三个冗余ACK时，将慢启动阈值设置为cwnd的一半，并将cwnd的值减少一半，进入快速恢复状态</li>
+<li>**快速重传和快速恢复：**发送方只要收到一连三个重复的ACK，就立即重传丢失的报文段，而不必继续等待重传计时器时间到期；当在拥塞避免状态下，收到三个冗余ACK后，执行快速重传和快速恢复，具体操作是：将慢启动阈值设置为cwnd的一半，但并不使用慢启动算法，而是将cwnd减半，重新进入拥塞避免状态，线性增大cwnd</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>RTT：往返时间</p>
+<p>MSS：最大报文长度，一般为1460字节</p>
+<p>MTU：链路层帧最大长度，一般为1500字节</p>
+</blockquote>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/yongsekongzhi.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>2. TCP检验和的计算？</strong></p>
+<p>TCP在计算检验和时，要加上一个12字节的伪首部</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/TCP%E6%A3%80%E9%AA%8C%E5%92%8C.png" srcset="/img/loading.gif" lazyload alt="TCP检验和"></p>
+<p>伪首部共有12字节，包含IP首部的一些字段，有如下信息：32位源IP地址、32位目的IP地址、8位保留字节(置0)、8位传输层协议号（TCP是6，UDP是17）、16位TCP报文长度(TCP首部+数据)。伪首部是为了增加TCP校验和的检错能力：通过伪首部的目的IP地址来检查TCP报文是否收错了、通过伪首部的传输层协议号来检查传输层协议是否选对了。</p>
+<p>TCP首部校验和计算三部分：TCP首部+TCP数据+TCP伪首部。</p>
+<ul>
+<li>
+<p>发送端：</p>
+</li>
+<li>
+<ul>
+<li>首先，把伪首部、TCP报头、TCP数据分为16位的字，如果总长度为奇数个字节，则在最后增添一个位都为0的字节</li>
+<li>把TCP报头中的校验和字段置为0</li>
+<li>其次，用反码相加法（对每16bit进行二进制反码求和）累加所有的16位字（进位也要累加，进位则将高位叠加到低位）</li>
+<li>最后，将上述结果作为TCP的校验和，存在检验和字段中</li>
+</ul>
+</li>
+<li>
+<p>接收端：</p>
+</li>
+<li>
+<ul>
+<li>将所有原码相加，高位叠加到低位， 如计算结果的16位中每一位都为1，则正确，否则说明发生错误</li>
+</ul>
+</li>
+</ul>
+<p>UDP校验和运算的基本过程和TCP检验和相同，不同的是UDP的伪首部中8位传输层协议号是17而TCP是6</p>
+<p>IP首部中的检验和只覆盖IP的首部，不覆盖IP数据报中的任何数据</p>
+<p>TCP的检验和是必需的，而UDP的检验和是可选的</p>
+<p><strong>3. GBN、SR和TCP的区别？</strong></p>
+<ul>
+<li>
+<p>GBN：回退N步</p>
+</li>
+<li>
+<ul>
+<li>最多允许N个分组未确认</li>
+<li>采用累计应答的方式，ACK(n)则表示从开始到n（包含n）的序列号全部正确接收</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>这里顺便解释一下为什么GBN可以采用累计应答的方式？怎么就能保证之前的被正确接收了呢？这还要由GBN的工作机制来决定：在GBN机制下，在接收端的运输层一次只交付给上层一个分组，并且保证是按序交付的，因此如果分组k已接收，则所有序号小于k的分组也已经交付了</p>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>在传分组有一个计时器，如果收到了timeout(n)事件，那么会重传的是n以及n以后的所有分组（尽管后面的可能已经收到了，这就是GBN，回退到n开始传）</li>
+<li>接收方会有一个期望序列号，如果收到的不是期望的分组，直接丢弃，也就是说接收端不对失序到达的分组进行缓存</li>
+</ul>
+</li>
+<li>
+<p>SR：选择重传</p>
+</li>
+<li>
+<ul>
+<li>接收方设置缓存区，用于接收失序到达的分组。（从这里可以感受到，所谓的GBN中的发送端窗口和SR中的发送端与接收端的窗口其实就是缓存区，用于缓存分组。注意，由于GBN是单个分组交付，不设置缓存区，所以GBN的接收端是没有窗口的）</li>
+<li>为每个报文段设置单独的计时器，单个分组计时器超时只重发这一个报文段。</li>
+<li>接收端返回ACK是当前接收成功报文段的序号，SR不采用累计应答的方式。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>理论上SR协议要为每个分组使用一个计时器。当某个计时器超时后，只有相应的分组被重传。换而言之，GBN协议将所有的分组当做一个整体对待，而选择重传协议则分别对待每一个分组，但是大多数SR的运输层仅使用了一个计时器。注意只使用一个计时器而做到跟踪所有发出去的分组的情况的做法是：标记发出分组，当ACK=Sf 时，将窗口滑过所有连续的已确认的分组，如果还有未确认的分组，则重发所有检测到的未被确认的分组并重启计时器，如果所有分组都被确认了则停止计时器。</p>
+</blockquote>
+<ul>
+<li>
+<p>TCP：</p>
+</li>
+<li>
+<ul>
+<li>TCP使用累计应答的方式。这一点与GBN类似</li>
+<li>TCP在接收端会设置缓存，来缓存正确接收但是失序的分组，这点与SR类似。（实际上TCP RFC并没有对接收端要怎样处理失序到达的分组提出要求，但是在接收端设置缓存是实践中大家都采用的方法）</li>
+<li>TCP使用快速重传机制：如果收到对于一个特定报文段的3个冗余ACK，则在超时事件发生前就会对该报文段进行重传，这大大节约了时间</li>
+<li>TCP中的ACK是指接收端希望从发送端收到的下一字节的序号。例如发送端发送了编号为0-5的字节，这时接收端成功接收后就会发送ACK为6</li>
+</ul>
+</li>
+<li>
+<h1>六、DNS域名解析</h1>
+</li>
+<li>
+<p>​	<strong>1. 说说DNS域名解析？</strong></p>
+</li>
+<li>
+<p>DNS占用53号端口，使用TCP和UDP协议</p>
+</li>
+<li>
+<p><strong>DNS区域传输时使用TCP协议</strong></p>
+</li>
+<li>
+<ul>
+<li>辅域名服务器会定时向主域名服务器进行查询以便了解数据是否有变动，如果有变动，会执行一次区域传输，进行数据同步。区域传输使用TCP而不是UDP，是因为数据同步传送的数据量很大，比一个请求应答的数据量要多得多</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>TCP是可靠连接，保证了数据的准确性</li>
+</ul>
+</li>
+<li>
+<p><strong>域名解析时使用UDP协议</strong></p>
+</li>
+<li>
+<p>客户端向DNS服务器查询域名，一般返回的内容都不超过512字节，用UDP传输即可。不经过三次握手，这样DNS服务器负载更低，响应更快</p>
+</li>
+<li>
+<p><strong>2.DNS域名解析过程？</strong></p>
+</li>
+<li>
+<p>1、客户机发出查询请求，在本地计算机缓存查找，若没有找到，就会将请求发送给本地dns服务器</p>
+</li>
+<li>
+<p>2、本地dns服务器会在自己的区域里面查找，找到即根据此记录进行解析，若没有找到，就会在本地的缓存里面查找</p>
+</li>
+<li>
+<p>3、本地dns服务器没有找到客户机查询的信息，就会将此请求发送到根域名dns服务器</p>
+</li>
+<li>
+<p>4、根dns服务器解析客户机请求的根域部分，它把包含的下一级的dns服务器的地址返回到本地dns服务器地址</p>
+</li>
+<li>
+<p>5、本地dns服务器根据返回的信息接着访问下一级的dns服务器</p>
+</li>
+<li>
+<p>6、这样递归的方法一级一级接近查询的目标，最后在有目标域名的服务器上面得到相应的IP信息</p>
+</li>
+<li>
+<p>7、客户机的本地的dns服务器会将查询结果返回给我们的客户机</p>
+</li>
+<li>
+<p>8、客户机根据得到的ip信息访问目标主机，完成解析过程</p>
+</li>
+<li>
+<p><strong>3. DNS的两种查询方式?</strong></p>
+</li>
+<li>
+<ul>
+<li><strong>递归查询</strong>：客户机向DNS服务器发送请求，DNS服务器会使用一个<strong>准确的查询结果</strong>回复给客户机，如果DNS服务器本地没有储存查询的DNS信息，那么它会查询其他的DNS服务器，并将查询结果提交给客户机</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>迭代查询</strong>：客户机向DNS服务器发送请求，如果该服务器本地没有储存查询的DNS信息，那么它会告诉客户机<strong>另一台DNS服务器</strong>的地址，客户机在向这台DNS服务器查询DNS信息，依次循环直到返回结果</li>
+</ul>
+</li>
+<li>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/DNS%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2.png" srcset="/img/loading.gif" lazyload alt="DNS递归查询"></p>
+</li>
+</ul>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/DNS%E8%BF%AD%E4%BB%A3%E6%9F%A5%E8%AF%A2.png" srcset="/img/loading.gif" lazyload alt="DNS迭代查询"></p>
+<h1>七、Cookie和Session</h1>
+<p><strong>说说Cookie和Session的区别？</strong></p>
+<p>Cookie 和 Session都是用来跟踪浏览器用户身份的会话方式，但是两者的应用场景不太一样。</p>
+<p>Cookie 一般用来保存用户信息，它是服务器发送到客户端浏览器并保存在用户本地的一块数据，客户端请求服务器，如果服务器需要记录该用户状态，就在返回的响应报文的Set-Cookie首部行为该用户设置Cookie。客户端浏览器会把Cookie保存起来。当浏览器再请求该网站时，浏览器把请求的网址连同该Cookie一同提交给服务器。服务器检查该Cookie，以此来辨认用户状态。Cookie可以用作会话状态管理、用户个性化设置等。</p>
+<p>Session 的主要作用就是在服务器端记录用户的状态，在用户第一次访问服务器的时候自动创建对应的Session。 典型的场景是购物车，当你要添加商品到购物车的时候，系统不知道是哪个用户操作的，因为 HTTP 协议是无状态的。服务端给特定的用户创建特定的 Session 之后就可以标识这个用户并且跟踪这个用户了。</p>
+<p><strong>区别：</strong></p>
+<ul>
+<li>Cookie 存储在客户端中，而Session存储在服务器上，相对来说 Session 安全性更高</li>
+<li>Cookie有大小限制，单个不超过4K，浏览器中对单个站点Cookie个数也有限制；Session没有大小限制，跟服务器内存有关，会占用服务器性能</li>
+<li>Cookie生命周期可以设置，默认是一次会话的时间，在浏览器关闭的时候清除；Session的生命周期是间隔性的，在用户第一次访问服务器的时候创建，一段时间后没有再次访问，Session就会被清除</li>
+</ul>
+<h1>八、浏览器输入URL到显示页面的过程</h1>
+<p>总体来说分为以下几个过程:</p>
+<ol>
+<li>DNS解析</li>
+<li>TCP连接</li>
+<li>发送HTTP请求</li>
+<li>服务器处理请求并返回HTTP报文</li>
+<li>浏览器解析渲染页面</li>
+<li>浏览器发送异步请求</li>
+</ol>
+<p><strong>DNS解析</strong></p>
+<p>首先是DNS解析，当在浏览器第一次输入一个URL后，客户端向本地DNS服务器递归查询主机名对应的IP地址，本地DNS服务器再向根DNS服务器、顶级域服务器、权威DNS服务器迭代查询。查询过一次之后，在DNS查询过程中经过的节点就会留下缓存，如：浏览器缓存，系统缓存，路由器缓存，ISP DNS服务器缓存，根DNS服务器缓存，顶级域服务器缓存，权威DNS服务器缓存，再次查询时，如果经过的查询节点存在对应的DNS缓存，就可以直接返回解析的IP地址。</p>
+<p><strong>DNS负载均衡</strong></p>
+<p>服务器分布在各个地方，不可能每次访问都指向同一台服务器，实际上DNS可以根据地理距离、服务器负载等，动态地将用户定向到某个服务器集群，这就是DNS的负载均衡，也叫DNS重定向，典型的就是CDN内容分发网</p>
+<p><strong>TCP连接和HTTP请求</strong></p>
+<p>浏览器根据解析到的IP地址向web服务器发送一个HTTP请求</p>
+<p>（HTTP请求报文，TCP三次握手等）</p>
+<p><strong>服务器处理请求并返回HTTP报文</strong></p>
+<p>HTTP响应报文，状态码等</p>
+<p><strong>浏览器解析渲染页面</strong></p>
+<p>​</p>
+<p><strong>浏览器发送异步请求</strong></p>
+<p>持续更新一些页面信息（例如AJAX）</p>
+<h1>九、转发与重定向</h1>
+<p><strong>说说转发与重定向的区别？</strong></p>
+<p><strong>一、重定向与转发的区别</strong></p>
+<p><strong>转发过程：</strong> 客户端浏览器发送http请求 → web服务器接受此请求 → 调用内部的一个方法在容器内部完成请求处理和转发动作 → 将目标资源发送给客户</p>
+<p>转发页面和转发到的页面可以共享request里面的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//java代码示例</span><br>request.getRequestDispatcher(<span class="hljs-string">&quot;xxx.jsp或者servlet&quot;</span>).forward(request,response);<br></code></pre></td></tr></table></figure>
+<p><strong>重定向过程</strong>： 客户端浏览器发送http请求 → web服务器接收后发送30X状态码响应及对应新的location给客户浏览器 → 客户浏览器发现是30X响应，则自动再发送一个新的http请求，请求url是新的location地址→ 服务器根据此请求寻找资源并发送给客户</p>
+<p>重定向不能共享request里面的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//java代码示例</span><br>response.sendRedirect(<span class="hljs-string">&quot;xxx.jsp或者servlet&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p><strong>转发和重定向对比：</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91%E5%AF%B9%E6%AF%94.png" srcset="/img/loading.gif" lazyload alt="转发和重定向对比"></p>
+<p><strong>二、什么时候使用重定向，什么时候使用转发？</strong></p>
+<p>原则上： 要保持request域的数据时使用转发，要访问外站资源的时候用重定向，其余随便；</p>
+<p>特殊的应用： 对数据进行修改、删除、添加操作的时候，应该用response.sendRedirect()。如果是采用了request.getRequestDispatcher().forward(request,response)，那么操作前后的地址栏都不会发生改变，仍然是修改的控制器，如果此时再对当前页面刷新的话，就会重新发送一次请求对数据进行修改，这也就是有的人在刷新一次页面就增加一条数据的原因。</p>
+<p><strong>三、转发与重定向的安全性</strong></p>
+<p><strong>转发安全性</strong>： 在服务器内部实现跳转，客户端不知道跳转路径，相对来说比较安全。</p>
+<p><strong>重定向安全性</strong>： 客户端参与到跳转流程，给攻击者带来了攻击入口，受威胁的可能性较大。</p>
+<p>比如一个HTTP参数包含URL，Web应用程序将请求重定向到这个URL，攻击者可以通过修改这个参数，引导用户到恶意站点，并且通过将恶意域名进行十六进制编码，一般用户很难识别这是什么样的URL；或者指引到该网站的管理员界面，如果访问控制没有做好将导致一般用户可以直接进入管理界面。</p>
+<p><strong>重定向和转发检查列表：</strong></p>
+<ul>
+<li>重定向之前，验证重定向的目标URL</li>
+<li>使用白名单验证重定向目标。</li>
+<li>如果在网站内重定向，可以使用相对路径URL</li>
+<li>重定向或者转发之前，要验证用户是否有权限访问目标URL</li>
+</ul>
+<h1>十、HTTP详解</h1>
+<p><strong>什么是HTTP？</strong></p>
+<p><strong>1. 报文结构</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/z1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/z2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/z3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/z4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>2. HTTP状态码</strong></p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>分类描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1**</td>
+<td>信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td>2**</td>
+<td>成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td>3**</td>
+<td>重定向，需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td>4**</td>
+<td>客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td>5**</td>
+<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>200 OK：请求成功。一般用于GET与POST请求</li>
+<li>301 Moved Permanently：永久重定向</li>
+<li>302 Found：临时重定向</li>
+<li>400 Bad Request：客户端请求的语法错误，服务器无法理解</li>
+<li>401 Unauthorized：请求未经授权</li>
+<li>403 Forbidden：服务器理解请求客户端的请求，但是拒绝执行此请求</li>
+<li>404 Not Found：请求的资源不存在</li>
+<li>500 Internal Server Error：服务器内部错误，无法完成请求</li>
+<li>503 Service Unavailable：服务器当前不能处理客户端的请求，一段时间后可能恢复正常</li>
+</ul>
+<p><strong>3. HTTP1.0和HTTP1.1的主要区别</strong></p>
+<ul>
+<li><strong>长连接</strong>：在HTTP/1.0中，<strong>默认</strong>使用的是短连接（HTTP1.0也支持长连接，connection：keep-alive），而HTTP/1.1默认是长连接</li>
+<li>**流水线：**HTTP/1.1支持流水线，可以减少整体的响应时间</li>
+<li><strong>错误状态响应码</strong>：在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除</li>
+<li><strong>缓存处理</strong>：在HTTP1.0中主要使用header里的If-Modified-Since，Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since，If-Match，If-None-Match等更多可供选择的缓存头来控制缓存策略。（详见HTTP缓存策略）</li>
+<li><strong>带宽优化及网络连接的使用</strong>：HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能（关于断点续传的应用场景，例如用户需要下载一个大文件，最佳的方式是将这个大文件分割成几部分，然后由多个进程同时进行），HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。（支持分块传输编码：可以把数据分成多块，让浏览器逐步显示页面）</li>
+<li>**HOST头域：**在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）</li>
+</ul>
+<p><strong>4. URI和URL的区别</strong></p>
+<ul>
+<li>URI（Uniform Resource Identifier）是统一资源标志符，可以唯一标识一个资源。</li>
+<li>URL（Uniform Resource Location）是统一资源定位符，可以提供该资源的路径。它是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何 locate 这个资源。</li>
+</ul>
+<p>URI的作用像身份证号一样，URL的作用更像家庭住址一样。URL是一种具体的URI，它不仅唯一标识资源，而且还提供了定位该资源的信息，URL是URI的子集。</p>
+<p><strong>5. HTTP 和 HTTPS 的区别</strong></p>
+<ul>
+<li>
+<p>端口 ：HTTP的URL由“http://”起始且默认使用端口80，而HTTPS的URL由“https://”起始且默认使用端口443。</p>
+</li>
+<li>
+<p>安全性和资源消耗： HTTP协议运行在TCP之上，所有传输的内容都是明文，客户端和服务器端都无法验证对方的身份。HTTPS是运行在SSL/TLS（安全套接层/传输层安全协议）之上的HTTP协议，SSL/TLS 运行在TCP之上。所有传输的内容都经过加密，加密采用对称加密，但对称加密的密钥用服务器方的证书进行了非对称加密。所以说，HTTP 安全性没有 HTTPS高，但是 HTTPS 比HTTP耗费更多服务器资源。</p>
+</li>
+<li>
+<ul>
+<li>对称加密：密钥只有一个，加密解密为同一个密码，且加解密速度快，典型的对称加密算法有DES、AES等；</li>
+<li>非对称加密：密钥成对出现（且根据公钥无法推知私钥，根据私钥也无法推知公钥），加密解密使用不同密钥（公钥加密需要私钥解密，私钥加密需要公钥解密），相对对称加密速度较慢，典型的非对称加密算法有RSA、DSA等</li>
+</ul>
+</li>
+</ul>
+<p><strong>6. HTTPS加密过程</strong></p>
+<p><strong>HTTP存在安全问题：</strong></p>
+<ul>
+<li>使用明文进行通信，内容可能会被窃听</li>
+<li>不验证通信方的身份，通信方有可能伪装身份</li>
+<li>无法证明报文的完整性，报文有可能遭遇篡改</li>
+</ul>
+<p><strong>HTTPS加密</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTPS.png" srcset="/img/loading.gif" lazyload alt="HTTPS"></p>
+<ul>
+<li>HTTPS： 采用 对称加密 和 非对称加密 结合的方式来保护浏览器和服务端之间的通信安全。</li>
+</ul>
+<p><strong>对称加密算法加密数据+非对称加密算法交换密钥+数字证书验证身份 = 安全</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTPS%E5%8A%A0%E5%AF%86%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="HTTPS加密流程"></p>
+<ol>
+<li>客户使用HTTPS的URL访问服务器，要求与服务器建立SSL连接</li>
+<li>服务器接收到客户端请求后，将网站的证书信息（证书中包含公钥）发送一份给客户端</li>
+<li>客户端验证证书的合法性，包括可信性，是否吊销，过期时间和域名</li>
+<li>客户端使用公钥对对称密钥加密，发送给服务器</li>
+<li>服务器用私钥解密，拿到对称加密的对称密钥</li>
+<li>然后客户端和服务器就可以通过这个对称密钥加密数据，进行安全通信</li>
+</ol>
+<p><strong>7. GET和POST比较</strong></p>
+<ul>
+<li>
+<p>GET用于获取资源，而POST用于传输实体</p>
+</li>
+<li>
+<p>GET请求会被浏览器主动cache，而POST不会，除非手动设置（因为GET是幂等的）</p>
+</li>
+<li>
+<p>GET方式提交数据的大小（一般来说1024字节），HTTP协议并没有硬性限制，而是与浏览器、服务器、操作系统有关，而POST理论上来说没有大小限制，HTTP协议规范也没有进行大小限制，但实际上post所能传递的数据量根据取决于服务器的设置和内存大小</p>
+</li>
+<li>
+<p>GET参数通过URL传递，POST放在Request body中</p>
+</li>
+<li>
+<p>安全的HTTP方法不会改变服务器状态，GET方法是安全的，而POST却不是，因为POST的目的是传送实体体内容，这个内容可能是用户上传的表单数据，上传成功之后，服务器可能把这个数据存储到数据库中，因此状态也就发生了改变。</p>
+</li>
+<li>
+<p>幂等的 HTTP 方法，同样的请求被执行一次与连续执行多次的效果是一样的，服务器的状态也是一样的，GET方法是幂等的，而 POST 方法不是，所有的安全方法也都是幂等的（幂等的意味着对同一URL的多个请求应该返回同样的结果）</p>
+</li>
+<li>
+<p>GET产生一个TCP数据包；POST产生两个TCP数据包</p>
+</li>
+<li>
+<ul>
+<li>对于GET方式的请求，浏览器会把HTTP header和data一并发送出去，服务器响应200（返回数据）</li>
+<li>对于POST，浏览器先发送Header，服务器响应100 continue，浏览器再发送Data，服务器响应200 ok（返回数据）</li>
+</ul>
+</li>
+</ul>
+<p>在网络环境好的情况下，发一次包的时间和发两次包的时间差别基本可以无视。而在网络环境差的情况下，两次包的TCP在验证数据包完整性上，有非常大的优点。</p>
+<p>并不是所有浏览器都会在POST中发送两次包，Firefox就只发送一次。</p>
+<p><strong>8. 短连接与长连接</strong></p>
+<p>在HTTP/1.0中，默认使用的是短连接，默认Connection： close，也就是说每次HTTP请求都要重新建立一次连接。HTTP 是基于TCP/IP协议的，每一次建立或者断开连接都需要三次握手四次挥手的开销，如果每次请求都要这样的话，开销会比较大。因此最好能维持一个长连接，可以用一个长连接来发多个请求。HTTP 1.1起，默认使用长连接 ,默认开启Connection： keep-alive</p>
+<p><strong>长连接和短连接的优缺点</strong></p>
+<p>1）长连接可以省去较多建立连接和关闭连接的操作，比较节省资源和时间，但长连接如果一直存在的话，需要很多探测包的发送来维持这个连接，对服务器将是很大的负荷</p>
+<p>2）相对而言短连接则不需要服务器承担太大负荷，只要存在的连接就都是有用连接，但如果客户端请求频繁，就会在TCP的建立连接和关闭连接上浪费较大的资源和时间</p>
+<p><strong>什么时候使用长连接，什么时候使用短连接呢？</strong></p>
+<p>长连接：长连接多用于操作频繁，点对点的通讯，而且连接数不能太多情况。每个TCP连接都需要三步握手，这需要时间，如果每个操作都是先连接，再操作的话那么处理速度会降低很多，所以每个操作完后都不断开，处理时直接发送数据包就好，不用建立 TCP 连接（例如：数据库的连接用长连接，如果用短连接频繁的通信会造成 socket 错误，而且频繁的 socket 创建也是对资源的浪费）</p>
+<p>短连接：网站的 http 服务一般都用短链接，因为长连接对于服务端来说会耗费一定的资源，例如：类似WEB 网站这么频繁的成千上万甚至上亿客户端的连接用短连接会更省一些资源，如果用长连接，而且同时有成千上万的用户，如果每个用户都占用一个连接的话，服务器负荷很大，并发量大，但每个用户无需频繁操作情况下需用短连接好</p>
+<p><strong>9. 流水线</strong></p>
+<p>HTTP/1.1的持续连接有非流水线方式和流水线方式 。流水线方式是客户在收到HTTP的响应报文之前就能接着发送新的请求报文，与之相对应的非流水线方式是客户在收到前一个响应后才能发送下一个请求。</p>
+<p>默认情况下，HTTP 请求是按顺序发出的。下一个请求只有在当前请求收到应答过后才会被发出。由于会受到网络延迟和带宽的限制，在下一个请求被发送到服务器之前，可能需要等待很长时间。</p>
+<p>流水线是在同一条长连接上发出连续的请求，而不用等待应答返回。这样可以避免连接延迟。理论上讲，性能还会因为两个 HTTP 请求有可能被打包到一个 TCP 消息包中而得到提升。就算 HTTP 请求不断的继续，尺寸会增加，但设置 TCP 的 MSS(Maximum Segment Size) 选项，仍然足够包含一系列简单的请求。</p>
+<p>并不是所有类型的 HTTP 请求都能用到流水线：只有幂等性 idempotent 方式，比如 GET、HEAD、PUT 和 DELETE 能够被安全的重试，非幂等请求比如POST不能使用，因为请求之间可能会存在先后依赖关系。如果有故障发生时，流水线的内容要能被轻易的重试</p>
+<p>今天，所有遵循 HTTP/1.1 的代理和服务器都应该支持流水线，虽然实际情况中还是有很多限制：一个很重要的原因是，目前没有现代浏览器默认启用这个特性</p>
+<p><strong>10. HTTP和FTP的异同点</strong></p>
+<p><strong>同：</strong></p>
+<ul>
+<li>都是应用层协议</li>
+<li>都运行在TCP上</li>
+</ul>
+<p><strong>异：</strong></p>
+<ul>
+<li>HTTP是面向网页的，FTP是面向文件的</li>
+<li>FTP在整个会话期间保留用户状态信息，而HTTP是无状态的</li>
+<li>FTP是的控制信息是带外传送，HTTP的控制信息是带内传送
+<ul>
+<li>带外传输是指：使用一个分离的控制链接，控制信息和数据传输由不同的进程</li>
+<li>FTP使用两个TCP连接，一个是控制连接，一个是数据连接，客户发出的传送请求通过控制连接发送给服务器端的控制进程，但控制连接不用来传送文件，实际用于传输文件的是另外建立的数据连接</li>
+</ul>
+</li>
+</ul>
+<p><strong>11. 什么是HTTP队列头阻塞？</strong></p>
+<img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/队列头阻塞.png" srcset="/img/loading.gif" lazyload alt="1队列头阻塞" style="zoom:200%;" />
+<ul>
+<li>
+<p>HTTP1.0使用图中第一种请求方式，就是单次发送request请求，收到response后再进行下一次请求，显示是很低效的。</p>
+</li>
+<li>
+<p>HTTP1.1提出了<strong>管线化（pipelining）技术</strong>，也就是流水线，就是如图中第二中请求方式，<strong>一次性发送多个request</strong>请求。此技术之关键在于多个HTTP的要求消息可以同时塞入一个TCP分组中，所以只提交一个分组即可同时发出多个要求，借此可减少网络上多余的分组并降低线路负载。</p>
+</li>
+<li>
+<p>然而pipelining在<strong>接收response返回时，也必须依顺序接收</strong>，如果前一个请求遇到了阻塞，后面的请求即使已经处理完毕了，仍然需要等待阻塞的请求处理完毕。这种情况就如图中第三种，第一个请求阻塞后，后面的请求都需要等待，这也就是队头阻塞（Head of line blocking）</p>
+</li>
+<li>
+<p>为了缓解上述问题，有两种方案：</p>
+</li>
+<li>
+<ul>
+<li>“并发连接”（concurrent connections），也就是同时对一个域名发起多个长连接，用数量来解决质量的问题。但这种方式也存在缺陷。如果每个客户端都想自己快，建立很多个连接，用户数×并发数就会是个天文数字。服务器的资源根本就扛不住，或者被服务器认为是恶意攻击，反而会造成“拒绝服务”。所以，HTTP 协议建议客户端使用并发，但不能“滥用”并发。RFC2616 里明确限制每个客户端最多并发 2 个连接。不过实践证明这个数字实在是太小了，众多浏览器都“无视”标准，把这个上限提高到了 6~8。后来修订的 RFC7230 也就“顺水推舟”，取消了这个“2”的限制。</li>
+<li>“域名分片”（domain sharding）技术，还是用数量来解决质量的思路。HTTP 协议和浏览器不是限制并发连接数量吗？好，那我就多开几个域名，比如 <a target="_blank" rel="noopener" href="http://shard1.chrono.com">shard1.chrono.com</a>、<a target="_blank" rel="noopener" href="http://shard2.chrono.com">shard2.chrono.com</a>，而这些域名都指向同一台服务器 <a target="_blank" rel="noopener" href="http://www.chrono.com">www.chrono.com</a>，这样实际长连接的数量就又上去了</li>
+</ul>
+</li>
+<li>
+<p>为了解决上述阻塞问题，HTTP2.0中提出了多路复用（Multiplexing）技术，<strong>将多个请求复用同一个TCP连接</strong>，将一个TCP连接分为若干个流（Stream），每个流中可以传输若干消息（Message），每个消息由若干最小的二进制帧（Frame）组成。也就是将每个request-response拆分为了细小的二进制帧Frame，这样即使一个请求被阻塞了，也不会影响其他请求，如图中第四种情况所示。</p>
+</li>
+</ul>
+<p><strong>12. HTTP编码问题</strong></p>
+<p>HTTP头其实就是ACSII码，准确的来说HTTP头里面不会出现标准ACSII之外的字符。<strong>URL里的中文一般都是用UTF-8编码，然后写成%XX的形式</strong>。所以HTTP里面不会出现标准ACSII之外的字符，所以HTTP头用ACSII编码就够了。这样就可以正确解析 HTTP头了。</p>
+<blockquote>
+<p>**<a target="_blank" rel="noopener" href="http://www.example.com/q=%E6%98%A5%E8%8A%82**%E8%BF%99%E4%B8%AAURL%E4%B9%8B%E4%B8%AD%EF%BC%8C%E6%B1%89%E5%AD%97%E2%80%9C%E6%98%A5%E8%8A%82%E2%80%9D%E4%B8%8D%E6%98%AF%E6%A0%87%E5%87%86ACSII%E5%AD%97%E7%AC%A6%EF%BC%8C%E6%89%80%E4%BB%A5%E8%A2%AB%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%88%90**http://www.example.com/q=%E6%98%A5%E8%8A%82**%E3%80%82">http://www.example.com/q=春节**这个URL之中，汉字“春节”不是标准ACSII字符，所以被浏览器自动转成**http://www.example.com/q=春节**。</a></p>
+<p>其中，“春”转成了**%E6%98%A5**，“节”转成了**%E8%8A%82**。这是因为“春”和”节“的UTF-8编码分别是<strong>E6 98 A5</strong>和<strong>E8 8A 82</strong>，将每个字节前面加上百分号，就构成了URL编码。</p>
+</blockquote>
+<p>处理HTTP协议的程序只关心 HTTP头是什么，不关心后面的数据是什么，所以他只要能够正确解析HTTP头里面的东西就可以了。其后面的数据是什么不是HTTP协议关心东西，所以处理HTTP协议的程序根本不会解析HTTP报文的其他部分，HTTP协议只会解析数据到两个连续的换行回车之前。后面的数据，像是HTML，exe等都不是HTTP协议负责解析的。</p>
+<p>然后就是使用HTTP传输数据的问题。其实数据的所有表现形式就都是二进制，在HTTP协议里面，传输需要的就是HTTP头，其后面携带的是什么数据都没有关系，对HTTP协议来说都是一样的。HTTP协议其后的数据是什么意思全看你上层怎么解释。HTTP协议传输数据就是 “HTTP头” ++ “数据”， HTTP协议只关心这个 HTTP头，数据格式那是上层应用关心的事情，是你自己的上层协议规定的格式，只要HTTP能够传输任意的二进制数据就可以了。HTTP头里面的content-type只是用于告诉处理HTTP协议的程序把这个数据交给上一层的哪个应用处理。比如在浏览器里，text/html 就交给处理HTML的程序处理，image/jpeg 就交给jpg的解码器，如果是application/octet-stream就交给下载程序处理等等。交给上层的数据，就是原始的HTTP报文里面两个连续的换行回车之后的数据，原封不动的数据。上层的处理程序能不能正确的识别“编码”，就不是HTTP所关心的了。</p>
+<blockquote>
+<p>摘自<a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000004446930/a-1020000004447035">https://segmentfault.com/q/1010000004446930/a-1020000004447035</a></p>
+</blockquote>
+<p><strong>13. HTTP的缓存策略</strong></p>
+<p><strong>HTTP缓存概述</strong></p>
+<p>当用户开始访问一个网站时，浏览器会从目标服务器获取一些资源用以构建最终的web页面，比如css、js、html等静态文件。假设我们不采取任何措施，则用户每次访问这个网站都要发起一系列http请求，试想，如果这个网站的pv达到上百万甚至上千万，会对网站的后台服务器造成多大的压力。为了尽可能提升网站的性能，http协议给出了一个优化方案：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTP%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88.png" srcset="/img/loading.gif" lazyload alt="HTTP缓存方案"></p>
+<p>上图是当用户第一次请求一个资源时的时序图，浏览器会先询问是否有命中缓存（第一次请求肯定是没缓存啦），没有命中的缓存则浏览器再从服务器获取资源并将资源放进缓存仓库中，下次则可以从缓存中拿资源了。为方便理解，我们认为浏览器提供了缓存数据库，只要浏览器发现满足了某些缓存规则，就可以直接从缓存数据库中取出你需要的资源。</p>
+<p>上述是一个简单过程，但是事实上的缓存策略还要更复杂一点。简单来说，<strong>HTTP根据是否要向服务器发送请求将缓存规则分为了两类：</strong> <strong>强缓存</strong>和<strong>对比缓存</strong>（对比缓存也叫做<strong>协商缓存</strong>）</p>
+<p><strong>强缓存</strong></p>
+<p>强缓存直接从缓存数据库中取出资源，无需再发送请求到服务器上：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%BC%BA%E7%BC%93%E5%AD%98.png" srcset="/img/loading.gif" lazyload alt="强缓存"></p>
+<p>HTTP中用来判断是否命中强缓存的字段为Expires和Cache-Control，Cache-Control优先级高于Expires。</p>
+<p><strong>1. Expires</strong></p>
+<p>注：expires字段是HTTP 1.0 时代的产物，现在的浏览器用的全都是HTTP 1.1了，所以这个字段的作用基本可以忽略 。</p>
+<p>来看下某个网站的一次请求中的信息：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/x112.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>expires的值是一个绝对时间，可以看到上图中的时间点：2019年5月30号08:04:42，这代表：这个资源在这个时间点之前都可以直接从缓存中获取。</p>
+<p><strong>2. Cache-Control</strong></p>
+<p>仍旧是上面请求中响应头信息：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/x21x1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>cache-control中定义了 public 和 max-age=7200，这是一个相对时间（单位：秒），这里代表资源的缓存在这个请求之后的2小时内都有效。</p>
+<p><strong>请求头cache-control字段列表：</strong></p>
+<ul>
+<li>Cache-Control: max-age=<seconds></li>
+<li>Cache-Control: max-stale[=<seconds>]</li>
+<li>Cache-Control: min-fresh=<seconds></li>
+<li>Cache-control: no-cache</li>
+<li>Cache-control: no-store</li>
+<li>Cache-control: no-transform</li>
+<li>Cache-control: only-if-cached</li>
+</ul>
+<p><strong>响应头cache-control字段列表：</strong></p>
+<ul>
+<li>Cache-control: must-revalidate</li>
+<li>Cache-control: no-cache</li>
+<li>Cache-control: no-store</li>
+<li>Cache-control: no-transform</li>
+<li>Cache-control: public</li>
+<li>Cache-control: private</li>
+<li>Cache-control: proxy-revalidate</li>
+<li>Cache-control: max-age=<seconds></li>
+<li>Cache-control: s-maxage=<seconds></li>
+</ul>
+<p><strong>cache-control常见字段的含义：</strong></p>
+<ul>
+<li>public</li>
+</ul>
+<p>表明响应可以被任何对象（包括：发送请求的客户端，CDN等代理服务器，等等）缓存，即使是通常不可缓存的内容（例如，该响应没有max-age指令或Expires消息头）</p>
+<ul>
+<li>private</li>
+</ul>
+<p>表明响应只能被单个用户缓存，不能作为共享缓存（即代理服务器不能缓存它）。私有缓存可以缓存响应内容。</p>
+<ul>
+<li>no-cache</li>
+</ul>
+<p>可以在本地进行缓存，但每次发请求时，都要向服务器进行验证，如果服务器允许，才能使用本地缓存（即：需要协商缓存）。</p>
+<ul>
+<li>no-store</li>
+</ul>
+<p>禁止缓存客户端请求或服务器响应的内容，每次都须重新请求服务器拿内容</p>
+<ul>
+<li>max-age</li>
+</ul>
+<p>设置缓存存储的最大周期，超过这个时间缓存被视为过期 (单位：秒)</p>
+<p>更详细的cache-control字段含义请看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control">MDN</a></p>
+<p><strong>强缓存状态码</strong></p>
+<p>强缓存状态码为200，但查看chrome的network会发现状态码后面多了个注释：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/x1231.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>事实上，强缓存时，这个注释会有两种情况：</p>
+<ul>
+<li>from memory cache</li>
+<li>from disk cache</li>
+</ul>
+<p><strong>1. from memory cache：</strong></p>
+<p>缓存资源在内存中，浏览器（或页面标签）关闭后内存中的缓存就会被释放，重新打开页面取不到该缓存。</p>
+<p><strong>2. from disk cache</strong></p>
+<p>缓存资源在硬盘中，浏览器（或页面标签）关闭后硬盘中的缓存不会消失，下次进入页面还能从硬盘中获取。</p>
+<p>通常的缓存策略，浏览器打开一个网页，如果该网页最近访问过，那么资源可能会出现<strong>from disk cache</strong>，从硬盘中读取缓存</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/x123x13.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>如果此时刷新页面，该资源会出现<strong>from memory cache</strong>，从内存中读取缓存。众所周知，内存永远是最快的。</p>
+<p>如果不想从强缓存中获取资源，windows电脑可以通过ctrl + f5刷新页面，mac os 可以通过shift + command + r刷新页面，刷新后你可以看到资源不会出现 from disk(or memory) cache了</p>
+<p><strong>对比缓存</strong></p>
+<p>对比缓存是需要经过服务器确认是否使用缓存的机制，其http状态码为304，意为not modified。其过程如下：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%AF%B9%E6%AF%94%E7%BC%93%E5%AD%98.png" srcset="/img/loading.gif" lazyload alt="对比缓存"></p>
+<p>可以看到，虽然客户端仍然发起了HTTP请求服务器，但是服务器只做了标志对比来确认是否使用缓存，如果确认使用缓存，就不会再返回具体的资源了。<strong>这样做虽然没有减少请求数量，但是极大减小了请求负荷，可以明显提升请求速度和减小网络带宽</strong></p>
+<p>问题是，如何对比标志来确认是否使用缓存？这里主要涉及到两种标志：</p>
+<ul>
+<li>Last-Modified / If-Modified-Since （HTTP1.0）</li>
+<li>Etag / If-None-Match （HTTP1.1）</li>
+</ul>
+<p><strong>1. Last-Modified / If-Modified-Since</strong></p>
+<p>当浏览器第一次访问一个资源的时候，服务器会在response header中返回一个Last-Modified，代表这个资源最后的修改时间，当浏览器再次访问这个资源的时候，会在request header中带上 If-Modified-Since，值为上次请求时服务器返回的 Last-Modified 的值，然后服务器根据资源上次修改的时间确认资源在这段期间内是否更改过，如果没有，则返回304，如果有，则返回200并返回最新的资源</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/zvzcvz.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>如上图，客户端给服务器的 If-Modified-Since 值和服务端给的Last-Modified的值相同，表示2018年6月21号02:48:50至今，这个资源都没被修改过，所以浏览器可以从缓存中获取。再看其请求负荷，为575B</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/16557061-1d928232b633f5db.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>通过shift+command+r刷新看下其真实大小，为4.3KB</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/16557061-8c6a2b96018f11e1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>2. Etag / If-None-Match</strong></p>
+<p>Etag / If-None-Match 与 Last-Modified / If-Modified-Since 的机制类似，不同的是，Etag是通过一个校验码来对比资源是否更改过的，而不是通过资源的修改时间。当一个资源修改时，其校验码也会更改。当浏览器请求资源时，服务器会返回一个Etag字段，然后浏览器下一次请求时，会带上 If-None-Match ，值为上次服务器返回的Etag的值，服务器经过校验码的对比后决定返回200或304。</p>
+<p>看个例子：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/16557061-fa3f545ed70675e2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>上图中request header中带上了 If-None-Match，值为 5b506e03-25856，response header中返回了Etag，值也是 5b506e03-25856，证明文件没有修改过可以从缓存中获取。</p>
+<blockquote>
+<p>你可能注意到 If-None-Match 的值中有个 W/ 前缀，这个其实不用去关心，这个是用来提示应该采用弱比较算法（其实是画蛇添足，因为 If-None-Match 用且仅用这一算法）</p>
+</blockquote>
+<p><strong>Etag和Last-Modified优先级</strong></p>
+<p>Etag可以解决 Last-Modified 不太好处理的问题，Etag能更准确地控制缓存，因此，如果http请求中若同时出现Etag和Last-Modified，<strong>Etag的优先级是高于 Last-Modified 的</strong>。具体地说，Last-Modified 有以下一些问题：</p>
+<ul>
+<li>一些文件也许会周期性的更改，但是他的内容并不改变（仅仅改变的修改时间），这个时候我们并不希望客户端认为这个文件被修改了，而重新GET；</li>
+<li>某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，这种修改无法判断（或者说UNIX记录MTIME只能精确到秒）；</li>
+<li>某些服务器不能精确地得到文件的最后修改时间。</li>
+</ul>
+<p><strong>总结</strong></p>
+<p>网上有副HTTP缓存逻辑流程图，可以很清楚地表明其缓存策略：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/16557061-ecc687f9680c11c3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FHTTP%2FCaching_FAQ">HTTP缓存-MDN</a></p>
+<p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.cnblogs.com%2Fmq0036%2Fp%2F7090635.html">http协商缓存VS强缓存</a></p>
+<p>摘自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c78b5de7a889">https://www.jianshu.com/p/c78b5de7a889</a></p>
+</blockquote>
+<h1>十一、HTTPS详解</h1>
+<p><strong>1、HTTP 的最大弊端——不安全</strong></p>
+<p>HTTP 之所以被 HTTPS 取代，最大的原因就是不安全，至于为什么不安全，看了下面这张图就一目了然了</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTP%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>HTTP 在传输数据的过程中，所有的数据都是明文传输，自然没有安全性可言，特别是一些敏感数据，比如用户密码和信用卡信息等，一旦被第三方获取，后果不堪设想。这里可能有人会说，我在前端页面对敏感数据进行加密不就行了，比如 MD5 加盐加密。这么想就太简单了。首先 MD5 并不是加密算法，其全称是 Message Digest Algorithm MD5，意为信息摘要算法，是一种不可逆的哈希算法，也就是说经过前端 MD5 处理过的数据在服务器端是无法复原的。这里以密码举例，前端把用户密码通过 MD5 进行处理，并把得到的哈希值发送给服务器，服务器由于无法复原密码，就会直接用这个哈希值处理用户请求。所以第三方在获取这个哈希值后，可以绕过前端登录页面直接访问服务器，造成安全问题。另外，MD5 算法本身的安全性也存在缺陷，这里就不展开谈了。</p>
+<p>总之 MD5，SHA-1 之类的哈希算法并不能让 HTTP 变得更安全。要想让 HTTP 更安全，只能使用真正的加密算法，因为加密算法可以用密钥加密或还原数据，只要确保密钥不被第三方获取，那就能确保数据传输的安全了。而这正是 HTTPS 的解决方案，那下面就来了解一下加密算法吧。</p>
+<p><strong>2、加密算法</strong></p>
+<p>HTTPS 解决数据传输安全问题的方案就是使用加密算法，具体来说是<strong>混合加密算法</strong>，也就是<strong>对称加密和非对称加密的混合使用</strong>，这里有必要先了解一下这两种加密算法的区别和优缺点。</p>
+<p><strong>2.1 对称加密</strong></p>
+<p>对称加密，顾名思义就是加密和解密都是使用同一个密钥，常见的对称加密算法有 DES、3DES 和 AES 等，其优缺点如下：</p>
+<ul>
+<li>
+<p>优点：算法公开、计算量小、加密速度快、加密效率高，适合加密比较大的数据。</p>
+</li>
+<li>
+<p>缺点：</p>
+</li>
+<li>
+<ol>
+<li>交易双方需要使用相同的密钥，也就无法避免密钥的传输，而密钥在传输过程中无法保证不被截获，因此对称加密的安全性得不到保证。</li>
+<li>每对用户每次使用对称加密算法时，都需要使用其他人不知道的惟一密钥，这会使得发收信双方所拥有的钥匙数量急剧增长，密钥管理成为双方的负担。<strong>对称加密算法在分布式网络系统上使用较为困难，主要是因为密钥管理困难，使用成本较高。</strong></li>
+</ol>
+</li>
+</ul>
+<p>如果直接将对称加密算法用在 HTTP 中，会是下面的效果：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>从图中可以看出，被加密的数据在传输过程中是无规则的乱码，即便被第三方截获，在没有密钥的情况下也无法解密数据，也就保证了数据的安全。但是有一个致命的问题，那就是既然双方要使用相同的密钥，那就必然要在传输数据之前先由一方把密钥传给另一方，那么在此过程中密钥就很有可能被截获，这样一来加密的数据也会被轻松解密。那如何确保密钥在传输过程中的安全呢？这就要用到非对称加密了。</p>
+<p><strong>2.2 非对称加密</strong></p>
+<p>非对称加密，顾名思义，就是加密和解密需要使用两个不同的密钥：公钥（public key）和私钥（private key）。公钥与私钥是一对，如果用公钥对数据进行加密，只有用对应的私钥才能解密；如果用私钥对数据进行加密，那么只有用对应的公钥才能解密。非对称加密算法实现机密信息交换的基本过程是：甲方生成一对密钥并将其中的一把作为公钥对外公开；得到该公钥的乙方使用公钥对机密信息进行加密后再发送给甲方；甲方再用自己保存的私钥对加密后的信息进行解密。常用的非对称加密算法是 RSA 算法，其优缺点如下：</p>
+<ul>
+<li>优点：算法公开，加密和解密使用不同的钥匙，私钥不需要通过网络进行传输，安全性很高。</li>
+<li>缺点：<strong>计算量比较大，加密和解密速度相比对称加密慢很多。</strong></li>
+</ul>
+<p>由于非对称加密的强安全性，可以用它完美解决对称加密的密钥泄露问题，效果图如下：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%8F%91%E9%80%81KEY.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在上述过程中，客户端在拿到服务器的公钥后，会生成一个随机码 （用 KEY 表示，这个 KEY 就是后续双方用于对称加密的密钥），然后客户端使用公钥把 KEY 加密后再发送给服务器，服务器使用私钥将其解密，这样双方就有了同一个密钥 KEY，然后双方再使用 KEY 进行对称加密交互数据。在非对称加密传输 KEY 的过程中，即便第三方获取了公钥和加密后的 KEY，在没有私钥的情况下也无法破解 KEY （私钥存在服务器，泄露风险极小），也就保证了接下来对称加密的数据安全。而上面这个流程图正是 HTTPS 的雏形，HTTPS 正好综合了这两种加密算法的优点，不仅保证了通信安全，还保证了数据传输效率。</p>
+<p><strong>3、HTTPS 原理详解</strong></p>
+<p>HTTPS（Hypertext Transfer Protocol Secure）是基于 HTTP 的扩展，用于计算机网络的安全通信，已经在互联网得到广泛应用。在 HTTPS 中，原有的 HTTP协议会得到 TLS（安全传输层协议）或其前辈 SSL（安全套接层）的加密。因此 HTTPS 也常指 HTTP over TLS 或 HTTP over SSL</p>
+<p>可见HTTPS 并非独立的通信协议，而是对 HTTP 的扩展，保证了通信安全，二者关系如下：</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTP_HTTPS.png" srcset="/img/loading.gif" lazyload alt="HTTP和HTTPS的关系"></p>
+<p>也就是说 HTTPS = HTTP + SSL / TLS</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTPS%E5%8A%A0%E8%A7%A3%E5%AF%86.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>HTTPS 的整个通信过程可以分为两大阶段：<strong>证书验证和数据传输阶段</strong>，数据传输阶段又可以分为<strong>非对称加密和对称加密</strong>两个阶段</p>
+<ol>
+<li>
+<p>客户端请求 HTTPS 网址，然后连接到 server 的 443 端口（HTTPS 默认端口，类似于 HTTP 的80端口）。</p>
+</li>
+<li>
+<p>采用 HTTPS 协议的服务器必须要有一套数字 CA（Certification Authority）证书，证书是需要申请的，并由专门的数字证书认证机构（CA）通过非常严格的审核之后颁发的电子证书（当然了是要钱的，安全级别越高价格越贵）。颁发证书的同时会产生一个私钥和公钥。私钥由服务端自己保存，不可泄漏。公钥则是附带在证书的信息中，可以公开的。证书本身也附带一个证书电子签名，这个签名用来验证证书的完整性和真实性，可以防止证书被篡改。</p>
+</li>
+<li>
+<p>服务器响应客户端请求，将证书传递给客户端，证书包含公钥和大量其他信息，比如证书颁发机构信息，公司信息和证书有效期等。Chrome 浏览器点击地址栏的锁标志再点击证书就可以看到证书详细信息</p>
+</li>
+</ol>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230501213045098.png" srcset="/img/loading.gif" lazyload alt="我的网站证书"></p>
+<ol start="4">
+<li>
+<p>客户端解析证书并对其进行验证。如果证书不是可信机构颁布，或者证书中的域名与实际域名不一致，或者证书已经过期，就会向访问者显示一个警告，由其选择是否还要继续通信。就像下面这样：</p>
+<p><img src="C:%5CUsers%5CLenovo%5CDesktop%5C12312313131.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>如果证书没有问题，客户端就会从服务器证书中取出服务器的公钥A。然后客户端还会生成一个随机码 KEY，并使用公钥A将其加密。</p>
+</li>
+<li>
+<p>客户端把加密后的随机码 KEY 发送给服务器，作为后面对称加密的密钥。</p>
+</li>
+<li>
+<p>服务器在收到随机码 KEY 之后会使用私钥B将其解密。经过以上这些步骤，客户端和服务器终于建立了安全连接，完美解决了对称加密的密钥泄露问题，接下来就可以用对称加密愉快地进行通信了。</p>
+</li>
+<li>
+<p>服务器使用密钥（随机码 KEY）对数据进行对称加密并发送给客户端，客户端使用相同的密钥（随机码 KEY）解密数据。</p>
+</li>
+<li>
+<p>双方使用对称加密愉快地传输所有数据。</p>
+</li>
+</ol>
+<p><strong>4、中间人攻击</strong></p>
+<p>针对SSL的中间人攻击方式主要有两类，分别是SSL劫持攻击和SSL剥离攻击</p>
+<p><strong>SSL劫持攻击</strong></p>
+<p>SSL劫持攻击即SSL证书欺骗攻击，攻击者为了获得HTTPS传输的明文数据，需要先将自己接入到客户端和目标网站之间；在传输过程中伪造服务器的证书，将服务器的公钥替换成自己的公钥，这样，中间人就可以得到明文传输带Key1、Key2和Pre-Master-Key，从而窃取客户端和服务端的通信数据</p>
+<p>但是对于客户端来说，如果中间人伪造了证书，在校验证书过程中会提示证书错误，由用户选择继续操作还是返回，由于大多数用户的安全意识不强，会选择继续操作，此时，中间人就可以获取浏览器和服务器之间的通信数据</p>
+<p><strong>SSL剥离攻击（SSL Strip）</strong></p>
+<p>这种攻击方式也需要将攻击者设置为中间人（通过ARP欺骗），之后将HTTPS范文替换为HTTP返回给浏览器，而中间人和服务器之间仍然保持HTTPS服务器。由于HTTP是明文传输的，所以中间人可以获取客户端和服务器传输数据</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB.png" srcset="/img/loading.gif" lazyload alt="中间人攻击"></p>
+<blockquote>
+<p><strong>SSL STrip 及 HSTS</strong></p>
+<p>HTTP 协议最初的时候是明文的，因为安全问题所以现在很多网站都在逐渐过渡到 HTTPS，然而对于大部分使用者来说，他们并不知道 HTTP 和 HTTPS 之间的区别，在浏览器输入地址的时候都是直接输入 <a target="_blank" rel="noopener" href="http://www.example.com">www.example.com</a> 而非 <a target="_blank" rel="noopener" href="https://www.example.com">https://www.example.com</a>，在大部分情况下，如果一个网站启用了 HTTPS，服务器会将这个请求使用 301或者 302状态码以及一个 Location头部将请求从 80 端口重定向至使用 HTTPS 的 443 端口。但是，如果中间人劫持了使用者的网络请求，那么中间人可以阻止客户端与服务器建立 HTTPS 连接，而是一直使用不安全的 HTTP 连接，而中间人则和服务器建立正常的 HTTPS 连接，让客户端以为自己正在和真实服务器通信。这种攻击手法称作 SSLTrip</p>
+<p>为了解决这个问题，IETF（互联网工程任务小组）引入了一个策略，叫做 <strong>HSTS</strong>(HTTP Strict Transport Security, HTTP 严格传输安全)。HSTS 的作用是强制客户端与服务端建立安全的 HTTPS 连接，而非不安全的 HTTP 连接。如果一个站点启用了 HSTS 策略，那么客户端在第一次与该站点建立连接之后，在未来的一段时间内（由一个 HTTP 头部控制，这个头部为：Strict-Transport-Security），客户端与该站点的所有连接都会直接使用 HTTPS，即使客户端访问的是 HTTP，也会直接在客户端重定向到 HTTPS 连接。</p>
+<p>假设 <a target="_blank" rel="noopener" href="https://example.xn--com-rq4e94r49ibnpzg3amw3c">https://example.com的响应头部有</a> Strict-Transport-Security:max-age=31536000;includeSubDomains，这意味着：</p>
+<ol>
+<li>
+<p>在未来的 1 年时间里（即 31536000 秒中），只要浏览器向 example.com或者其子域名发送请求，必须采用 HTTPS 来发起连接。即使用户在地址栏里写的是 <a target="_blank" rel="noopener" href="http://example.com">http://example.com</a>，那也直接重写为 <a target="_blank" rel="noopener" href="https://example.xn--com-yw3eq00crrhuq0blw1b">https://example.com并直接发起</a> HTTPS 连接。</p>
+</li>
+<li>
+<p>在接下去的一年中，如果服务器提供的 HTTPS 证书无效（不论是域名对不上还是自签名还是不在有效期内），用户都无法访问该站点。</p>
+</li>
+</ol>
+<p>如果站点没有启用 HSTS，用户可以忽略证书无效的警告，继续建立连接，而如果站点启用了 HSTS，那么用户即使想冒风险，浏览器也不会继续访问。</p>
+<p>HSTS 可以很大程度上防止 SSLTrip 攻击，不过这样还是有个问题，那就是要启用 HSTS，浏览器至少要和服务器建立一次 HTTPS 连接，如果中间人一直阻止浏览器与服务器建立 HTTPS 连接，那么 HSTS 就失效了。解决这个问题有个办法，那就是将 HSTS 站点列表内置到浏览器中，这样只要浏览器<strong>离线</strong>判断该站点启用了 HSTS，就会跳过原先的 HTTP 重定向，直接发起 HTTPS 请求</p>
+</blockquote>
+<p><strong>5、总结</strong></p>
+<p>再来总结一下 HTTPS 和 HTTP 的区别以及 HTTPS 的缺点吧：</p>
+<p><strong>HTTPS 和 HTTP 的区别：</strong></p>
+<ul>
+<li>最最重要的区别就是安全性，HTTP 明文传输，不对数据进行加密安全性较差。HTTPS（HTTP + SSL / TLS）的数据传输过程是加密的，安全性较好。</li>
+<li>使用 HTTPS 协议需要申请 CA 证书，一般免费证书较少，因而需要一定费用。证书颁发机构如：Symantec、Comodo、DigiCert 和 GlobalSign 等。</li>
+<li>HTTP 页面响应速度比 HTTPS 快，这个很好理解，由于加了一层安全层，建立连接的过程更复杂，也要交换更多的数据，难免影响速度。</li>
+<li>由于 HTTPS 是建构在 SSL / TLS 之上的 HTTP 协议，所以，要比 HTTP 更耗费服务器资源。</li>
+<li>HTTPS 和 HTTP 使用的是完全不同的连接方式，用的端口也不一样，前者是 443，后者是 80。</li>
+</ul>
+<p><strong>HTTPS 的缺点：</strong></p>
+<ul>
+<li>在相同网络环境中，HTTPS 相比 HTTP 无论是响应时间还是耗电量都有大幅度上升。</li>
+<li>HTTPS 的安全是有范围的，在黑客攻击、服务器劫持等情况下几乎起不到作用。</li>
+<li>在现有的证书机制下，中间人攻击依然有可能发生。</li>
+<li>HTTPS 需要更多的服务器资源，也会导致成本的升高。</li>
+</ul>
+<p>另外，关于 SSL/TLS 握手的详细过程和相关重要概念，请看<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021559557?_ea=29659396">HTTPS 详解二：SSL / TLS 工作原理和详细握手过程</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015316332">深入理解http1.x、http 2和https</a></p>
+</blockquote>
+<h1>十二、HTTP2.0</h1>
+<p><strong>前言</strong></p>
+<p>HTTP2.0大幅度的提高了web性能，在HTTP1.1完全语义兼容的基础上，进一步减少了网络的延迟。实现低延迟高吞吐量。对于前端开发者而言，减少了优化工作。本文将重点围绕以下几点新特性的作用、工作过程以及如何更出色的完成了优化工作来介绍HTTP2.0</p>
+<ul>
+<li>二进制分帧</li>
+<li>首部压缩</li>
+<li>多路复用</li>
+<li>请求优先级</li>
+<li>服务器推送</li>
+</ul>
+<p><strong>一. 介绍</strong></p>
+<p>HTTP/2是HTTP协议自1999年HTTP1.1发布后的首个更新，主要基于SPDY协议。</p>
+<p><strong>1.1 什么是SPDY协议</strong></p>
+<p>SPDY是Speedy的昵音，意为“更快”。它是Google开发的基于TCP协议的应用层协议。目标是优化HTTP协议的性能，通过压缩、多路复用和优先级等技术，缩短网页的加载时间并提高安全性。SPDY协议的核心思想是尽量减少TCP连接数。SPDY并不是一种用于替代HTTP的协议，而是对HTTP协议的增强。</p>
+<p><strong>1.2 HTTP1.X的缺点</strong></p>
+<p>任何事物的更新都是为了弥补或修复上个版本的某些问题，那么我们来看看HTTP1.x都有哪些缺点以至于我们要使用HTTP2.0。</p>
+<p>HTTP1.x有以下几个主要缺点：</p>
+<ol>
+<li>HTTP/1.0一次只允许在一个TCP连接上发起一个请求，HTTP/1.1使用的流水线技术也只能部分处理请求并发，仍然会存在队列头阻塞问题，因此客户端在需要发起多次请求时，通常会采用建立多连接来减少延迟。</li>
+<li>单向请求，只能由客户端发起。</li>
+<li>请求报文与响应报文首部信息冗余量大。</li>
+<li>数据未压缩，导致数据的传输量大。</li>
+</ol>
+<p>我们可以通过一个链接来对比一下HTTP2.0到底比HTTP1.x快了多少。<a target="_blank" rel="noopener" href="https://http2.akamai.com/demo">链接地址</a></p>
+<p><strong>二. 二进制分帧</strong></p>
+<p>在不改变HTTP1.x的语义、方法、状态码、URL以及首部字段的情况下，HTTP2.0是怎样突破HTTP1.1的性能限制，改进传输性能，实现低延迟高吞吐量的呢？关键之一就是在应用层（HTTP）和传输层（TCP）之间增加一个二进制分帧层。</p>
+<p>在整理二进制分帧及其作用的时候我们先来铺垫一点关于帧的知识：</p>
+<ul>
+<li>帧：HTTP2.0通信的最小单位，所有帧都共享一个8字节的首部，其中包含帧的长度、类型、标志、还有一个保留位，并且至少有标识出当前帧所属的流的标识符，帧承载着特定类型的数据，如HTTP首部、负荷、等等。</li>
+<li>消息：比帧大的通讯单位，是指逻辑上的HTTP消息，比如请求、响应等。由一个或多个帧组成</li>
+<li>流：比消息大的通讯单位。是TCP连接中的一个虚拟通道，可以承载双向的消息。每个流都有一个唯一的整数标识符</li>
+</ul>
+<p>HTTP2.0中所有加强性能的核心是<strong>二进制传输</strong>，在HTTP1.x中，我们是通过文本的方式传输数据。基于文本的方式传输数据存在很多缺陷，文本的表现形式有多样性，因此要做到健壮性考虑的场景必然有很多，但是二进制则不同，只有0和1的组合，因此选择了二进制传输，实现方便且健壮。</p>
+<p>在HTTP2.0中引入了新的编码机制，所有传输的数据都会被分割，并采用二进制格式编码。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/HTTP2.0%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%86%E5%B8%A7.png" srcset="/img/loading.gif" lazyload alt="HTTP2.0二进制分帧"></p>
+<p>为了保证HTTP不受影响，那就需要在应用层（HTTP2.0）和传输层（TCP or UDP）之间增加一个二进制分帧层。在二进制分帧层上，HTTP2.0会将所有传输的信息分为更小的消息和帧，并采用二进制格式编码，其中HTTP1.x的首部信息会被封装到Headers帧，而Request Body则封装到Data帧。</p>
+<p><strong>三. 首部压缩</strong></p>
+<p>HTTP1.1并不支持HTTP首部压缩，为此SPDY和HTTP2.0出现了。SPDY是用的是DEFLATE算法，而HTTP2.0则使用了专门为首部压缩设计的HPACK算法。</p>
+<p>HTTP每次通讯（请求或响应）都会携带首部信息用于描述资源属性。</p>
+<p>在HTTP1.0中，我们使用文本的形式传输header，在header中携带cookie的话，每次都需要重复传输几百到几千的字节，这着实是一笔不小的开销。</p>
+<p>在HTTP2.0中，我们使用了HPACK（HTTP2头部压缩算法）压缩格式对传输的header进行编码，减少了header的大小。<strong>并在两端维护了索引表，用于记录出现过的header，后面在传输过程中就可以传输已经记录过的header的键名，对端收到数据后就可以通过键名找到对应的值。</strong></p>
+<p><strong>四. 多路复用</strong></p>
+<p>在HTTP1.x中，我们经常会使用到雪碧图、使用多个域名等方式来进行优化，都是因为浏览器限制了同一个域名下的请求数量，当页面需要请求很多资源的时候，队头阻塞（Head of line blocking）会导致在达到最大请求时，资源需要等待其他资源请求完成后才能继续发送。</p>
+<p><strong>HTTP2.0中，基于二进制分帧层，HTTP2.0可以在共享TCP连接的基础上同时发送请求和响应。HTTP消息被分解为独立的帧，而不破坏消息本身的语义，交错发出去，在另一端根据流标识符和首部将他们重新组装起来。 通过该技术，可以避免HTTP旧版本的队头阻塞问题，极大提高传输性能。</strong></p>
+<p><strong>五. 请求优先级</strong></p>
+<p>多路复用带来一个新的问题是，在连接共享的基础之上有可能会导致关键请求被阻塞。SPDY允许给每个request设置优先级，这样重要的请求就会优先得到响应。比如浏览器加载首页，首页的html内容应该优先展示，之后才是各种静态资源文件，脚本文件等加载，这样可以保证用户能第一时间看到网页内容。</p>
+<p><strong>六. 服务器推送</strong></p>
+<p>HTTP2.0新增的一个强大的新功能，就是服务器可以对一个客户端请求发送多个响应。服务器向客户端推送资源无需客户端明确的请求。</p>
+<p>服务端根据客户端的请求，提前返回多个响应，推送额外的资源给客户端。如下图，客户端请求stream 1(/page.html)。服务端在返回stream 1的消息的同时推送了stream 2(/script.js)和stream 4(/style.css)</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A8%E9%80%81.jpeg" srcset="/img/loading.gif" lazyload alt="服务器推送"></p>
+<p>服务端推送是一种在客户端请求之前发送数据的机制。在HTTP2.0中，服务器可以对一个客户端的请求发送多个响应。如果一个请求是由你的主页发送的，服务器可能会响应主页内容、logo以及样式表，因为他知道客户端会用到这些东西。这样不但减轻了数据传送冗余步骤，也加快了页面响应的速度，提高了用户体验。</p>
+<p>推送的缺点：所有推送的资源都必须遵守同源策略。换句话说，服务器不能随便将第三方资源推送给客户端，而必须是经过双方的确认才行</p>
+<blockquote>
+<p>摘自<a target="_blank" rel="noopener" href="https://blog.csdn.net/yexudengzhidao/article/details/98207149">https://blog.csdn.net/yexudengzhidao/article/details/98207149</a></p>
+<p>HTTP/2 相比 1.0 有哪些重大改进？ - victor yu的回答 - 知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/34074946/answer/108588042">https://www.zhihu.com/question/34074946/answer/108588042</a> 写的非常详细</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Others/" class="category-chain-item">Others</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计算机网络</div>
+      <div>https://lishilong.cc/2023/04/30/Others/计算机网络/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Aaron</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/01/Others/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/30/Java/%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0%E5%A5%87%E5%81%B6%E6%95%B0/" title="交替打印奇偶数">
+                        <span class="hidden-mobile">交替打印奇偶数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

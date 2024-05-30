@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta name="description" content="标题：《LLaMA: Open and Efficient Foundation Language Models》 论文来源： arXiv:2302.13971 原文链接：  https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2302.13971.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;llama 参考链接  https:&#x2F;&#x2F;blog.csdn.net&#x2F;w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLaMA - Open and Efficient Foundation Language Models">
+<meta property="og:url" content="https://lishilong.cc/2023/08/09/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:description" content="标题：《LLaMA: Open and Efficient Foundation Language Models》 论文来源： arXiv:2302.13971 原文链接：  https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2302.13971.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;llama 参考链接  https:&#x2F;&#x2F;blog.csdn.net&#x2F;w">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/Tanganyika_Alpaca_2021_CS2-683x1024.jpg">
+<meta property="article:published_time" content="2023-08-09T07:34:00.000Z">
+<meta property="article:modified_time" content="2024-05-30T06:57:31.257Z">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="LLMs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/Tanganyika_Alpaca_2021_CS2-683x1024.jpg">
+  
+  
+  
+  <title>LLaMA - Open and Efficient Foundation Language Models - Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LLaMA - Open and Efficient Foundation Language Models"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-09 15:34" pubdate>
+          2023年8月9日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LLaMA - Open and Efficient Foundation Language Models</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>标题：</strong>《LLaMA: Open and Efficient Foundation Language Models》</p>
+<p><strong>论文来源：</strong> arXiv:2302.13971</p>
+<p><strong>原文链接：</strong>  <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2302.13971.pdf">https://arxiv.org/pdf/2302.13971.pdf</a></p>
+<p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/llama">https://github.com/facebookresearch/llama</a></p>
+<h2 id="参考链接">参考链接</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44826203/article/details/129255185">https://blog.csdn.net/weixin_44826203/article/details/129255185</a></p>
+<p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/9009">为什么Pre Norm的效果不如Post Norm？</a></p>
+<p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/9009">Transformer升级之路：2、博采众长的旋转式位置编码</a></p>
+</blockquote>
+<h2 id="概述">概述</h2>
+<p>用的Transformer的decoder，和GPT很类似</p>
+<h2 id="模型细节">模型细节</h2>
+<h3 id="RMS-Pre-Norm">RMS Pre-Norm</h3>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.07467.pdf">https://arxiv.org/pdf/1910.07467.pdf</a></p>
+</blockquote>
+<p>首先LLama采用了RMS Norm，是LayerNorm的一种变体，作用是加速收敛，公式如下：</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mover accent="true"><mi>a</mi><mo>ˉ</mo></mover><mi>i</mi></msub><mo>=</mo><mfrac><msub><mi>a</mi><mi>i</mi></msub><mrow><mi mathvariant="normal">RMS</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi mathvariant="bold">a</mi><mo stretchy="false">)</mo></mrow></mfrac><msub><mi>g</mi><mi>i</mi></msub><mo separator="true">,</mo><mspace width="1em"/><mtext> where </mtext><mi mathvariant="normal">RMS</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi mathvariant="bold">a</mi><mo stretchy="false">)</mo><mo>=</mo><msqrt><mrow><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>a</mi><mi>i</mi><mn>2</mn></msubsup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\bar{a}_i=\frac{a_i}{\operatorname{RMS}(\mathbf{a})} g_i, \quad \text { where } \operatorname{RMS}(\mathbf{a})=\sqrt{\frac{1}{n} \sum_{i=1}^n a_i^2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7178em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">a</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0436em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mord mathrm">RMS</span></span><span class="mopen">(</span><span class="mord mathbf">a</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord"> where </span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mord mathrm">RMS</span></span><span class="mopen">(</span><span class="mord mathbf">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.1568em;vertical-align:-1.2777em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8791em;"><span class="svg-align" style="top:-5.1168em;"><span class="pstrut" style="height:5.1168em;"></span><span class="mord" style="padding-left:1.056em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959em;"><span style="top:-2.4231em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2769em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.8391em;"><span class="pstrut" style="height:5.1168em;"></span><span class="hide-tail" style="min-width:0.742em;height:3.1968em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='3.1968em' viewBox='0 0 400000 3196' preserveAspectRatio='xMinYMin slice'><path d='M702 80H40000040
+H742v3062l-4 4-4 4c-.667.7 -2 1.5-4 2.5s-4.167 1.833-6.5 2.5-5.5 1-9.5 1
+h-12l-28-84c-16.667-52-96.667 -294.333-240-727l-212 -643 -85 170
+c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
+219 661 l218 661zM702 80H400000v40H742z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p>Pre-Norm和Post-Norm哪个更好呢？<a target="_blank" rel="noopener" href="https://kexue.fm/archives/9009">为什么Pre Norm的效果不如Post Norm？</a>这篇文章给出了解释：</p>
+<p>重点是在这个式子</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809161116042.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>同一设置之下，Pre Norm结构往往更容易训练，但最终效果通常不如Post Norm</li>
+<li>Pre Norm结构无形地增加了模型的宽度而降低了模型的深度，而我们知道深度通常比宽度更重要，所以是无形之中的降低深度导致最终效果变差了</li>
+</ul>
+<img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809160712945.png" srcset="/img/loading.gif" lazyload style="zoom:15%;" />
+<p>但是为什么LLaMA中却采用了Pre-Norm，这个还没有找到合理的解释</p>
+<h3 id="SwiGLU激活函数">SwiGLU激活函数</h3>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.05202.pdf">https://arxiv.org/pdf/2002.05202.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1710.05941v1.pdf">https://arxiv.org/pdf/1710.05941v1.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://mltalks.medium.com/swiglu%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-4a9e2d55e250">https://mltalks.medium.com/swiglu论文阅读-4a9e2d55e250</a></p>
+</blockquote>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809161453203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="RoPE旋转位置编码">RoPE旋转位置编码</h3>
+<p>RoPE（Rotary Position Embedding）旋转位置编码，是苏剑林老师提出的一种旋转位置编码方法<a target="_blank" rel="noopener" href="https://kexue.fm/archives/8265">Transformer升级之路：2、博采众长的旋转式位置编码</a>，其思想是采用绝对位置编码的形式，实现相对位置编码</p>
+<h2 id="代码解读">代码解读</h2>
+<h4 id="RMSNorm">RMSNorm</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">RMSNorm</span>(torch.nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, dim: <span class="hljs-built_in">int</span>, eps: <span class="hljs-built_in">float</span> = <span class="hljs-number">1e-6</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.eps = eps<br>        self.weight = nn.Parameter(torch.ones(dim))<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_norm</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> x * torch.rsqrt(x.<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>).mean(-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>) + self.eps)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        output = self._norm(x.<span class="hljs-built_in">float</span>()).type_as(x)<br>        <span class="hljs-keyword">return</span> output * self.weight<br></code></pre></td></tr></table></figure>
+<ul>
+<li>x是输入</li>
+<li>weight是末尾乘的可训练参数（也就是缩放系数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span>）</li>
+<li>x.pow(2)是平方</li>
+<li>mean(-1)是在最后一个维度（即hidden特征维度）上取平均</li>
+<li>eps防止取倒数之后分母为0</li>
+<li>torch.rsqrt是开平方并取倒数</li>
+</ul>
+<h4 id="RoPE">RoPE</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">precompute_freqs_cis</span>(<span class="hljs-params">dim: <span class="hljs-built_in">int</span>, end: <span class="hljs-built_in">int</span>, theta: <span class="hljs-built_in">float</span> = <span class="hljs-number">10000.0</span></span>):<br>    freqs = <span class="hljs-number">1.0</span> / (theta ** (torch.arange(<span class="hljs-number">0</span>, dim, <span class="hljs-number">2</span>)[: (dim // <span class="hljs-number">2</span>)].<span class="hljs-built_in">float</span>() / dim))<br>    t = torch.arange(end, device=freqs.device)  <span class="hljs-comment"># type: ignore</span><br>    freqs = torch.outer(t, freqs).<span class="hljs-built_in">float</span>()  <span class="hljs-comment"># type: ignore</span><br>    freqs_cis = torch.polar(torch.ones_like(freqs), freqs)  <span class="hljs-comment"># complex64</span><br>    <span class="hljs-keyword">return</span> freqs_cis<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">reshape_for_broadcast</span>(<span class="hljs-params">freqs_cis: torch.Tensor, x: torch.Tensor</span>):<br>    ndim = x.ndim<br>    <span class="hljs-keyword">assert</span> <span class="hljs-number">0</span> &lt;= <span class="hljs-number">1</span> &lt; ndim<br>    <span class="hljs-keyword">assert</span> freqs_cis.shape == (x.shape[<span class="hljs-number">1</span>], x.shape[-<span class="hljs-number">1</span>])<br>    shape = [d <span class="hljs-keyword">if</span> i == <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> i == ndim - <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> <span class="hljs-number">1</span> <span class="hljs-keyword">for</span> i, d <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(x.shape)]<br>    <span class="hljs-keyword">return</span> freqs_cis.view(*shape)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">apply_rotary_emb</span>(<span class="hljs-params"></span><br><span class="hljs-params">    xq: torch.Tensor,</span><br><span class="hljs-params">    xk: torch.Tensor,</span><br><span class="hljs-params">    freqs_cis: torch.Tensor,</span><br><span class="hljs-params"></span>) -&gt; <span class="hljs-type">Tuple</span>[torch.Tensor, torch.Tensor]:<br>    xq_ = torch.view_as_complex(xq.<span class="hljs-built_in">float</span>().reshape(*xq.shape[:-<span class="hljs-number">1</span>], -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>))<br>    xk_ = torch.view_as_complex(xk.<span class="hljs-built_in">float</span>().reshape(*xk.shape[:-<span class="hljs-number">1</span>], -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>))<br>    freqs_cis = reshape_for_broadcast(freqs_cis, xq_)<br>    xq_out = torch.view_as_real(xq_ * freqs_cis).flatten(<span class="hljs-number">3</span>)<br>    xk_out = torch.view_as_real(xk_ * freqs_cis).flatten(<span class="hljs-number">3</span>)<br>    <span class="hljs-keyword">return</span> xq_out.type_as(xq), xk_out.type_as(xk)<br></code></pre></td></tr></table></figure>
+<p>具体的解析请看<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44826203/article/details/129255185">https://blog.csdn.net/weixin_44826203/article/details/129255185</a></p>
+<h4 id="Attention">Attention</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Attention</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, args: ModelArgs</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br><br>        self.n_local_heads = args.n_heads // fs_init.get_model_parallel_world_size()<br>        self.head_dim = args.dim // args.n_heads<br><br>        self.wq = ColumnParallelLinear(<br>            args.dim,<br>            args.n_heads * self.head_dim,<br>            bias=<span class="hljs-literal">False</span>,<br>            gather_output=<span class="hljs-literal">False</span>,<br>            init_method=<span class="hljs-keyword">lambda</span> x: x,<br>        )<br>        self.wk = ColumnParallelLinear(<br>            args.dim,<br>            args.n_heads * self.head_dim,<br>            bias=<span class="hljs-literal">False</span>,<br>            gather_output=<span class="hljs-literal">False</span>,<br>            init_method=<span class="hljs-keyword">lambda</span> x: x,<br>        )<br>        self.wv = ColumnParallelLinear(<br>            args.dim,<br>            args.n_heads * self.head_dim,<br>            bias=<span class="hljs-literal">False</span>,<br>            gather_output=<span class="hljs-literal">False</span>,<br>            init_method=<span class="hljs-keyword">lambda</span> x: x,<br>        )<br>        self.wo = RowParallelLinear(<br>            args.n_heads * self.head_dim,<br>            args.dim,<br>            bias=<span class="hljs-literal">False</span>,<br>            input_is_parallel=<span class="hljs-literal">True</span>,<br>            init_method=<span class="hljs-keyword">lambda</span> x: x,<br>        )<br><br>        self.cache_k = torch.zeros(<br>            (args.max_batch_size, args.max_seq_len, self.n_local_heads, self.head_dim)<br>        ).cuda()<br>        self.cache_v = torch.zeros(<br>            (args.max_batch_size, args.max_seq_len, self.n_local_heads, self.head_dim)<br>        ).cuda()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x: torch.Tensor, start_pos: <span class="hljs-built_in">int</span>, freqs_cis: torch.Tensor, mask: <span class="hljs-type">Optional</span>[torch.Tensor]</span>):<br>        bsz, seqlen, _ = x.shape<br>        xq, xk, xv = self.wq(x), self.wk(x), self.wv(x)<br><br>        xq = xq.view(bsz, seqlen, self.n_local_heads, self.head_dim)<br>        xk = xk.view(bsz, seqlen, self.n_local_heads, self.head_dim)<br>        xv = xv.view(bsz, seqlen, self.n_local_heads, self.head_dim)<br><br>        xq, xk = apply_rotary_emb(xq, xk, freqs_cis=freqs_cis)<br><br>        self.cache_k = self.cache_k.to(xq)<br>        self.cache_v = self.cache_v.to(xq)<br><br>        self.cache_k[:bsz, start_pos : start_pos + seqlen] = xk<br>        self.cache_v[:bsz, start_pos : start_pos + seqlen] = xv<br><br>        keys = self.cache_k[:bsz, : start_pos + seqlen]<br>        values = self.cache_v[:bsz, : start_pos + seqlen]<br><br>        xq = xq.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        keys = keys.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        values = values.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        scores = torch.matmul(xq, keys.transpose(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)) / math.sqrt(self.head_dim)<br>        <span class="hljs-keyword">if</span> mask <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>            scores = scores + mask  <span class="hljs-comment"># (bs, n_local_heads, slen, cache_len + slen)</span><br>        scores = F.softmax(scores.<span class="hljs-built_in">float</span>(), dim=-<span class="hljs-number">1</span>).type_as(xq)<br>        output = torch.matmul(scores, values)  <span class="hljs-comment"># (bs, n_local_heads, slen, head_dim)</span><br>        output = output.transpose(<br>            <span class="hljs-number">1</span>, <span class="hljs-number">2</span><br>        ).contiguous().view(bsz, seqlen, -<span class="hljs-number">1</span>)<br><br>        <span class="hljs-keyword">return</span> self.wo(output)<br></code></pre></td></tr></table></figure>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810205332801.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="FFN">FFN</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">FeedForward</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params"></span><br><span class="hljs-params">        self,</span><br><span class="hljs-params">        dim: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params">        hidden_dim: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params">        multiple_of: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params">    </span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        hidden_dim = <span class="hljs-built_in">int</span>(<span class="hljs-number">2</span> * hidden_dim / <span class="hljs-number">3</span>)<br>        hidden_dim = multiple_of * ((hidden_dim + multiple_of - <span class="hljs-number">1</span>) // multiple_of)<br><br>        self.w1 = ColumnParallelLinear(<br>            dim, hidden_dim, bias=<span class="hljs-literal">False</span>, gather_output=<span class="hljs-literal">False</span>, init_method=<span class="hljs-keyword">lambda</span> x: x<br>        )<br>        self.w2 = RowParallelLinear(<br>            hidden_dim, dim, bias=<span class="hljs-literal">False</span>, input_is_parallel=<span class="hljs-literal">True</span>, init_method=<span class="hljs-keyword">lambda</span> x: x<br>        )<br>        self.w3 = ColumnParallelLinear(<br>            dim, hidden_dim, bias=<span class="hljs-literal">False</span>, gather_output=<span class="hljs-literal">False</span>, init_method=<span class="hljs-keyword">lambda</span> x: x<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> self.w2(F.silu(self.w1(x)) * self.w3(x))<br></code></pre></td></tr></table></figure>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810205449670.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Transformer-block">Transformer block</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">TransformerBlock</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, layer_id: <span class="hljs-built_in">int</span>, args: ModelArgs</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.n_heads = args.n_heads<br>        self.dim = args.dim<br>        self.head_dim = args.dim // args.n_heads<br>        self.attention = Attention(args)<br>        self.feed_forward = FeedForward(<br>            dim=args.dim, hidden_dim=<span class="hljs-number">4</span> * args.dim, multiple_of=args.multiple_of<br>        )<br>        self.layer_id = layer_id<br>        self.attention_norm = RMSNorm(args.dim, eps=args.norm_eps)<br>        self.ffn_norm = RMSNorm(args.dim, eps=args.norm_eps)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x: torch.Tensor, start_pos: <span class="hljs-built_in">int</span>, freqs_cis: torch.Tensor, mask: <span class="hljs-type">Optional</span>[torch.Tensor]</span>):<br>        h = x + self.attention.forward(self.attention_norm(x), start_pos, freqs_cis, mask)<br>        out = h + self.feed_forward.forward(self.ffn_norm(h))<br>        <span class="hljs-keyword">return</span> out<br></code></pre></td></tr></table></figure>
+<p>注意这里用了两个残差链接，preNorm</p>
+<h4 id="Transformer（decoder）">Transformer（decoder）</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Transformer</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, params: ModelArgs</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.params = params<br>        self.vocab_size = params.vocab_size<br>        self.n_layers = params.n_layers<br><br>        self.tok_embeddings = ParallelEmbedding(<br>            params.vocab_size, params.dim, init_method=<span class="hljs-keyword">lambda</span> x: x<br>        )<br><br>        self.layers = torch.nn.ModuleList()<br>        <span class="hljs-keyword">for</span> layer_id <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(params.n_layers):<br>            self.layers.append(TransformerBlock(layer_id, params))<br><br>        self.norm = RMSNorm(params.dim, eps=params.norm_eps)<br>        self.output = ColumnParallelLinear(<br>            params.dim, params.vocab_size, bias=<span class="hljs-literal">False</span>, init_method=<span class="hljs-keyword">lambda</span> x: x<br>        )<br><br>        self.freqs_cis = precompute_freqs_cis(<br>            self.params.dim // self.params.n_heads, self.params.max_seq_len * <span class="hljs-number">2</span><br>        )<br><br><span class="hljs-meta">    @torch.inference_mode()</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, tokens: torch.Tensor, start_pos: <span class="hljs-built_in">int</span></span>):<br>        _bsz, seqlen = tokens.shape<br>        h = self.tok_embeddings(tokens)<br>        self.freqs_cis = self.freqs_cis.to(h.device)<br>        freqs_cis = self.freqs_cis[start_pos : start_pos + seqlen]<br><br>        mask = <span class="hljs-literal">None</span><br>        <span class="hljs-keyword">if</span> seqlen &gt; <span class="hljs-number">1</span>:<br>            mask = torch.full((<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, seqlen, seqlen), <span class="hljs-built_in">float</span>(<span class="hljs-string">&quot;-inf&quot;</span>), device=tokens.device)<br>            mask = torch.triu(mask, diagonal=start_pos + <span class="hljs-number">1</span>).type_as(h)<br><br>        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> self.layers:<br>            h = layer(h, start_pos, freqs_cis, mask)<br>        h = self.norm(h)<br>        output = self.output(h[:, -<span class="hljs-number">1</span>, :])  <span class="hljs-comment"># only compute last logits</span><br>        <span class="hljs-keyword">return</span> output.<span class="hljs-built_in">float</span>()<br></code></pre></td></tr></table></figure>
+<h4 id="Generate">Generate</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">LLaMA</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, model: Transformer, tokenizer: Tokenizer</span>):<br>        self.model = model<br>        self.tokenizer = tokenizer<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">generate</span>(<span class="hljs-params"></span><br><span class="hljs-params">        self,</span><br><span class="hljs-params">        prompts: <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>],</span><br><span class="hljs-params">        max_gen_len: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params">        temperature: <span class="hljs-built_in">float</span> = <span class="hljs-number">0.8</span>,</span><br><span class="hljs-params">        top_p: <span class="hljs-built_in">float</span> = <span class="hljs-number">0.95</span>,</span><br><span class="hljs-params">    </span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]:<br>        bsz = <span class="hljs-built_in">len</span>(prompts)<br>        params = self.model.params<br>        <span class="hljs-keyword">assert</span> bsz &lt;= params.max_batch_size, (bsz, params.max_batch_size)<br><br>        prompt_tokens = [self.tokenizer.encode(x, bos=<span class="hljs-literal">True</span>, eos=<span class="hljs-literal">False</span>) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> prompts]<br><br>        min_prompt_size = <span class="hljs-built_in">min</span>([<span class="hljs-built_in">len</span>(t) <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> prompt_tokens])<br>        max_prompt_size = <span class="hljs-built_in">max</span>([<span class="hljs-built_in">len</span>(t) <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> prompt_tokens])<br><br>        total_len = <span class="hljs-built_in">min</span>(params.max_seq_len, max_gen_len + max_prompt_size)<br><br>        tokens = torch.full((bsz, total_len), self.tokenizer.pad_id).cuda().long()<br>        <span class="hljs-keyword">for</span> k, t <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(prompt_tokens):<br>            tokens[k, : <span class="hljs-built_in">len</span>(t)] = torch.tensor(t).long()<br>        input_text_mask = tokens != self.tokenizer.pad_id<br>        start_pos = min_prompt_size<br>        prev_pos = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> cur_pos <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(start_pos, total_len):<br>            logits = self.model.forward(tokens[:, prev_pos:cur_pos], prev_pos)<br>            <span class="hljs-keyword">if</span> temperature &gt; <span class="hljs-number">0</span>:<br>                probs = torch.softmax(logits / temperature, dim=-<span class="hljs-number">1</span>)<br>                next_token = sample_top_p(probs, top_p)<br>            <span class="hljs-keyword">else</span>:<br>                next_token = torch.argmax(logits, dim=-<span class="hljs-number">1</span>)<br>            next_token = next_token.reshape(-<span class="hljs-number">1</span>)<br>            <span class="hljs-comment"># only replace token if prompt has already been generated</span><br>            next_token = torch.where(<br>                input_text_mask[:, cur_pos], tokens[:, cur_pos], next_token<br>            )<br>            tokens[:, cur_pos] = next_token<br>            prev_pos = cur_pos<br><br>        decoded = []<br>        <span class="hljs-keyword">for</span> i, t <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(tokens.tolist()):<br>            <span class="hljs-comment"># cut to max gen len</span><br>            t = t[: <span class="hljs-built_in">len</span>(prompt_tokens[i]) + max_gen_len]<br>            <span class="hljs-comment"># cut to eos tok if any</span><br>            <span class="hljs-keyword">try</span>:<br>                t = t[: t.index(self.tokenizer.eos_id)]<br>            <span class="hljs-keyword">except</span> ValueError:<br>                <span class="hljs-keyword">pass</span><br>            decoded.append(self.tokenizer.decode(t))<br>        <span class="hljs-keyword">return</span> decoded<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">sample_top_p</span>(<span class="hljs-params">probs, p</span>):<br>    probs_sort, probs_idx = torch.sort(probs, dim=-<span class="hljs-number">1</span>, descending=<span class="hljs-literal">True</span>)<br>    probs_sum = torch.cumsum(probs_sort, dim=-<span class="hljs-number">1</span>)<br>    mask = probs_sum - probs_sort &gt; p<br>    probs_sort[mask] = <span class="hljs-number">0.0</span><br>    probs_sort.div_(probs_sort.<span class="hljs-built_in">sum</span>(dim=-<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>))<br>    next_token = torch.multinomial(probs_sort, num_samples=<span class="hljs-number">1</span>)<br>    next_token = torch.gather(probs_idx, -<span class="hljs-number">1</span>, next_token)<br>    <span class="hljs-keyword">return</span> next_token<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LLMs/" class="print-no-link">#LLMs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LLaMA - Open and Efficient Foundation Language Models</div>
+      <div>https://lishilong.cc/2023/08/09/Paper Reading Notes/015LLaMA Open and Efficient Foundation Language Models/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Aaron</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/09/Paper%20Reading%20Notes/014RoFormer%20Enhanced%20Transformer%20with%20Rotary%20Position%20Embedding/" title="RoFormer - Enhanced Transformer with Rotary Position Embedding">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">RoFormer - Enhanced Transformer with Rotary Position Embedding</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/09/Paper%20Reading%20Notes/013Root%20Mean%20Square%20Layer%20Normalization/" title="Root Mean Square Layer Normalization">
+                        <span class="hidden-mobile">Root Mean Square Layer Normalization</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

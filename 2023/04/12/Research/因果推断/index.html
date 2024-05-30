@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta name="description" content="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;343747851  因果推断与机器学习的关系 机器学习许多开放性难题本质与因果相关  模型可解释性 (判断模型对因果的判断与哪些因素相关） 迁移学习：不同任务的迁移能力提升。如何在无监督下学到领域无关的一致性表征 模型歧视问题：歧视少数族或女性。模型可以自己回答反事实的问题，判断决策公平性 学习速度提升与样本需求减少：类似主动学习（人类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因果推断">
+<meta property="og:url" content="https://lishilong.cc/2023/04/12/Research/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:description" content="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;343747851  因果推断与机器学习的关系 机器学习许多开放性难题本质与因果相关  模型可解释性 (判断模型对因果的判断与哪些因素相关） 迁移学习：不同任务的迁移能力提升。如何在无监督下学到领域无关的一致性表征 模型歧视问题：歧视少数族或女性。模型可以自己回答反事实的问题，判断决策公平性 学习速度提升与样本需求减少：类似主动学习（人类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-01a99a85ccf441192a3a3b72ead5d4b1_1440w.webp">
+<meta property="article:published_time" content="2023-04-12T04:48:00.000Z">
+<meta property="article:modified_time" content="2024-05-30T06:57:31.266Z">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="Causal Inference">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-01a99a85ccf441192a3a3b72ead5d4b1_1440w.webp">
+  
+  
+  
+  <title>因果推断 - Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="因果推断"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-12 12:48" pubdate>
+          2023年4月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">因果推断</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/343747851">https://zhuanlan.zhihu.com/p/343747851</a></p>
+</blockquote>
+<h2 id="因果推断与机器学习的关系">因果推断与机器学习的关系</h2>
+<p>机器学习许多开放性难题本质与因果相关</p>
+<ol>
+<li>模型<strong>可解释性</strong> (判断模型对因果的判断与哪些因素相关）</li>
+<li>迁移学习：不同任务的<strong>迁移能力提升</strong>。如何在无监督下学到领域无关的一致性表征</li>
+<li><strong>模型歧视</strong>问题：歧视少数族或女性。模型可以自己回答反事实的问题，判断决策公平性</li>
+<li>学习速度提升与样本需求减少：类似主动学习（<strong>人类是优秀的小样本学习器，靠观察和想象</strong>）；目前的<strong>机器学习模式类似达尔文进化论</strong>的发展历程（长颈鹿花了几百万年进化出了这么长的脖子），是一个非常耗时，低效的学习过程。</li>
+<li>强AI。传统机器学习模式，是无法发展出人类的超进化论（发展出奢侈品，网红店，物联网等等）这种智能产物。</li>
+<li>…</li>
+</ol>
+<h2 id="因果推断的发展">因果推断的发展</h2>
+<p>大力推广因果革命之一的2011图灵奖得主Judea Pearl，研究中发现<strong>统计相关性并不能取代因果性</strong>(<strong>Yule-Simpson Paradox</strong>【x与y边缘正相关，在某个变量z的每一水平上负相关】)，<strong>无法处理具有共同混杂因子的变量关系</strong>，<strong>统计数据常因果颠倒（无方向性），造就伪相关，对数据要求也很高(iid)，泛化性，鲁棒性都很差</strong>。他改进的贝叶斯网络和SCM在统计因果推断领域作用巨大，且认为强人工智能必须要进行因果革命。且Schölkopf和Bengio在研究过程中也发现了因果是必然之路。</p>
+<blockquote>
+<p><strong>Yule-Simpson Paradox</strong>（尤尔-辛普森悖论）</p>
+<p><strong>辛普森悖论</strong>，是概率和统计中的一种现象，其中趋势出现在几组数据中，但当这些组被合并后趋势消失或反转。 这个结果在社会科学和医学科学统计中经常遇到， 当频率数据被不恰当地给出因果解释时尤其成问题</p>
+<p>（以下来自chatGPT）</p>
+<p>Yule-Simpson Paradox是指在两个变量x和y之间存在正相关关系，但是当控制变量z时，在z的每个水平上，x和y之间出现了负相关关系的一种现象。</p>
+<p>换句话说，如果我们只考虑x和y之间的关系，它们可能呈现正相关关系。但是，当我们加入一个控制变量z时，我们发现在z的每个水平上，x和y之间似乎出现了负相关关系，也就是说，当我们控制z时，x和y之间的关系发生了改变，从正相关变成了负相关</p>
+</blockquote>
+<h2 id="现代因果科学">现代因果科学</h2>
+<p><strong>因果科学是研究因果关系或回答因果问题的学科。现代因果定义为在保证其他因素不变，改变X引起Y的改变，则X为Y的一个原因。</strong></p>
+<p>简单从历史上看，因果研究一般分为3类</p>
+<ul>
+<li>
+<p>物理学定义因果（最清晰定义的因果）</p>
+</li>
+<li>
+<ul>
+<li>物理系统演化动力学，<strong>基于时间讨论因果</strong></li>
+</ul>
+</li>
+<li>
+<p>哲学定义因果</p>
+</li>
+<li>
+<ul>
+<li>Type Causality：某原因导致什么结果，由因推果，<strong>干预主义思想</strong>（因果效应定义），用来帮助<strong>预测</strong></li>
+<li>Actual Causality：关注事物发生的原因，由果推因，与<strong>反事实思维相关</strong>。【反事实：主要是研究“若非(but for)”，“若非“过去A事件发生，结果事件B可能不发生，常用于因果检测。“若非”对因果检测也存在缺陷，要自己品】</li>
+</ul>
+</li>
+</ul>
+<h2 id="统计中的因果推断">统计中的因果推断</h2>
+<p><strong>从现实数据中提取出某些变量间的因果关系，<strong>主要就是Judea Pearl的因果信息革命。其中也囊括了目前最火热的机器学习方法。他提出的</strong>因果关系之梯，根据因果问题的可答性，对比了目前的机器学习(深度学习)和因果推断区别</strong></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-01a99a85ccf441192a3a3b72ead5d4b1_1440w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>这里他把任务分为递进的3类，<strong>association</strong>（what is）-&gt; <strong>intervention</strong>（what if）-&gt; <strong>counterfactuals</strong>（retrospection）。**传统机器学习（关联层）**是在问你what is?，即给定属性，问你是什么的概率； 而第二层（干预层）是在问what if？即，如果我对你做了什么，你会怎么样？**终极（反事实层）**的当然是回答哲学反事实问题，如果我当时那样做了，会怎么样？这里层层递进，<strong>高层可以回答低层的问题，反之则不行，因为不具备充足的信息。</strong></p>
+<p>再说明一些，<strong>关联和干预区别就是seeing和doing的区别</strong>，pearl发明了do算子，既<strong>p(y|x) != p(y|do(x))</strong>；<strong>反事实层是回答“若非“的问题，要求将现实世界与未发生某行为的反事实世界进行比较</strong>（假如当时我没那么做，导致这样的结果概率是什么？）</p>
+<h2 id="因果效应估计框架（观测数据下）">因果效应估计框架（观测数据下）</h2>
+<ul>
+<li>
+<p><strong>D.B Rubin的Rubin Causal Model (RCM)</strong></p>
+</li>
+<li>
+<ul>
+<li>基于<strong>Potential Outcome Framework</strong>，更加简单直观，统计和社科用的多。它<strong>设想与观测相悖情况，是一种反事实因果</strong>，被称为Experimental causality（但其一般回答干预层的问题）。因果<strong>分析步骤</strong>主要有 1. 定义问题构建粗粒化因果图 2. Do-Calculus（干预）基于概率计算效应</li>
+</ul>
+</li>
+<li>
+<p><strong>基于Judea Pearl的结构因果模型(SCM)</strong></p>
+</li>
+<li>
+<ul>
+<li>Pearl提出<strong>小图灵测试</strong>是实现真正智能的必要条件（机器如何迅速访问必要信息、正确回答问题，输出因果知识）。并提出<strong>因果推理引擎</strong>，以假设（图模型）、数据和Query输入，输出Estimand（基于do-calculus判断query是否可识别）、Estimate（概率估计）和Fit Indices（评估）。</li>
+<li>其中do-calculus是判断因果问题是否可解的前提，原理就是贝叶斯网络中<strong>D-seperation</strong>（图分离与概率独立等价条件，参考PRML）</li>
+<li><strong>一般回答反事实问题需要SCM模型</strong>，由图模型（表示因果知识）、反事实和干预逻辑（形式化问题）和结构方程（链接因果知识【图模型】和因果问题【反事实和干预逻辑】的语义）组成。<strong>一般步骤</strong>为 1. abduction（基于现有事实分布【先验】p(u|e)更新图概率p(u)） 2. action（基于结构方程更新x） 3. prediction（预测反事实）</li>
+</ul>
+</li>
+</ul>
+<p><strong>统计估计的主要困难是数据缺失，如何去除数据产生的偏差（Debias）是核心主题。Pearl提出解决混杂偏差、选择偏差和迁移学习方法（数据本身特点导致）</strong></p>
+<h2 id="因果推断在互联网业务的应用">因果推断在互联网业务的应用</h2>
+<p>**因果推断在互联网界应用主要是基于Uplift model来预测额外收益提升ROI。**主要应用营销类业务，举个例子比如商家决定给用户发优惠券促进销售。</p>
+<p>基于这个问题很自然可以把是否给方案和是否买单组合为4类。即给券买单、不给券买单、给券不买单（sleeping dog）、不给券不买单。</p>
+<p>所以，我们营销时更多的是想给那些发券买单的且不发券不买单的人来发券，才能最大化实现我们的营销目标。所以这里的应用目标是找出这部分人，降低成本/提高ROI。</p>
+<p>**基于业务的目标我们可以发现，这里从哲学角度来看主要是一个type Causality类型的干预主义的预测问题，而非是一个反事实推理问题。**所以从分析框架上，我们很自然选择的是rubin的RCM在干预层面的分析工具，<strong>所以uplift model是一个干预模型，且为RCM框架。</strong></p>
+<h2 id="偏差-bias-与混淆-confounding">偏差(bias)与混淆(confounding)</h2>
+<p>一般统计分析可以得到自变量与因变量之间的关系（通常为线性相关性Correlation，简称相关性），但是<strong>实际得到的相关性可能是由其他因素导致，或估计结果受其他因素影响。导致这种统计相关性存在问题。</strong>（比如股价与离婚率之间的强相关，等这种本身不存在关系而统计出相关；或者本身存在相关，统计却不相关）</p>
+<p>一般的影响因素如下</p>
+<ul>
+<li><strong>effect of chance （random error）</strong></li>
+<li><strong>bias</strong></li>
+<li><strong>confounding</strong></li>
+</ul>
+<p>观测性研究的结果易受到上述因素影响，在<strong>试验设计</strong>和<strong>分析阶段</strong>应该予以考虑，以减轻它们的影响</p>
+<h4 id="bias">bias</h4>
+<p>一般由<strong>系统误差</strong>造成，导致因变量与自变量之间的相关估计不准确。特点如下</p>
+<ol>
+<li>试验方法带来的系统误差</li>
+<li>影响一般导致估计偏高或者偏低，取决于系统误差的方向</li>
+<li>具体的数量级在<strong>分析阶段很难估计</strong>，且<strong>难以修正</strong>。所以<strong>一般要在试验设计时仔细考虑并在试验过程中尽量控制试验过程中可能引入的偏差</strong></li>
+</ol>
+<p>一般科学研究中存在的bias类型很多，简单可以分为两类，<strong>information bias</strong> &amp; <strong>selection bias</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Causal-Inference/" class="print-no-link">#Causal Inference</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>因果推断</div>
+      <div>https://lishilong.cc/2023/04/12/Research/因果推断/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Aaron</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/13/Paper%20Reading%20Notes/005Causal%20Inference%20in%20Natural%20Language%20Processing%20Estimation,%20Prediction,%20Interpretation%20and%20Beyond/" title="Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/09/Java/Java%E5%85%AB%E8%82%A1%E6%96%87%E6%80%BB%E7%BB%93/" title="Java八股总结">
+                        <span class="hidden-mobile">Java八股总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

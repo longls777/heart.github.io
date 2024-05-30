@@ -1,0 +1,1173 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Aaron">
+  <meta name="keywords" content="life, think, code">
+  
+    <meta name="description" content="一、基础 1. 说说什么是字节码?采用字节码的好处是什么? 在 Java 中，JVM 可以理解的代码就叫做字节码（即扩展名为 .class 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，因此，Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java八股总结">
+<meta property="og:url" content="https://lishilong.cc/2023/04/09/Java/Java%E5%85%AB%E8%82%A1%E6%96%87%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Heart">
+<meta property="og:description" content="一、基础 1. 说说什么是字节码?采用字节码的好处是什么? 在 Java 中，JVM 可以理解的代码就叫做字节码（即扩展名为 .class 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，因此，Java">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409223222791.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/d123123.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/Java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%90%8C%E6%AD%A5%E9%98%BB%E5%A1%9E.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%90%8C%E6%AD%A5%E9%9D%9E%E9%98%BB%E5%A1%9E.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/java-nio.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%BC%82%E6%AD%A5IO.png">
+<meta property="og:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%B8%89%E7%A7%8DIO%E7%9A%84%E6%AF%94%E8%BE%83.png">
+<meta property="article:published_time" content="2023-04-09T14:17:00.000Z">
+<meta property="article:modified_time" content="2024-05-30T06:57:31.233Z">
+<meta property="article:author" content="Aaron">
+<meta property="article:tag" content="八股">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409223222791.png">
+  
+  
+  
+  <title>Java八股总结 - Heart</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.6/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Heart</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/x.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java八股总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-09 22:17" pubdate>
+          2023年4月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java八股总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>一、基础</h1>
+<p><strong>1. 说说什么是字节码?采用字节码的好处是什么?</strong></p>
+<p>在 Java 中，JVM 可以理解的代码就叫做字节码（即扩展名为 .class 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以 Java 程序运行时比较高效，而且，由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。</p>
+<p><strong>2. 说说Java和C++的区别？</strong></p>
+<ul>
+<li>都是面向对象的语言，都支持封装、继承和多态</li>
+<li>Java 不提供指针来直接访问内存，程序内存更加安全</li>
+<li>Java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多继承，但是接口可以多继承</li>
+<li>Java 有自动内存管理垃圾回收机制(GC)，不需要程序员手动释放无用内存</li>
+<li>C ++同时支持方法重载和操作符重载，但是 Java 只支持方法重载（操作符重载增加了复杂性，这与 Java 最初的设计思想不符）</li>
+</ul>
+<p><strong>3. 说说Java有哪些基本数据类型？</strong></p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>位数</th>
+<th>字节</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>32</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>16</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>64</td>
+<td>8</td>
+<td>0L</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>8</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>char</td>
+<td>16</td>
+<td>2</td>
+<td>‘u0000’</td>
+</tr>
+<tr>
+<td>float</td>
+<td>32</td>
+<td>4</td>
+<td>0.0f</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64</td>
+<td>8</td>
+<td>0.0d</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>1</td>
+<td></td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. 说说自动拆装箱？</strong></p>
+<p>基本数据类型都有对应的包装类，装箱过程通过调用valueOf()方法实现，拆箱过程通过调用xxxValue()方法实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Integer</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; <br><span class="hljs-type">Integer</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>; <br><span class="hljs-type">Integer</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>; <br><span class="hljs-type">Long</span> <span class="hljs-variable">g</span> <span class="hljs-operator">=</span> <span class="hljs-number">3L</span>; <br>System.out.println(g==c);<span class="hljs-comment">//报错，不会自动拆箱 </span><br>System.out.println(g==(a+b)); <span class="hljs-comment">//true,遇到运算符才会自动拆箱 </span><br>System.out.println(g.equals(a+b));<span class="hljs-comment">//false </span><br><span class="hljs-comment">//关于最后一个，equals参数为包装类型，则先比较是否为同类型，非同类型直接返回false，同类型再比较值 </span><br><span class="hljs-comment">//a+b为Integer类型，与Long类型不一致，所以返回false</span><br></code></pre></td></tr></table></figure>
+<p><strong>5. 说说包装类的缓存池（常量池）？</strong></p>
+<p>当使用比如new Integer(123)时，总会创建一个新的对象，而使用valueOf(123)时，会先判断值是否在缓存池中，如果在就直接返回缓存池中的内容</p>
+<p>基本类型对应的缓冲池如下：</p>
+<ul>
+<li>boolean values true and false</li>
+<li>all byte values</li>
+<li>short values between -128 and 127</li>
+<li>int values between -128 and 127</li>
+<li>char in the range \u0000 to \u007F</li>
+</ul>
+<p>float和double没有实现缓存池</p>
+<p><strong>6. 说说final关键字？</strong></p>
+<ul>
+<li>
+<p>用来修饰数据：声明数据为常量，表示该数据只能被赋值一次且值无法修改，修饰的类变量必须在声明时初始化，修饰的实例变量必须在声明时或者构造方法中赋值</p>
+</li>
+<li>
+<ul>
+<li>对于基本类型，final 使数值不变；</li>
+<li>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的</li>
+</ul>
+</li>
+<li>
+<p>修饰方法：声明方法不能被重写</p>
+</li>
+<li>
+<p>修饰类：声明类无法被继承</p>
+</li>
+</ul>
+<p><strong>7. 说说static关键字</strong></p>
+<ul>
+<li>修饰变量：静态变量只有一份，所有实例变量共享</li>
+<li>修饰方法：静态方法，类加载的时候就存在了，可以通过“类名.方法名”调用</li>
+<li>静态代码块：只会在类初次加载的时候执行一次，用来初始化</li>
+<li>静态内部类：静态内部类不能访问外部类的非静态的变量和方法</li>
+</ul>
+<p><strong>8. 初始化顺序</strong></p>
+<ul>
+<li>父类–静态变量/父类–静态初始化块</li>
+<li>子类–静态变量/子类–静态初始化块</li>
+<li>父类–变量/父类–初始化块</li>
+<li>父类–构造器</li>
+<li>子类–变量/子类–初始化块</li>
+<li>子类–构造器</li>
+</ul>
+<p><strong>9.重载和重写</strong></p>
+<p><strong>重载的规则：</strong></p>
+<ul>
+<li>必须具有不同的参数列表</li>
+<li>不能通过访问权限、返回类型、抛出的异常进行重载</li>
+</ul>
+<p><strong>重写的规则：</strong></p>
+<ul>
+<li>父类方法的参数列表必须完全与被子类重写的方法的参数列表相同，否则不能称其为重写而是重载</li>
+<li>Java中规定，被子类重写的方法不能拥有比父类方法更加严格的访问权限</li>
+<li>在继承过程中如果父类当中的方法抛出异常，那么在子类中重写父类的该方法时，也要抛出异常，而且抛出的异常不能多于父类中抛出的异常(可以等于父类中抛出的异常)。换句话说，重写方法一定不能抛出新的检查异常，或者比被重写方法声明更加宽泛的检查型异常。例如，父类的一个方法申明了一个检查异常IOException，在重写这个方法时就不能抛出Exception，只能抛出IOException的子类异常，可以抛出非检查异常</li>
+</ul>
+<blockquote>
+<p>1、重载是一个编译期概念、重写是一个运行期间概念。</p>
+<p>2、重载遵循所谓“编译期绑定”，即在编译时根据参数变量的类型判断应该调用哪个方法。</p>
+<p>3、重写遵循所谓“运行期绑定”，即在运行的时候，根据引用变量所指向的实际对象的类型来调用方法</p>
+<p>4、因为在编译期已经确定调用哪个方法，所以重载并不是多态。而重写是多态。重载只是一种语言特性，是一种语法规则，与多态无关，与面向对象也无关。（注：严格来说，重载是编译时多态，即静态多态。但是，Java中提到的多态，在不特别说明的情况下都指动态多态）</p>
+</blockquote>
+<p><strong>10. 匿名内部类</strong></p>
+<p>所谓匿名内部类，是指可以利用内部类创建没有名称的对象，它一步完成了声明内部类和创建该类的一个对象，并利用该对象访问到类里面的成员</p>
+<p>匿名内部类必须实现一个接口或者继承一个类，不用class修饰，也不需要public，private，protected，static 等修饰；没有类名，也没有构造方法，在匿名内部类里面不能定义静态的属性和方法，只能实例化一次（因为匿名内部类的创建和实例化是同时进行的）；匿名内部类其实可以看做是其外部类的一个成员，所以在匿名内部类中可以获取声明为private static 的属性的值</p>
+<ol>
+<li>使用匿名内部类时，我们必须是继承一个类或者实现一个接口，但是两者不可兼得，同时也只能继承一个类或者实现一个接口</li>
+<li>匿名内部类中是不能定义构造函数的</li>
+<li>匿名内部类中不能存在任何的静态成员变量和静态方法</li>
+<li>匿名内部类为局部内部类，所以局部内部类的所有限制同样对匿名内部类生效</li>
+<li>匿名内部类不能是抽象的，它必须要实现继承的类或者实现的接口的所有抽象方法</li>
+</ol>
+<p><strong>11. Object方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span><br><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">native</span> Object <span class="hljs-title function_">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException<br><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; getClass()<br><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable &#123;&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">notify</span><span class="hljs-params">()</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">notifyAll</span><span class="hljs-params">()</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">(<span class="hljs-type">long</span> timeout)</span> <span class="hljs-keyword">throws</span> InterruptedException<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">(<span class="hljs-type">long</span> timeout, <span class="hljs-type">int</span> nanos)</span> <span class="hljs-keyword">throws</span> InterruptedException<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException<br></code></pre></td></tr></table></figure>
+<p><strong>equals()</strong></p>
+<ul>
+<li>对于基本类型，== 判断两个值是否相等，基本类型没有 equals() 方法</li>
+<li>对于引用类型，== 判断两个变量是否引用同一个对象，而 equals() 判断引用的对象是否等价</li>
+</ul>
+<p>如何实现一个equals方法？</p>
+<ul>
+<li>检查是否为同一个对象的引用，如果是直接返回 true</li>
+<li>检查是否是同一个类型，如果不是，直接返回 false</li>
+<li>将 Object 对象进行转型</li>
+<li>判断每个关键域是否相等</li>
+</ul>
+<p><strong>hashCode()</strong></p>
+<ul>
+<li>hashCode() 返回哈希值，而 equals() 是用来判断两个对象是否等价。等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价，这是因为计算哈希值具有随机性，两个值不同的对象可能计算出相同的哈希值。</li>
+<li>在覆盖 equals() 方法时应当总是覆盖 hashCode() 方法，保证等价的两个对象哈希值也相等。</li>
+<li>HashSet 和 HashMap 等集合类使用了 hashCode() 方法来计算对象应该存储的位置，因此要将对象添加到这些集合类中，需要让对应的类实现 hashCode() 方法。</li>
+</ul>
+<p><strong>toString()</strong></p>
+<p>默认返回 ToStringExample@4554617c 这种形式，其中 @ 后面的数值为散列码的无符号十六进制表示。</p>
+<p><strong>clone()</strong></p>
+<ul>
+<li>clone() 是 Object 的 protected 方法，它不是 public，一个类不显式去重写 clone()，其它类就不能直接去调用该类实例的 clone() 方法。</li>
+<li>Cloneable 接口只是规定，如果一个类没有实现 Cloneable 接口又调用了 clone() 方法，就会抛出 CloneNotSupportedException。</li>
+<li>浅拷贝：拷贝对象和原始对象的引用类型引用同一个对象</li>
+<li>深拷贝：拷贝对象和原始对象的引用类型引用不同对象</li>
+<li>clone的遵循规则参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/fengyuyeguirenenen/article/details/122449282">https://blog.csdn.net/fengyuyeguirenenen/article/details/122449282</a></li>
+</ul>
+<h1>二、面向对象</h1>
+<p><strong>1. 说说你是怎么理解Java的面向对象的？</strong></p>
+<p>面向对象是向现实世界模型的自然延伸，这是一种”万物皆对象”的编程思想。在现实生活中的任何物体都可以归为一类事物，而每一个个体都是一类事物的实例，也就是说现实世界中每一个实体都是一个对象。在Java中，一切皆是对象。</p>
+<p>面向对象具有三大特性：封装、继承、多态</p>
+<p><strong>封装</strong></p>
+<p>封装是将代码及其处理的数据绑定在一起的一种编程机制，该机制保证了程序和数据都不受外部干扰且不被误用。封装的目的在于保护信息，使用它的主要优点如下：</p>
+<ul>
+<li>保护类中的信息，阻止在外部定义的代码随意访问内部代码和数据</li>
+<li>隐藏细节信息</li>
+<li>松耦合</li>
+<li>提高复用率</li>
+</ul>
+<p>Java 提供了私有和公有的访问模式，类的公有接口代表外部的用户应该知道或可以知道的每件东西，私有的方法数据只能通过该类的成员方法来访问，这就可以确保不会发生不希望的事情。</p>
+<p><strong>继承</strong></p>
+<p>程序中的继承性是指子类拥有父类的全部特征和行为，这是类之间的一种关系。Java 只支持单继承</p>
+<blockquote>
+<p>Java为什么是单继承多实现的？</p>
+<p>如果是多继承，那么如果父类中有重复的方法或者属性，子类调用时会无法判断；</p>
+<p>而多实现没有这个问题，因为接口定义的方法最终要在子类里实现，所以不会出现混乱；对于接口的同名属性，由于接口属性都必须是 public static final修饰的，所以在编译时就会确定其值，如果有重复的接口成员常量，则编译不通过</p>
+</blockquote>
+<p><strong>多态</strong></p>
+<p>对象的多态性是指在父类中定义的属性或方法被子类继承之后，可以具有不同的数据类型或表现出不同的行为。这使得同一个属性或方法在父类及其各个子类中具有不同的语义。</p>
+<p>Java的多态性体现在两个方面：由方法重载实现的静态多态性（编译时多态）和方法重写实现的动态多态性（运行时多态）</p>
+<ul>
+<li>编译时多态：在编译阶段，具体调用哪个被重载的方法，编译器会根据参数的不同来静态确定调用相应的方法。</li>
+<li>运行时多态：一个对象可以通过引用子类的实例来调用子类的方法，具体调用的是哪个子类的方法是在程序运行时动态确定的。</li>
+</ul>
+<p>重载：方法名相同，参数类型、个数或顺序不同，返回值类型、访问修饰符可以相同也可以不同</p>
+<p>重写：方法名、参数列表、返回值类型必须相同，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。</p>
+<p><strong>2. Java中的静态方法和静态属性可以被继承吗</strong></p>
+<p><strong>java中静态属性和和静态方法可以被继承，但是没有被重写（overwrite）而是被隐藏</strong></p>
+<p>静态方法和属性是属于类的，调用的时候直接通过类名.方法名完成的，不需继承机制就可以调用如果子类里面定义了静态方法和属性，那么这时候父类的静态方法或属性称之为“隐藏”，你如果想要调用父类的静态方法和属性，直接通过父类名.方法名或变量名完成，至于是否继承一说，子类是有继承静态方法和属性，但是跟实例方法和属性不太一样，存在“隐藏”的这种情况。</p>
+<p>多态之所以能够实现是依赖于<strong>继承接口</strong>和 <strong>重写 、重载</strong>（继承和重写最为关键）。有了继承和重写就可以实现父类的引用可以指向不同子类的对象。重写的功能是：“重写”后子类的优先级要高于父类的优先级，但是“隐藏”是没有这个优先级之分的。</p>
+<p>静态属性、静态方法和非静态的属性都可以被 继承 和 隐藏 而不能够被重写，因此不能实现多态，不能实现父类的引用可以指向不同子类的对象。</p>
+<p>非静态的方法可以被继承和重写，因此可以实现多态</p>
+<h1>三、访问权限</h1>
+<p><strong>1. 说说Java的访问权限修饰符？</strong></p>
+<p>修饰符有四种：public、protected、默认、private</p>
+<ul>
+<li>public：表示所有其他类都可以访问。</li>
+<li>protected：当前类或子类可以访问，同时相同包内的其他类也可以访问protected成员；(protected实际上就是拓展了一下default，使得包外的子类可以访问，但也只能通过继承来访问，而不是通过创建父类对象访问)</li>
+<li>default :默认（没有修饰符）：表示本包内可以使用</li>
+<li>private：表示的是在本类内可以使用</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">类内部</th>
+<th style="text-align:center">本包</th>
+<th style="text-align:center">子类</th>
+<th style="text-align:center">外部包</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">public</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">protected</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:center">default</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:center">private</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. 子类可以访问不同包中父类的protected方法吗？</strong></p>
+<p>可以，子类直接调用是可以访问的，子类通过父类对象调用是不能的</p>
+<p>protected的含义是指子类可以访问，说的是子类直接访问父类的protected方法</p>
+<p>而不是说子类中，可以调用父类的对象访问父类的protected方法</p>
+<p>子类可以访问，可以在子类访问不是一个概念</p>
+<blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/noteless/p/9270015.html">https://www.cnblogs.com/noteless/p/9270015.html</a></p>
+</blockquote>
+<p>但是包外子类可以通过父类对象调用其protected static方法，因为静态方法访问会被编译方法器静态绑定，而无需经过对象去访问方法表</p>
+<blockquote>
+<p>详见<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoxiao_su123/article/details/119239477">https://blog.csdn.net/xiaoxiao_su123/article/details/119239477</a></p>
+</blockquote>
+<h1>四、参数传递</h1>
+<p><strong>Java方法的参数是值传递还是引用传递？</strong></p>
+<p>Java里只有值传递</p>
+<ul>
+<li>如果传递的是基本数据类型：传递进来的参数就是原参数的一个副本，如果在函数中改变了参数的值，原始的值不会改变</li>
+<li>如果传递的是引用类型：传递进来的就是这个引用的副本，这个副本存储的是对象的地址，当在函数中改变这个引用时，对原来的对象没有影响，比如将这个引用指向了一个新的对象，但是当通过这个引用副本对内存中的对象进行改变时，原来的对象也会跟着一同改变</li>
+<li>总之不管传递什么类型的参数，传递的都是副本，基本类型就是值的副本，引用类型就是地址的副本</li>
+</ul>
+<h1>五、抽象类和接口</h1>
+<p><strong>说说抽象类和接口的区别？</strong></p>
+<p><strong>语法层面的区别</strong></p>
+<ul>
+<li>抽象类可以提供成员方法的实现细节，而接口中只能存在public abstract 方法；</li>
+<li>抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是public static final类型的；</li>
+<li>接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；</li>
+<li>一个类只能继承一个抽象类，而一个类却可以实现多个接口。</li>
+</ul>
+<p><strong>设计层面的区别</strong></p>
+<p>抽象类是对一种事物的抽象，即对类抽象，而接口是对行为的抽象。简单的说，抽象类是“是什么”，接口是“有没有”。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3811437.html">https://www.cnblogs.com/dolphin0520/p/3811437.html</a> very nice</p>
+</blockquote>
+<h1>六、类的创建过程</h1>
+<img title="Java类的创建过程" src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230409223222791.png" srcset="/img/loading.gif" lazyload style="max-width:30%;">
+<p><strong>①类加载检查：</strong> 虚拟机遇到一条 new 指令时，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程</p>
+<p><strong>②分配内存：</strong> 在<strong>类加载检查</strong>通过后，接下来虚拟机将为新生对象<strong>分配内存</strong>。对象所需的内存大小在类加载完成后便可确定，为对象分配空间的任务等同于把一块确定大小的内存从 Java 堆中划分出来。<strong>分配方式</strong>有 <strong>“指针碰撞”</strong> 和 <strong>“空闲列表”</strong> 两种，<strong>选择那种分配方式由 Java 堆是否规整决定，而Java堆是否规整又由所采用的垃圾收集器是否带有压缩整理功能决定</strong></p>
+<blockquote>
+<p><strong>划分内存的方法：</strong></p>
+<p><strong>“指针碰撞”（Bump the Pointer）</strong></p>
+<p>如果Java堆中内存是绝对规整的，所有用过的内存都放在一边，空闲的内存放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间那边挪动一段与对象大小相等的距离。</p>
+<p><strong>“空闲列表”（Free List）</strong></p>
+<p>如果Java堆中的内存并不是规整的，已使用的内存和空闲的内存相互交错，那就没有办法简单地进行指针碰撞了，虚拟机就必须维护一个列表，记录上哪些内存块是可用的，在分配的时候从列表中找到一块足够大的空间划分给对象实例，并更新列表上的记录</p>
+</blockquote>
+<blockquote>
+<p><strong>解决分配内存时并发问题的方法：</strong></p>
+<p><strong>CAS（compare and swap）</strong></p>
+<p>虚拟机采用CAS配上失败重试的方式保证更新操作的原子性来对分配内存空间的动作进行同步处理。</p>
+<p><strong>本地线程分配缓冲（Thread Local Allocation Buffer,TLAB）</strong></p>
+<p>把内存分配的动作按照线程划分在不同的空间之中进行，即每个线程在Java堆中预先分配一小块内存。</p>
+</blockquote>
+<p><strong>③初始化零值：</strong> 内存分配完成后，虚拟机需要将分配到的内存空间都初始化为零值（不包括对象头），这一步操作保证了对象的实例字段在 Java 代码中可以不赋初始值就直接使用，程序能访问到这些字段的数据类型所对应的零值</p>
+<p><strong>④设置对象头：</strong> 初始化零值完成之后，<strong>虚拟机要对对象进行必要的设置</strong>，例如这个对象是哪个类的实例、如何才能找到类的元数据信息、对象的哈希码、对象的 GC 分代年龄等信息。 <strong>这些信息存放在对象头中。</strong> 另外，根据虚拟机当前运行状态的不同，如是否启用偏向锁等，对象头会有不同的设置方式</p>
+<p><strong>⑤执行 init 方法：</strong> 在上面工作都完成之后，从虚拟机的视角来看，一个新的对象已经产生了，但从 Java 程序的视角来看，对象创建才刚开始，<init> 方法还没有执行，所有的字段都还为零。所以一般来说，执行 new 指令之后会接着执行 <init> 方法，把对象按照程序员的意愿进行初始化，这样一个真正可用的对象才算完全产生出来</p>
+<p><strong>说说<init>方法和<clinit>方法？</strong></p>
+<p><strong><init>方法</strong></p>
+<p>Java在编译之后会在字节码文件中生成<init>方法，这称为<strong>实例</strong>构造器。它会将变量初始化、语句块、调用父类的构造器等操作收敛到<init>方法中。</p>
+<p><strong>收敛顺序</strong>为：父类变量初始化、父类语句块、父类构造函数、子类变量初始化、子类语句块、子类构造函数。</p>
+<p><strong><clinit>方法</strong></p>
+<p>Java在编译之后会在字节码文件中生成<clinit>方法，这称为<strong>类</strong>构造器。他会将静态变量初始化、静态语句块收敛到<clinit>方法中。<strong>收敛顺序</strong>为：父类静态变量初始化、父类静态语句块、子类静态变量初始化、子类静态语句块。</p>
+<p><init>方法在对象实例化执行的；<clinit>方法在类加载过程中执行的。所以<clinit>方法一定比<init>方法先执行。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/d123123.png" srcset="/img/loading.gif" lazyload alt="类的初始化过程"></p>
+<h1>七、异常</h1>
+<p><strong>说说Java的异常体系？</strong></p>
+<p>Throwable 可以用来表示任何可以作为异常抛出的类，分为两种： Error 和 Exception。其中 Error 用来表示 JVM 无法处理的错误（只能尽量避免），Exception 能被程序本身处理(try-catch)</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB.png" srcset="/img/loading.gif" lazyload alt="Java异常体系"></p>
+<ul>
+<li>Error ：属于程序无法处理的错误 ，无法通过 catch 来进行捕获 。例如，Java 虚拟机运行错误（Virtual MachineError）、虚拟机内存不够错误(OutOfMemoryError)、类定义错误（NoClassDefFoundError）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止</li>
+<li>Exception：程序本身可以处理的异常，可以通过 catch 来进行捕获。Exception 又可以分为 受检查异常(必须处理) 和 不受检查异常(可以不处理)
+<ul>
+<li>受检异常：也叫编译异常，包括Exception中除了RuntimeException及其子类之外的异常，如IOException，需要对其进行处理（try catch或者throw）</li>
+<li>不受检异常：也叫运行时异常，包括RuntimeException类及其子类，比如空指针异常，数组越界异常</li>
+</ul>
+</li>
+</ul>
+<h1>八、泛型</h1>
+<p><strong>什么是泛型？说说泛型的实现原理？</strong></p>
+<ul>
+<li>Java 泛型（generics）是 JDK 5 中引入的一个新特性，泛型提供了编译时类型安全检测机制，该机制允许程序员<strong>在编译时检测到非法的类型</strong></li>
+<li>泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数</li>
+<li>Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦除掉，这也就是通常所说类型擦除</li>
+</ul>
+<p><strong>类型擦除</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericType</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        ArrayList&lt;String&gt; arrayString=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;();   <br>        ArrayList&lt;Integer&gt; arrayInteger=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Integer&gt;();   <br>        System.out.println(arrayString.getClass()==arrayInteger.getClass());  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>在编译期间，所有的泛型信息都会被擦除，List<Integer>和List<String>类型，在编译后都会变成List类型（原始类型）</li>
+<li>Java中的泛型基本上都是在编译器这个层次来实现的，这也是Java的泛型被称为“伪泛型”的原因</li>
+<li>原始类型就是泛型类型擦除了泛型信息后，在字节码中真正的类型</li>
+<li>Java编译器是通过先检查代码中泛型的类型，然后在进行类型擦除，再进行编译</li>
+</ul>
+<h1>九、反射</h1>
+<p><strong>说说Java的反射？</strong></p>
+<ul>
+<li>反射 (Reflection) 是 Java 的特征之一，它允许运行中的 Java 程序获取自身的信息，并且可以操作类或对象的内部属性</li>
+<li>通过反射，我们可以在运行时获得程序或程序集中每一个类型的成员和成员的信息。程序中一般的对象的类型都是在编译期就确定下来的，而 Java 反射机制可以动态地创建对象并调用其属性。这样的对象的类型在编译期是未知的。所以我们可以通过反射机制直接创建对象。即使这个对象的类型在编译期是未知的。</li>
+<li>反射的核心是 JVM 在运行时才动态加载类或调用方法/访问属性，它不需要事先（写代码的时候或编译期）知道运行对象是谁。</li>
+</ul>
+<p>Java 反射主要提供以下功能：</p>
+<ul>
+<li>在运行时判断任意一个对象所属的类</li>
+<li>在运行时构造任意一个类的对象</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法（通过反射甚至可以调用private方法）</li>
+<li>在运行时调用任意一个对象的方法</li>
+</ul>
+<p><strong>反射的用法</strong></p>
+<ul>
+<li>
+<p>获得class对象：</p>
+</li>
+<li>
+<ul>
+<li>使用 Class 类的 forName 静态方法</li>
+<li>直接获取某一个对象的 class，如：</li>
+</ul>
+</li>
+<li>
+<pre><code class="language-java">Class&lt;?&gt; klass = int.class;
+Class&lt;?&gt; classInt = Integer.TYPE;
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><br>- - 调用某个对象的 get<span class="hljs-constructor">Class()</span> 方法，如：<br><br>```java<br>StringBuilder str = <span class="hljs-keyword">new</span> <span class="hljs-constructor">StringBuilder(<span class="hljs-string">&quot;123&quot;</span>)</span>;<br>Class&lt;?&gt; klass = str.get<span class="hljs-constructor">Class()</span>;<br></code></pre></td></tr></table></figure>
+
+</code></pre>
+</li>
+<li>
+<p>判断是否为某个类的实例：</p>
+</li>
+</ul>
+<p>一般地，我们用 instanceof 关键字来判断是否为某个类的实例。</p>
+<blockquote>
+<p>使用 instanceof 返回true：</p>
+<p>instanceof 前面的引用变量编译时的类型要么与后面的类型相同，要么与后面的类型具有父子继承关系</p>
+</blockquote>
+<p>同时我们也可以借助反射中 Class 对象的 isInstance() 方法来判断是否为某个类的实例，它是一个 native 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isInstance</span><span class="hljs-params">(Object obj)</span>;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>创建实例：</li>
+</ul>
+<p>通过反射来生成对象主要有两种方式：</p>
+<ol>
+<li>使用Class对象的newInstance()方法来创建Class对象对应类的实例：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Class&lt;?&gt; c = String.class;<br><span class="hljs-type">Object</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> c.newInstance();<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>先通过Class对象获取指定的Constructor对象，再调用Constructor对象的newInstance()方法来创建实例。这种方法可以用指定的构造器构造类的实例：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取String所对应的Class对象</span><br>Class&lt;?&gt; c = String.class;<br><span class="hljs-comment">//获取String类带一个String参数的构造器</span><br><span class="hljs-type">Constructor</span> <span class="hljs-variable">constructor</span> <span class="hljs-operator">=</span> c.getConstructor(String.class);<br><span class="hljs-comment">//根据构造器创建实例</span><br><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> constructor.newInstance(<span class="hljs-string">&quot;23333&quot;</span>);<br></code></pre></td></tr></table></figure>
+<ul>
+<li>调用方法：当我们从类中获取了一个方法后，我们就可以用 invoke() 方法来调用这个方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-comment">//获取字节码对象</span><br>Class&lt;Msym&gt; clazz = (Class&lt;Msym&gt;) Class.forName(<span class="hljs-string">&quot;online.Msym&quot;</span>);<br><span class="hljs-comment">//获取一个对象</span><br><span class="hljs-type">Constructor</span> <span class="hljs-variable">con</span> <span class="hljs-operator">=</span>  clazz.getConstructor();<br><span class="hljs-type">Msym</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> (Msym) con.newInstance();<br><span class="hljs-comment">//获取Method对象</span><br><span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> clazz.getMethod(<span class="hljs-string">&quot;test&quot;</span>, String[].class);<br><span class="hljs-comment">//调用invoke方法来调用</span><br>String[] s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;aa&quot;</span>,<span class="hljs-string">&quot;bb&quot;</span>&#125;;<br>method.invoke(m, s);<br></code></pre></td></tr></table></figure>
+<h1>十、BIO NIO AIO</h1>
+<p><strong>1. 说说Java的I/O？</strong></p>
+<p>Java 中 3 种常见 IO 模型</p>
+<p><strong>BIO (Blocking I/O)</strong></p>
+<p>BIO 属于同步阻塞 IO 模型 。</p>
+<p>同步阻塞 IO 模型中，应用程序发起 read 调用后，会一直阻塞，直到在内核把数据拷贝到用户空间。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%90%8C%E6%AD%A5%E9%98%BB%E5%A1%9E.png" srcset="/img/loading.gif" lazyload alt="同步阻塞"></p>
+<p>在客户端连接数量不高的情况下，是没问题的。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。</p>
+<p><strong>NIO (Non-blocking I/O)</strong></p>
+<p>Java 中的 NIO 于 Java 1.4 中引入，对应 java.nio 包，提供了 Channel , Selector，Buffer 等抽象。</p>
+<p>它支持面向缓冲的，基于通道的 I/O 操作方法。 对于高负载、高并发的（网络）应用，应使用 NIO 。</p>
+<p>Java 中的 NIO 可以看作是 I/O 多路复用模型。也有很多人认为，Java 中的 NIO 属于同步非阻塞 IO 模型。</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%90%8C%E6%AD%A5%E9%9D%9E%E9%98%BB%E5%A1%9E.png" srcset="/img/loading.gif" lazyload alt="同步非阻塞"></p>
+<p>NIO主要有三大核心部分：<strong>Channel(通道)</strong>，<strong>Buffer(缓冲区)</strong>， <strong>Selector</strong></p>
+<p>传统IO基于字节流和字符流进行操作，而NIO基于Channel和Buffer(缓冲区)进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。Selector(选择区)用于监听多个通道的事件（比如：连接打开，数据到达）。因此，单个线程可以监听多个数据通道。</p>
+<p>NIO和传统IO（以下简称IO）之间第一个最大的区别是，IO是面向流的，NIO是面向缓冲区的。 Java IO面向流意味着每次从流中读一个或多个字节，直至读取所有字节，它们没有被缓存在任何地方。此外，它不能前后移动流中的数据。如果需要前后移动从流中读取的数据，需要先将它缓存到一个缓冲区。NIO的缓冲导向方法略有不同。数据读取到一个它稍后处理的缓冲区，需要时可在缓冲区中前后移动。这就增加了处理过程中的灵活性。但是，还需要检查是否该缓冲区中包含所有需要处理的数据。而且，需确保当更多的数据读入缓冲区时，不能覆盖缓冲区里尚未处理的数据。</p>
+<p>IO的各种流是阻塞的。这意味着，当一个线程调用read() 或 write()时，该线程被阻塞，直到有一些数据被读取，或数据完全写入。该线程在此期间不能再干任何事情了。 NIO的非阻塞模式，使一个线程从某通道发送请求读取数据，但是它仅能得到目前可用的数据，如果目前没有数据可用时，就什么都不会获取。而不是保持线程阻塞，所以直至数据变得可以读取之前，该线程可以继续做其他的事情。 非阻塞写也是如此。一个线程请求写入一些数据到某通道，但不需要等待它完全写入，这个线程同时可以去做别的事情。 <strong>线程通常将非阻塞IO的空闲时间用于在其它通道上执行IO操作</strong>，所以一个单独的线程现在可以管理多个输入和输出通道（channel）</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/java-nio.png" srcset="/img/loading.gif" lazyload alt="java-nio"></p>
+<p><strong>AIO (Asynchronous I/O)</strong></p>
+<p>AIO 也就是 NIO 2，Java 7 中引入了 NIO 的改进版 NIO 2，它是异步 IO 模型</p>
+<p>异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作</p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%BC%82%E6%AD%A5IO.png" srcset="/img/loading.gif" lazyload alt="异步IO"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%B8%89%E7%A7%8DIO%E7%9A%84%E6%AF%94%E8%BE%83.png" srcset="/img/loading.gif" lazyload alt="三种IO的比较"></p>
+<p><strong>2. 如何理解NIO同步和AIO异步？</strong></p>
+<p>虽然NIO在网络操作中提供了非阻塞的方法，但是NIO的IO行为还是同步的，对于NIO来说，业务线程是在IO操作准备好时，得到通知，接着就由这个线程自行进行I/O操作，这个I/O操作本身是同步的</p>
+<p><strong>3. 如何理解阻塞非阻塞和同步异步？</strong></p>
+<p>《操作系统概念（第九版）》中有关进程间通信的部分：</p>
+<p>进程间的通信是通过 send() 和 receive() 两种基本操作完成的。具体如何实现这两种基础操作，存在着不同的设计。 消息的传递有可能是阻塞的或非阻塞的 – 也被称为同步或异步的</p>
+<p>也就是说， 从进程级通信的维度讨论时， 阻塞和同步（非阻塞和异步）就是一对同义词， 且需要针对发送方和接收方作区分对待。</p>
+<p>但是也有一些别的解释，比如：</p>
+<p><strong>同步/异步关注的是消息通知的机制，而阻塞/非阻塞关注的是程序（线程）等待消息通知时的状态</strong></p>
+<h1>十一、序列化和反序列化</h1>
+<p><strong>1. 说说序列化和反序列化？</strong></p>
+<ul>
+<li>序列化： 将数据结构或对象转换成二进制字节流的过程</li>
+<li>反序列化：将在序列化过程中所生成的二进制字节流的过程转换成数据结构或者对象的过程</li>
+<li>序列化对象的引用类型成员变量也必须是可序列化的</li>
+<li>反序列化必须有序列化对象的class文件</li>
+<li>同一对象序列化多次，只有第一次序列化为二进制流，以后都只是保存序列化编号，不会重复序列化</li>
+</ul>
+<p><strong>2. Java 序列化中如果有些字段不想进行序列化，怎么办？</strong></p>
+<p>对于不想进行序列化的变量，使用transient关键字修饰。</p>
+<p>transient 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。transient 只能修饰变量，不能修饰类和方法。</p>
+<h1>十二、String</h1>
+<p><strong>1. 说说String？</strong></p>
+<ul>
+<li>String 被声明为 final，因此它不可被继承</li>
+<li>在 Java 8 中，String 内部使用 char 数组存储数据</li>
+<li>在 Java 9 之后，String 类的实现改用 byte 数组存储字符串，同时使用 coder 来标识使用了哪种编码</li>
+<li>value 数组被声明为 final，这意味着 value 数组初始化之后就不能再引用其它数组。并且 String 内部没有改变 value 数组的方法，因此可以保证 String 不可变</li>
+</ul>
+<p><strong>2. String为什么要用final修饰？</strong></p>
+<ul>
+<li>如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool，大量使用字符串的情况下，String Pool 可以节省内存空间，提高效率</li>
+<li>因为 String 的 hash 值经常被使用，例如 String 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算</li>
+<li>为了线程安全</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31345592">https://www.zhihu.com/question/31345592</a></p>
+</blockquote>
+<p><strong>3. 说说StringBuffer和StringBuilder？</strong></p>
+<ol>
+<li>可变性</li>
+</ol>
+<ul>
+<li>String 不可变</li>
+<li>StringBuffer 和 StringBuilder 可变</li>
+</ul>
+<ol start="2">
+<li>线程安全</li>
+</ol>
+<ul>
+<li>String 不可变，因此是线程安全的</li>
+<li>StringBuilder 不是线程安全的</li>
+<li>StringBuffer 是线程安全的，内部使用 synchronized 进行同步</li>
+</ul>
+<p><strong>4. 说说字符串常量池？</strong></p>
+<p>字符串常量池（String Pool）保存着所有字符串字面量（literal strings），这些字面量在编译时期就确定。不仅如此，还可以使用 String 的 intern() 方法在运行过程将字符串添加到 String Pool 中</p>
+<p>当一个字符串调用 intern() 方法时，如果 String Pool 中已经存在一个字符串和该字符串值相等（使用 equals() 方法进行确定），那么就会返回 String Pool 中字符串的引用；否则，就会在 String Pool 中添加一个新的字符串，并返回这个新字符串的引用</p>
+<p>下面示例中，s1 和 s2 采用 new String() 的方式新建了两个不同字符串，而 s3 和 s4 是通过 s1.intern() 和 s2.intern() 方法取得同一个字符串引用。intern() 首先把 “aaa” 放到 String Pool 中，然后返回这个字符串引用，因此 s3 和 s4 引用的是同一个字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;aaa&quot;</span>);<br><span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;aaa&quot;</span>);<br>System.out.println(s1 == s2);           <span class="hljs-comment">// false</span><br><span class="hljs-type">String</span> <span class="hljs-variable">s3</span> <span class="hljs-operator">=</span> s1.intern();<br><span class="hljs-type">String</span> <span class="hljs-variable">s4</span> <span class="hljs-operator">=</span> s2.intern();<br>System.out.println(s3 == s4);           <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+<p>如果是采用 “bbb” 这种字面量的形式创建字符串，会自动地将字符串放入 String Pool 中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">s5</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;bbb&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">s6</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;bbb&quot;</span>;<br>System.out.println(s5 == s6);  <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+<p>在 Java 7 之前，String Pool 被放在运行时常量池中，它属于永久代。而在 Java 7，String Pool 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 OutOfMemoryError 错误</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java八股总结</div>
+      <div>https://lishilong.cc/2023/04/09/Java/Java八股文总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Aaron</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/12/Research/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD/" title="因果推断">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">因果推断</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/09/Practice/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95/" title="敏感词过滤算法">
+                        <span class="hidden-mobile">敏感词过滤算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
