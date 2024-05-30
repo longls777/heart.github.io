@@ -19,7 +19,7 @@
     <meta name="description" content="https:&#x2F;&#x2F;carlos9310.github.io&#x2F;2019&#x2F;11&#x2F;11&#x2F;transformer-xl-and-xlnet&#x2F; NLP系列之预训练模型（二）：Transformer-XL及其进化XLNet - 周星星的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;355366424 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43269174&#x2F;art">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer-XL &amp; XLNet">
-<meta property="og:url" content="https://lishilong.cc/2023/08/05/Work/NLP/009Transformer-XL&XLNET/index.html">
+<meta property="og:url" content="https://lishilong.xyz/2023/08/05/Work/NLP/009Transformer-XL&XLNET/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="https:&#x2F;&#x2F;carlos9310.github.io&#x2F;2019&#x2F;11&#x2F;11&#x2F;transformer-xl-and-xlnet&#x2F; NLP系列之预训练模型（二）：Transformer-XL及其进化XLNet - 周星星的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;355366424 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43269174&#x2F;art">
 <meta property="og:locale" content="zh_CN">
@@ -31,6 +31,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805145917736.png">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>Transformer-XL &amp; XLNet - Heart</title>
@@ -73,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"lishilong.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -452,7 +454,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Transformer-XL &amp; XLNet</div>
-      <div>https://lishilong.cc/2023/08/05/Work/NLP/009Transformer-XL&amp;XLNET/</div>
+      <div>https://lishilong.xyz/2023/08/05/Work/NLP/009Transformer-XL&amp;XLNET/</div>
     </div>
     <div class="license-meta">
       
@@ -619,6 +621,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -764,6 +790,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

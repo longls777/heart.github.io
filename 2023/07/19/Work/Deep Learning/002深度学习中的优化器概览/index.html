@@ -19,7 +19,7 @@
     <meta name="description" content="从 SGD 到 Adam —— 深度学习优化算法概览(一) - 骆梁宸的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;32626442  什么是一阶和二阶动量？ 有多种说法：  一阶动量和二阶动量分别是历史梯度的一阶函数和二阶函数 来自chatGPT：   一阶动量和二阶动量是Adam优化算法中使用的两个指数移动平均项，用于估计梯度的一阶和二阶矩。  一阶动量（Fir">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习中的优化算法概览">
-<meta property="og:url" content="https://lishilong.cc/2023/07/19/Work/Deep%20Learning/002%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/index.html">
+<meta property="og:url" content="https://lishilong.xyz/2023/07/19/Work/Deep%20Learning/002%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="从 SGD 到 Adam —— 深度学习优化算法概览(一) - 骆梁宸的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;32626442  什么是一阶和二阶动量？ 有多种说法：  一阶动量和二阶动量分别是历史梯度的一阶函数和二阶函数 来自chatGPT：   一阶动量和二阶动量是Adam优化算法中使用的两个指数移动平均项，用于估计梯度的一阶和二阶矩。  一阶动量（Fir">
 <meta property="og:locale" content="zh_CN">
@@ -31,6 +31,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230719180113625.png">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>深度学习中的优化算法概览 - Heart</title>
@@ -73,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lishilong.cc","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"lishilong.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -351,7 +353,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>深度学习中的优化算法概览</div>
-      <div>https://lishilong.cc/2023/07/19/Work/Deep Learning/002深度学习中的优化器概览/</div>
+      <div>https://lishilong.xyz/2023/07/19/Work/Deep Learning/002深度学习中的优化器概览/</div>
     </div>
     <div class="license-meta">
       
@@ -518,6 +520,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -663,6 +689,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
