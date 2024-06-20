@@ -19,7 +19,7 @@
     <meta name="description" content="一、Java内存模型（JMM） 1. 说说Java内存模型（JMM）？   JMM规定线程之间的所有共享变量（包括实例字段，静态字段和数组元素）存储在主内存中，每个线程有自己私有的工作内存，工作内存中存储的是主存中共享变量的副本 线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存中的数据 一个线程不能直接访问其他线程的工作内存 主内存和工作内存只是JMM的一个抽象概念，主内存主要对应">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发知识点详解">
-<meta property="og:url" content="https://lishilong.xyz/2023/04/25/Work/Java/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:url" content="https://heart.github.io/2023/04/25/Work/Java/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="一、Java内存模型（JMM） 1. 说说Java内存模型（JMM）？   JMM规定线程之间的所有共享变量（包括实例字段，静态字段和数组元素）存储在主内存中，每个线程有自己私有的工作内存，工作内存中存储的是主存中共享变量的副本 线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存中的数据 一个线程不能直接访问其他线程的工作内存 主内存和工作内存只是JMM的一个抽象概念，主内存主要对应">
 <meta property="og:locale" content="zh_CN">
@@ -88,7 +88,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lishilong.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -953,7 +953,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Java并发知识点详解</div>
-      <div>https://lishilong.xyz/2023/04/25/Work/Java/Java并发知识点详解/</div>
+      <div>https://heart.github.io/2023/04/25/Work/Java/Java并发知识点详解/</div>
     </div>
     <div class="license-meta">
       

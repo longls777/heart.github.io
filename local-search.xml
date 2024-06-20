@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Energy Based Models(EBMs)</title>
+    <link href="/2024/06/20/Work/Reinforcement%20Learning/Energy_based_model/"/>
+    <url>/2024/06/20/Work/Reinforcement%20Learning/Energy_based_model/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://arxiv.org/pdf/2101.03288">https://arxiv.org/pdf/2101.03288</a></p></blockquote><h2 id="概述">概述</h2><h5 id=""></h5>]]></content>
+    
+    
+    <categories>
+      
+      <category>Work</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>RL</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Reinforcement Learning and RLHF</title>
     <link href="/2024/05/30/Work/Reinforcement%20Learning/RL_and_RLHF/"/>
     <url>/2024/05/30/Work/Reinforcement%20Learning/RL_and_RLHF/</url>

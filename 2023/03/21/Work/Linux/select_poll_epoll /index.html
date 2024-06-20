@@ -19,7 +19,7 @@
     <meta name="description" content="IO多路复用 IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程  在处理 IO 的时候（也就是将数据从内核复制到应用缓冲的时候），阻塞和非阻塞都是同步 IO 只有使用了特殊的 API 才是异步 IO   基于select、poll、epoll的I&#x2F;O多路复用模型如下：   I&#x2F;O多路复用有很多种实现。在linux上，2.4内核前主要是select和poll，自Li">
 <meta property="og:type" content="article">
 <meta property="og:title" content="select、poll、epoll详解">
-<meta property="og:url" content="https://lishilong.xyz/2023/03/21/Work/Linux/select_poll_epoll%20/index.html">
+<meta property="og:url" content="https://heart.github.io/2023/03/21/Work/Linux/select_poll_epoll%20/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="IO多路复用 IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程  在处理 IO 的时候（也就是将数据从内核复制到应用缓冲的时候），阻塞和非阻塞都是同步 IO 只有使用了特殊的 API 才是异步 IO   基于select、poll、epoll的I&#x2F;O多路复用模型如下：   I&#x2F;O多路复用有很多种实现。在linux上，2.4内核前主要是select和poll，自Li">
 <meta property="og:locale" content="zh_CN">
@@ -85,7 +85,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lishilong.xyz","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -411,7 +411,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>select、poll、epoll详解</div>
-      <div>https://lishilong.xyz/2023/03/21/Work/Linux/select_poll_epoll /</div>
+      <div>https://heart.github.io/2023/03/21/Work/Linux/select_poll_epoll /</div>
     </div>
     <div class="license-meta">
       
