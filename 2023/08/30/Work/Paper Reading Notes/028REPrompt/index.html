@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction》 论文来源： ACL Findings 2022 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.findings-acl.5&#x2F; 源码： https">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RelationPrompt - Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction">
-<meta property="og:url" content="https://heart.github.io/2023/08/30/Work/Paper%20Reading%20Notes/028REPrompt/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/30/Work/Paper%20Reading%20Notes/028REPrompt/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction》 论文来源： ACL Findings 2022 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.findings-acl.5&#x2F; 源码： https">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -297,9 +297,9 @@
 <p>**原文链接： **  <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.findings-acl.5/">https://aclanthology.org/2022.findings-acl.5/</a></p>
 <p><strong>源码：</strong> <a target="_blank" rel="noopener" href="https://github.com/declare-lab/RelationPrompt">https://github.com/declare-lab/RelationPrompt</a></p>
 <h2 id="概述">概述</h2>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830212615881.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830212615881.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>RE三元组抽取任务，只给sentence，要求识别两个entity和relation</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830213826241.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830213826241.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>(a)：注释后的sentence用来训练</li>
 <li>(b)：使用没见过的relation用来验证</li>
@@ -309,8 +309,8 @@
 <p>We propose RelationPrompt which reframes the zero-shot problem as synthetic data generation. The core concept is to leverage the semantics of relation labels, prompting language models to generate synthetic training samples which can express the desired relations</p>
 </blockquote>
 <h2 id="Method">Method</h2>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830220353071.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830215720215.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830220353071.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830215720215.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h3 id="Relation-Generator">Relation Generator</h3>
 <ul>
 <li>首先在训练集上微调关系生成器<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">M_g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>，使其学会如何生成合成数据<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>s</mi><mi>y</mi><mi>n</mi><mi>t</mi><mi>h</mi><mi>e</mi><mi>t</mi><mi>i</mi><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">D_{synthetic}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">sy</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">M_g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>结构如下图(a)</li>
@@ -324,7 +324,7 @@
 <li>换句话说，ZeroRC就相当于给定entity作为decoder的初始输入，如下图(b)</li>
 <li>本文的方法自然包含ZeroRC和ZeroRTE，因为只在推理阶段有变化，训练阶段是统一的</li>
 </ul>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830221911288.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830221911288.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h3 id="Extracting-Multiple-triplets-using-Triplet-Search-Decoding">Extracting Multiple triplets using Triplet Search Decoding</h3>
 <p>对于合成数据的 RelationPrompt 生成，每个样本仅限于包含单个关系三元组。 因此，传统的三元组提取模型很可能无法在本文的多三元组 ZeroRTE 框架中表现良好，因为它们通常假设训练样本每个句子可能包含多个三元组</p>
 <p>对此本文提出了multi-triplet ZeroRTE</p>
@@ -333,21 +333,21 @@
 <li>取概率最高的top b个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">e_{head}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，分别指导后续解码，之后的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mi>t</mi><mi>a</mi><mi>i</mi><mi>l</mi></mrow></msub></mrow><annotation encoding="application/x-tex">e_{tail}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">ai</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>也是一样</li>
 <li>所以一共会生成<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>b</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">b^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>个不同的relation triplet</li>
 </ul>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830223257940.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830223257940.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>通过在验证集上微调得到的probability threshold来筛选这些生成的relation triplet</li>
 </ul>
 <h2 id="Experiments">Experiments</h2>
 <p>关系生成器用GPT-2，关系提取器用BART</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830223853282.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830223853282.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>这个点，真低呀</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830223942506.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830223942506.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>可能因为生成了数据，所以比ZS-BERT高很多呀，NoGen的时候还略微弱于ZS-BERT（m=5/10）</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830224137378.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830224137378.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>两种方法都有效</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830224254365.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830224254365.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>生成的效果不错</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830224316196.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230830224316196.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>后来下降可能是因为生成的数据质量不够好，因为后来选取的都是概率比较小的token</p>
 <blockquote>
 <p>125 = 5^3，这里top b的b应该是5</p>
@@ -374,7 +374,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -389,7 +389,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/RE/" class="print-no-link">#RE</a>
+        <a href="/blog/tags/RE/" class="print-no-link">#RE</a>
       
     </div>
   
@@ -402,7 +402,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>RelationPrompt - Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction</div>
-      <div>https://heart.github.io/2023/08/30/Work/Paper Reading Notes/028REPrompt/</div>
+      <div>https://heart.github.io/blog/2023/08/30/Work/Paper Reading Notes/028REPrompt/</div>
     </div>
     <div class="license-meta">
       
@@ -446,7 +446,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/31/Work/NLP/017bf16/" title="BF16和FP16的区别">
+                      <a href="/blog/2023/08/31/Work/NLP/017bf16/" title="BF16和FP16的区别">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">BF16和FP16的区别</span>
                         <span class="visible-mobile">上一篇</span>
@@ -456,7 +456,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/30/Work/Paper%20Reading%20Notes/027PromptMatch/" title="Label Verbalization and Entailment for Effective Zero- and Few-Shot Relation ExtractionLearning">
+                      <a href="/blog/2023/08/30/Work/Paper%20Reading%20Notes/027PromptMatch/" title="Label Verbalization and Entailment for Effective Zero- and Few-Shot Relation ExtractionLearning">
                         <span class="hidden-mobile">Label Verbalization and Entailment for Effective Zero- and Few-Shot Relation ExtractionLearning</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -615,8 +615,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -638,7 +638,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -737,7 +737,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -747,7 +747,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

@@ -19,7 +19,7 @@
     <meta name="description" content="复制 在Redis中，用户可以通过执行SLAVEOF命令或者设置slaveof选项，让一个服务器去复制（replicate）另一个服务器，我们呼被复制的服务器为主服务器（master），而对主服务器进行复制的服务器则被称为从服务器（slave）  进行复制中的主从服务器双方的数据库将保存相同的数据，概念上将这种现象称作“数据库状态一致”，或者简称“一致” 旧版复制功能（Redis 2.8版本以前）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多机数据库——复制">
-<meta property="og:url" content="https://heart.github.io/2023/02/23/Work/Redis/%E5%A4%9A%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A4%8D%E5%88%B6/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/02/23/Work/Redis/%E5%A4%9A%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A4%8D%E5%88%B6/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="复制 在Redis中，用户可以通过执行SLAVEOF命令或者设置slaveof选项，让一个服务器去复制（replicate）另一个服务器，我们呼被复制的服务器为主服务器（master），而对主服务器进行复制的服务器则被称为从服务器（slave）  进行复制中的主从服务器双方的数据库将保存相同的数据，概念上将这种现象称作“数据库状态一致”，或者简称“一致” 旧版复制功能（Redis 2.8版本以前）">
 <meta property="og:locale" content="zh_CN">
@@ -66,12 +66,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -80,15 +80,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -118,7 +118,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -137,7 +137,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -149,7 +149,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -161,7 +161,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -173,7 +173,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -185,7 +185,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -299,7 +299,7 @@
                 
                 <h2 id="复制">复制</h2>
 <p>在Redis中，用户可以通过执行SLAVEOF命令或者设置slaveof选项，让一个服务器去复制（replicate）另一个服务器，我们呼被复制的服务器为主服务器（master），而对主服务器进行复制的服务器则被称为从服务器（slave）</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223163418969.png" srcset="/img/loading.gif" lazyload alt="image-20230223163418969"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223163418969.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230223163418969"></p>
 <p>进行复制中的主从服务器双方的数据库将保存相同的数据，概念上将这种现象称作“数据库状态一致”，或者简称“一致”</p>
 <h3 id="旧版复制功能（Redis-2-8版本以前）">旧版复制功能（Redis 2.8版本以前）</h3>
 <p>Redis 的复制功能分为**同步（sync）<strong>和</strong>命令传播（command propagate）**两个操作：</p>
@@ -316,7 +316,7 @@
 <li>当主服务器的BGSAVE命令执行完毕时，主服务器会将BGSAVE命令生成的RDB文件发送给从服务器，从服务器接收并载入这个RDB文件，将自己的数据库状态更新至主服务器执行BGSAVE命令时的数据库状态</li>
 <li>主服务器将记录在缓冲区里面的所有写命令发送给从服务器，从服务器执行这些写命令，将自己的数据库状态更新至主服务器数据库当前所处的状态</li>
 </ol>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223164303196.png" srcset="/img/loading.gif" lazyload alt="image-20230223164303196"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223164303196.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230223164303196"></p>
 <h5 id="命令传播">命令传播</h5>
 <p>主服务器会将自己执行的写命令，也即是造成主从服务器不一致的那条写命令，发送给从服务器执行，当从服务器执行了相同的写命令之后，主从服务器将再次回到一致状态</p>
 <h5 id="旧版复制功能的缺陷">旧版复制功能的缺陷</h5>
@@ -344,7 +344,7 @@
 <li>部分重同步则用于处理断线后重复制情况：当从服务器在断线后重新连接主服务器时，如果条件允许，主服务器可以将主从服务器连接断开期间执行的写命令发送给从服务器，从服务器只要接收并执行这些写命令，就可以将数据库更新至主服务器当前所处的状态</li>
 </ul>
 <p><strong>PSYNC命令的部分重同步模式解决了旧版复制功能在处理断线后重复制时出现的低效情况</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223165558418.png" srcset="/img/loading.gif" lazyload alt="image-20230223165558418"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223165558418.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230223165558418"></p>
 <h4 id="部分重同步的实现">部分重同步的实现</h4>
 <p>部分重同步功能由以下三个部分构成：</p>
 <ul>
@@ -366,7 +366,7 @@
 <h5 id="复制积压缓冲区">复制积压缓冲区</h5>
 <p>复制积压缓冲区是由主服务器维护的一个固定长度（fixed-size）先进先出（FIFO）队列，默认大小为1MB</p>
 <p>当主服务器进行命令传播时，它不仅会将写命令发送给所有从服务器，还会将写命令入队到复制积压缓冲区里面</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223171046192.png" srcset="/img/loading.gif" lazyload alt="image-20230223171046192"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223171046192.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230223171046192"></p>
 <p>因此，主服务器的复制积压缓冲区里面会保存着一部分最近传播的写命令，并且复制积压缓冲区会为队列中的每个字节记录相应的复制偏移量</p>
 <p>当从服务器重新连上主服务器时，从服务器会通过PSYNC命令将自己的复制偏移量offset发送给主服务器，主服务器会根据这个复制偏移量来决定对从服务器执行何种同步操作：</p>
 <ul>
@@ -410,8 +410,8 @@
 </blockquote>
 <h5 id="检测命令丢失">检测命令丢失</h5>
 <p>如果因为网络故障，主服务器传播给从服务器的写命令在半路丢失，那么当从服务器向主服务器发送REPLCONF ACK命令时，主服务器将发觉从服务器当前的复制偏移量少于自己的复制偏移量，然后主服务器就会根据从服务器提交的复制偏移量，在复制积压缓冲区里面找到从服务器缺少的数据，并将这些数据重新发送给从服务器</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223172531252.png" srcset="/img/loading.gif" lazyload alt="image-20230223172531252"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223172544757.png" srcset="/img/loading.gif" lazyload alt="image-20230223172544757"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223172531252.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230223172531252"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230223172544757.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230223172544757"></p>
 <p>注意，主服务器向从服务器补发缺失数据这一操作的原理和部分重同步操作的原理非常相似，这两个操作的区别在于，<strong>补发缺失数据操作在主从服务器没有断线的情况下执行，而部分重同步操作则在主从服务器断线并重连之后执行</strong></p>
 <blockquote>
 <p>Redis 2.8版本以前的命令丢失</p>
@@ -435,7 +435,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Redis/" class="category-chain-item">Redis</a>
+  <a href="/blog/categories/Redis/" class="category-chain-item">Redis</a>
   
   
 
@@ -456,7 +456,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>多机数据库——复制</div>
-      <div>https://heart.github.io/2023/02/23/Work/Redis/多机数据库的复制/</div>
+      <div>https://heart.github.io/blog/2023/02/23/Work/Redis/多机数据库的复制/</div>
     </div>
     <div class="license-meta">
       
@@ -500,7 +500,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/27/Work/Redis/Redis-Sentinel/" title="Sentinel">
+                      <a href="/blog/2023/02/27/Work/Redis/Redis-Sentinel/" title="Sentinel">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Sentinel</span>
                         <span class="visible-mobile">上一篇</span>
@@ -510,7 +510,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/21/Work/Redis/Redis%E4%BA%8B%E4%BB%B6/" title="Redis事件">
+                      <a href="/blog/2023/02/21/Work/Redis/Redis%E4%BA%8B%E4%BB%B6/" title="Redis事件">
                         <span class="hidden-mobile">Redis事件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -669,8 +669,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -692,7 +692,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -791,7 +791,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -801,7 +801,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

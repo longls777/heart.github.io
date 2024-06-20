@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《DUMA: Reading Comprehension with Transposition Thinkin》 论文来源： IEEE 2021 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2001.09415v5.pdf **源码：**https:&#x2F;&#x2F;github.com&#x2F;pfZhu&#x2F;duma_code 概述 当前用来解决MRC问题的一般是两层结构：  预训练模型的encode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DUMA Reading Comprehension with Transposition Thinking">
-<meta property="og:url" content="https://heart.github.io/2022/09/29/Work/Paper%20Reading%20Notes/003DUMA%20Reading%20Comprehension%20with%20Transposition%20Thinking/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2022/09/29/Work/Paper%20Reading%20Notes/003DUMA%20Reading%20Comprehension%20with%20Transposition%20Thinking/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《DUMA: Reading Comprehension with Transposition Thinkin》 论文来源： IEEE 2021 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2001.09415v5.pdf **源码：**https:&#x2F;&#x2F;github.com&#x2F;pfZhu&#x2F;duma_code 概述 当前用来解决MRC问题的一般是两层结构：  预训练模型的encode">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -302,7 +302,7 @@
 <li>预训练模型的encoder表示层，如ALBERT</li>
 <li>对齐网络层，用来捕捉文本，问题，回答，三元组之间的关系，例如OCN和DCMN</li>
 </ol>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220929155842159.png" srcset="/img/loading.gif" lazyload alt="可以看到ALBERT非常强大"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220929155842159.png" srcset="/blog/img/loading.gif" lazyload alt="可以看到ALBERT非常强大"></p>
 <p>该文不注重设计复杂的对齐网络，而是从人类的思考方式中寻找经验：</p>
 <ol>
 <li>快速阅读全文和问题答案，建立整体印象</li>
@@ -310,27 +310,27 @@
 <li>基于文章信息，考虑问题和选项，并确定正确答案</li>
 </ol>
 <p>该文使用attention来实现这种双向的换位思考模式，称之为passage-to-question attention 或者question-to-passage attention</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220929162023650.png" srcset="/img/loading.gif" lazyload alt="image-20220929162023650"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220929162023650.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220929162023650"></p>
 <h2 id="模型">模型</h2>
 <p>DUMA模型的具体设计是：将passage + question + option(1/2/3)输入encoder进行编码，其中passage + question 和每一个option对应，也就是说，如果有三个选项，那么就会有三个输入</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005142727594.png" srcset="/img/loading.gif" lazyload alt="image-20221005142727594"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005142727594.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221005142727594"></p>
 <p>在编码之前，记录passage和question-option对的分界index，以便编码后split</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005142915197.png" srcset="/img/loading.gif" lazyload alt="image-20221005142915197"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005142915197.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221005142915197"></p>
 <p>将总的token输入encoder进行编码：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005143207016.png" srcset="/img/loading.gif" lazyload alt="image-20221005143207016"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005143207016.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221005143207016"></p>
 <p>将编码后的输出进行分割，一部分是passage， 另一部分是question-option对</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005143825864.png" srcset="/img/loading.gif" lazyload alt="image-20221005143825864"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005143825864.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221005143825864"></p>
 <p>将分割后的二者互作attention</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005144210917.png" srcset="/img/loading.gif" lazyload alt="image-20221005144210917"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005144210917.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221005144210917"></p>
 <p>直接concat，然后通过一个（2*config.hidden_size, 1）的线性层</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005144349483.png" srcset="/img/loading.gif" lazyload alt="image-20221005144349483"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221005144349483.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221005144349483"></p>
 <p>为什么直接concat呢？文章对这里的融合方法进行了探究，发现在点乘，相加和concat中，concat效果最好，作者解释是concat能最好的保留特征</p>
 <h2 id="复现">复现</h2>
 <p>根据论文的源代码，复现了本文的实验后得到如下数据：</p>
 <p><strong>albert + duma</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221002180701225.png" srcset="/img/loading.gif" lazyload alt="image-20221002180701225"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221002180701225.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221002180701225"></p>
 <p>与文章中的实验数据进行对比：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221002180738630.png" srcset="/img/loading.gif" lazyload alt="image-20221002180738630"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221002180738630.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221002180738630"></p>
 <p>发现误差在可接受范围内</p>
 
                 
@@ -350,7 +350,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -365,7 +365,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/MCQA/" class="print-no-link">#MCQA</a>
+        <a href="/blog/tags/MCQA/" class="print-no-link">#MCQA</a>
       
     </div>
   
@@ -378,7 +378,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>DUMA Reading Comprehension with Transposition Thinking</div>
-      <div>https://heart.github.io/2022/09/29/Work/Paper Reading Notes/003DUMA Reading Comprehension with Transposition Thinking/</div>
+      <div>https://heart.github.io/blog/2022/09/29/Work/Paper Reading Notes/003DUMA Reading Comprehension with Transposition Thinking/</div>
     </div>
     <div class="license-meta">
       
@@ -422,7 +422,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/29/Others/vscode%20python%E8%B0%83%E8%AF%95/" title="vscode python调试">
+                      <a href="/blog/2022/09/29/Others/vscode%20python%E8%B0%83%E8%AF%95/" title="vscode python调试">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">vscode python调试</span>
                         <span class="visible-mobile">上一篇</span>
@@ -432,7 +432,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/27/Work/Paper%20Reading%20Notes/004Clues%20Before%20Answers%20Generation-Enhanced%20Multiple-Choice%20QA/" title="Clues Before Answers  Generation-Enhanced Multiple-Choice QA">
+                      <a href="/blog/2022/09/27/Work/Paper%20Reading%20Notes/004Clues%20Before%20Answers%20Generation-Enhanced%20Multiple-Choice%20QA/" title="Clues Before Answers  Generation-Enhanced Multiple-Choice QA">
                         <span class="hidden-mobile">Clues Before Answers  Generation-Enhanced Multiple-Choice QA</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -591,8 +591,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -614,7 +614,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -713,7 +713,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -723,7 +723,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

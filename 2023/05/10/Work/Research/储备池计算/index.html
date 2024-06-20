@@ -19,7 +19,7 @@
     <meta name="description" content="概览 Reservoir Computing， 也叫Echo state network， 被视为是神经网络(Neural Network)的一种拓展框架。一个reservoir computer由以下三个部分组成：  输入层(input layer): 可以由一个或多个node组成， 属于前馈神经网络(feed-forward Neural network)的一种. 中间层(middle lay">
 <meta property="og:type" content="article">
 <meta property="og:title" content="储备池计算">
-<meta property="og:url" content="https://heart.github.io/2023/05/10/Work/Research/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/05/10/Work/Research/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="概览 Reservoir Computing， 也叫Echo state network， 被视为是神经网络(Neural Network)的一种拓展框架。一个reservoir computer由以下三个部分组成：  输入层(input layer): 可以由一个或多个node组成， 属于前馈神经网络(feed-forward Neural network)的一种. 中间层(middle lay">
 <meta property="og:locale" content="zh_CN">
@@ -63,12 +63,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -77,15 +77,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -115,7 +115,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -134,7 +134,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -146,7 +146,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -158,7 +158,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -170,7 +170,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -182,7 +182,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -301,9 +301,9 @@
 <li>中间层(middle layer): 由多个node组成， 属于递归神经网络(recurrent Neural network)的一种.</li>
 <li>输出层(output layer): 带有权重的加法器(weighted summer).</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/reservoir_components.png" srcset="/img/loading.gif" lazyload alt="reservoir_components"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/reservoir_components.png" srcset="/blog/img/loading.gif" lazyload alt="reservoir_components"></p>
 <p>前馈神经网络与递归神经网络的差别在于前者只允许信号从输入层向前传到输出层，信号的传递是单向的，它也不存在任何的回路，也就是说任何一层的输出都无法影响这层本身的数据，一般用于模式识别；后者通过引入循环的方法允许信号双向传递。</p>
-<p><img src="http://jujuba.me/imgs/feedback_and_recurrent.png" srcset="/img/loading.gif" lazyload alt="reservoir_components"></p>
+<p><img src="http://jujuba.me/imgs/feedback_and_recurrent.png" srcset="/blog/img/loading.gif" lazyload alt="reservoir_components"></p>
 <p>目前已知reservoir有以下三个关键特性：</p>
 <ul>
 <li>通常reservoir有很多节点，且节点的连接是稀疏的，故该矩阵是稀疏矩阵</li>
@@ -312,7 +312,7 @@
 </ul>
 <p>Reservoir computing的一个神奇之处在于，中间层的reservoir矩阵是随机生成的且生成后就保持不变，真正需要训练的只有输出层，这也使它比传统的方法快很多。</p>
 <h1>计算方法</h1>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/reservoir_W_in.png" srcset="/img/loading.gif" lazyload alt="reservoir_weight"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/reservoir_W_in.png" srcset="/blog/img/loading.gif" lazyload alt="reservoir_weight"></p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/145264520">https://zhuanlan.zhihu.com/p/145264520</a></p>
 <p><a target="_blank" rel="noopener" href="http://jujuba.me/posts/reservoir_computing.html">http://jujuba.me/posts/reservoir_computing.html</a></p>
@@ -329,7 +329,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Reservoir-Computing/" class="print-no-link">#Reservoir Computing</a>
+        <a href="/blog/tags/Reservoir-Computing/" class="print-no-link">#Reservoir Computing</a>
       
     </div>
   
@@ -342,7 +342,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>储备池计算</div>
-      <div>https://heart.github.io/2023/05/10/Work/Research/储备池计算/</div>
+      <div>https://heart.github.io/blog/2023/05/10/Work/Research/储备池计算/</div>
     </div>
     <div class="license-meta">
       
@@ -386,7 +386,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/10/Work/Paper%20Reading%20Notes/009Reservoir%20computing%20approaches%20for%20representation%20and%20classification%20of%20multivariate%20time%20series/" title="Reservoir computing approaches for representation and classification of multivariate time series">
+                      <a href="/blog/2023/05/10/Work/Paper%20Reading%20Notes/009Reservoir%20computing%20approaches%20for%20representation%20and%20classification%20of%20multivariate%20time%20series/" title="Reservoir computing approaches for representation and classification of multivariate time series">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Reservoir computing approaches for representation and classification of multivariate time series</span>
                         <span class="visible-mobile">上一篇</span>
@@ -396,7 +396,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/05/04/Work/MySQL/MySQL%E5%85%AB%E8%82%A1/" title="MySQL">
+                      <a href="/blog/2023/05/04/Work/MySQL/MySQL%E5%85%AB%E8%82%A1/" title="MySQL">
                         <span class="hidden-mobile">MySQL</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -555,8 +555,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -578,7 +578,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -677,7 +677,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -687,7 +687,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

@@ -19,7 +19,7 @@
     <meta name="description" content="https:&#x2F;&#x2F;github.com&#x2F;jia-zhuang&#x2F;pytorch-multi-gpu-training  有一些点没放过来，可以进去看一下 上手Distributed Data Parallel的详尽教程 - ZachZhang的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;486346821  方案一：nn.DataParallel 核心在于使用nn.Da">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多GPU训练">
-<meta property="og:url" content="https://heart.github.io/2023/08/07/Work/Practice/%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/07/Work/Practice/%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="https:&#x2F;&#x2F;github.com&#x2F;jia-zhuang&#x2F;pytorch-multi-gpu-training  有一些点没放过来，可以进去看一下 上手Distributed Data Parallel的详尽教程 - ZachZhang的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;486346821  方案一：nn.DataParallel 核心在于使用nn.Da">
 <meta property="og:locale" content="zh_CN">
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -76,15 +76,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -114,7 +114,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -133,7 +133,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -145,7 +145,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -157,7 +157,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -169,7 +169,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -181,7 +181,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -336,13 +336,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br>os.environ[<span class="hljs-string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>]=<span class="hljs-string">&quot;0,1,2,3&quot;</span><br><span class="hljs-keyword">import</span> argparse<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">from</span> torch.utils.data.distributed <span class="hljs-keyword">import</span> DistributedSampler<br><span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter<br><br><span class="hljs-keyword">from</span> model <span class="hljs-keyword">import</span> Net<br><span class="hljs-keyword">from</span> data <span class="hljs-keyword">import</span> train_dataset, test_dataset<br><br>parser = argparse.ArgumentParser()<br>parser.add_argument(<span class="hljs-string">&quot;--local_rank&quot;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">int</span>, default=-<span class="hljs-number">1</span>)<br>args = parser.parse_args()<br><br>torch.cuda.set_device(args.local_rank)<br>device = torch.device(<span class="hljs-string">&#x27;cuda&#x27;</span>, args.local_rank)<br>torch.distributed.init_process_group(backend=<span class="hljs-string">&#x27;nccl&#x27;</span>)<br><br><span class="hljs-comment"># 固定随机种子</span><br>seed = <span class="hljs-number">42</span><br>random.seed(seed)<br>np.random.seed(seed)<br>torch.manual_seed(seed)<br>torch.cuda.manual_seed_all(seed)<br><br>batch_size = <span class="hljs-number">64</span><br><br>model = Net()<br>model.to(device)<br>criterion = nn.CrossEntropyLoss()<br>optimizer = optim.SGD(model.parameters(), lr=<span class="hljs-number">0.1</span>)<br><br><span class="hljs-comment"># training!</span><br><span class="hljs-keyword">if</span> args.local_rank == <span class="hljs-number">0</span>:<br>    tb_writer = SummaryWriter(comment=<span class="hljs-string">&#x27;ddp-3&#x27;</span>)<br><br>train_sampler = DistributedSampler(train_dataset)<br>train_loader = torch.utils.data.DataLoader(train_dataset, sampler=train_sampler, batch_size=batch_size)<br><br>model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank], output_device=args.local_rank, find_unused_parameters=<span class="hljs-literal">True</span>)<br><br><span class="hljs-keyword">for</span> i, (inputs, labels) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(train_loader):<br>    <span class="hljs-comment"># forward</span><br>    inputs = inputs.to(device)<br>    labels = labels.to(device)<br>    outputs = model(inputs)<br>    loss = criterion(outputs, labels)<br>    <span class="hljs-comment"># backward</span><br>    optimizer.zero_grad()<br>    loss.backward()<br>    optimizer.step()<br>    <span class="hljs-comment"># log</span><br>    <span class="hljs-keyword">if</span> args.local_rank == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> i % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>:<br>        tb_writer.add_scalar(<span class="hljs-string">&#x27;loss&#x27;</span>, loss.item(), i)<br><br><span class="hljs-keyword">if</span> args.local_rank == <span class="hljs-number">0</span>:<br>    tb_writer.close()<br></code></pre></td></tr></table></figure>
 <h2 id="BUG">BUG</h2>
 <p>发现一个BUG，单机单GPU训练时没问题，但是转换成多GPU训练，以下的pq_end_pos就传不进model里面</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153304750.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153304750.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>经过研究后发现，单机单GPU训练的时候，model的type为：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153057827.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153057827.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>但是多GPU训练时，model的type变为：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807152623767.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807152623767.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>原因是model经过torch.nn.parallel.DistributedDataParallel后转变了类型</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153214829.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230807153214829.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -361,7 +361,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Practice/" class="category-chain-item">Practice</a>
+  <a href="/blog/categories/Practice/" class="category-chain-item">Practice</a>
   
   
 
@@ -382,7 +382,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>多GPU训练</div>
-      <div>https://heart.github.io/2023/08/07/Work/Practice/多GPU训练/</div>
+      <div>https://heart.github.io/blog/2023/08/07/Work/Practice/多GPU训练/</div>
     </div>
     <div class="license-meta">
       
@@ -426,7 +426,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/08/Work/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/" title="GPT大模型相关知识">
+                      <a href="/blog/2023/08/08/Work/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/" title="GPT大模型相关知识">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">GPT大模型相关知识</span>
                         <span class="visible-mobile">上一篇</span>
@@ -436,7 +436,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/06/Others/%E5%BE%85%E7%9C%8B/" title="待看的书 &amp;&amp; 待学习的知识点">
+                      <a href="/blog/2023/08/06/Others/%E5%BE%85%E7%9C%8B/" title="待看的书 &amp;&amp; 待学习的知识点">
                         <span class="hidden-mobile">待看的书 &amp;&amp; 待学习的知识点</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -590,8 +590,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -613,7 +613,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -712,7 +712,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -722,7 +722,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

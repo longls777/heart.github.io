@@ -19,7 +19,7 @@
     <meta name="description" content="并查集的原理       并查集是一种树型的数据结构，用于处理一些不相交集合（disjoint sets）的合并及查询问题 并查集通常包含两种操作：   查找(Find)：查询两个元素是否在同一个集合中   合并(Union)：把两个不相交的集合合并为一个集合   并查集代码最初版 初始化 123456int fa[MAXN];inline void init(int n)&amp;#123;    fo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并查集">
-<meta property="og:url" content="https://heart.github.io/2023/04/27/Work/Algorithm%20Problem/%E5%B9%B6%E6%9F%A5%E9%9B%86/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/04/27/Work/Algorithm%20Problem/%E5%B9%B6%E6%9F%A5%E9%9B%86/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="并查集的原理       并查集是一种树型的数据结构，用于处理一些不相交集合（disjoint sets）的合并及查询问题 并查集通常包含两种操作：   查找(Find)：查询两个元素是否在同一个集合中   合并(Union)：把两个不相交的集合合并为一个集合   并查集代码最初版 初始化 123456int fa[MAXN];inline void init(int n)&amp;#123;    fo">
 <meta property="og:locale" content="zh_CN">
@@ -74,12 +74,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -88,15 +88,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -126,7 +126,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -145,7 +145,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -157,7 +157,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -169,7 +169,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -181,7 +181,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -193,7 +193,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -306,12 +306,12 @@
               <div class="markdown-body">
                 
                 <h2 id="并查集的原理">并查集的原理</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-09fa3fa35e5411444b327d9cb9a31057_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-3bf6c1a6ecf87fa93f4dbab2012446c7_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-be12a6c795572d2acd77dcd49de35127_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-3c353bc781c7f3553079d541a9cfdc28_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-6362d8b13705d5ba17b19cdeee453022_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-cca3ddf5806a221201ed78caf1d27041_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-09fa3fa35e5411444b327d9cb9a31057_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-3bf6c1a6ecf87fa93f4dbab2012446c7_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-be12a6c795572d2acd77dcd49de35127_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-3c353bc781c7f3553079d541a9cfdc28_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-6362d8b13705d5ba17b19cdeee453022_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-cca3ddf5806a221201ed78caf1d27041_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <p>并查集是一种树型的数据结构，用于处理一些不相交集合（disjoint sets）的合并及查询问题</p>
 <p>并查集通常包含两种操作：</p>
 <ul>
@@ -333,10 +333,10 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span></span><br><span class="hljs-function"></span>&#123;<br>    fa[<span class="hljs-built_in">find</span>(i)] = <span class="hljs-built_in">find</span>(j);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>合并操作也是很简单的，先找到两个集合的代表元素，然后将前者的父节点设为后者即可，当然也可以将后者的父节点设为前者，这里暂时不重要</p>
 <h2 id="路径压缩">路径压缩</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-49b5dd7af650192373e96d29f9c4b8cf_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-6f85fc7c5578aa20400ac56f0da31e37_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-1d3ef8a42d424cbec76135ce8a494ff7_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-23c367515ace6fc0603692dfd865849f_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-49b5dd7af650192373e96d29f9c4b8cf_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-6f85fc7c5578aa20400ac56f0da31e37_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-1d3ef8a42d424cbec76135ce8a494ff7_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-23c367515ace6fc0603692dfd865849f_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <p>问题：链条太长了，查询费时</p>
 <p>解决方法：<strong>把沿途的每个节点的父节点都设为根节点</strong></p>
 <p><strong>查询（路径压缩）</strong></p>
@@ -348,8 +348,8 @@
 </blockquote>
 <h2 id="按秩合并">按秩合并</h2>
 <p>由于路径压缩只在查询时进行，也只压缩一条路径，所以并查集最终的结构仍然可能是比较复杂的</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-d3ff42bb79a6bc751f47daf3fc70e0d9_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-96fbb25365b43f0a109bec6d55b3b899_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-d3ff42bb79a6bc751f47daf3fc70e0d9_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-96fbb25365b43f0a109bec6d55b3b899_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <p>如果把7的父节点设为8，会使树的<strong>深度</strong>（树中最长链的长度）加深，而把8的父节点设为7，则不会有这个问题，所以右边的更好</p>
 <p>所以<strong>应该把简单的树往复杂的树上合并，而不是相反。因为这样合并后，到根节点距离变长的节点个数比较少</strong></p>
 <p>用一个数组rank[]记录每个根节点对应的树的深度（如果不是根节点，其rank相当于以它作为根节点的<strong>子树</strong>的深度）。一开始，把所有元素的rank（<strong>秩</strong>）设为1。合并时比较两个根节点，把rank较小者往较大者上合并。</p>
@@ -359,9 +359,9 @@
 <p><strong>合并（按秩合并）</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> x = <span class="hljs-built_in">find</span>(i), y = <span class="hljs-built_in">find</span>(j);    <span class="hljs-comment">//先找到两个根节点</span><br>    <span class="hljs-keyword">if</span> (rank[x] &lt;= rank[y])<br>        fa[x] = y;<br>    <span class="hljs-keyword">else</span><br>        fa[y] = x;<br>    <span class="hljs-keyword">if</span> (rank[x] == rank[y] &amp;&amp; x != y)<br>        rank[y]++;                   <span class="hljs-comment">//如果深度相同且根节点不同，则新的根节点的深度+1</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>为什么深度相同，新的根节点深度要+1？如下图，我们有两个深度均为2的树，现在要merge(2,5)：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-de356190829600f438058e8615c7a5ac_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-de356190829600f438058e8615c7a5ac_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <p>这里把2的父节点设为5，或者把5的父节点设为2，其实没有太大区别。我们选择前者，于是变成这样：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-a829932f008f000440942cb8df393662_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-a829932f008f000440942cb8df393662_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <p>显然树的深度增加了1，所以让rank[y]++</p>
 
                 
@@ -381,7 +381,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
+  <a href="/blog/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
   
   
 
@@ -396,7 +396,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="print-no-link">#并查集</a>
+        <a href="/blog/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="print-no-link">#并查集</a>
       
     </div>
   
@@ -409,7 +409,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>并查集</div>
-      <div>https://heart.github.io/2023/04/27/Work/Algorithm Problem/并查集/</div>
+      <div>https://heart.github.io/blog/2023/04/27/Work/Algorithm Problem/并查集/</div>
     </div>
     <div class="license-meta">
       
@@ -453,7 +453,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/27/Work/Algorithm%20Problem/%E6%90%9C%E7%B4%A2/" title="搜索">
+                      <a href="/blog/2023/04/27/Work/Algorithm%20Problem/%E6%90%9C%E7%B4%A2/" title="搜索">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">搜索</span>
                         <span class="visible-mobile">上一篇</span>
@@ -463,7 +463,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/27/Work/Java/Deque%E5%92%8CQueue%E7%9A%84%E6%AF%94%E8%BE%83/" title="Deque和Queue的比较">
+                      <a href="/blog/2023/04/27/Work/Java/Deque%E5%92%8CQueue%E7%9A%84%E6%AF%94%E8%BE%83/" title="Deque和Queue的比较">
                         <span class="hidden-mobile">Deque和Queue的比较</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -622,8 +622,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -645,7 +645,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -744,7 +744,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -754,7 +754,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

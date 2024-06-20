@@ -19,7 +19,7 @@
     <meta name="description" content="什么是Sentinel Sentinel（哨岗、哨兵）是Redis的高可用性（high availability）解决方案：由一个或多个Sentinel实例（instance）组成的Sentinel系统（system）可以监视任意多个主服务器，以及这些主服务器属下的所有从服务器，并在被监视的主服务器进入下线状态时，自动将下线主服务器属下的某个从服务器升级为新的主服务器，然后由新的主服务器代替已下线">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sentinel">
-<meta property="og:url" content="https://heart.github.io/2023/02/27/Work/Redis/Redis-Sentinel/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/02/27/Work/Redis/Redis-Sentinel/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="什么是Sentinel Sentinel（哨岗、哨兵）是Redis的高可用性（high availability）解决方案：由一个或多个Sentinel实例（instance）组成的Sentinel系统（system）可以监视任意多个主服务器，以及这些主服务器属下的所有从服务器，并在被监视的主服务器进入下线状态时，自动将下线主服务器属下的某个从服务器升级为新的主服务器，然后由新的主服务器代替已下线">
 <meta property="og:locale" content="zh_CN">
@@ -70,12 +70,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -84,15 +84,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -122,7 +122,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -141,7 +141,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -153,7 +153,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -165,7 +165,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -177,7 +177,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -189,7 +189,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -303,10 +303,10 @@
                 
                 <h2 id="什么是Sentinel">什么是Sentinel</h2>
 <p>Sentinel（哨岗、哨兵）是Redis的高可用性（high availability）解决方案：由一个或多个Sentinel实例（instance）组成的Sentinel系统（system）可以监视任意多个主服务器，以及这些主服务器属下的所有从服务器，并在被监视的主服务器进入下线状态时，自动将下线主服务器属下的某个从服务器升级为新的主服务器，然后由新的主服务器代替已下线的主服务器继续处理命令请求</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227094959045.png" srcset="/img/loading.gif" lazyload alt="image-20230227094959045"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227095019825.png" srcset="/img/loading.gif" lazyload alt="image-20230227095019825"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227095031511.png" srcset="/img/loading.gif" lazyload alt="image-20230227095031511"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227095037937.png" srcset="/img/loading.gif" lazyload alt="image-20230227095037937"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227094959045.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227094959045"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227095019825.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227095019825"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227095031511.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227095031511"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227095037937.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227095037937"></p>
 <h2 id="Sentinel初始化">Sentinel初始化</h2>
 <p>初始化Sentinel的最后一步是创建连向被监视主服务器的网络连接，Sentinel将成为主服务器的客户端，它可以向主服务器发送命令，并从命令回复中获取相关的信息</p>
 <p>对于每个被Sentinel监视的主服务器来说，Sentinel会创建两个连向主服务器的异步网络连接：</p>
@@ -319,7 +319,7 @@
 </blockquote>
 <h2 id="获取主服务器信息">获取主服务器信息</h2>
 <p>Sentinel默认会以每十秒一次的频率，通过命令连接向被监视的主服务器发送INFO命令，并通过分析INFO命令的回复来获取主服务器的当前信息</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227100635899.png" srcset="/img/loading.gif" lazyload alt="image-20230227100635899"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227100635899.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227100635899"></p>
 <p>通过分析主服务器返回的INFO命令回复，Sentinel可以获取以下两方面的信息：</p>
 <ul>
 <li>一方面是关于主服务器本身的信息，包括run_id域记录的服务器运行ID，以及role域记录的服务器角色</li>
@@ -328,19 +328,19 @@
 <h2 id="获取从服务器信息">获取从服务器信息</h2>
 <p>当Sentinel发现主服务器有新的从服务器出现时，Sentinel除了会为这个新的从服务器创建相应的实例结构之外，Sentinel会创建连接到从服务器的命令连接和订阅连接</p>
 <p>在创建命令连接之后，Sentinel在默认情况下，会以每十秒一次的频率通过命令连接向从服务器发送INFO命令</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227101951620.png" srcset="/img/loading.gif" lazyload alt="image-20230227101951620"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227101951620.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227101951620"></p>
 <h2 id="向主服务器和从服务器发送信息">向主服务器和从服务器发送信息</h2>
 <p>在默认情况下，Sentinel会以每两秒一次的频率，通过命令连接向所有被监视的主服务器和从服务器发送命令，命令向服务器的<code>__sentinel__:hello</code>频道发送了一条信息，信息的内容由多个参数组成：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227102822674.png" srcset="/img/loading.gif" lazyload alt="image-20230227102822674"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227102830312.png" srcset="/img/loading.gif" lazyload alt="image-20230227102830312"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227102822674.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227102822674"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227102830312.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227102830312"></p>
 <h2 id="接收来自主服务器和从服务器的频道信息">接收来自主服务器和从服务器的频道信息</h2>
 <p>当Sentinel与一个主服务器或者从服务器建立起订阅连接之后，Sentinel就会通过订阅连接，向服务器发送以下命令：</p>
 <p><code>SUBSCRIBE __sentinel__:hello</code></p>
 <p>Sentinel对<code>__sentinel__:hello</code>频道的订阅会一直持续到Sentinel与服务器的连接断开为止</p>
 <p>这也就是说，对于每个与Sentinel连接的服务器，Sentinel既通过命令连接向服务器的<code>__sentinel__:hello</code>频道发送信息，又通过订阅连接从服务器的<code>__sentinel__:hello</code>频道接收信息</p>
 <p>对于监视同一个服务器的多个Sentinel来说，一个Sentinel发送的信息会被其他Sentinel接收到，这些信息会被用于更新其他Sentinel对发送信息Sentinel的认知，也会被用于更新其他Sentinel对被监视服务器的认知</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227103414016.png" srcset="/img/loading.gif" lazyload alt="image-20230227103414016"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227103420653.png" srcset="/img/loading.gif" lazyload alt="image-20230227103420653"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227103414016.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227103414016"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227103420653.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227103420653"></p>
 <h2 id="创建连向其他Sentinel的命令连接">创建连向其他Sentinel的命令连接</h2>
 <p>当Sentinel通过频道信息发现一个新的Sentinel时，它不仅会为新Sentinel在sentinels字典中创建相应的实例结构，还会创建一个连向新Sentinel的命令连接，而新Sentinel也同样会创建连向这个Sentinel的命令连接，最终监视同一主服务器的多个Sentinel将形成相互连接的网络</p>
 <p>使用命令连接相连的各个Sentinel可以通过向其他Sentinel发送命令请求来进行信息交换，Sentinel实现主观下线检测和客观下线检测都会使用Sentinel之间的命令连接来进行通信</p>
@@ -410,7 +410,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Redis/" class="category-chain-item">Redis</a>
+  <a href="/blog/categories/Redis/" class="category-chain-item">Redis</a>
   
   
 
@@ -431,7 +431,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Sentinel</div>
-      <div>https://heart.github.io/2023/02/27/Work/Redis/Redis-Sentinel/</div>
+      <div>https://heart.github.io/blog/2023/02/27/Work/Redis/Redis-Sentinel/</div>
     </div>
     <div class="license-meta">
       
@@ -475,7 +475,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/27/Work/Paper%20Reading%20Notes/008Learning%20to%20Attend%20On%20Essential%20Terms%20An%20Enhanced%20Retriever-Reader%20Model%20for%20Open-domain%20Question%20Answering/" title="Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering">
+                      <a href="/blog/2023/02/27/Work/Paper%20Reading%20Notes/008Learning%20to%20Attend%20On%20Essential%20Terms%20An%20Enhanced%20Retriever-Reader%20Model%20for%20Open-domain%20Question%20Answering/" title="Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering</span>
                         <span class="visible-mobile">上一篇</span>
@@ -485,7 +485,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/23/Work/Redis/%E5%A4%9A%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A4%8D%E5%88%B6/" title="多机数据库——复制">
+                      <a href="/blog/2023/02/23/Work/Redis/%E5%A4%9A%E6%9C%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A4%8D%E5%88%B6/" title="多机数据库——复制">
                         <span class="hidden-mobile">多机数据库——复制</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -644,8 +644,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -667,7 +667,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -766,7 +766,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -776,7 +776,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

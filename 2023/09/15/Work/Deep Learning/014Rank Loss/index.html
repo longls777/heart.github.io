@@ -19,7 +19,7 @@
     <meta name="description" content="一文理解Ranking Loss&#x2F;Margin Loss&#x2F;Triplet Loss - 徐土豆的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;158853633  Rank Loss 不像其他损失函数，比如交叉熵损失和均方差损失函数，这些损失的设计目的就是学习如何去直接地预测标签，或者回归出一个值，又或者是在给定输入的情况下预测出一组值，这是在传统的分类任务和回归任务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rank Loss">
-<meta property="og:url" content="https://heart.github.io/2023/09/15/Work/Deep%20Learning/014Rank%20Loss/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/09/15/Work/Deep%20Learning/014Rank%20Loss/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="一文理解Ranking Loss&#x2F;Margin Loss&#x2F;Triplet Loss - 徐土豆的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;158853633  Rank Loss 不像其他损失函数，比如交叉熵损失和均方差损失函数，这些损失的设计目的就是学习如何去直接地预测标签，或者回归出一个值，又或者是在给定输入的情况下预测出一组值，这是在传统的分类任务和回归任务">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -305,20 +305,20 @@
 <li>使用三元组的训练数据点（即是三个数据点一组）</li>
 </ul>
 <h3 id="二元组样本对">二元组样本对</h3>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-f926222841a5376e85a15c31c5e157f2_720w.webp" srcset="/img/loading.gif" lazyload alt="二元组样本的rank loss"></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-f926222841a5376e85a15c31c5e157f2_720w.webp" srcset="/blog/img/loading.gif" lazyload alt="二元组样本的rank loss"></p>
 <p>在这个设置中，CNN的权重值是共享的，称之为Siamese Net</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915131614233.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915131614233.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>成对样本的ranking loss强制样本的表征在正样本对中拥有趋向于0的度量距离，而在负样本对中，这个距离则至少大于一个阈值</p>
 <blockquote>
 <p>这里设置阈值的目的是，当某个负样本对中的表征足够好，体现在其距离足够远的时候，就没有必要在该负样本对中浪费时间去增大这个距离了，因此进一步的训练将会关注其他更加难分别的样本对</p>
 </blockquote>
 <p>假设用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">r_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>分别表示样本对两个元素的表征，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>是一个二值的数值，在输入的是负样本对时为0，正样本对时为1，距离<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span>是欧式距离，就能得到最终的loss函数表达式：</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915132001145.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915132001145.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h3 id="三元组样本对">三元组样本对</h3>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-c573b95fcc6e55bc1c17ade5256d6aed_1440w.webp" srcset="/img/loading.gif" lazyload alt="三元组样本的rank loss"></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915132144837.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915132224898.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-9a9fdfb71c761db343858a408a5060f1_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-c573b95fcc6e55bc1c17ade5256d6aed_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt="三元组样本的rank loss"></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915132144837.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915132224898.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-9a9fdfb71c761db343858a408a5060f1_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="Rank-Loss的别名">Rank Loss的别名</h2>
 <ul>
 <li><strong>ranking loss</strong>：这个名字来自于信息检索领域，在这个应用中，我们期望训练一个模型对项目（items）进行特定的排序。比如文件检索中，对某个检索项目的排序等</li>
@@ -345,7 +345,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
+  <a href="/blog/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
   
   
 
@@ -366,7 +366,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Rank Loss</div>
-      <div>https://heart.github.io/2023/09/15/Work/Deep Learning/014Rank Loss/</div>
+      <div>https://heart.github.io/blog/2023/09/15/Work/Deep Learning/014Rank Loss/</div>
     </div>
     <div class="license-meta">
       
@@ -410,7 +410,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/15/Work/Paper%20Reading%20Notes/032Deberta/" title="DeBERTa - Decoding-enhanced BERT with Disentangled Attention">
+                      <a href="/blog/2023/09/15/Work/Paper%20Reading%20Notes/032Deberta/" title="DeBERTa - Decoding-enhanced BERT with Disentangled Attention">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">DeBERTa - Decoding-enhanced BERT with Disentangled Attention</span>
                         <span class="visible-mobile">上一篇</span>
@@ -420,7 +420,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/12/Work/Deep%20Learning/013%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%B8%A9%E5%BA%A6%E7%B3%BB%E6%95%B0/" title="对比学习infoNCE Loss的温度系数">
+                      <a href="/blog/2023/09/12/Work/Deep%20Learning/013%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%B8%A9%E5%BA%A6%E7%B3%BB%E6%95%B0/" title="对比学习infoNCE Loss的温度系数">
                         <span class="hidden-mobile">对比学习infoNCE Loss的温度系数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -579,8 +579,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -602,7 +602,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -701,7 +701,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -711,7 +711,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

@@ -19,7 +19,7 @@
     <meta name="description" content="662. 二叉树最大宽度 给你一棵二叉树的根节点 root ，返回树的 最大宽度 。 树的 最大宽度 是所有层中最大的 宽度 。 每一层的 宽度 被定义为该层最左和最右的非空节点（即，两个端点）之间的长度。将这个二叉树视作与满二叉树结构相同，两端点间会出现一些延伸到这一层的 null 节点，这些 null 节点也计入长度。 题目数据保证答案将会在 32 位 带符号整数范围内。 示例 1：  123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode662 二叉树最大宽度">
-<meta property="og:url" content="https://heart.github.io/2022/08/27/Work/Algorithm%20Problem/leetcode662/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2022/08/27/Work/Algorithm%20Problem/leetcode662/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="662. 二叉树最大宽度 给你一棵二叉树的根节点 root ，返回树的 最大宽度 。 树的 最大宽度 是所有层中最大的 宽度 。 每一层的 宽度 被定义为该层最左和最右的非空节点（即，两个端点）之间的长度。将这个二叉树视作与满二叉树结构相同，两端点间会出现一些延伸到这一层的 null 节点，这些 null 节点也计入长度。 题目数据保证答案将会在 32 位 带符号整数范围内。 示例 1：  123">
 <meta property="og:locale" content="zh_CN">
@@ -64,12 +64,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -78,15 +78,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -116,7 +116,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -135,7 +135,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -147,7 +147,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -159,7 +159,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -171,7 +171,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -183,7 +183,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -301,13 +301,13 @@
 <p>每一层的 <strong>宽度</strong> 被定义为该层最左和最右的非空节点（即，两个端点）之间的长度。将这个二叉树视作与满二叉树结构相同，两端点间会出现一些延伸到这一层的 <code>null</code> 节点，这些 <code>null</code> 节点也计入长度。</p>
 <p>题目数据保证答案将会在 <strong>32 位</strong> 带符号整数范围内。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/width1-tree.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/width1-tree.jpg" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">root</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">9</span>]<br>输出：<span class="hljs-number">4</span><br>解释：最大宽度出现在树的第 <span class="hljs-number">3</span> 层，宽度为 <span class="hljs-number">4</span> (<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">9</span>) 。<br></code></pre></td></tr></table></figure>
 <p><strong>示例 2：</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/maximum-width-of-binary-tree-v3.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/maximum-width-of-binary-tree-v3.jpg" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">输入：root = [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">9</span>,<span class="hljs-number">6</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>]<br>输出：<span class="hljs-number">7</span><br>解释：最大宽度出现在树的第 <span class="hljs-number">4</span> 层，宽度为 <span class="hljs-number">7</span> (<span class="hljs-number">6</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>) 。<br></code></pre></td></tr></table></figure>
 <p><strong>示例 3：</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/width3-tree.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/width3-tree.jpg" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：root = [1,3,2,5]<br>输出：2<br>解释：最大宽度出现在树的第<span class="hljs-number"> 2 </span>层，宽度为<span class="hljs-number"> 2 </span>(3,2) 。<br></code></pre></td></tr></table></figure>
 <p><strong>提示：</strong></p>
 <ul>
@@ -317,7 +317,7 @@
 <h4 id="题解">题解</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-type">int</span> ans;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">widthOfBinaryTree</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        dfs(root, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> u, <span class="hljs-type">int</span> depth)</span> &#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> ;<br>        <span class="hljs-keyword">if</span> (!map.containsKey(depth)) map.put(depth, u);<br>        ans = Math.max(ans, u - map.get(depth) + <span class="hljs-number">1</span>);<br>        u = u - map.get(depth) + <span class="hljs-number">1</span>;<br>        dfs(root.left, u &lt;&lt; <span class="hljs-number">1</span>, depth + <span class="hljs-number">1</span>);<br>        dfs(root.right, u &lt;&lt; <span class="hljs-number">1</span> | <span class="hljs-number">1</span>, depth + <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>满二叉树的节点编号规则：若根节点编号为 <code>u</code>，则其左子节点编号为 <code>u &lt;&lt; 1</code>，其右节点编号为 <code>u &lt;&lt; 1 | 1</code></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/wKiom1cd666TzHXBAADE1wAN1l4793.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/wKiom1cd666TzHXBAADE1wAN1l4793.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>可以在 <code>DFS</code>过程中使用两个哈希表分别记录每层深度中的最小节点编号和最大节点编号，两者距离即是当前层的宽度，最终所有层数中的最大宽度即是答案。</p>
 <p>而实现上，我们可以利用先 DFS 左节点，再 DFS 右节点的性质可知，每层的最左节点必然是最先被遍历到，因此我们只需要记录当前层最先被遍历到点编号（即当前层最小节点编号），并在 DFS 过程中计算宽度，更新答案即可。</p>
 <p>为了防止树深度过大导致u溢出，使用<code>u = u - map.get(depth) + 1</code>将每一层重编号，这里不太好理解，照着上图自己计算一下就好了，除了root，每一层的编号都是从2开始的</p>
@@ -344,7 +344,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
+  <a href="/blog/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
   
   
 
@@ -359,7 +359,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/DFS/" class="print-no-link">#DFS</a>
+        <a href="/blog/tags/DFS/" class="print-no-link">#DFS</a>
       
     </div>
   
@@ -372,7 +372,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>leetcode662 二叉树最大宽度</div>
-      <div>https://heart.github.io/2022/08/27/Work/Algorithm Problem/leetcode662/</div>
+      <div>https://heart.github.io/blog/2022/08/27/Work/Algorithm Problem/leetcode662/</div>
     </div>
     <div class="license-meta">
       
@@ -416,7 +416,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/06/Work/Algorithm%20Problem/leetcode828/" title="leetcode828 统计子串中的唯一字符">
+                      <a href="/blog/2022/09/06/Work/Algorithm%20Problem/leetcode828/" title="leetcode828 统计子串中的唯一字符">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">leetcode828 统计子串中的唯一字符</span>
                         <span class="visible-mobile">上一篇</span>
@@ -426,7 +426,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/26/Work/Paper%20Reading%20Notes/010Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space/" title="Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information">
+                      <a href="/blog/2022/08/26/Work/Paper%20Reading%20Notes/010Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space/" title="Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information">
                         <span class="hidden-mobile">Learning to Ask Good Questions:Ranking Clarification Questions using Neural Expected Value of Perfect Information</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -585,8 +585,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -608,7 +608,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -707,7 +707,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -717,7 +717,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

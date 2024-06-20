@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《RoFormer: Enhanced Transformer with Rotary Position Embedding》 论文来源：  arXiv:2104.09864 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2104.09864.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;ZhuiyiTechnology&#x2F;roformer 参考链接  让研究人员绞尽脑汁的T">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RoFormer - Enhanced Transformer with Rotary Position Embedding">
-<meta property="og:url" content="https://heart.github.io/2023/08/09/Work/Paper%20Reading%20Notes/014RoFormer%20Enhanced%20Transformer%20with%20Rotary%20Position%20Embedding/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/09/Work/Paper%20Reading%20Notes/014RoFormer%20Enhanced%20Transformer%20with%20Rotary%20Position%20Embedding/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《RoFormer: Enhanced Transformer with Rotary Position Embedding》 论文来源：  arXiv:2104.09864 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2104.09864.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;ZhuiyiTechnology&#x2F;roformer 参考链接  让研究人员绞尽脑汁的T">
 <meta property="og:locale" content="zh_CN">
@@ -64,12 +64,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -78,15 +78,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -116,7 +116,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -135,7 +135,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -147,7 +147,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -159,7 +159,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -171,7 +171,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -183,7 +183,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -313,13 +313,13 @@
 <p>目的是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo separator="true">,</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">Q,K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>通过Attention后携带相对位置信息，也可以在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span>中添加，使得最终结果带有绝对位置信息，是Transformer式的Sinusoidal编码的一种优化，目前唯一一种可用于线性Attention的相对位置编码</p>
 <h2 id="定义">定义</h2>
 <p>二维情况：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164152570.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164152570.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>多维偶数维情况：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164221414.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164221414.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>推荐实现方式：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164311152.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810164311152.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>可以看到，RoPE形式上和Sinusoidal位置编码有点相似，只不过Sinusoidal位置编码是加性的，而RoPE可以视为乘性的，其中在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>θ</mi><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">\theta^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span></span></span></span>的选择上，RoPE沿用了Sinusoidal位置编码的方案，即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>θ</mi><mi>i</mi></msup><mo>=</mo><mn>1000</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>2</mn><mi>i</mi><mi mathvariant="normal">/</mi><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\theta^i=10000^{-2i/d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.888em;"></span><span class="mord">1000</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">2</span><span class="mord mathnormal mtight">i</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span>，它可以带来一定的远程衰减性</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/1347893165.png" srcset="/img/loading.gif" lazyload alt="RoPE的远程衰减性（d=128）"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/1347893165.png" srcset="/blog/img/loading.gif" lazyload alt="RoPE的远程衰减性（d=128）"></p>
 <p>最后，文章指出，RoPE是目前唯一一种可以用于线性Attention的相对位置编码。这是因为其他的相对位置编码，都是直接基于Attention矩阵进行操作的，但是线性Attention并没有事先算出Attention矩阵，因此也就不存在操作Attention矩阵的做法，所以其他的方案无法应用到线性Attention中。而对于RoPE来说，它是用绝对位置编码的方式来实现相对位置编码，不需要操作Attention矩阵，因此有了应用到线性Attention的可能性</p>
 <p>尽管理论上RoFormer能处理任意长度的序列，但目前RoFormer还是具有平方复杂度的</p>
 <p>未完待续…</p>
@@ -341,7 +341,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -356,7 +356,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Position-Encoding/" class="print-no-link">#Position Encoding</a>
+        <a href="/blog/tags/Position-Encoding/" class="print-no-link">#Position Encoding</a>
       
     </div>
   
@@ -369,7 +369,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>RoFormer - Enhanced Transformer with Rotary Position Embedding</div>
-      <div>https://heart.github.io/2023/08/09/Work/Paper Reading Notes/014RoFormer Enhanced Transformer with Rotary Position Embedding/</div>
+      <div>https://heart.github.io/blog/2023/08/09/Work/Paper Reading Notes/014RoFormer Enhanced Transformer with Rotary Position Embedding/</div>
     </div>
     <div class="license-meta">
       
@@ -413,7 +413,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/11/Work/Paper%20Reading%20Notes/016GLM/" title="GLM &amp;&amp; GLM-130B">
+                      <a href="/blog/2023/08/11/Work/Paper%20Reading%20Notes/016GLM/" title="GLM &amp;&amp; GLM-130B">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">GLM &amp;&amp; GLM-130B</span>
                         <span class="visible-mobile">上一篇</span>
@@ -423,7 +423,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/09/Work/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" title="LLaMA - Open and Efficient Foundation Language Models">
+                      <a href="/blog/2023/08/09/Work/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" title="LLaMA - Open and Efficient Foundation Language Models">
                         <span class="hidden-mobile">LLaMA - Open and Efficient Foundation Language Models</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -582,8 +582,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -605,7 +605,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -704,7 +704,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -714,7 +714,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

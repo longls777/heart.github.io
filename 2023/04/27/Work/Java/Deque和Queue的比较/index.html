@@ -19,7 +19,7 @@
     <meta name="description" content="Queue     Modifier and Type Method Description     boolean add(E e) 将指定的元素插入到此队列中，如果可以立即执行此操作，而不会违反容量限制， true在成功后返回  IllegalStateException如果当前没有可用空间，则抛出IllegalStateException。   E element() 检索，但不删除，这个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Deque和Queue的比较">
-<meta property="og:url" content="https://heart.github.io/2023/04/27/Work/Java/Deque%E5%92%8CQueue%E7%9A%84%E6%AF%94%E8%BE%83/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/04/27/Work/Java/Deque%E5%92%8CQueue%E7%9A%84%E6%AF%94%E8%BE%83/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="Queue     Modifier and Type Method Description     boolean add(E e) 将指定的元素插入到此队列中，如果可以立即执行此操作，而不会违反容量限制， true在成功后返回  IllegalStateException如果当前没有可用空间，则抛出IllegalStateException。   E element() 检索，但不删除，这个">
 <meta property="og:locale" content="zh_CN">
@@ -63,12 +63,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -77,15 +77,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -115,7 +115,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -134,7 +134,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -146,7 +146,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -158,7 +158,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -170,7 +170,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -182,7 +182,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -294,9 +294,9 @@
             
               <div class="markdown-body">
                 
-                <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151132003.png" srcset="/img/loading.gif" lazyload alt="Deque和Queue的区别"></p>
+                <p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151132003.png" srcset="/blog/img/loading.gif" lazyload alt="Deque和Queue的区别"></p>
 <h2 id="Queue">Queue</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151715632.png" srcset="/img/loading.gif" lazyload alt="Queue"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151715632.png" srcset="/blog/img/loading.gif" lazyload alt="Queue"></p>
 <table>
 <thead>
 <tr>
@@ -339,7 +339,7 @@
 </tbody>
 </table>
 <h2 id="Deque">Deque</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151204047.png" srcset="/img/loading.gif" lazyload alt="Deque"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230427151204047.png" srcset="/blog/img/loading.gif" lazyload alt="Deque"></p>
 <table>
 <thead>
 <tr>
@@ -504,7 +504,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/blog/categories/Java/" class="category-chain-item">Java</a>
   
   
 
@@ -525,7 +525,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Deque和Queue的比较</div>
-      <div>https://heart.github.io/2023/04/27/Work/Java/Deque和Queue的比较/</div>
+      <div>https://heart.github.io/blog/2023/04/27/Work/Java/Deque和Queue的比较/</div>
     </div>
     <div class="license-meta">
       
@@ -569,7 +569,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/27/Work/Algorithm%20Problem/%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="并查集">
+                      <a href="/blog/2023/04/27/Work/Algorithm%20Problem/%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="并查集">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">并查集</span>
                         <span class="visible-mobile">上一篇</span>
@@ -579,7 +579,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/25/Work/Java/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/" title="Java并发知识点详解">
+                      <a href="/blog/2023/04/25/Work/Java/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/" title="Java并发知识点详解">
                         <span class="hidden-mobile">Java并发知识点详解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -738,8 +738,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -761,7 +761,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -860,7 +860,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -870,7 +870,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

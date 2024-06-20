@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《DeBERTa: Decoding-enhanced BERT with Disentangled Attention》 论文来源：  ICLR  2021 **原文链接： **  https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2006.03654 源码： https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;DeBERTa 概述 采用两种技术提升BERT和RoBERTa的效果：  Di">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DeBERTa - Decoding-enhanced BERT with Disentangled Attention">
-<meta property="og:url" content="https://heart.github.io/2023/09/15/Work/Paper%20Reading%20Notes/032Deberta/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/09/15/Work/Paper%20Reading%20Notes/032Deberta/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《DeBERTa: Decoding-enhanced BERT with Disentangled Attention》 论文来源：  ICLR  2021 **原文链接： **  https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2006.03654 源码： https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;DeBERTa 概述 采用两种技术提升BERT和RoBERTa的效果：  Di">
 <meta property="og:locale" content="zh_CN">
@@ -71,12 +71,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -85,15 +85,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -123,7 +123,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -142,7 +142,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -154,7 +154,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -166,7 +166,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -178,7 +178,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -190,7 +190,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -324,7 +324,7 @@
 <p>the attention weights among words are computed using disentangled matrices based on their contents and relative positions, respectively. This is motivated by the observation that the attention weight of a word pair depends on not only their contents but their relative positions</p>
 </blockquote>
 <p>对于第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>个位置的token，使用两个向量表示：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">H_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>i</mi><mi mathvariant="normal">∣</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P_{i|j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0385em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mtight">∣</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span></span></span></span>，分别表示其内容和相对位置，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span></span></span></span>的cross attention score计算如下：</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915153855581.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915153855581.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>由四个分数组成：</p>
 <ul>
 <li>content-to-content</li>
@@ -338,11 +338,11 @@
 <p>Existing approaches to relative position encoding use a separate embedding matrix to compute the relative position bias in computing attention weights (Shaw et al., 2018; Huang et al., 2018). This is equivalent to computing the attention weights using only the content-to-content and content-toposition terms in equation 2. We argue that the position-to-content term is also important since the attention weight of a word pair depends not only on their contents but on their relative positions, which can only be fully modeled using both the content-to-position and position-to-content terms. Since we use relative position embedding, the position-to-position term does not provide much additional information and is removed from equation 2 in our implementation.</p>
 </blockquote>
 <p><strong>standard self-attention：</strong></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915155237823.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915155217222.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915155237823.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915155217222.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>disentangled self-attention：</strong></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915155305067.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915155823999.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915155305067.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915155823999.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="Enhanced-mask-decoder">Enhanced mask decoder</h2>
 <p>分离的注意力机制已经考虑了上下文单词的内容和相对位置，但并未考虑这些单词的绝对位置，而在许多情况下，这对于预测是至关重要的。</p>
 <blockquote>
@@ -352,18 +352,18 @@
 <blockquote>
 <p>DeBERTa incorporates absolute word position embeddings right before the softmax layer where the model decodes the masked words based on the aggregated contextual embeddings of word contents and positions.</p>
 </blockquote>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915160927249.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915160927249.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>DeBERTa在所有Transformer层中捕捉相对位置，并且仅在解码掩盖的单词时使用绝对位置作为补充信息</p>
 <blockquote>
 <p>此外，文章还做了一个看似微小但重要的改进。在encoder输出向量输入EMD进行 MLM 预训练时，原始的BERT并没有用 [MASK] token替换掉所有被mask掉的token，而是10%保持不变。因为在下游任务的输入中从来没有出现过 [MASK] token，这一设计的初衷是为了缓解预训练和微调之间的不一致性。但是这种方法导致了信息泄漏，即预测以token本身为条件的mask token。DeBERTa在将这些被mask但未改变的token(即那10%被泄露信息的token)输入decoder进行预测之前，将它们encoder输出向量替换为相应的绝对位置嵌入向量。</p>
 </blockquote>
 <h2 id="Experiments">Experiments</h2>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161151152.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161212779.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161151152.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161212779.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h3 id="Ablation-study">Ablation study</h3>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161305915.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161305915.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>基本上所有改进都有效</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161657211.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161657211.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>共享映射矩阵并没有带来显著的性能下降</li>
 <li>Conv也是</li>
@@ -373,7 +373,7 @@
 <p>First, we share the projection matrices of relative position embedding <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>k</mi><mo separator="true">,</mo><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{k,r}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>q</mi><mo separator="true">,</mo><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{q,r}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>k</mi><mo separator="true">,</mo><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{k,c}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mrow><mi>q</mi><mo separator="true">,</mo><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">W_{q,c}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>, respectively, in all attention layers to reduce the number of model parameters.</p>
 <p>Second, a convolution layer is added aside the first Transformer layer to induce n-gram knowledge of sub-word encodings and their outputs are summed up before feeding to the next Transformer layer</p>
 </blockquote>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161857482.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230915161857482.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>比11B的T5效果要好</p>
 <blockquote>
 <p>ICLR2021 | 微软DeBERTa：SuperGLUE上的王者 - HelloWorld的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/344649850">https://zhuanlan.zhihu.com/p/344649850</a></p>
@@ -396,7 +396,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -411,7 +411,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/prlm/" class="print-no-link">#prlm</a>
+        <a href="/blog/tags/prlm/" class="print-no-link">#prlm</a>
       
     </div>
   
@@ -424,7 +424,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>DeBERTa - Decoding-enhanced BERT with Disentangled Attention</div>
-      <div>https://heart.github.io/2023/09/15/Work/Paper Reading Notes/032Deberta/</div>
+      <div>https://heart.github.io/blog/2023/09/15/Work/Paper Reading Notes/032Deberta/</div>
     </div>
     <div class="license-meta">
       
@@ -468,7 +468,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/22/Others/Git%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/" title="Git实用指南">
+                      <a href="/blog/2023/09/22/Others/Git%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/" title="Git实用指南">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Git实用指南</span>
                         <span class="visible-mobile">上一篇</span>
@@ -478,7 +478,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/15/Work/Deep%20Learning/014Rank%20Loss/" title="Rank Loss">
+                      <a href="/blog/2023/09/15/Work/Deep%20Learning/014Rank%20Loss/" title="Rank Loss">
                         <span class="hidden-mobile">Rank Loss</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -637,8 +637,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -660,7 +660,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -759,7 +759,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -769,7 +769,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

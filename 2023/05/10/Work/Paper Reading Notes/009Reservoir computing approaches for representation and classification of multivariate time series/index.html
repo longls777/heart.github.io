@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《Reservoir computing approaches for representation and classification of multivariate time series》 论文来源： arxiv 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1803.07870v3.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;FilippoMB&#x2F;Tim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reservoir computing approaches for representation and classification of multivariate time series">
-<meta property="og:url" content="https://heart.github.io/2023/05/10/Work/Paper%20Reading%20Notes/009Reservoir%20computing%20approaches%20for%20representation%20and%20classification%20of%20multivariate%20time%20series/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/05/10/Work/Paper%20Reading%20Notes/009Reservoir%20computing%20approaches%20for%20representation%20and%20classification%20of%20multivariate%20time%20series/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《Reservoir computing approaches for representation and classification of multivariate time series》 论文来源： arxiv 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1803.07870v3.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;FilippoMB&#x2F;Tim">
 <meta property="og:locale" content="zh_CN">
@@ -82,12 +82,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -96,15 +96,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -134,7 +134,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -153,7 +153,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -165,7 +165,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -177,7 +177,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -189,7 +189,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -201,7 +201,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -321,7 +321,7 @@
 <p>尽管具有无与伦比的训练速度，基于标准RC架构的MTS分类器无法达到完全可训练神经网络的相同精度。本文引入了储层模型空间，这是一种基于RC的无监督方法来学习MTS的向量表示。每个MTS都被编码在一个线性模型的参数中，该模型被训练用来预测储层动态的低维嵌入。与其他RC方法相比，由于中间降维过程，本文的模型空间产生更好的表示并获得可比的计算性能。作为第二个贡献，本文提出了一个用于MTS分类的模块化RC框架，并附带一个相关的开源Python库。该框架提供了不同的模块来无缝地实现高级RC架构。将该体系结构与其他MTS分类器（包括深度学习模型和时间序列核）进行比较。在基准和实际MTS数据集上获得的结果表明，RC分类器的速度大大提高，并且当使用本文提出的表示实现时，也实现了更高的分类精度。</p>
 <p>**关键词：**储备池计算，模型空间，时间序列分类，循环神经网络</p>
 <h2 id="使用RNN处理多变量时间预测分类的一般方法">使用RNN处理多变量时间预测分类的一般方法</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510142836414.png" srcset="/img/loading.gif" lazyload alt="使用RNN处理MTS问题"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510142836414.png" srcset="/blog/img/loading.gif" lazyload alt="使用RNN处理MTS问题"></p>
 <ul>
 <li>Encoder-Decoder架构：
 <ul>
@@ -332,7 +332,7 @@
 <li>只取最后状态<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(T)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span></span></span></span></li>
 </ul>
 <h2 id="全部参数可训练的RNN-门机制">全部参数可训练的RNN &amp;&amp; 门机制</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510143010817.png" srcset="/img/loading.gif" lazyload alt="image-20230510143010817"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510143010817.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230510143010817"></p>
 <ul>
 <li>通过反向传播更新RNN部分的参数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mrow><mi>e</mi><mi>n</mi><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\theta_{enc}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> &amp;&amp; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mrow><mi>d</mi><mi>e</mi><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\theta_{dec}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">ec</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
 <li>尽管基本RNN在理论上有能力对任何动力系统建模，但在实践中，训练参数困难</li>
@@ -340,13 +340,13 @@
 <li>另一种解决方案是使用<strong>LSTM</strong>，它利用门控机制来保持其内部记忆在长时间间隔内保持不变。然而，LSTM的灵活性是以更高的计算和架构复杂性为代价的。一种流行的变体是门控循环单元(GRU)，它通过使用比LSTM更少的参数来提供更好的记忆保持能力</li>
 </ul>
 <h2 id="储备池计算架构">储备池计算架构</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510143757899.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510143806267.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510143757899.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510143806267.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>为了避免费时的反向传播操作，RC方法采取了一个完全不同的方向：</p>
 <ul>
 <li>
 <p>仍然使用RNN的编码函数：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510143933335.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510143933335.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 </li>
 <li>
 <p>但是编码器的参数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mrow><mi>e</mi><mi>n</mi><mi>c</mi></mrow></msub><mo>=</mo><mo stretchy="false">{</mo><msub><mi>W</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo separator="true">,</mo><msub><mi>W</mi><mi>r</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\theta_{enc}= \{W_{in},W_{r}\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span><strong>是随机生成，并且不训练的</strong></p>
@@ -382,14 +382,14 @@
 </li>
 </ul>
 <p>在ESN（Echo state network，回声状态网络）中，decoder一般是一个线性函数：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510145133037.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510145133037.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>decoder 的参数可以通过一个岭回归的损失函数优化：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510145215267.png" srcset="/img/loading.gif" lazyload alt="image-20230510145215267"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510145215267.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230510145215267"></p>
 <p><strong>未经训练的储备池和线性decoder的组合定义了基本的ESN模型</strong></p>
 <p>输出空间<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">r_x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是通过首先处理具有相同储层的每个MTS，然后训练岭回归模型来<strong>提前一步预测输入</strong>得到的:</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510145732020.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510145732020.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>这两个参数就组成了输出空间<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">r_x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510145741203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510145741203.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>随后由decoder处理得到分类结果</p>
 <h1>创新点</h1>
 <h4 id="提出了储备池模型空间表示方法">提出了储备池模型空间表示方法</h4>
@@ -398,17 +398,17 @@
 </ol>
 <p>储备池的泛化能力是建立在它从输入产生大量非均质动力学的基础上的。为了预测下一个输入值，根据感兴趣的预测范围选择不同的动态。</p>
 <p>因此，当固定预测步长(例如，提前1步)时，所有那些对解决任务无用的动态都被丢弃。这在输出模型空间中引入了偏差，因为对预测任务不重要的特征仍然可以用于表征MTS。因此，本文提出了一个新的模型空间，其中每个MTS由线性模型的参数表示，该模型通过考虑所有储备池动态来预测下一个储备池状态。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150116294.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150116294.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>本文提出的输出空间：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150141601.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150141601.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>储备池模型空间表示表征了储备池层序的生成模型：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150255755.png" srcset="/img/loading.gif" lazyload alt="image-20230510150255755"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150255755.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230510150255755"></p>
 <ol start="2">
 <li><strong>储备池状态张量的降维</strong></li>
 </ol>
 <p>原因：储备池的高维数，预测模型的参数数量会变得太大，使得所提出的表示变得难以处理</p>
 <p>解决方法：PCA降维</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150440104.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150440104.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="统一的储备池时间序列分类计算框架">统一的储备池时间序列分类计算框架</h2>
 <p>包含四个模块：</p>
 <ul>
@@ -417,16 +417,16 @@
 <li>表示模块</li>
 <li>decoder模块（读出模块）</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150908823.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150908823.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h5 id="储备池模块">储备池模块</h5>
 <p>使用双向储备池（类似于双向RNN？）双向性是通过向同一储层输入正反顺序的输入序列来实现的</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510151253240.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510151253240.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>完整状态是通过连接上式中的两个状态向量获得的，并且可以通过在每一步总结最近和过去的信息来捕获更长的时间依赖性</p>
 <p>当使用双向储备池时，本文提出的模型空间变为：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510151435589.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510151435589.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <blockquote>
 <p>原来是</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150116294.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510150116294.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 </blockquote>
 <h5 id="降维模块">降维模块</h5>
 <p>PCA</p>
@@ -439,13 +439,13 @@
 <h1>实验结果</h1>
 <h3 id="MTS实验结果">MTS实验结果</h3>
 <h4 id="基准数据集准确率">基准数据集准确率</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510152008532.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510152008532.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="rm-ESN的一些不同配置的实验结果">rm-ESN的一些不同配置的实验结果</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510152057856.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510152133880.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510152213414.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510152057856.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510152133880.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510152213414.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h3 id="单变量TS实验结果">单变量TS实验结果</h3>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510151749689.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230510151749689.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -464,7 +464,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -485,7 +485,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Reservoir computing approaches for representation and classification of multivariate time series</div>
-      <div>https://heart.github.io/2023/05/10/Work/Paper Reading Notes/009Reservoir computing approaches for representation and classification of multivariate time series/</div>
+      <div>https://heart.github.io/blog/2023/05/10/Work/Paper Reading Notes/009Reservoir computing approaches for representation and classification of multivariate time series/</div>
     </div>
     <div class="license-meta">
       
@@ -529,7 +529,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/19/Work/Deep%20Learning/002%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/" title="深度学习中的优化算法概览">
+                      <a href="/blog/2023/07/19/Work/Deep%20Learning/002%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8%E6%A6%82%E8%A7%88/" title="深度学习中的优化算法概览">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">深度学习中的优化算法概览</span>
                         <span class="visible-mobile">上一篇</span>
@@ -539,7 +539,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/05/10/Work/Research/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97/" title="储备池计算">
+                      <a href="/blog/2023/05/10/Work/Research/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97/" title="储备池计算">
                         <span class="hidden-mobile">储备池计算</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -698,8 +698,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -721,7 +721,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -820,7 +820,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -830,7 +830,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

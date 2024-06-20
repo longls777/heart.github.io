@@ -19,7 +19,7 @@
     <meta name="description" content="范数的定义  0范数  1范数  1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数  2范数也就是欧氏距离 正无穷范数  正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数 负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数 对于矩阵Am×nA_{m×n}Am×n​， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]  矩阵的1范数（列范">
 <meta property="og:type" content="article">
 <meta property="og:title" content="范数">
-<meta property="og:url" content="https://heart.github.io/2022/10/13/Work/Machine%20Learning/003%E8%8C%83%E6%95%B0/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2022/10/13/Work/Machine%20Learning/003%E8%8C%83%E6%95%B0/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="范数的定义  0范数  1范数  1范数是向量各个元素的绝对值之和，也称为曼哈顿距离  2范数  2范数也就是欧氏距离 正无穷范数  正无穷范数表示向量所有元素的绝对值中最大的 负无穷范数 负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷 矩阵的范数 对于矩阵Am×nA_{m×n}Am×n​， 举例而说: 1234A &#x3D; [-1, 2, 3;4, -6, 6;]  矩阵的1范数（列范">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -293,18 +293,18 @@
               <div class="markdown-body">
                 
                 <h2 id="范数的定义">范数的定义</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" srcset="/img/loading.gif" lazyload alt="image-20221013160652989"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160652989.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221013160652989"></p>
 <h2 id="0范数">0范数</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160736569.png" srcset="/img/loading.gif" lazyload alt="image-20221013160736569"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160736569.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221013160736569"></p>
 <h2 id="1范数">1范数</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160753968.png" srcset="/img/loading.gif" lazyload alt="image-20221013160753968"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160753968.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221013160753968"></p>
 <p>1范数是向量各个元素的绝对值之和，也称为曼哈顿距离</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160924909.png" srcset="/img/loading.gif" lazyload alt="image-20221013160924909"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160924909.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221013160924909"></p>
 <h2 id="2范数">2范数</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160945993.png" srcset="/img/loading.gif" lazyload alt="image-20221013160945993"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013160945993.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221013160945993"></p>
 <p>2范数也就是欧氏距离</p>
 <h2 id="正无穷范数">正无穷范数</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013161336549.png" srcset="/img/loading.gif" lazyload alt="image-20221013161336549"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221013161336549.png" srcset="/blog/img/loading.gif" lazyload alt="image-20221013161336549"></p>
 <p>正无穷范数表示向量所有元素的绝对值中最大的</p>
 <h2 id="负无穷范数">负无穷范数</h2>
 <p>负无穷范数表示向量所有元素的绝对值中最小的，证明方法类似正无穷</p>
@@ -341,7 +341,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/blog/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
   
   
 
@@ -362,7 +362,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>范数</div>
-      <div>https://heart.github.io/2022/10/13/Work/Machine Learning/003范数/</div>
+      <div>https://heart.github.io/blog/2022/10/13/Work/Machine Learning/003范数/</div>
     </div>
     <div class="license-meta">
       
@@ -406,7 +406,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/13/Work/Machine%20Learning/004%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" title="特征值与特征向量">
+                      <a href="/blog/2022/10/13/Work/Machine%20Learning/004%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" title="特征值与特征向量">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">特征值与特征向量</span>
                         <span class="visible-mobile">上一篇</span>
@@ -416,7 +416,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/06/Work/Paper%20Reading%20Notes/001RoBERTa%20A%20Robustly%20Optimized%20BERT%20Pretraining%20Approach/" title="RoBERTa  A Robustly Optimized BERT Pretraining Approach">
+                      <a href="/blog/2022/10/06/Work/Paper%20Reading%20Notes/001RoBERTa%20A%20Robustly%20Optimized%20BERT%20Pretraining%20Approach/" title="RoBERTa  A Robustly Optimized BERT Pretraining Approach">
                         <span class="hidden-mobile">RoBERTa  A Robustly Optimized BERT Pretraining Approach</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -575,8 +575,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -598,7 +598,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -697,7 +697,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -707,7 +707,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

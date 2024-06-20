@@ -19,7 +19,7 @@
     <meta name="description" content="Linear Regression  拟合函数： hθ&#x3D;θ0+θ1x1+θ2x2h_{\theta}&#x3D;\theta_0+\theta_1x_1+\theta_2x_2 hθ​&#x3D;θ0​+θ1​x1​+θ2​x2​ 其中θi\theta_iθi​为权重，化简得到： hθ(x)&#x3D;∑i&#x3D;0nθixi&#x3D;θTxh_{\theta}(x)&#x3D;\sum_{i&#x3D;0}^{n}\theta_ix_i&#x3D;\theta^Tx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性回归公式推导">
-<meta property="og:url" content="https://heart.github.io/2023/07/25/Work/Machine%20Learning/008%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/07/25/Work/Machine%20Learning/008%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="Linear Regression  拟合函数： hθ&#x3D;θ0+θ1x1+θ2x2h_{\theta}&#x3D;\theta_0+\theta_1x_1+\theta_2x_2 hθ​&#x3D;θ0​+θ1​x1​+θ2​x2​ 其中θi\theta_iθi​为权重，化简得到： hθ(x)&#x3D;∑i&#x3D;0nθixi&#x3D;θTxh_{\theta}(x)&#x3D;\sum_{i&#x3D;0}^{n}\theta_ix_i&#x3D;\theta^Tx">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -293,7 +293,7 @@
               <div class="markdown-body">
                 
                 <h2 id="Linear-Regression">Linear Regression</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230725155834810.png" srcset="/img/loading.gif" lazyload alt="线性回归"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230725155834810.png" srcset="/blog/img/loading.gif" lazyload alt="线性回归"></p>
 <p>拟合函数：</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>h</mi><mi>θ</mi></msub><mo>=</mo><msub><mi>θ</mi><mn>0</mn></msub><mo>+</mo><msub><mi>θ</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>θ</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">h_{\theta}=\theta_0+\theta_1x_1+\theta_2x_2
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
@@ -406,7 +406,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </blockquote>
 <h2 id="引申：为什么选择均方差损失函数作为线性回归的损失函数？">引申：为什么选择均方差损失函数作为线性回归的损失函数？</h2>
 <p>在假设<strong>误差项服从独立同分布的正态分布</strong>时，<strong>最小化均方差损失函数等价于最大似然估计的解</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230725161719400.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230725161719400.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -425,7 +425,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/blog/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
   
   
 
@@ -446,7 +446,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   <div class="license-box my-3">
     <div class="license-title">
       <div>线性回归公式推导</div>
-      <div>https://heart.github.io/2023/07/25/Work/Machine Learning/008线性回归/</div>
+      <div>https://heart.github.io/blog/2023/07/25/Work/Machine Learning/008线性回归/</div>
     </div>
     <div class="license-meta">
       
@@ -490,7 +490,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/31/Work/Machine%20Learning/009%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/" title="分类任务评价指标">
+                      <a href="/blog/2023/07/31/Work/Machine%20Learning/009%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/" title="分类任务评价指标">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">分类任务评价指标</span>
                         <span class="visible-mobile">上一篇</span>
@@ -500,7 +500,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/25/Work/Machine%20Learning/007%E7%94%9F%E6%88%90&amp;%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B/" title="生成式模型和判别式模型">
+                      <a href="/blog/2023/07/25/Work/Machine%20Learning/007%E7%94%9F%E6%88%90&amp;%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B/" title="生成式模型和判别式模型">
                         <span class="hidden-mobile">生成式模型和判别式模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -659,8 +659,8 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -682,7 +682,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -781,7 +781,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -791,7 +791,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

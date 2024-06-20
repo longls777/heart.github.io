@@ -19,7 +19,7 @@
     <meta name="description" content="IO多路复用 IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程  在处理 IO 的时候（也就是将数据从内核复制到应用缓冲的时候），阻塞和非阻塞都是同步 IO 只有使用了特殊的 API 才是异步 IO   基于select、poll、epoll的I&#x2F;O多路复用模型如下：   I&#x2F;O多路复用有很多种实现。在linux上，2.4内核前主要是select和poll，自Li">
 <meta property="og:type" content="article">
 <meta property="og:title" content="select、poll、epoll详解">
-<meta property="og:url" content="https://heart.github.io/2023/03/21/Work/Linux/select_poll_epoll%20/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/03/21/Work/Linux/select_poll_epoll%20/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="IO多路复用 IO多路复用是指内核一旦发现进程指定的一个或者多个IO条件准备读取，它就通知该进程  在处理 IO 的时候（也就是将数据从内核复制到应用缓冲的时候），阻塞和非阻塞都是同步 IO 只有使用了特殊的 API 才是异步 IO   基于select、poll、epoll的I&#x2F;O多路复用模型如下：   I&#x2F;O多路复用有很多种实现。在linux上，2.4内核前主要是select和poll，自Li">
 <meta property="og:locale" content="zh_CN">
@@ -71,12 +71,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -85,15 +85,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -123,7 +123,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -142,7 +142,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -154,7 +154,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -166,7 +166,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -178,7 +178,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -190,7 +190,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -308,22 +308,22 @@
 <li>在处理 IO 的时候（也就是将数据从内核复制到应用缓冲的时候），阻塞和非阻塞都是同步 IO</li>
 <li>只有使用了特殊的 API 才是异步 IO</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-1ad8e572f0df79ba.png" srcset="/img/loading.gif" lazyload alt="同步IO与异步IO"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-1ad8e572f0df79ba.png" srcset="/blog/img/loading.gif" lazyload alt="同步IO与异步IO"></p>
 <p>基于select、poll、epoll的I/O多路复用模型如下：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210314724.png" srcset="/img/loading.gif" lazyload alt="IO多路复用"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210314724.png" srcset="/blog/img/loading.gif" lazyload alt="IO多路复用"></p>
 <blockquote>
 <p>I/O多路复用有很多种实现。在linux上，2.4内核前主要是select和poll，自Linux 2.6内核正式引入epoll以来，epoll已经成为了目前实现高性能网络服务器的必备技术</p>
 </blockquote>
 <h2 id="Select">Select</h2>
 <p>当进程A调用select语句的时候，会将进程A添加到多个监听socket的等待队列中：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-3a36f7cc5e48276a.png" srcset="/img/loading.gif" lazyload alt="select阻塞过程"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-3a36f7cc5e48276a.png" srcset="/blog/img/loading.gif" lazyload alt="select阻塞过程"></p>
 <p>当网卡接收到数据，然后网卡通过中断信号通知cpu有数据到达，执行中断程序，中断程序主要做了两件事：</p>
 <ol>
 <li>将网络数据写入到对应socket的接收缓冲区里面</li>
 <li>唤醒队列中的等待进程(A)，重新将进程A放入工作队列中</li>
 </ol>
 <p>如下图，将所有等待队列的进程移除，并且添加到工作队列中：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-543af9ba5e6e2ba6.png" srcset="/img/loading.gif" lazyload alt="select中断"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-543af9ba5e6e2ba6.png" srcset="/blog/img/loading.gif" lazyload alt="select中断"></p>
 <blockquote>
 <p>上面只是一种情况，当程序调用 Select 时，内核会先遍历一遍 Socket，如果有一个以上的 Socket 接收缓冲区有数据，那么 Select 直接返回，不会阻塞</p>
 </blockquote>
@@ -344,22 +344,22 @@
 <li>保存就绪Socket：维护一个rdlist以及rb_tree，类似于双向链表操作</li>
 </ul>
 <p>epoll 在 Linux 内核中申请了一个简易的文件系统，用于存储相关的对象，每一个 epoll 对象都有一个独立的 eventpoll 结构体，这个结构体会在内核空间中创造独立的内存，用于存储使用epoll_ctl 方法向 epoll 对象中添加进来的事件。这些事件都会挂到 rbr 红黑树中，这样，重复添加的事件就可以通过红黑树而高效地识别出来</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-32af7c797010bf43.jpg" srcset="/img/loading.gif" lazyload alt="epoll数据结构"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-32af7c797010bf43.jpg" srcset="/blog/img/loading.gif" lazyload alt="epoll数据结构"></p>
 <p>epoll底层实现最重要的两个数据结构：epitem和eventpoll。可以简单的认为epitem是和每个用户态监控IO的fd对应的，eventpoll是用户态创建的管理所有被监控fd的结构</p>
 <h4 id="epoll过程">epoll过程</h4>
 <p>调用epoll_create，内核会创建一个eventpoll对象。eventpoll对象也是文件系统中的一员，和socket一样，它也会有等待队列</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-20eccf6c314f3c76.png" srcset="/img/loading.gif" lazyload alt="创建eventpoll对象"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-20eccf6c314f3c76.png" srcset="/blog/img/loading.gif" lazyload alt="创建eventpoll对象"></p>
 <p>通过 epoll_ctl 添加 Socket1、Socket2 和 Socket3 的监视，内核会将 eventpoll的<strong>引用</strong> 添加到这三个 Socket 的等待队列中</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-f5413d2fce88ff00.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-f5413d2fce88ff00.png" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <p>当Socket收到数据之后，中断程序会执行将Socket的<strong>引用</strong>添加到eventpoll对象的rdlist就绪列表中</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-129ddaf93b668a13.png" srcset="/img/loading.gif" lazyload alt="添加socket到rdlist"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-129ddaf93b668a13.png" srcset="/blog/img/loading.gif" lazyload alt="添加socket到rdlist"></p>
 <p>假设计算机中正在运行进程 A 和进程 B、C，在某时刻进程 A 运行到了 epoll_wait 语句，会将进程A添加到eventpoll的等待队列中</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-5fdf94c3582f06ed.png" srcset="/img/loading.gif" lazyload alt="阻塞加入等待队列"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-5fdf94c3582f06ed.png" srcset="/blog/img/loading.gif" lazyload alt="阻塞加入等待队列"></p>
 <p>当 Socket 接收到数据，中断程序一方面修改 Rdlist，另一方面唤醒 eventpoll 等待队列中的进程，进程 A 再次进入运行状态。因为Soket包含eventpoll对象的引用，因此可以直接操作eventpoll对象</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-a5ea34937d73a36a.png" srcset="/img/loading.gif" lazyload alt="中断加入就绪队列"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/15744422-a5ea34937d73a36a.png" srcset="/blog/img/loading.gif" lazyload alt="中断加入就绪队列"></p>
 <p>每次调用poll/select系统调用，操作系统都要把current（当前进程）挂到fd对应的所有设备的等待队列上，可以想象，fd多到上千的时候，这样“挂”法很费事；而每次调用epoll_wait则没有这么罗嗦，epoll只在epoll_ctl时把current挂一遍（这第一遍是免不了的）并给每个fd一个命令“好了就调回调函数”，如果设备有事件了，通过回调函数，会把fd放入rdllist，而每次调用epoll_wait就只是收集rdllist里的fd就可以了——epoll巧妙的利用回调函数，实现了更高效的事件驱动模型</p>
 <h2 id="对比">对比</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321212302170.png" srcset="/img/loading.gif" lazyload alt="select、poll、epoll之间的区别"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321212302170.png" srcset="/blog/img/loading.gif" lazyload alt="select、poll、epoll之间的区别"></p>
 <p><strong>传统select/poll的另一个致命弱点就是当你拥有一个很大的socket集合，由于网络延时，使得任一时间只有部分的socket是&quot;活跃&quot; 的，而select/poll每次调用都会线性扫描全部的集合，导致效率呈现线性下降</strong></p>
 <p><strong>但是epoll不存在这个问题，它只会对&quot;活跃&quot;的socket进 行操作，这是因为在内核实现中epoll是根据每个fd上面的callback函数实现的。于是，只有&quot;活跃&quot;的socket才会主动去调用 callback 函数，其他状态的socket则不会</strong></p>
 <h2 id="触发方式">触发方式</h2>
@@ -390,7 +390,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  <a href="/blog/categories/Linux/" class="category-chain-item">Linux</a>
   
   
 
@@ -411,7 +411,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>select、poll、epoll详解</div>
-      <div>https://heart.github.io/2023/03/21/Work/Linux/select_poll_epoll /</div>
+      <div>https://heart.github.io/blog/2023/03/21/Work/Linux/select_poll_epoll /</div>
     </div>
     <div class="license-meta">
       
@@ -455,7 +455,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/08/Work/Practice/%E7%A4%BE%E5%8C%BA%E5%AE%9E%E6%88%98/" title="社区架构（SpringBoot+MySQL+Redis）">
+                      <a href="/blog/2023/04/08/Work/Practice/%E7%A4%BE%E5%8C%BA%E5%AE%9E%E6%88%98/" title="社区架构（SpringBoot+MySQL+Redis）">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">社区架构（SpringBoot+MySQL+Redis）</span>
                         <span class="visible-mobile">上一篇</span>
@@ -465,7 +465,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/21/Work/Linux/Linux%E7%BD%91%E7%BB%9CIO/" title="Linux的五种IO模型">
+                      <a href="/blog/2023/03/21/Work/Linux/Linux%E7%BD%91%E7%BB%9CIO/" title="Linux的五种IO模型">
                         <span class="hidden-mobile">Linux的五种IO模型</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -624,8 +624,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -647,7 +647,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -746,7 +746,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -756,7 +756,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

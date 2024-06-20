@@ -19,7 +19,7 @@
     <meta name="description" content="https:&#x2F;&#x2F;carlos9310.github.io&#x2F;2019&#x2F;11&#x2F;11&#x2F;transformer-xl-and-xlnet&#x2F; NLP系列之预训练模型（二）：Transformer-XL及其进化XLNet - 周星星的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;355366424 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43269174&#x2F;art">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer-XL &amp; XLNet">
-<meta property="og:url" content="https://heart.github.io/2023/08/05/Work/NLP/009Transformer-XL&XLNET/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/05/Work/NLP/009Transformer-XL&XLNET/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="https:&#x2F;&#x2F;carlos9310.github.io&#x2F;2019&#x2F;11&#x2F;11&#x2F;transformer-xl-and-xlnet&#x2F; NLP系列之预训练模型（二）：Transformer-XL及其进化XLNet - 周星星的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;355366424 https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_43269174&#x2F;art">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -303,7 +303,7 @@
 <h4 id="Vanilla-Transformer">Vanilla Transformer</h4>
 <p>Transformer-XL 并非直接从 2017 年发布的原始 Transformer 演化而来，而是一个叫 vanilla Transformer 的版本，Vanilla Transformer 将 Transformer 的深度扩展到 64 层，并应用了 标准 Transformer 架构（standard Transformer architecture）：将每一层中的 Decoder 剔除，并将 Encoder 中的自注意力层改为 Masked 自注意力层，由此一来模型结构大大简化，使得 Transformer 具备成为优秀特征提取器的资质</p>
 <p>vanilla Transformer 在训练时，首先将完整的语料分成若干个等长的 segment，计算 self-attention 不考虑本 segment 以外的语料信息，由此预测 segment 内部的 next token probability。而在推理 (预测) 时，逐字划分 segment 边界，每过一个时间步长则向右滑动一个单位。如下图所示：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805145857342.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805145857342.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>上述编码策略有如下弊端：</p>
 <ul>
 <li>捕捉长距离依赖关系依然受限于segment的长度</li>
@@ -325,17 +325,17 @@
 </ul>
 <h4 id="Segment-Level-Recurrence-with-State-Reuse">Segment-Level Recurrence with State Reuse</h4>
 <p>同 vanilla Transformer 一样，Transformer-XL将语料事先划分为等长的 segments，训练时将每一个 segment 单独投入计算 self-attention。每一层输出的隐藏状态作为记忆存储到内存中，并在训练下一个 segment 时，将其作为额外的输入，代表上文中的语境信息。这样一来便在上文与下文之间搭建了一座桥梁，使得模型能够捕获更长距离的依赖关系</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805145917736.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805150106246.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805145917736.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805150106246.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="Relative-Positional-Encodings">Relative Positional Encodings</h4>
 <p>recurrent机制使得先前的绝对位置编码方案不再适用，因为在多个segment中会出现多个同样的位置信息。 为此，作者们提出一种新的相对位置编码形式。其不仅与绝对位置一一对应，而且具有更好的泛化性</p>
 <p>首先，在标准的transformer中，在同一个segment下的query向量<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">q_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和key向量<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">k_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>的注意力得分可分解为：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/transformer-xl-03.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/transformer-xl-03.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>表示词向量组成的矩阵，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span></span></span></span>表示绝对位置向量组成的矩阵。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span>表示内容间的交互，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span>分别是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>位置的内容和位置信息分别与<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span></span></span></span>位置的位置和内容信息之间的交互，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">d</span><span class="mclose">)</span></span></span></span>表示位置间的交互</p>
 <p>基于仅依赖相对位置信息的思想，Transformer-XL将上述query与key的得分改为如下形式：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/transformer-xl-04.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805151923698.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805152049350.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/transformer-xl-04.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805151923698.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805152049350.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="为什么Transformer-XL能有效解决BERT的长度限制问题？">为什么Transformer-XL能有效解决BERT的长度限制问题？</h4>
 <ul>
 <li>因为BERT在预训练的时候，就把输入长度限制在512，BERT会把1~512位置映射到一个768维的position embedding（BERT并没有用原生Transformer的三角函数位置编码），因此没有512以上的position embedding。我们当然也可以重头训练一个最大长度为1000的BERT，但会很耗资源</li>
@@ -343,14 +343,14 @@
 </ul>
 <h2 id="预训练中的三种语言模型">预训练中的三种语言模型</h2>
 <h4 id="自回归语言模型（Autoregressive-LM，AR）">自回归语言模型（Autoregressive LM，AR）</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-679ea82005147050ed59c793d5b88e11_1440w.webp" srcset="/img/loading.gif" lazyload alt="AR"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-679ea82005147050ed59c793d5b88e11_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt="AR"></p>
 <ul>
 <li>如Transformer-XL，GPT等，任务为根据上文内容预测下一个token，预训练任务为单向的语言模型任务</li>
 <li>优点：可以完成生成类的NLP任务</li>
 <li>缺点：只能利用单向信息</li>
 </ul>
 <h4 id="自编码语言模型（Autoencoder-LM，AE）">自编码语言模型（Autoencoder LM，AE）</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-ae16b70e375109cc357d02c0abe159ee_1440w.webp" srcset="/img/loading.gif" lazyload alt="AE"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-ae16b70e375109cc357d02c0abe159ee_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt="AE"></p>
 <ul>
 <li>如BERT等，根据上下文单词来预测被[MASK]掉的token</li>
 <li>优点：能利用到双向信息</li>
@@ -364,7 +364,7 @@
 </ul>
 <h4 id="排列语言模型（Permutation-Language-Modeling，PLM）">排列语言模型（Permutation Language Modeling，PLM）</h4>
 <p><strong>XLNET结合自回归语言模型和自编码语言模型的优点，提出了排列语言模型</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image_20230805154228.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image_20230805154228.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="XLNet">XLNet</h2>
 <ul>
 <li>排序语言模型（PLM）</li>
@@ -373,9 +373,9 @@
 <li>相对segment编码</li>
 <li>Transformer-XL中（基于memory单元）的segment循环机制和相对位置编码</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/xlnet-04.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/xlnet-04.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="Two-Stream-Self-Attention-for-Target-Aware-Representations">Two-Stream Self-Attention for Target-Aware Representations</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805160801392.png" srcset="/img/loading.gif" lazyload alt="原始PLM目标函数"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805160801392.png" srcset="/blog/img/loading.gif" lazyload alt="原始PLM目标函数"></p>
 <p>虽然上述提出的PLM的目标函数具有很好的特性（<strong>充分利用双向上下文信息且不(显式地)引入外部噪声</strong>），但用传统的transformer计算式中的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">p_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>无法work。</p>
 <p><strong>因为在未引入排列机制前，每个输入序列的顺序是确定的。而引入排列机制后，同样的序列（目标token之前的序列）后要预测的token可能不同，如果还是用那种经典的AR方式计算下一个token的分布情况，会导致不同的token却有相同的分布。</strong></p>
 <blockquote>
@@ -383,7 +383,7 @@
 <p>I love New York这四个token，现在有两个序列1-&gt; 2 -&gt; 3 -&gt;4和1-&gt; 2 -&gt; 4 -&gt;3，假设已经知道前面两个token是I love，要预测下一个token，很明显，在两个序列中，下一个token为New的概率都是一样的，这是非常不合理的，因为New作为位置3和位置4的概率应该是不一样的</p>
 </blockquote>
 <p>为了避免上述问题，PLM在预测下一个token的分布时将目标token的位置也考虑进来：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805160827864.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805160827864.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mrow><mi>z</mi><mo>&lt;</mo><mi>t</mi></mrow></msub><mo separator="true">,</mo><msub><mi>z</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g_{\theta}(X_{z &lt; t},z_t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1774em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>表示一种附加了目标位置<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">z_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>作为输入的新型表示</p>
 <p>虽然<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">g_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>解决了预测目标的歧义，但如何定义<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">g_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>仍是个不小的问题。而在传统的transformer结构中有两个相互矛盾的要求：</p>
 <ol>
@@ -397,15 +397,15 @@
 <li>当token用于预测自己到底是哪个字符，这时候，它应该只能看到自己的位置信息</li>
 </ul>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805162007766.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805162823421.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805163443235.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805162007766.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805162823421.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805163443235.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="Partial-Prediction">Partial Prediction</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805163643559.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805163643559.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="与Transformer-XL的结合">与Transformer-XL的结合</h4>
 <p>这里就是把Transformer-XL的循环机制和相对位置编码引进XLNet中，值得注意的是，Permutation只争对当前的segment，上一个segment的排序是原文本的顺序排列</p>
 <h4 id="Modeling-Multiple-Segments">Modeling Multiple Segments</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805163939394.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230805163939394.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="XLNet与BERT对比">XLNet与BERT对比</h4>
 <p>BERT和XLNet都只预测一个序列中的部分token。对BERT来说，这是必须的，因为如果mask了所有的token，就不可能做出有意义的预测。此外，对BERT和XLNet而言，部分预测通过仅预测具有足够上下文的token来降低优化难度。然而<strong>BERT中由于独立性假设无法对mask的token间的依赖关系进行建模，XLNet就没有这种缺陷</strong></p>
 
@@ -426,7 +426,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  <a href="/blog/categories/NLP/" class="category-chain-item">NLP</a>
   
   
 
@@ -441,7 +441,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+        <a href="/blog/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
       
     </div>
   
@@ -454,7 +454,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Transformer-XL &amp; XLNet</div>
-      <div>https://heart.github.io/2023/08/05/Work/NLP/009Transformer-XL&amp;XLNET/</div>
+      <div>https://heart.github.io/blog/2023/08/05/Work/NLP/009Transformer-XL&amp;XLNET/</div>
     </div>
     <div class="license-meta">
       
@@ -498,7 +498,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/05/Work/NLP/010RoBERTa&amp;ALBERT&amp;ELECTRA/" title="RoBERTa &amp; ALBERT &amp; ELECTRA">
+                      <a href="/blog/2023/08/05/Work/NLP/010RoBERTa&amp;ALBERT&amp;ELECTRA/" title="RoBERTa &amp; ALBERT &amp; ELECTRA">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">RoBERTa &amp; ALBERT &amp; ELECTRA</span>
                         <span class="visible-mobile">上一篇</span>
@@ -508,7 +508,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/04/Work/Deep%20Learning/011warmup/" title="warmup">
+                      <a href="/blog/2023/08/04/Work/Deep%20Learning/011warmup/" title="warmup">
                         <span class="hidden-mobile">warmup</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -667,8 +667,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -690,7 +690,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -789,7 +789,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -799,7 +799,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

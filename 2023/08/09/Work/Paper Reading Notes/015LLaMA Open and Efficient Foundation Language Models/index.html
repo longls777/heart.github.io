@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《LLaMA: Open and Efficient Foundation Language Models》 论文来源： arXiv:2302.13971 原文链接：  https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2302.13971.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;llama 参考链接  https:&#x2F;&#x2F;blog.csdn.net&#x2F;w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LLaMA - Open and Efficient Foundation Language Models">
-<meta property="og:url" content="https://heart.github.io/2023/08/09/Work/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/09/Work/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《LLaMA: Open and Efficient Foundation Language Models》 论文来源： arXiv:2302.13971 原文链接：  https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2302.13971.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;llama 参考链接  https:&#x2F;&#x2F;blog.csdn.net&#x2F;w">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -318,12 +318,12 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 219 661 l218 661zM702 80H400000v40H742z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span></span></span></span></span></p>
 <p>Pre-Norm和Post-Norm哪个更好呢？<a target="_blank" rel="noopener" href="https://kexue.fm/archives/9009">为什么Pre Norm的效果不如Post Norm？</a>这篇文章给出了解释：</p>
 <p>重点是在这个式子</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809161116042.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809161116042.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>同一设置之下，Pre Norm结构往往更容易训练，但最终效果通常不如Post Norm</li>
 <li>Pre Norm结构无形地增加了模型的宽度而降低了模型的深度，而我们知道深度通常比宽度更重要，所以是无形之中的降低深度导致最终效果变差了</li>
 </ul>
-<img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809160712945.png" srcset="/img/loading.gif" lazyload style="zoom:15%;" />
+<img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809160712945.png" srcset="/blog/img/loading.gif" lazyload style="zoom:15%;" />
 <p>但是为什么LLaMA中却采用了Pre-Norm，这个还没有找到合理的解释</p>
 <h3 id="SwiGLU激活函数">SwiGLU激活函数</h3>
 <blockquote>
@@ -331,7 +331,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1710.05941v1.pdf">https://arxiv.org/pdf/1710.05941v1.pdf</a></p>
 <p><a target="_blank" rel="noopener" href="https://mltalks.medium.com/swiglu%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-4a9e2d55e250">https://mltalks.medium.com/swiglu论文阅读-4a9e2d55e250</a></p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809161453203.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230809161453203.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h3 id="RoPE旋转位置编码">RoPE旋转位置编码</h3>
 <p>RoPE（Rotary Position Embedding）旋转位置编码，是苏剑林老师提出的一种旋转位置编码方法<a target="_blank" rel="noopener" href="https://kexue.fm/archives/8265">Transformer升级之路：2、博采众长的旋转式位置编码</a>，其思想是采用绝对位置编码的形式，实现相对位置编码</p>
 <h2 id="代码解读">代码解读</h2>
@@ -350,10 +350,10 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 <p>具体的解析请看<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44826203/article/details/129255185">https://blog.csdn.net/weixin_44826203/article/details/129255185</a></p>
 <h4 id="Attention">Attention</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Attention</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, args: ModelArgs</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br><br>        self.n_local_heads = args.n_heads // fs_init.get_model_parallel_world_size()<br>        self.head_dim = args.dim // args.n_heads<br><br>        self.wq = ColumnParallelLinear(<br>            args.dim,<br>            args.n_heads * self.head_dim,<br>            bias=<span class="hljs-literal">False</span>,<br>            gather_output=<span class="hljs-literal">False</span>,<br>            init_method=<span class="hljs-keyword">lambda</span> x: x,<br>        )<br>        self.wk = ColumnParallelLinear(<br>            args.dim,<br>            args.n_heads * self.head_dim,<br>            bias=<span class="hljs-literal">False</span>,<br>            gather_output=<span class="hljs-literal">False</span>,<br>            init_method=<span class="hljs-keyword">lambda</span> x: x,<br>        )<br>        self.wv = ColumnParallelLinear(<br>            args.dim,<br>            args.n_heads * self.head_dim,<br>            bias=<span class="hljs-literal">False</span>,<br>            gather_output=<span class="hljs-literal">False</span>,<br>            init_method=<span class="hljs-keyword">lambda</span> x: x,<br>        )<br>        self.wo = RowParallelLinear(<br>            args.n_heads * self.head_dim,<br>            args.dim,<br>            bias=<span class="hljs-literal">False</span>,<br>            input_is_parallel=<span class="hljs-literal">True</span>,<br>            init_method=<span class="hljs-keyword">lambda</span> x: x,<br>        )<br><br>        self.cache_k = torch.zeros(<br>            (args.max_batch_size, args.max_seq_len, self.n_local_heads, self.head_dim)<br>        ).cuda()<br>        self.cache_v = torch.zeros(<br>            (args.max_batch_size, args.max_seq_len, self.n_local_heads, self.head_dim)<br>        ).cuda()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x: torch.Tensor, start_pos: <span class="hljs-built_in">int</span>, freqs_cis: torch.Tensor, mask: <span class="hljs-type">Optional</span>[torch.Tensor]</span>):<br>        bsz, seqlen, _ = x.shape<br>        xq, xk, xv = self.wq(x), self.wk(x), self.wv(x)<br><br>        xq = xq.view(bsz, seqlen, self.n_local_heads, self.head_dim)<br>        xk = xk.view(bsz, seqlen, self.n_local_heads, self.head_dim)<br>        xv = xv.view(bsz, seqlen, self.n_local_heads, self.head_dim)<br><br>        xq, xk = apply_rotary_emb(xq, xk, freqs_cis=freqs_cis)<br><br>        self.cache_k = self.cache_k.to(xq)<br>        self.cache_v = self.cache_v.to(xq)<br><br>        self.cache_k[:bsz, start_pos : start_pos + seqlen] = xk<br>        self.cache_v[:bsz, start_pos : start_pos + seqlen] = xv<br><br>        keys = self.cache_k[:bsz, : start_pos + seqlen]<br>        values = self.cache_v[:bsz, : start_pos + seqlen]<br><br>        xq = xq.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        keys = keys.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        values = values.transpose(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br>        scores = torch.matmul(xq, keys.transpose(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)) / math.sqrt(self.head_dim)<br>        <span class="hljs-keyword">if</span> mask <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>            scores = scores + mask  <span class="hljs-comment"># (bs, n_local_heads, slen, cache_len + slen)</span><br>        scores = F.softmax(scores.<span class="hljs-built_in">float</span>(), dim=-<span class="hljs-number">1</span>).type_as(xq)<br>        output = torch.matmul(scores, values)  <span class="hljs-comment"># (bs, n_local_heads, slen, head_dim)</span><br>        output = output.transpose(<br>            <span class="hljs-number">1</span>, <span class="hljs-number">2</span><br>        ).contiguous().view(bsz, seqlen, -<span class="hljs-number">1</span>)<br><br>        <span class="hljs-keyword">return</span> self.wo(output)<br></code></pre></td></tr></table></figure>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810205332801.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810205332801.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="FFN">FFN</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">FeedForward</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params"></span><br><span class="hljs-params">        self,</span><br><span class="hljs-params">        dim: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params">        hidden_dim: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params">        multiple_of: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params">    </span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        hidden_dim = <span class="hljs-built_in">int</span>(<span class="hljs-number">2</span> * hidden_dim / <span class="hljs-number">3</span>)<br>        hidden_dim = multiple_of * ((hidden_dim + multiple_of - <span class="hljs-number">1</span>) // multiple_of)<br><br>        self.w1 = ColumnParallelLinear(<br>            dim, hidden_dim, bias=<span class="hljs-literal">False</span>, gather_output=<span class="hljs-literal">False</span>, init_method=<span class="hljs-keyword">lambda</span> x: x<br>        )<br>        self.w2 = RowParallelLinear(<br>            hidden_dim, dim, bias=<span class="hljs-literal">False</span>, input_is_parallel=<span class="hljs-literal">True</span>, init_method=<span class="hljs-keyword">lambda</span> x: x<br>        )<br>        self.w3 = ColumnParallelLinear(<br>            dim, hidden_dim, bias=<span class="hljs-literal">False</span>, gather_output=<span class="hljs-literal">False</span>, init_method=<span class="hljs-keyword">lambda</span> x: x<br>        )<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-keyword">return</span> self.w2(F.silu(self.w1(x)) * self.w3(x))<br></code></pre></td></tr></table></figure>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810205449670.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810205449670.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h4 id="Transformer-block">Transformer block</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">TransformerBlock</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, layer_id: <span class="hljs-built_in">int</span>, args: ModelArgs</span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self.n_heads = args.n_heads<br>        self.dim = args.dim<br>        self.head_dim = args.dim // args.n_heads<br>        self.attention = Attention(args)<br>        self.feed_forward = FeedForward(<br>            dim=args.dim, hidden_dim=<span class="hljs-number">4</span> * args.dim, multiple_of=args.multiple_of<br>        )<br>        self.layer_id = layer_id<br>        self.attention_norm = RMSNorm(args.dim, eps=args.norm_eps)<br>        self.ffn_norm = RMSNorm(args.dim, eps=args.norm_eps)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x: torch.Tensor, start_pos: <span class="hljs-built_in">int</span>, freqs_cis: torch.Tensor, mask: <span class="hljs-type">Optional</span>[torch.Tensor]</span>):<br>        h = x + self.attention.forward(self.attention_norm(x), start_pos, freqs_cis, mask)<br>        out = h + self.feed_forward.forward(self.ffn_norm(h))<br>        <span class="hljs-keyword">return</span> out<br></code></pre></td></tr></table></figure>
 <p>注意这里用了两个残差链接，preNorm</p>
@@ -378,7 +378,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -393,7 +393,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/LLMs/" class="print-no-link">#LLMs</a>
+        <a href="/blog/tags/LLMs/" class="print-no-link">#LLMs</a>
       
     </div>
   
@@ -406,7 +406,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
   <div class="license-box my-3">
     <div class="license-title">
       <div>LLaMA - Open and Efficient Foundation Language Models</div>
-      <div>https://heart.github.io/2023/08/09/Work/Paper Reading Notes/015LLaMA Open and Efficient Foundation Language Models/</div>
+      <div>https://heart.github.io/blog/2023/08/09/Work/Paper Reading Notes/015LLaMA Open and Efficient Foundation Language Models/</div>
     </div>
     <div class="license-meta">
       
@@ -450,7 +450,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/09/Work/Paper%20Reading%20Notes/014RoFormer%20Enhanced%20Transformer%20with%20Rotary%20Position%20Embedding/" title="RoFormer - Enhanced Transformer with Rotary Position Embedding">
+                      <a href="/blog/2023/08/09/Work/Paper%20Reading%20Notes/014RoFormer%20Enhanced%20Transformer%20with%20Rotary%20Position%20Embedding/" title="RoFormer - Enhanced Transformer with Rotary Position Embedding">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">RoFormer - Enhanced Transformer with Rotary Position Embedding</span>
                         <span class="visible-mobile">上一篇</span>
@@ -460,7 +460,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/09/Work/Paper%20Reading%20Notes/013Root%20Mean%20Square%20Layer%20Normalization/" title="Root Mean Square Layer Normalization">
+                      <a href="/blog/2023/08/09/Work/Paper%20Reading%20Notes/013Root%20Mean%20Square%20Layer%20Normalization/" title="Root Mean Square Layer Normalization">
                         <span class="hidden-mobile">Root Mean Square Layer Normalization</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -619,8 +619,8 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -642,7 +642,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -741,7 +741,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -751,7 +751,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

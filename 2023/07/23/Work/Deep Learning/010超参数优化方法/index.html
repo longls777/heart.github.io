@@ -19,7 +19,7 @@
     <meta name="description" content="https:&#x2F;&#x2F;aws.amazon.com&#x2F;cn&#x2F;what-is&#x2F;hyperparameter-tuning&#x2F; https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1700820 机器学习模型的超参数优化 - deephub的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;138005319  超参数优化是指在机器学习和深度学习等领">
 <meta property="og:type" content="article">
 <meta property="og:title" content="超参数优化方法">
-<meta property="og:url" content="https://heart.github.io/2023/07/23/Work/Deep%20Learning/010%E8%B6%85%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/07/23/Work/Deep%20Learning/010%E8%B6%85%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="https:&#x2F;&#x2F;aws.amazon.com&#x2F;cn&#x2F;what-is&#x2F;hyperparameter-tuning&#x2F; https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1700820 机器学习模型的超参数优化 - deephub的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;138005319  超参数优化是指在机器学习和深度学习等领">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -300,7 +300,7 @@
 <p>超参数优化是指在机器学习和深度学习等领域中，对于模型中的超参数进行搜索和调整，以找到最优的超参数组合，从而获得更好的模型性能。</p>
 <p>超参数是在模型训练过程中需要手动设置的参数，不同于模型的权重。</p>
 <h2 id="网格搜索（Grid-Search）">网格搜索（Grid Search）</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-b9bfaa5a05b99bf673ff530503e489c9_1440w.webp" srcset="/img/loading.gif" lazyload alt="网格搜索"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-b9bfaa5a05b99bf673ff530503e489c9_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt="网格搜索"></p>
 <p>网格搜索是一种简单直观的超参数优化方法，它在预定义的超参数取值范围内进行穷举搜索，尝试所有可能的超参数组合，然后选择在验证集上表现最好的超参数组合作为最终的模型配置</p>
 <p><strong>优点：</strong></p>
 <ul>
@@ -312,7 +312,7 @@
 <li><strong>不能保证搜索会找到完美的超参数值</strong></li>
 </ul>
 <h2 id="随机搜索（Random-Search）">随机搜索（Random Search）</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-040c8fb5affc3054aa1dc6f1dd866708_1440w.webp" srcset="/img/loading.gif" lazyload alt="随机搜索"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-040c8fb5affc3054aa1dc6f1dd866708_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt="随机搜索"></p>
 <p>使用随机搜索代替网格搜索的动机是，在许多情况下，所有的超参数可能并非同等重要。随机搜索从超参数空间中随机选择参数组合，参数按给定的迭代次数进行选择</p>
 <p>随机搜索相对于网格搜索能够更准确地确定某些重要的超参数的最佳值</p>
 <p><strong>优点：</strong></p>
@@ -336,7 +336,7 @@
 <li>在一个新的点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">X_{n+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span>取样损失 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> ，它最大化了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> 的期望的某些效用函数。该函数指定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> 域的哪些区域是最适合采样的</li>
 </ol>
 <p>重复这些步骤，直到达到某种收敛准则</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-ee05a773a738f4c2eb09fd4c47bf238f_1440w.webp" srcset="/img/loading.gif" lazyload alt="贝叶斯优化"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-ee05a773a738f4c2eb09fd4c47bf238f_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt="贝叶斯优化"></p>
 <p>优点：</p>
 <ul>
 <li>对目标函数的采样高效且具有指导性，能够在较少次数的采样下找到全局最优解；</li>
@@ -367,7 +367,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
+  <a href="/blog/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
   
   
 
@@ -388,7 +388,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>超参数优化方法</div>
-      <div>https://heart.github.io/2023/07/23/Work/Deep Learning/010超参数优化方法/</div>
+      <div>https://heart.github.io/blog/2023/07/23/Work/Deep Learning/010超参数优化方法/</div>
     </div>
     <div class="license-meta">
       
@@ -432,7 +432,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/25/Work/Machine%20Learning/007%E7%94%9F%E6%88%90&amp;%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B/" title="生成式模型和判别式模型">
+                      <a href="/blog/2023/07/25/Work/Machine%20Learning/007%E7%94%9F%E6%88%90&amp;%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B/" title="生成式模型和判别式模型">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">生成式模型和判别式模型</span>
                         <span class="visible-mobile">上一篇</span>
@@ -442,7 +442,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/22/Work/NLP/013GELU%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" title="GELU激活函数">
+                      <a href="/blog/2023/07/22/Work/NLP/013GELU%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" title="GELU激活函数">
                         <span class="hidden-mobile">GELU激活函数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -601,8 +601,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -624,7 +624,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -723,7 +723,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -733,7 +733,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

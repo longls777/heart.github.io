@@ -19,7 +19,7 @@
     <meta name="description" content="JavaGuide-redis https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_47188125&#x2F;article&#x2F;details&#x2F;125706438  一、什么是Redis？ Redis 是一个基于 C 语言开发的开源的高性能非关系型数据库（Nosql），是一个高性能的key-value数据库，与传统数据库不同的是 Redis 的数据是存在内存中的（内存数据库），读写速度非常快，被广泛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis八股总结">
-<meta property="og:url" content="https://heart.github.io/2023/03/20/Work/Redis/Redis%E5%85%AB%E8%82%A1%E6%96%87%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/03/20/Work/Redis/Redis%E5%85%AB%E8%82%A1%E6%96%87%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="JavaGuide-redis https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_47188125&#x2F;article&#x2F;details&#x2F;125706438  一、什么是Redis？ Redis 是一个基于 C 语言开发的开源的高性能非关系型数据库（Nosql），是一个高性能的key-value数据库，与传统数据库不同的是 Redis 的数据是存在内存中的（内存数据库），读写速度非常快，被广泛">
 <meta property="og:locale" content="zh_CN">
@@ -64,12 +64,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -78,15 +78,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -116,7 +116,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -135,7 +135,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -147,7 +147,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -159,7 +159,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -171,7 +171,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -183,7 +183,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -338,7 +338,7 @@
 <blockquote>
 <p>单机Redis读的速度是11w次/s，写的速度是8.1w次/s</p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/why-redis-so-fast.d3507ae8.png" srcset="/img/loading.gif" lazyload alt="why-redis-so-fast"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/why-redis-so-fast.d3507ae8.png" srcset="/blog/img/loading.gif" lazyload alt="why-redis-so-fast"></p>
 <h2 id="四、为什么要用-Redis-为什么要用缓存？">四、为什么要用 Redis/为什么要用缓存？</h2>
 <p>主要从<strong>高性能</strong>和高并发这两个角度来看待问题</p>
 <p><strong>高性能：</strong></p>
@@ -401,7 +401,7 @@
 <li>文件事件分派器（将 socket 关联到相应的事件处理器）</li>
 <li>事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/redis-event-handler.png" srcset="/img/loading.gif" lazyload alt="文件事件处理器"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/redis-event-handler.png" srcset="/blog/img/loading.gif" lazyload alt="文件事件处理器"></p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="http://remcarpediem.net/article/1aa2da89/">Redis 事件机制详解</a></p>
 </blockquote>
@@ -482,7 +482,7 @@
 </blockquote>
 <p>Redis还可以在后台对AOF文件进行重写，使AOF文件的体积不会超出保存数据集状态所需的实际大小</p>
 <p>Redis还可以同时使用RDB和AOF持久化。在这种情况下，当Redis重启时，他会优先使用AOF文件来还原数据集，因为AOF文件保存的数据集通常比RDB文件所保存的数据集更完整</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230320163536954.png" srcset="/img/loading.gif" lazyload alt="image-20230320163536954"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230320163536954.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230320163536954"></p>
 <h2 id="十三、RDB-创建快照时会阻塞主线程吗？">十三、RDB 创建快照时会阻塞主线程吗？</h2>
 <p>Redis 提供了两个命令来生成 RDB 快照文件：</p>
 <ul>
@@ -521,7 +521,7 @@
 <p><strong>关于读写分离</strong></p>
 <p>随着业务的不断扩大，请求的并发量不断增长，Redis可能终会出现无法负载的情况，此时我们就需要想办法去提升Redis的负载能力</p>
 <p>读写分离（主从复制）是一个比较简单的扩展方案，使用多台机器同时运行Redis服务，一台负责写服务，多台负责读服务，通过多台服务器对请求进行负载，大大提高了Redis服务的负载压力。这样从节点也可以支持横向扩展，来继续提高读的吞吐量</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/f332a6c58c2db4454ccc5c9f04d6766c.webp?x-oss-process=image/format,png" srcset="/img/loading.gif" lazyload alt="Redis读写主从分离"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f332a6c58c2db4454ccc5c9f04d6766c.webp?x-oss-process=image/format,png" srcset="/blog/img/loading.gif" lazyload alt="Redis读写主从分离"></p>
 </blockquote>
 
                 
@@ -541,7 +541,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Redis/" class="category-chain-item">Redis</a>
+  <a href="/blog/categories/Redis/" class="category-chain-item">Redis</a>
   
   
 
@@ -556,7 +556,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+        <a href="/blog/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
       
     </div>
   
@@ -569,7 +569,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Redis八股总结</div>
-      <div>https://heart.github.io/2023/03/20/Work/Redis/Redis八股文总结/</div>
+      <div>https://heart.github.io/blog/2023/03/20/Work/Redis/Redis八股文总结/</div>
     </div>
     <div class="license-meta">
       
@@ -613,7 +613,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/21/Work/Algorithm%20Problem/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E5%A4%8D%E4%B9%A0%E9%80%9F%E8%A7%88/" title="LeetCode算法题复习速览">
+                      <a href="/blog/2023/03/21/Work/Algorithm%20Problem/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E5%A4%8D%E4%B9%A0%E9%80%9F%E8%A7%88/" title="LeetCode算法题复习速览">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">LeetCode算法题复习速览</span>
                         <span class="visible-mobile">上一篇</span>
@@ -623,7 +623,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/28/Work/Redis/%E9%9B%86%E7%BE%A4/" title="Redis集群">
+                      <a href="/blog/2023/02/28/Work/Redis/%E9%9B%86%E7%BE%A4/" title="Redis集群">
                         <span class="hidden-mobile">Redis集群</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -782,8 +782,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -805,7 +805,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -904,7 +904,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -914,7 +914,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

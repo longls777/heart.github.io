@@ -19,7 +19,7 @@
     <meta name="description" content="IO调用 我们应用程序是跑在用户空间的，它不存在实质的IO过程，真正的IO是在操作系统执行的。即应用程序的IO操作分为两种动作：IO调用和IO执行。IO调用是由进程（应用程序的运行态）发起，而IO执行是操作系统内核的工作。此时所说的IO是应用程序对操作系统IO功能的一次触发，即IO调用 应用程序发起的一次IO操作包含两个阶段：  IO调用：应用程序进程向操作系统内核发起调用 IO执行：操作系统内核">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux的五种IO模型">
-<meta property="og:url" content="https://heart.github.io/2023/03/21/Work/Linux/Linux%E7%BD%91%E7%BB%9CIO/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/03/21/Work/Linux/Linux%E7%BD%91%E7%BB%9CIO/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="IO调用 我们应用程序是跑在用户空间的，它不存在实质的IO过程，真正的IO是在操作系统执行的。即应用程序的IO操作分为两种动作：IO调用和IO执行。IO调用是由进程（应用程序的运行态）发起，而IO执行是操作系统内核的工作。此时所说的IO是应用程序对操作系统IO功能的一次触发，即IO调用 应用程序发起的一次IO操作包含两个阶段：  IO调用：应用程序进程向操作系统内核发起调用 IO执行：操作系统内核">
 <meta property="og:locale" content="zh_CN">
@@ -67,12 +67,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -81,15 +81,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -119,7 +119,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -138,7 +138,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -150,7 +150,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -162,7 +162,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -174,7 +174,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -186,7 +186,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -324,7 +324,7 @@
 <li>第二步：把数据从内核缓冲区复制到应用进程缓冲区</li>
 </ul>
 <p>网络应用需要处理的无非就是两大类问题，网络IO，数据计算。网络IO的延迟给应用带来的性能瓶颈大于后者</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321204440667.png" srcset="/img/loading.gif" lazyload alt="Linux五种IO模型"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321204440667.png" srcset="/blog/img/loading.gif" lazyload alt="Linux五种IO模型"></p>
 <p>网络IO的模型大致有如下几种：</p>
 <ul>
 <li>同步IO（Synchronous IO）
@@ -342,17 +342,17 @@
 <p>顾名思义，同步IO要求用户进程在向内核进程发起数据IO请求后，在内核进程读取内核缓冲区中的数据时(若此时内核缓冲区中没有数据，内核进程显然不能返回用户进程需要的数据)，在这一过程中，用户进程需要等待，直到内核进程将数据返回给用户进程，然后用户进程才解除等待/阻塞</p>
 <p>这也是默认同步IO模式，也即同步IO阻塞模式</p>
 <h4 id="阻塞IO（Blocking-IO）">阻塞IO（Blocking IO）</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/640" srcset="/img/loading.gif" lazyload alt="阻塞IO"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/640" srcset="/blog/img/loading.gif" lazyload alt="阻塞IO"></p>
 <p>这是一种比较传统的IO模型，也是最简单的IO模型，即在读/写数据过程中会发生阻塞现象，简称<strong>BIO</strong>。当进程或线程调用某个条件，当条件不满足则会一直等下去，如果条件满足则执行下一步</p>
 <p><strong>应用进程向操作系统内核，发起recvfrom读取数据，但是内核还没准备好，应用程序就会阻塞，直至内核准备好数据，recvfrom完成数据的复制工作，应用程序结束阻塞状态</strong></p>
 <h4 id="非阻塞IO-Non-Blocking-IO">非阻塞IO(Non-Blocking IO)</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210250929.png" srcset="/img/loading.gif" lazyload alt="非阻塞IO"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210250929.png" srcset="/blog/img/loading.gif" lazyload alt="非阻塞IO"></p>
 <p>阻塞式IO的缺点非常明显。如果内核数据一直没准备好，那用户进程将一直阻塞，浪费性能，可以使用非阻塞IO优化，简称<strong>NIO</strong></p>
 <p>当应用进程向内核发起调用时，在目的未达到之前不再一味的等待，而是直接返回，然后通过轮询的方式进行查看内核数据有没有准备好，如果数据准备好了，则将数据复制到用户空间</p>
 <p>应用进程不断的通过recvfrom与内核进行交互，直至内核数据准备好。如果数据没有准备好会返回EWOULDBLOCK，应用进程过一段时间再次发送recevfrom请求，在这期间进程可以做其他事情</p>
 <p><strong>虽然NIO大幅提升了性能，但是它依然存在性能问题，即频繁的轮询，导致频繁的系统调用，同样会消耗大量的CPU资源</strong></p>
 <h4 id="多路复用IO（IO-Multiplexing）">多路复用IO（IO Multiplexing）</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210314724.png" srcset="/img/loading.gif" lazyload alt="多路复用IO"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210314724.png" srcset="/blog/img/loading.gif" lazyload alt="多路复用IO"></p>
 <p>既然NIO无效的轮询会导致CPU资源消耗，我们等到内核数据准备好了，主动通知应用进程再去进行系统调用，那不就好了吗？这就是IO多路复用</p>
 <p><strong>IO复用模型核心思路：</strong> 系统给我们提供一类函数（如<strong>select、poll、epoll</strong> ），它们可以同时监控多个文件描述符(**File Descriptor)**的操作，<strong>其中任何一个返回内核数据就绪时</strong>，应用进程再发起recvfrom系统调用</p>
 <blockquote>
@@ -373,20 +373,20 @@
 <p><strong>redis用的就是IO多路复用</strong></p>
 </blockquote>
 <h4 id="信号驱动式IO（Signal-Driven-IO）">信号驱动式IO（Signal-Driven IO）</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210350936.png" srcset="/img/loading.gif" lazyload alt="信号驱动IO"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210350936.png" srcset="/blog/img/loading.gif" lazyload alt="信号驱动IO"></p>
 <p>信号驱动IO不再用主动询问的方式去确认数据是否就绪，而是向内核发送一个信号（调用sigaction的时候建立一个SIGIO的信号），然后应用用户进程可以去做别的事，不用阻塞。当内核数据准备好后，再通过SIGIO信号通知应用进程，数据准备好后的可读状态。应用用户进程收到信号之后，立即调用recvfrom，去读取数据。</p>
 <blockquote>
 <p><strong>应用进程预先往内核注册一个信号处理函数，然后用户进程不会阻塞直接返回，当内核数据准备就绪会发送一个信号给进程，用户进程在信号处理含函数中把数据复制到用户空间。</strong></p>
 </blockquote>
 <p>不管是BIO，还是NIO，还是信号驱动，在数据从内核复制到应用缓冲的时候，都是阻塞的，还有没有优化方案呢？AIO（真正的异步IO）！</p>
 <h3 id="异步IO（Asynchronous-IO）">异步IO（Asynchronous IO）</h3>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210412838.png" srcset="/img/loading.gif" lazyload alt="异步IO"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321210412838.png" srcset="/blog/img/loading.gif" lazyload alt="异步IO"></p>
 <p>前面讲的BIO，NIO和信号驱动，在数据从内核复制到应用缓冲的时候，都是阻塞的，因此都不算是真正的异步。AIO实现了IO全流程的非阻塞，就是应用进程发出系统调用后，是立即返回的，但是立即返回的不是处理结果，而是表示提交成功类似的意思。等内核数据准备好，将数据拷贝到用户进程缓冲区，发送信号通知用户进程IO操作执行完毕</p>
 <blockquote>
 <p><strong>用户发起aio_read操作之后，会给内核传递描述符，缓冲区指针、缓冲区大小，告诉内核当整个操作完成时，如何通知进程，然后就可以立即做其他事情了。让内核收到aio_read后，会立即返回，然后开始等待数据准备，数据准备好之后，直接把数据复制到用户空间，然后通知进程本次IO完成</strong></p>
 </blockquote>
 <h3 id="5种IO模型对比">5种IO模型对比</h3>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321221038739.png" srcset="/img/loading.gif" lazyload alt="5种IO模型对比"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230321221038739.png" srcset="/blog/img/loading.gif" lazyload alt="5种IO模型对比"></p>
 <h2 id="BIO、NIO、AIO">BIO、NIO、AIO</h2>
 <ul>
 <li><strong>同步阻塞(Blocking-IO)：简称BIO，适用于连接数目小的架构，这种方式对服务器资源要求比较高，但BIO直观、简单、易理解</strong></li>
@@ -416,7 +416,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  <a href="/blog/categories/Linux/" class="category-chain-item">Linux</a>
   
   
 
@@ -437,7 +437,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Linux的五种IO模型</div>
-      <div>https://heart.github.io/2023/03/21/Work/Linux/Linux网络IO/</div>
+      <div>https://heart.github.io/blog/2023/03/21/Work/Linux/Linux网络IO/</div>
     </div>
     <div class="license-meta">
       
@@ -481,7 +481,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/21/Work/Linux/select_poll_epoll%20/" title="select、poll、epoll详解">
+                      <a href="/blog/2023/03/21/Work/Linux/select_poll_epoll%20/" title="select、poll、epoll详解">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">select、poll、epoll详解</span>
                         <span class="visible-mobile">上一篇</span>
@@ -491,7 +491,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/21/Work/Algorithm%20Problem/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E5%A4%8D%E4%B9%A0%E9%80%9F%E8%A7%88/" title="LeetCode算法题复习速览">
+                      <a href="/blog/2023/03/21/Work/Algorithm%20Problem/leetcode%E7%AE%97%E6%B3%95%E9%A2%98%E5%A4%8D%E4%B9%A0%E9%80%9F%E8%A7%88/" title="LeetCode算法题复习速览">
                         <span class="hidden-mobile">LeetCode算法题复习速览</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -650,8 +650,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -673,7 +673,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -772,7 +772,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -782,7 +782,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

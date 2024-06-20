@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《Matching the Blanks: Distributional Similarity for Relation Learning》 论文来源： ACL  2019 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;P19-1279&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;plkmo&#x2F;BERT-Relation-Extraction 概述 基于对Har">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matching the Blanks - Distributional Similarity for Relation Learning">
-<meta property="og:url" content="https://heart.github.io/2023/09/02/Work/Paper%20Reading%20Notes/030MTB/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/09/02/Work/Paper%20Reading%20Notes/030MTB/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《Matching the Blanks: Distributional Similarity for Relation Learning》 论文来源： ACL  2019 **原文链接： **  https:&#x2F;&#x2F;aclanthology.org&#x2F;P19-1279&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;plkmo&#x2F;BERT-Relation-Extraction 概述 基于对Har">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -305,26 +305,26 @@
 <p>也就是说，如果两个词在语境中出现的模式（即它们周围的其他词汇）相似，那么这两个词可能具有相似的含义或关联性。这一假设强调了词汇的语境和共现关系在理解词义和语言中的作用。根据这一观点，我们可以通过分析词汇在大量文本中的共现模式来推断它们之间的语义关系。</p>
 <p>Harris’ distributional hypothesis在自然语言处理和计算语言学领域中具有重要影响，因为它为词嵌入（word embeddings）和语言模型的发展提供了理论基础。例如，Word2Vec和GloVe等词嵌入模型就是基于这一假设的思想构建的，它们通过分析词汇在大规模语料库中的共现来生成词向量，以捕捉词汇之间的语义相似性。</p>
 </blockquote>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902124125243.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902124125243.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="Method">Method</h2>
 <h3 id="Relation-Classification-and-Extraction-Tasks">Relation Classification and Extraction Tasks</h3>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125205979.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>上图是使用的两个Loss，左边是监督学习分类loss，右边是用于训练few-shot能力的相似度loss</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125408063.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125408063.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>这里有6种Encoder的输入输出变体，它们的结果如下：</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125811635.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902125811635.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>可以看到使用Entity Markers（[E1] [/E1] [E2] [/E2]）并且提取实体开头的Markers（[E1] [E2]）作为关系表征效果最好</p>
 <h3 id="Learning-by-Matching-the-Blanks">Learning by Matching the Blanks</h3>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131715740.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131715740.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>通过最小化下面的Loss来学习<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">f_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131815843.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902131815843.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>这个Loss很像逻辑回归Loss呀</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="http://lishilong.xyz/2023/07/20/Deep%20Learning/005%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/">损失函数总结</a></p>
 </blockquote>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132640904.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132640904.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>其实就是上图这样，必须两个实体都一样才是正例，否则都是反例</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132949914.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902132949914.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>这里就是以概率<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>随机替换entity为[BLANK]，从而构建新的数据集，目的是让<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>θ</mi></msub></mrow><annotation encoding="application/x-tex">f_{\theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>学会entity span</p>
 <h3 id="Matching-the-Blanks-Training">Matching the Blanks Training</h3>
 <p>训练的时候，类似BERT，使用两个Loss：</p>
@@ -339,10 +339,10 @@
 <p>此外还有一些实现细节：由于无法比较每对关系陈述，采用了噪声-对比估计方法。考虑所有包含相同实体的正对关系陈述对，而对于不包含相同实体对的关系陈述对，进行了随机采样或从共享一个实体的关系陈述中采样。还以一定概率将实体的提及替换为[BLANK]符号，以确保模型不会受到[BLANK]符号缺失的干扰</p>
 <p>最终生成了600m个关系陈述对，其中约50%为正对，50%为强负对</p>
 <h2 id="Experiments">Experiments</h2>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902133948579.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134237692.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134314867.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134329630.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902133948579.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134237692.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134314867.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230902134329630.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -361,7 +361,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -376,7 +376,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/RE/" class="print-no-link">#RE</a>
+        <a href="/blog/tags/RE/" class="print-no-link">#RE</a>
       
     </div>
   
@@ -389,7 +389,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Matching the Blanks - Distributional Similarity for Relation Learning</div>
-      <div>https://heart.github.io/2023/09/02/Work/Paper Reading Notes/030MTB/</div>
+      <div>https://heart.github.io/blog/2023/09/02/Work/Paper Reading Notes/030MTB/</div>
     </div>
     <div class="license-meta">
       
@@ -433,7 +433,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/10/Work/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="遗传算法">
+                      <a href="/blog/2023/09/10/Work/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="遗传算法">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">遗传算法</span>
                         <span class="visible-mobile">上一篇</span>
@@ -443,7 +443,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/02/Work/NLP/018RLHF/" title="RLHF相关问题">
+                      <a href="/blog/2023/09/02/Work/NLP/018RLHF/" title="RLHF相关问题">
                         <span class="hidden-mobile">RLHF相关问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -602,8 +602,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -625,7 +625,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -724,7 +724,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -734,7 +734,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

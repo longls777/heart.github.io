@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《RoBERTa:  A Robustly Optimized BERT Pretraining Approach》 论文来源： arxiv 2019 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1907.11692.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;fairseq 概述 该文章通过对BERT的实验的复现发现，超参数的选择对B">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RoBERTa  A Robustly Optimized BERT Pretraining Approach">
-<meta property="og:url" content="https://heart.github.io/2022/10/06/Work/Paper%20Reading%20Notes/001RoBERTa%20A%20Robustly%20Optimized%20BERT%20Pretraining%20Approach/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2022/10/06/Work/Paper%20Reading%20Notes/001RoBERTa%20A%20Robustly%20Optimized%20BERT%20Pretraining%20Approach/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《RoBERTa:  A Robustly Optimized BERT Pretraining Approach》 论文来源： arxiv 2019 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1907.11692.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;facebookresearch&#x2F;fairseq 概述 该文章通过对BERT的实验的复现发现，超参数的选择对B">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -318,18 +318,18 @@
 <li>STORIES 31GB</li>
 </ul>
 <h3 id="训练时间更长，batch-size更大">训练时间更长，batch size更大</h3>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007152640133.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007152640133.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>在同样运算消耗的条件下，batch-size增大，PPL（困惑度）变小，效果更好</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007154409170.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007154409170.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>可以看到，预训练时间越长，效果越好</p>
 <h3 id="移除了next-predict-loss">移除了next predict loss</h3>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007154545994.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007154545994.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>可以看出来，没有NSP loss之后，模型的性能匹配甚至略微优于原来的模型</p>
 <p>与此同时，发现将序列限制为来自单个文档(doc - sentence)的效果略好于从多个文档(full - sentence)打包序列</p>
 <h2 id="动态调整Masking机制-Dynamic-Masking">动态调整Masking机制 Dynamic Masking</h2>
 <p>static masking: 原本的BERT采用的是static mask的方式，就是在<code>create pretraining data</code>中，先对数据进行提前的mask，为了充分利用数据，定义了<code>dupe_factor</code>，这样可以将训练数据复制<code>dupe_factor</code>份，然后同一条数据可以有不同的mask。注意这些数据不是全部都喂给同一个epoch，是不同的epoch，例如<code>dupe_factor=10</code>， <code>epoch=40</code>， 则每种mask的方式在训练中会被使用4次</p>
 <p>dynamic masking: 每一次将训练example喂给模型的时候，才进行随机mask</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007155117023.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20221007155117023.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="a-larger-byte-level-BPE">a larger byte-level BPE</h2>
 <p>BERT原型使用的是 character-level BPE vocabulary of size 30K, RoBERTa使用了GPT2的 byte BPE 实现，使用的是byte而不是unicode characters作为subword的单位。</p>
 <blockquote>
@@ -358,7 +358,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -373,7 +373,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/prLms/" class="print-no-link">#prLms</a>
+        <a href="/blog/tags/prLms/" class="print-no-link">#prLms</a>
       
     </div>
   
@@ -386,7 +386,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>RoBERTa  A Robustly Optimized BERT Pretraining Approach</div>
-      <div>https://heart.github.io/2022/10/06/Work/Paper Reading Notes/001RoBERTa A Robustly Optimized BERT Pretraining Approach/</div>
+      <div>https://heart.github.io/blog/2022/10/06/Work/Paper Reading Notes/001RoBERTa A Robustly Optimized BERT Pretraining Approach/</div>
     </div>
     <div class="license-meta">
       
@@ -430,7 +430,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/13/Work/Machine%20Learning/003%E8%8C%83%E6%95%B0/" title="范数">
+                      <a href="/blog/2022/10/13/Work/Machine%20Learning/003%E8%8C%83%E6%95%B0/" title="范数">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">范数</span>
                         <span class="visible-mobile">上一篇</span>
@@ -440,7 +440,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/05/Work/Paper%20Reading%20Notes/002ALBERT%20A%20LITE%20BERT%20FOR%20SELF-SUPERVISED%20LEARNING%20OF%20LANGUAGE%20REPRESENTATIONS/" title="ALBERT A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS">
+                      <a href="/blog/2022/10/05/Work/Paper%20Reading%20Notes/002ALBERT%20A%20LITE%20BERT%20FOR%20SELF-SUPERVISED%20LEARNING%20OF%20LANGUAGE%20REPRESENTATIONS/" title="ALBERT A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS">
                         <span class="hidden-mobile">ALBERT A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -599,8 +599,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -622,7 +622,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -721,7 +721,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -731,7 +731,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

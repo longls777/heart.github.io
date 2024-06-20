@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》 论文来源： LREC 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.lrec-1.651&#x2F; 源码： Method  该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method">
-<meta property="og:url" content="https://heart.github.io/2023/02/27/Work/Paper%20Reading%20Notes/007HRCA+%20Advanced%20Multiple-choice%20Machine%20Reading%20Comprehension%20Method/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/02/27/Work/Paper%20Reading%20Notes/007HRCA+%20Advanced%20Multiple-choice%20Machine%20Reading%20Comprehension%20Method/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《HRCA+: Advanced Multiple-choice Machine Reading Comprehension Method》 论文来源： LREC 2022 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2022.lrec-1.651&#x2F; 源码： Method  该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章">
 <meta property="og:locale" content="zh_CN">
@@ -65,12 +65,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -79,15 +79,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -117,7 +117,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -184,7 +184,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -301,7 +301,7 @@
 <p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.lrec-1.651/">https://aclanthology.org/2022.lrec-1.651/</a></p>
 <p><strong>源码：</strong></p>
 <h2 id="Method">Method</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png" srcset="/img/loading.gif" lazyload alt="image-20230227154427405"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227154427405.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227154427405"></p>
 <p>该模型模拟人类思考过程，即首先确认问题，然后查看候选选项，最终融合问题和候选选项的信息来阅读整篇文章</p>
 <p>基于预训练模型，首先生成（文章，问题，候选选项）三元组<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>P</mi><mo separator="true">,</mo><mi>Q</mi><mo separator="true">,</mo><mi>O</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(P,Q,O)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mclose">)</span></span></span></span>的word embedding，每个word embedding划分为对应于（文章，问题，候选选项）的三部分</p>
 <p>此外，K个HRCA层将以下三个步骤重复K次，从而模拟人类试图在阅读理解考试中获得高分的方式：</p>
@@ -310,7 +310,7 @@
 <li>对步骤1中显示的选项和更新后的问题进行多头关注（将选项视为q，将更新后的问题视为k和v)。执行此步骤是为了模拟确认问题后对候选选项的理解</li>
 <li>对文章和步骤2中显示的更新选项执行多头关注（将文章视为q，并将更新的选项视为k和v)。这一步为了让模型在理解候选选项后，理解带有问题的文章和相应的候选选项</li>
 </ol>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162248879.png" srcset="/img/loading.gif" lazyload alt="image-20230227162248879"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162248879.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227162248879"></p>
 <p>经过预训练模型后，得到：</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>e</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>e</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>e</mi><mrow><mi>k</mi><mo>+</mo><mi>l</mi><mo>+</mo><mi>m</mi></mrow></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[e_1,e_2,...,e_{k+l+m}]
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span></p>
@@ -319,14 +319,14 @@
 </blockquote>
 <h3 id="HRCA">HRCA</h3>
 <p>将得到的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>分为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi><mi>P</mi></msup><mo separator="true">,</mo><msup><mi>E</mi><mi>Q</mi></msup><mo separator="true">,</mo><msup><mi>E</mi><mi>O</mi></msup></mrow><annotation encoding="application/x-tex">E^P,E^Q,E^O</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0358em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">Q</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">O</span></span></span></span></span></span></span></span></span></span></span></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162549110.png" srcset="/img/loading.gif" lazyload alt="image-20230227162549110"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227162549110.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227162549110"></p>
 <h3 id="PQO-Matrix">PQO Matrix</h3>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227163021369.png" srcset="/img/loading.gif" lazyload alt="image-20230227163021369"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227163021369.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227163021369"></p>
 <p>作者发现HRCA中仅使用了三种attention关系，即问题和问题本身、候选选项和问题、文章和候选选项</p>
 <p>上图中，红色的为HRCA中使用的，浅红色的为自注意力，灰色的为未使用的attention</p>
 <h3 id="HRCA-2">HRCA+</h3>
 <p>使用浅红色和灰色的关系，加强HRCA</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227165008151.png" srcset="/img/loading.gif" lazyload alt="image-20230227165008151"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230227165008151.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230227165008151"></p>
 <p>​</p>
 
                 
@@ -346,7 +346,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -361,7 +361,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/MCQA/" class="print-no-link">#MCQA</a>
+        <a href="/blog/tags/MCQA/" class="print-no-link">#MCQA</a>
       
     </div>
   
@@ -374,7 +374,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>HRCA+ - Advanced Multiple-choice Machine Reading Comprehension Method</div>
-      <div>https://heart.github.io/2023/02/27/Work/Paper Reading Notes/007HRCA+ Advanced Multiple-choice Machine Reading Comprehension Method/</div>
+      <div>https://heart.github.io/blog/2023/02/27/Work/Paper Reading Notes/007HRCA+ Advanced Multiple-choice Machine Reading Comprehension Method/</div>
     </div>
     <div class="license-meta">
       
@@ -418,7 +418,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/28/Work/Redis/%E9%9B%86%E7%BE%A4/" title="Redis集群">
+                      <a href="/blog/2023/02/28/Work/Redis/%E9%9B%86%E7%BE%A4/" title="Redis集群">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Redis集群</span>
                         <span class="visible-mobile">上一篇</span>
@@ -428,7 +428,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/27/Work/Paper%20Reading%20Notes/008Learning%20to%20Attend%20On%20Essential%20Terms%20An%20Enhanced%20Retriever-Reader%20Model%20for%20Open-domain%20Question%20Answering/" title="Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering">
+                      <a href="/blog/2023/02/27/Work/Paper%20Reading%20Notes/008Learning%20to%20Attend%20On%20Essential%20Terms%20An%20Enhanced%20Retriever-Reader%20Model%20for%20Open-domain%20Question%20Answering/" title="Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering">
                         <span class="hidden-mobile">Learning to Attend On Essential Terms - An Enhanced Retriever-Reader Model for Open-domain Question Answering</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -587,8 +587,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -610,7 +610,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -709,7 +709,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -719,7 +719,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

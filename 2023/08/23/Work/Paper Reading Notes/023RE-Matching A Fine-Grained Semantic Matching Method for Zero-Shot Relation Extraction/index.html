@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《RE-Matching: A Fine-Grained Semantic Matching Method for Zero-Shot Relation Extraction》 论文来源： ACL Long 2023 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2023.acl-long.369&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;zweny&#x2F;RE-Matchi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RE-Matching - A Fine-Grained Semantic Matching Method for Zero-Shot Relation Extraction">
-<meta property="og:url" content="https://heart.github.io/2023/08/23/Work/Paper%20Reading%20Notes/023RE-Matching%20A%20Fine-Grained%20Semantic%20Matching%20Method%20for%20Zero-Shot%20Relation%20Extraction/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/23/Work/Paper%20Reading%20Notes/023RE-Matching%20A%20Fine-Grained%20Semantic%20Matching%20Method%20for%20Zero-Shot%20Relation%20Extraction/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《RE-Matching: A Fine-Grained Semantic Matching Method for Zero-Shot Relation Extraction》 论文来源： ACL Long 2023 原文链接： https:&#x2F;&#x2F;aclanthology.org&#x2F;2023.acl-long.369&#x2F; 源码： https:&#x2F;&#x2F;github.com&#x2F;zweny&#x2F;RE-Matchi">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -299,7 +299,7 @@
 <h2 id="概述">概述</h2>
 <p>语义匹配（senmantic matching）是zero-shot RE的主流范式，它将给定的输入与相应的标签描述进行匹配。输入中的实体应与描述中的上位词精确匹配，而与匹配无关的上下文应在匹配时被忽略。然而，一般的匹配方法缺乏对上述匹配模式的明确建模。</p>
 <p>本文提出了一种专门用于零样本关系提取的精细语义匹配方法。遵循上述匹配模式，<strong>将句子级别的相似度分数分解为实体和上下文匹配分数</strong>。由于缺乏对冗余组件的明确注释，本文设计了一个<strong>特征蒸馏模块</strong>，<strong>以自适应方式识别与关系无关的特征并减少其对上下文匹配的负面影响</strong>。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823162629351.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823162629351.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>ZeroRE的两种范式：</p>
 <ul>
 <li>分别编码Des和Input，这样可以复用，只需要编码<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">m+n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>次</li>
@@ -320,7 +320,7 @@
 <p>给定<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><msup><mi>x</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo separator="true">,</mo><mi>e</mi><msup><mn>1</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo separator="true">,</mo><mi>e</mi><msup><mn>2</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{ x&#x27;, e1&#x27;,e2&#x27; \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">e</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">e</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>，预测<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">e1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord mathnormal">e</span><span class="mord">1</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">e2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord mathnormal">e</span><span class="mord">2</span></span></span></span>的关系<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">y&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9463em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>，其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">y&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9463em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>与<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>的交集为空，也就是说预测的关系在训练的时候从来没有出现过，也就是zero-shot</p>
 <p>预测的方式是选择最相似的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span>对应的关系<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">y&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9463em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></p>
 <h2 id="Method">Method</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823164348732.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823164348732.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>将关系描述和输入实例分成两个模块，分别建模关系匹配模式，这样的好处是可以复用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>，推理更高效</li>
 <li>分别编码<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 和n个候选的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span></li>
@@ -360,12 +360,12 @@
 <p>context表征<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>由拼接[Eh]和[Et]的隐藏层得来</p>
 </li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823184030911.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823184030911.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span></span></span></span>是一个MLP，降维用的</p>
 <h3 id="Contextual-Relation-Feature-Distillation">Contextual Relation Feature Distillation</h3>
 <p>这块冗余文本是自己定义的，需要检测</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823184945909.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823184955065.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823184945909.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823184955065.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>使用一个分类器对编码后的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>进行分类，但是通常来说分类器很难判断哪些token是冗余的，对于判断实体关系没有用的，所以这里使用了一个梯度反转层</p>
 <blockquote>
 <p>Gradient Reverse Layer（GRL）：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1409.7495">https://arxiv.org/abs/1409.7495</a></p>
@@ -380,24 +380,24 @@
 </blockquote>
 <h3 id="Relation-Feature-Distillation-Layer">Relation Feature Distillation Layer</h3>
 <p>旨在减少冗余文本对于matching的影响</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823185730580.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823185730580.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>首先获取将输入<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>投影到冗余<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">x^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6887em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span>（上一步检测出来的）方向</li>
 <li>然后从<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>减去<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>x</mi><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">^</span></span></span></span></span></span></span></span></span></span>获取精细化的文本表征<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>p</mi></msup></mrow><annotation encoding="application/x-tex">x^p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span></span></span></span></span></span></span></span></li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823190024565.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823190024565.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h3 id="Fine-Grained-Matching-and-Training">Fine-Grained Matching and Training</h3>
 <p>总的匹配分数 = 实体匹配分数 + 文本匹配分数，计算方式如下，：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823190141897.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823190141897.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>损失函数：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823190309508.png" srcset="/img/loading.gif" lazyload alt="="></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823190419879.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823190309508.png" srcset="/blog/img/loading.gif" lazyload alt="="></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230823190419879.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="Experments">Experments</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824122941594.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824123659523.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824123711639.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824123735657.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824123948937.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824122941594.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824123659523.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824123711639.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824123735657.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230824123948937.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -416,7 +416,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -431,7 +431,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/RE/" class="print-no-link">#RE</a>
+        <a href="/blog/tags/RE/" class="print-no-link">#RE</a>
       
     </div>
   
@@ -444,7 +444,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>RE-Matching - A Fine-Grained Semantic Matching Method for Zero-Shot Relation Extraction</div>
-      <div>https://heart.github.io/2023/08/23/Work/Paper Reading Notes/023RE-Matching A Fine-Grained Semantic Matching Method for Zero-Shot Relation Extraction/</div>
+      <div>https://heart.github.io/blog/2023/08/23/Work/Paper Reading Notes/023RE-Matching A Fine-Grained Semantic Matching Method for Zero-Shot Relation Extraction/</div>
     </div>
     <div class="license-meta">
       
@@ -488,7 +488,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/25/Work/Paper%20Reading%20Notes/024Sentence-BERT%20Sentence%20Embeddings%20using%20Siamese%20BERT-Networks/" title="Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks">
+                      <a href="/blog/2023/08/25/Work/Paper%20Reading%20Notes/024Sentence-BERT%20Sentence%20Embeddings%20using%20Siamese%20BERT-Networks/" title="Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Sentence-BERT - Sentence Embeddings using Siamese BERT-Networks</span>
                         <span class="visible-mobile">上一篇</span>
@@ -498,7 +498,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/23/Work/Paper%20Reading%20Notes/022The%20Wisdom%20of%20Hindsight%20Makes%20Language%20Models%20Better%20Instruction%20Followers/" title="The Wisdom of Hindsight Makes Language Models Better Instruction Followers">
+                      <a href="/blog/2023/08/23/Work/Paper%20Reading%20Notes/022The%20Wisdom%20of%20Hindsight%20Makes%20Language%20Models%20Better%20Instruction%20Followers/" title="The Wisdom of Hindsight Makes Language Models Better Instruction Followers">
                         <span class="hidden-mobile">The Wisdom of Hindsight Makes Language Models Better Instruction Followers</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -657,8 +657,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -680,7 +680,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -779,7 +779,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -789,7 +789,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

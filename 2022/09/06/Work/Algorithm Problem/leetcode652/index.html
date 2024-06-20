@@ -19,7 +19,7 @@
     <meta name="description" content="652. 寻找重复的子树 给定一棵二叉树 root，返回所有重复的子树。 对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。 如果两棵树具有相同的结构和相同的结点值，则它们是重复的。 示例 1：  12输入：root &#x3D; [1,2,3,4,null,2,4,null,null,4]输出：[[2,4],[4]] 示例 2：  12输入：root &#x3D; [2,1,1]输出：[[1]] 示例 3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode652 寻找重复的子树">
-<meta property="og:url" content="https://heart.github.io/2022/09/06/Work/Algorithm%20Problem/leetcode652/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2022/09/06/Work/Algorithm%20Problem/leetcode652/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="652. 寻找重复的子树 给定一棵二叉树 root，返回所有重复的子树。 对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。 如果两棵树具有相同的结构和相同的结点值，则它们是重复的。 示例 1：  12输入：root &#x3D; [1,2,3,4,null,2,4,null,null,4]输出：[[2,4],[4]] 示例 2：  12输入：root &#x3D; [2,1,1]输出：[[1]] 示例 3">
 <meta property="og:locale" content="zh_CN">
@@ -63,12 +63,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -77,15 +77,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -115,7 +115,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -134,7 +134,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -146,7 +146,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -158,7 +158,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -170,7 +170,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -182,7 +182,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -299,13 +299,13 @@
 <p>对于同一类的重复子树，你只需要返回其中任意<strong>一棵</strong>的根结点即可。</p>
 <p>如果两棵树具有<strong>相同的结构</strong>和<strong>相同的结点值</strong>，则它们是<strong>重复</strong>的。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e1.jpg" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：root = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,null,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,null,null,<span class="hljs-number">4</span>]<br>输出：<span class="hljs-string">[[2,4],[4]]</span><br></code></pre></td></tr></table></figure>
 <p><strong>示例 2：</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e2.jpg" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：root = [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br>输出：<span class="hljs-string">[[1]]</span><br></code></pre></td></tr></table></figure>
 <p><strong>示例 3：</strong></p>
-<p><strong><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e33.jpg" srcset="/img/loading.gif" lazyload alt="img"></strong></p>
+<p><strong><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e33.jpg" srcset="/blog/img/loading.gif" lazyload alt="img"></strong></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：root = [<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,null,<span class="hljs-number">3</span>,null]<br>输出：<span class="hljs-string">[[2,3],[3]]</span><br></code></pre></td></tr></table></figure>
 <p><strong>提示：</strong></p>
 <ul>
@@ -338,7 +338,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
+  <a href="/blog/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
   
   
 
@@ -353,7 +353,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/DFS/" class="print-no-link">#DFS</a>
+        <a href="/blog/tags/DFS/" class="print-no-link">#DFS</a>
       
     </div>
   
@@ -366,7 +366,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>leetcode652 寻找重复的子树</div>
-      <div>https://heart.github.io/2022/09/06/Work/Algorithm Problem/leetcode652/</div>
+      <div>https://heart.github.io/blog/2022/09/06/Work/Algorithm Problem/leetcode652/</div>
     </div>
     <div class="license-meta">
       
@@ -410,7 +410,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/15/Work/NLP/transformer%E7%9A%84multi-head/" title="Transformer为什么使用Multi-Head？">
+                      <a href="/blog/2022/09/15/Work/NLP/transformer%E7%9A%84multi-head/" title="Transformer为什么使用Multi-Head？">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Transformer为什么使用Multi-Head？</span>
                         <span class="visible-mobile">上一篇</span>
@@ -420,7 +420,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/06/Work/Algorithm%20Problem/leetcode828/" title="leetcode828 统计子串中的唯一字符">
+                      <a href="/blog/2022/09/06/Work/Algorithm%20Problem/leetcode828/" title="leetcode828 统计子串中的唯一字符">
                         <span class="hidden-mobile">leetcode828 统计子串中的唯一字符</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -579,8 +579,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -602,7 +602,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -701,7 +701,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -711,7 +711,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

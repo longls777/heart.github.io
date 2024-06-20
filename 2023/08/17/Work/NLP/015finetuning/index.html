@@ -19,7 +19,7 @@
     <meta name="description" content="大模型微调（finetune）方法总结-LoRA,Adapter,Prefix-tuning，P-tuning，Prompt-tuning - YBH的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;636481171  LoRA 自然语言处理目前存在一个重要范式：一般领域数据的大规模预训练，对特定任务或领域的适应（finetune）。但是随着预训练语言模型越来越大，这">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LLMs fine tuning方法总结">
-<meta property="og:url" content="https://heart.github.io/2023/08/17/Work/NLP/015finetuning/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/17/Work/NLP/015finetuning/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="大模型微调（finetune）方法总结-LoRA,Adapter,Prefix-tuning，P-tuning，Prompt-tuning - YBH的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;636481171  LoRA 自然语言处理目前存在一个重要范式：一般领域数据的大规模预训练，对特定任务或领域的适应（finetune）。但是随着预训练语言模型越来越大，这">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -302,7 +302,7 @@
 <li>以前的方法都或多或少有其它性能问题，如adapter增加了模型层数，引入了额外的推理延迟；prefix-tuning比较难训练，效果不如直接finetune</li>
 </ul>
 <p>基于上述背景，论文作者得益于前人的一些关于内在维度（intrinsic dimension）的发现：模型是过参数化的，它们有更小的内在维度，模型主要依赖于这个低的内在维度（low intrinsic dimension）去做任务适配。假设模型在任务适配过程中权重的改变量是低秩（low rank）的，由此提出低秩自适应（LoRA）方法，LoRA允许我们通过优化适应过程中dense层变化的秩分解矩阵来间接训练神经网络中的一些密集层，同时保持预先训练的权重不变</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812164721483.png" srcset="/img/loading.gif" lazyload alt="Lora"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812164721483.png" srcset="/blog/img/loading.gif" lazyload alt="Lora"></p>
 <p>LoRA的实现思想很简单，就是冻结一个prLM的矩阵参数，并选择用A和B矩阵来替代，下游任务微调时只训练A和B，推理时prLM和LoRA矩阵一起推理</p>
 <h2 id="Adapter">Adapter</h2>
 <blockquote>
@@ -310,7 +310,7 @@
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.00052.pdf">MAD-X: An Adapter-Based Framework for Multi-Task Cross-Lingual Transfer</a></p>
 </blockquote>
 <p>2019年，Houlsby N等人将Adapter引入NLP领域，作为全模型微调的一种替代方案。Adapter主体架构下图所示</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817203959034.png" srcset="/img/loading.gif" lazyload alt="Adapter"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817203959034.png" srcset="/blog/img/loading.gif" lazyload alt="Adapter"></p>
 <p>在预训练模型每一层（或某些层）中添加Adapter模块（如上图左侧结构所示），微调时冻结预训练模型主体，由Adapter模块学习特定下游任务的知识。每个Adapter模块由两个前馈子层组成，第一个前馈子层将Transformer块的输出作为输入，将原始输入维度d投影到m，通过控制m的大小来限制Adapter模块的参数量，通常情况下m&lt;&lt;d。在输出阶段，通过第二个前馈子层还原输入维度，将m重新投影到d，作为Adapter模块的输出（如上图右侧结构）。通过添加Adapter模块来产生一个易于扩展的下游模型，每当出现新的下游任务，通过添加Adapter模块来避免全模型微调与灾难性遗忘的问题。Adapter方法不需要微调预训练模型的全部参数，通过引入少量针对特定任务的参数，来存储有关该任务的知识，降低对模型微调的算力要求</p>
 <h2 id="Prefix-tuning">Prefix-tuning</h2>
 <blockquote>
@@ -318,13 +318,13 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/XiangLi1999/PrefixTuning">GitHub - XiangLi1999/PrefixTuning: Prefix-Tuning: Optimizing Continuous Prompts for Generation</a></p>
 </blockquote>
 <p>前缀微调（prefix-tunning），用于生成任务的轻量微调。前缀微调将一个连续的特定于任务的向量序列添加到输入，称之为前缀，如下图中的红色块所示。与提示（prompt）不同的是，前缀完全由自由参数组成，与真正的token不对应。相比于传统的微调，前缀微调只优化了前缀。因此，我们只需要存储一个大型Transformer和已知任务特定前缀的副本，对每个额外任务产生非常小的开销</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817210525153.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817210525153.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="P-tuning">P-tuning</h2>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.10385">GPT Understands, Too</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/THUDM/P-tuning">GitHub - THUDM/P-tuning: A novel method to tune language models. Codes and datasets for paper ``GPT understands, too’'.</a></p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817211156195.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817211156195.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>P-tuning是稍晚些的工作，主要针对NLU任务</p>
 <ul>
 <li>对于BERT类双向语言模型采用模版（P1, x, P2, [MASK], P3）</li>
@@ -336,13 +336,13 @@
 <li>在输入上加入了anchor，比如对于RTE任务，加上一个问号变成[ PRE ] [  prompt tokens  ] [  HYP  ] ? [  prompt tokens  ] [ MASK ]后效果会更好</li>
 </ul>
 <p>P-tuning的效果很好，之前的Prompt模型都是主打小样本效果，而P-tuning终于在整个数据集上超越了精调的效果：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817212600189.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817212600189.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="Prompt-tuning">Prompt-tuning</h2>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.08691">The Power of Scale for Parameter-Efficient Prompt Tuning</a></p>
 </blockquote>
 <p>Prompt-tuning给每个任务定义了自己的Prompt，拼接到数据上作为输入，同时freeze预训练模型进行训练，<strong>在没有加额外层的情况下</strong>，可以看到随着模型体积增大效果越来越好，最终追上了精调的效果：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817212740069.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817212740069.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>同时，Prompt-tuning还提出了Prompt-ensembling，也就是在一个batch里同时训练同一个任务的不同prompt，这样相当于训练了不同「模型」，比模型集成的成本小多了</p>
 
                 
@@ -362,7 +362,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  <a href="/blog/categories/NLP/" class="category-chain-item">NLP</a>
   
   
 
@@ -377,7 +377,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/fine-tuning/" class="print-no-link">#fine tuning</a>
+        <a href="/blog/tags/fine-tuning/" class="print-no-link">#fine tuning</a>
       
     </div>
   
@@ -390,7 +390,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>LLMs fine tuning方法总结</div>
-      <div>https://heart.github.io/2023/08/17/Work/NLP/015finetuning/</div>
+      <div>https://heart.github.io/blog/2023/08/17/Work/NLP/015finetuning/</div>
     </div>
     <div class="license-meta">
       
@@ -434,7 +434,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/18/Work/Paper%20Reading%20Notes/018p-tuning/" title="GPT Understands, Too">
+                      <a href="/blog/2023/08/18/Work/Paper%20Reading%20Notes/018p-tuning/" title="GPT Understands, Too">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">GPT Understands, Too</span>
                         <span class="visible-mobile">上一篇</span>
@@ -444,7 +444,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/17/Work/Paper%20Reading%20Notes/017Lora/" title="LORA LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS">
+                      <a href="/blog/2023/08/17/Work/Paper%20Reading%20Notes/017Lora/" title="LORA LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS">
                         <span class="hidden-mobile">LORA LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -603,8 +603,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -626,7 +626,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -725,7 +725,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -735,7 +735,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

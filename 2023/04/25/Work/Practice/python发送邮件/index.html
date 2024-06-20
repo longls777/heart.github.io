@@ -19,7 +19,7 @@
     <meta name="description" content="这里记录如何在python中发送邮件，可以将模型运行结果实时发送至自己的邮箱查看 首先获取自己邮箱的SMTP账号密码等信息 登录qq邮箱  进入帮助中心  搜索授权码  选择第一个   点击账号与安全  点击安全设置，选择生成授权码（SMTP服务要先开启）  根据提示获取授权码，保留等待以后使用  发送邮件 qq邮箱的SMTP发送服务器相关设置如下（如有更新请查看最新规则）  以下是相关代码 12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python如何发送邮件">
-<meta property="og:url" content="https://heart.github.io/2023/04/25/Work/Practice/python%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/04/25/Work/Practice/python%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="这里记录如何在python中发送邮件，可以将模型运行结果实时发送至自己的邮箱查看 首先获取自己邮箱的SMTP账号密码等信息 登录qq邮箱  进入帮助中心  搜索授权码  选择第一个   点击账号与安全  点击安全设置，选择生成授权码（SMTP服务要先开启）  根据提示获取授权码，保留等待以后使用  发送邮件 qq邮箱的SMTP发送服务器相关设置如下（如有更新请查看最新规则）  以下是相关代码 12">
 <meta property="og:locale" content="zh_CN">
@@ -67,12 +67,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -81,15 +81,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -119,7 +119,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -138,7 +138,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -150,7 +150,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -162,7 +162,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -174,7 +174,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -186,7 +186,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -301,27 +301,27 @@
                 <p><strong>这里记录如何在python中发送邮件，可以将模型运行结果实时发送至自己的邮箱查看</strong></p>
 <h2 id="首先获取自己邮箱的SMTP账号密码等信息">首先获取自己邮箱的SMTP账号密码等信息</h2>
 <h4 id="登录qq邮箱">登录qq邮箱</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202106261.png" srcset="/img/loading.gif" lazyload alt="image-20230425202106261"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202106261.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425202106261"></p>
 <h4 id="进入帮助中心">进入帮助中心</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202013243.png" srcset="/img/loading.gif" lazyload alt="image-20230425202013243"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202013243.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425202013243"></p>
 <h4 id="搜索授权码">搜索授权码</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202130751.png" srcset="/img/loading.gif" lazyload alt="image-20230425202130751"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202130751.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425202130751"></p>
 <h4 id="选择第一个">选择第一个</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202141582.png" srcset="/img/loading.gif" lazyload alt="image-20230425202141582"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202141582.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425202141582"></p>
 <hr>
 <h4 id="点击账号与安全">点击账号与安全</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202207812.png" srcset="/img/loading.gif" lazyload alt="image-20230425202207812"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202207812.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425202207812"></p>
 <h4 id="点击安全设置，选择生成授权码（SMTP服务要先开启）">点击安全设置，选择生成授权码（SMTP服务要先开启）</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202236608.png" srcset="/img/loading.gif" lazyload alt="image-20230425202236608"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202236608.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425202236608"></p>
 <h4 id="根据提示获取授权码，保留等待以后使用">根据提示获取授权码，保留等待以后使用</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202255138.png" srcset="/img/loading.gif" lazyload alt="image-20230425202255138"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202255138.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425202255138"></p>
 <h2 id="发送邮件">发送邮件</h2>
 <h4 id="qq邮箱的SMTP发送服务器相关设置如下（如有更新请查看最新规则）">qq邮箱的SMTP发送服务器相关设置如下（如有更新请查看最新规则）</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202555587.png" srcset="/img/loading.gif" lazyload alt="image-20230425202555587"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425202555587.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425202555587"></p>
 <h4 id="以下是相关代码">以下是相关代码</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> smtplib<br><span class="hljs-keyword">from</span> email.mime.multipart <span class="hljs-keyword">import</span> MIMEMultipart <br><span class="hljs-keyword">from</span> email.mime.text <span class="hljs-keyword">import</span> MIMEText<br><span class="hljs-keyword">from</span> email.header <span class="hljs-keyword">import</span> Header<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">send_email</span>(<span class="hljs-params">machine, model_name, message</span>):<br>    <span class="hljs-comment"># 连接邮箱服务器</span><br>    address = <span class="hljs-string">&quot;smtp.qq.com&quot;</span> <span class="hljs-comment"># 发送邮件服务器地址</span><br>    port = <span class="hljs-number">465</span> <span class="hljs-comment"># 端口</span><br>    mail = smtplib.SMTP_SSL(address, port) <span class="hljs-comment"># 获取邮箱对象</span><br>    <span class="hljs-comment"># 登陆邮箱</span><br>    user = <span class="hljs-string">&quot;1111111111@qq.com&quot;</span> <span class="hljs-comment"># 你的qq邮箱的完整邮件地址</span><br>    password = <span class="hljs-string">&quot;xxxxxxxxxxx&quot;</span> <span class="hljs-comment"># 前面获得的授权码</span><br>    mail.login(user, password)<br>    <br>    email = MIMEMultipart()<br>    subject = Header(machine + <span class="hljs-string">&#x27;--&#x27;</span> + model_name, <span class="hljs-string">&#x27;utf-8&#x27;</span>).encode() <span class="hljs-comment"># 第一个参数是邮件主题，自己设置</span><br>    email[<span class="hljs-string">&#x27;Subject&#x27;</span>] = subject<br>    email[<span class="hljs-string">&#x27;From&#x27;</span>] = <span class="hljs-string">&#x27;11111111@qq.com &lt;11111111@qq.com&gt;&#x27;</span> <span class="hljs-comment"># 发送人，写自己的qq邮箱地址（不知道能不能写别的，可以自己尝试）</span><br>    email[<span class="hljs-string">&#x27;To&#x27;</span>] = <span class="hljs-string">&#x27;222222222@bupt.cn&#x27;</span> <span class="hljs-comment"># 接收人邮箱地址</span><br>    text = MIMEText(message, <span class="hljs-string">&#x27;plain&#x27;</span>, <span class="hljs-string">&#x27;utf-8&#x27;</span>) <br><br>    email.attach(text)<br>    mail.sendmail(<span class="hljs-string">&#x27;111111111@qq.com&#x27;</span>,<span class="hljs-string">&#x27;2222222222@bupt.cn&#x27;</span>, email.as_string()) <span class="hljs-comment"># 发送邮箱和接收邮箱</span><br>    mail.quit()<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    send_email(<span class="hljs-string">&quot;双卡3090&quot;</span>, <span class="hljs-string">&quot;model16&quot;</span>, <span class="hljs-string">&quot;test acc : 79.2%&quot;</span>)<br></code></pre></td></tr></table></figure>
 <h4 id="结果">结果</h4>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425211821914.png" srcset="/img/loading.gif" lazyload alt="image-20230425211821914"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230425211821914.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230425211821914"></p>
 <blockquote>
 <p>参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/560555163">https://zhuanlan.zhihu.com/p/560555163</a></p>
 </blockquote>
@@ -343,7 +343,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Practice/" class="category-chain-item">Practice</a>
+  <a href="/blog/categories/Practice/" class="category-chain-item">Practice</a>
   
   
 
@@ -364,7 +364,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>python如何发送邮件</div>
-      <div>https://heart.github.io/2023/04/25/Work/Practice/python发送邮件/</div>
+      <div>https://heart.github.io/blog/2023/04/25/Work/Practice/python发送邮件/</div>
     </div>
     <div class="license-meta">
       
@@ -408,7 +408,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/25/Work/Java/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/" title="Java并发知识点详解">
+                      <a href="/blog/2023/04/25/Work/Java/Java%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/" title="Java并发知识点详解">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Java并发知识点详解</span>
                         <span class="visible-mobile">上一篇</span>
@@ -418,7 +418,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/25/Work/Java/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/" title="JVM知识点详解">
+                      <a href="/blog/2023/04/25/Work/Java/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/" title="JVM知识点详解">
                         <span class="hidden-mobile">JVM知识点详解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -572,8 +572,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -595,7 +595,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -694,7 +694,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -704,7 +704,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

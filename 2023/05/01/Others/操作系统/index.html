@@ -19,7 +19,7 @@
     <meta name="description" content="一、操作系统概述 说说什么是操作系统？  操作系统本质上是一个运行在计算机内核态上的软件程序 ，用于管理计算机硬件和软件资源。 运行在电脑上的所有应用程序都通过操作系统来调用系统内存以及磁盘等等硬件 操作系统存在屏蔽了硬件层的复杂性，它将复杂的硬件抽象为接口提供给用户态程序 操作系统具有对硬件的完全访问权，它可以使用机器指令集的全部指令   说说系统调用？ 根据进程访问资源的特点，我们可以把进程在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统">
-<meta property="og:url" content="https://heart.github.io/2023/05/01/Others/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/05/01/Others/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="一、操作系统概述 说说什么是操作系统？  操作系统本质上是一个运行在计算机内核态上的软件程序 ，用于管理计算机硬件和软件资源。 运行在电脑上的所有应用程序都通过操作系统来调用系统内存以及磁盘等等硬件 操作系统存在屏蔽了硬件层的复杂性，它将复杂的硬件抽象为接口提供给用户态程序 操作系统具有对硬件的完全访问权，它可以使用机器指令集的全部指令   说说系统调用？ 根据进程访问资源的特点，我们可以把进程在">
 <meta property="og:locale" content="zh_CN">
@@ -75,12 +75,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -89,15 +89,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -127,7 +127,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -146,7 +146,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -158,7 +158,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -170,7 +170,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -182,7 +182,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -194,7 +194,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -313,7 +313,7 @@
 <li>操作系统存在屏蔽了硬件层的复杂性，它将复杂的硬件抽象为接口提供给用户态程序</li>
 <li>操作系统具有对硬件的完全访问权，它可以使用机器指令集的全部指令</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/zxczxcVv.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/zxczxcVv.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>说说系统调用？</strong></p>
 <p>根据进程访问资源的特点，我们可以把进程在系统上的运行分为两个级别：</p>
 <ol>
@@ -341,7 +341,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/JDK%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F.png" srcset="/img/loading.gif" lazyload alt="JDK运行时数据区域"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/JDK%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F.png" srcset="/blog/img/loading.gif" lazyload alt="JDK运行时数据区域"></p>
 <ul>
 <li>调度：线程是CPU调度和分派的基本单位，它是比进程更小的能独立运行的基本单位</li>
 <li>系统开销：创建或撤销进程时，系统都需要为之分配或回收资源，如内存空间、IO设备等，这些开销远大于创建或撤销线程时的开销；在进行进程切换时，需要保存当前CPU环境以及新调度进程CPU环境的设置，而线程切换时只需保存和设置少量寄存器内容，开销较小</li>
@@ -356,7 +356,7 @@
 <li>线程进程都是同步机制，而协程是异步</li>
 </ul>
 <p><strong>2. 进程和线程拥有的资源？</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%8B%A5%E6%9C%89%E7%9A%84%E8%B5%84%E6%BA%90.png" srcset="/img/loading.gif" lazyload alt="进程和线程拥有的资源"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%8B%A5%E6%9C%89%E7%9A%84%E8%B5%84%E6%BA%90.png" srcset="/blog/img/loading.gif" lazyload alt="进程和线程拥有的资源"></p>
 <blockquote>
 <p>所谓进程地址空间（process address space），就是从进程的视角看到的地址空间，是进程运行时所用到的虚拟地址的集合。</p>
 </blockquote>
@@ -374,7 +374,7 @@
 <li>阻塞状态（waiting）：又称为等待状态，进程正在等待某一事件而暂停运行如等待某资源为可用或等待 IO 操作完成。即使处理器空闲，该进程也不能运行。</li>
 <li>结束状态（terminated）：进程正在从系统中消失。可能是进程正常结束或其他原因中断退出运行。</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81.png" srcset="/img/loading.gif" lazyload alt="操作系统进程状态"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81.png" srcset="/blog/img/loading.gif" lazyload alt="操作系统进程状态"></p>
 <ul>
 <li>
 <p>只有就绪态和运行态可以相互转换，其它的都是单向转换。就绪状态的进程通过调度算法从而获得 CPU 时间，转为运行状态；而运行状态的进程，在分配给它的 CPU 时间片用完之后就会转为就绪状态，等待下一次调度。</p>
@@ -384,8 +384,8 @@
 </li>
 </ul>
 <p><strong>引申：Java线程生命周期</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Java%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" srcset="/img/loading.gif" lazyload alt="Java线程生命周期"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Java%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="Java线程状态转移图"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Java%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" srcset="/blog/img/loading.gif" lazyload alt="Java线程生命周期"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Java%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BE.png" srcset="/blog/img/loading.gif" lazyload alt="Java线程状态转移图"></p>
 <h1>四、进程间通信方式</h1>
 <p><strong>说说进程间通信的方式？</strong></p>
 <ul>
@@ -423,7 +423,7 @@
 <p>只能在有公共祖先的进程间使用管道</p>
 </li>
 </ol>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Linux%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="Linux创建进程"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Linux%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B.png" srcset="/blog/img/loading.gif" lazyload alt="Linux创建进程"></p>
 <ol>
 <li>
 <p>父进程调用pipe函数创建管道，得到两个文件描述符fd[0]、fd[1]指向管道的读端和写端</p>
@@ -459,15 +459,15 @@
 <ul>
 <li>CPU利用率</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/CPU%E5%88%A9%E7%94%A8%E7%8E%87.png" srcset="/img/loading.gif" lazyload alt="CPU利用率"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/CPU%E5%88%A9%E7%94%A8%E7%8E%87.png" srcset="/blog/img/loading.gif" lazyload alt="CPU利用率"></p>
 <ul>
 <li>系统吞吐量：表示单位时间内完成多少作业</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%B3%BB%E7%BB%9F%E5%90%9E%E5%90%90%E9%87%8F.png" srcset="/img/loading.gif" lazyload alt="系统吞吐量"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%B3%BB%E7%BB%9F%E5%90%9E%E5%90%90%E9%87%8F.png" srcset="/blog/img/loading.gif" lazyload alt="系统吞吐量"></p>
 <ul>
 <li>周转时间：</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%91%A8%E8%BD%AC%E6%97%B6%E9%97%B4.png" srcset="/img/loading.gif" lazyload alt="周转时间"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%91%A8%E8%BD%AC%E6%97%B6%E9%97%B4.png" srcset="/blog/img/loading.gif" lazyload alt="周转时间"></p>
 <p><strong>2. 说说进程调度算法？</strong></p>
 <p><strong>批处理系统中，用户操作比较少，调度算法的目标是保证吞吐量和周转时间（从提交到完成的时间）</strong></p>
 <ul>
@@ -502,7 +502,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912130621322.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230912130621322.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>交互式系统有大量的用户交互操作，调度算法的目标是快速响应</strong></p>
 <ul>
 <li><strong>时间片轮转调度算法</strong>：将所有就绪进程按 FCFS 的原则排成一个队列，每次调度时，把 CPU 时间分配给队首进程，该进程可以执行一个时间片。当时间片用完时，由计时器发出时钟中断，调度程序便停止该进程的执行，并将它送往就绪队列的末尾，同时继续把 CPU 时间分配给队首的进程。时间片轮转算法的效率和时间片的大小有很大关系：因为进程切换都要保存进程的信息并且载入新进程的信息，如果时间片太小，会导致进程切换得太频繁，在进程切换上就会花过多时间。而如果时间片过长，那么实时性就不能得到保证。</li>
@@ -511,7 +511,7 @@
 <ul>
 <li><strong>优先级调度</strong>：为每个流程分配优先级，首先执行具有最高优先级的进程，依此类推。具有相同优先级的进程以 FCFS 方式执行。可以根据内存要求，时间要求或任何其他资源要求来确定优先级。</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt="优先级调度算法"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95.png" srcset="/blog/img/loading.gif" lazyload alt="优先级调度算法"></p>
 <ul>
 <li>
 <p><strong>多级队列调度算法</strong>：一个进程需要执行 100 个时间片，如果采用时间片轮转调度算法，那么需要交换 100 次。多级队列是为这种需要连续执行多个时间片的进程考虑，它设置了多个队列，每个队列时间片大小都不同，例如 1,2,4,8,…。进程在第一个队列没执行完，就会被移到下一个队列。这种方式下，之前的进程只需要交换 7 次。每个队列优先权也不同，最上面的优先权最高。可以将这种调度算法看成是时间片轮转调度算法和优先级调度算法的结合。</p>
@@ -577,7 +577,7 @@
 </li>
 </ul>
 <p><strong>5. 说说页表？</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/lkmlnlk.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/lkmlnlk.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 </li>
 <li>
 <p>页表类似一个函数，参数是虚拟页号，结果是物理页框号，这个函数可以把虚拟地址中的虚拟页号替换为页框号，从而形成物理地址</p>
@@ -650,7 +650,7 @@
 <p>当发生缺页中断时，NRU 算法随机地从类编号最小的非空类中挑选一个页面将它换出。</p>
 <p>NRU 优先换出已经被修改的脏页面（R=0，M=1），而不是被频繁使用的干净页面（R=1，M=0）。</p>
 <p><strong>NFU（Not Frequently Used）页面置换算法（老化算法）</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%80%81%E5%8C%96%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt="老化算法"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%80%81%E5%8C%96%E7%AE%97%E6%B3%95.png" srcset="/blog/img/loading.gif" lazyload alt="老化算法"></p>
 <ul>
 <li>
 <p>在每次时钟中断时，操作系统扫描内存中所有页面，将每个页面的R位加到它的计数器上</p>
@@ -671,7 +671,7 @@
 <p><strong>第二次机会算法</strong></p>
 <p>FIFO 算法可能会把经常使用的页面置换出去，为了避免这一问题，对该算法做一个简单的修改：</p>
 <p>当页面被访问（读或写）时设置该页面的 R 位为 1。需要替换的时候，检查最老页面的 R 位。如果 R 位是 0，那么这个页面既老又没有被使用，可以立刻置换掉；如果是 1，就将 R 位清 0，并把该页面放到链表的尾端，修改它的装入时间使它就像刚装入的一样，然后继续从链表的头部开始搜索。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%9C%BA%E4%BC%9A%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt="第二次机会算法"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%9C%BA%E4%BC%9A%E7%AE%97%E6%B3%95.png" srcset="/blog/img/loading.gif" lazyload alt="第二次机会算法"></p>
 <p><strong>OPT 页面置换算法（最佳页面置换算法）</strong></p>
 <p>最佳（Optimal, OPT）置换算法所选择的被淘汰页面将是以后永不使用的，或者是在最长时间内不再被访问的页面，这样可以保证获得最低的缺页率。但由于人们目前无法预知进程在内存下的若干页面中哪个是未来最长时间内不再被访问的，因而该算法无法实现。一般作为衡量其他置换算法的方法。</p>
 <h1>八、死锁和处理方法</h1>
@@ -751,7 +751,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Others/" class="category-chain-item">Others</a>
+  <a href="/blog/categories/Others/" class="category-chain-item">Others</a>
   
   
 
@@ -766,7 +766,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+        <a href="/blog/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
       
     </div>
   
@@ -779,7 +779,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>操作系统</div>
-      <div>https://heart.github.io/2023/05/01/Others/操作系统/</div>
+      <div>https://heart.github.io/blog/2023/05/01/Others/操作系统/</div>
     </div>
     <div class="license-meta">
       
@@ -823,7 +823,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/04/Work/MySQL/MySQL%E5%85%AB%E8%82%A1/" title="MySQL">
+                      <a href="/blog/2023/05/04/Work/MySQL/MySQL%E5%85%AB%E8%82%A1/" title="MySQL">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">MySQL</span>
                         <span class="visible-mobile">上一篇</span>
@@ -833,7 +833,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/30/Others/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">
+                      <a href="/blog/2023/04/30/Others/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">
                         <span class="hidden-mobile">计算机网络</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -992,8 +992,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1015,7 +1015,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -1114,7 +1114,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1124,7 +1124,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

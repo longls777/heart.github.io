@@ -19,7 +19,7 @@
     <meta name="description" content="遗传算法 (Genetic Algorithm, GA) 详解与实现 - 盼小辉丶的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;436453994 干货 | 遗传算法(Genetic Algorithm) （附代码及注释） - tigerqin1980的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;555431690  **遗传算法（Ge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="遗传算法">
-<meta property="og:url" content="https://heart.github.io/2023/09/10/Work/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/09/10/Work/Machine%20Learning/015%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="遗传算法 (Genetic Algorithm, GA) 详解与实现 - 盼小辉丶的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;436453994 干货 | 遗传算法(Genetic Algorithm) （附代码及注释） - tigerqin1980的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;555431690  **遗传算法（Ge">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -303,7 +303,7 @@
 <p>遗传算法是从代表问题可能潜在的解集的一个种群（population）开始的，而一个种群则由经过基因（gene）编码的一定数目的个体(individual)组成</p>
 <p><strong>在每一代，根据问题域中个体的适应度（fitness）大小选择（selection）个体，并借助于自然遗传学的遗传算子（genetic operators）进行组合交叉（crossover）和变异（mutation），产生出代表新的解集的种群</strong></p>
 <p><strong>末代种群中的最优个体经过解码（decoding），可以作为问题近似最优解</strong></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-03dd88b303d2f4d2c613366ed09bda89.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-03dd88b303d2f4d2c613366ed09bda89.jpg" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="编码方式">编码方式</h2>
 <h3 id="二进制编码法">二进制编码法</h3>
 <ul>
@@ -333,11 +333,11 @@
 <p>仍然有机会选择低适应度值的个体，但概率较低。这样，就不会完全摒弃其遗传物质</p>
 <h2 id="交叉（Crossover）">交叉（Crossover）</h2>
 <p>为了创建一对新个体，通常将从当前代中选择的双亲样本的部分染色体互换（交叉），以创建代表后代的两个新染色体。此操作称为交叉或重组：</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-145291fe412063445c57636a88759187_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/v2-145291fe412063445c57636a88759187_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="突变（Mutation）">突变（Mutation）</h2>
 <p>突变操作的目的是定期随机更新种群，将新模式引入染色体，并鼓励在解空间的未知区域中进行搜索。</p>
 <p>突变可能表现为基因的随机变化。变异是通过随机改变一个或多个染色体值来实现的。例如，翻转二进制串中的一位：</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/1e5b5b14ca18290a7a7a174b1ece72a7_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/1e5b5b14ca18290a7a7a174b1ece72a7_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h3 id="图式定理（schema-theorem）">图式定理（schema theorem）</h3>
 <p>要素假设的一个更形式化的表达是 Holland 图式定理，也称为遗传算法的基本定理。</p>
 <p>该定理是指图式是可以在染色体内找到的模式（或模板）。每个图式代表染色体中具有一定相似性的子集。</p>
@@ -348,7 +348,7 @@
 <li>定义长度（Defining length）：最远的两个固定数字之间的距离</li>
 </ol>
 <p>下表提供了四位二进制图式及其度量的几个示例：</p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230911083055825.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230911083055825.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>种群中的每个染色体都对应于多个图式。例如，染色体1101对应于该表中出现的每个图式，因为它与它们代表的每个模式匹配。如果该染色体具有较高的适应度，则它及其代表的所有图式都更有可能从选择操作中幸存。当这条染色体与另一条染色体交叉或发生突变时，某些图式将保留下来，而另一些则将消失。低阶图式和定义长度短的图式更有可能幸存。</p>
 <p>因此，图式定理指出，<strong>低阶、定义长度短且适合度高于平均值的图式频率在连续的世代中呈指数增长</strong>。换句话说，随着遗传算法的发展，代表更有效解决方案的属性的更小、更简单的要素基块将越来越多地出现在群体中。</p>
 
@@ -369,7 +369,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/blog/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
   
   
 
@@ -390,7 +390,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>遗传算法</div>
-      <div>https://heart.github.io/2023/09/10/Work/Machine Learning/015遗传算法/</div>
+      <div>https://heart.github.io/blog/2023/09/10/Work/Machine Learning/015遗传算法/</div>
     </div>
     <div class="license-meta">
       
@@ -434,7 +434,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/12/Work/Deep%20Learning/012CrossEntropy/" title="CrossEntropyLoss">
+                      <a href="/blog/2023/09/12/Work/Deep%20Learning/012CrossEntropy/" title="CrossEntropyLoss">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">CrossEntropyLoss</span>
                         <span class="visible-mobile">上一篇</span>
@@ -444,7 +444,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/02/Work/Paper%20Reading%20Notes/030MTB/" title="Matching the Blanks - Distributional Similarity for Relation Learning">
+                      <a href="/blog/2023/09/02/Work/Paper%20Reading%20Notes/030MTB/" title="Matching the Blanks - Distributional Similarity for Relation Learning">
                         <span class="hidden-mobile">Matching the Blanks - Distributional Similarity for Relation Learning</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -603,8 +603,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -626,7 +626,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -725,7 +725,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -735,7 +735,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

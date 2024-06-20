@@ -19,7 +19,7 @@
     <meta name="description" content="【机器学习】降维——PCA（非常详细） - 阿泽的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;77151308 写的确实很详细   定义 Principal Component Analysis 主成分分析 常用于高维数据的降维，可用于提取数据的主要特征分量 推导 目的：寻找一个一维基，使得所有数据变换为这个基上的坐标表示后，方差值最大   更具体的推导过程请参考文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PCA">
-<meta property="og:url" content="https://heart.github.io/2023/08/01/Work/Machine%20Learning/014PCA/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/01/Work/Machine%20Learning/014PCA/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="【机器学习】降维——PCA（非常详细） - 阿泽的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;77151308 写的确实很详细   定义 Principal Component Analysis 主成分分析 常用于高维数据的降维，可用于提取数据的主要特征分量 推导 目的：寻找一个一维基，使得所有数据变换为这个基上的坐标表示后，方差值最大   更具体的推导过程请参考文">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -295,18 +295,18 @@
                 <blockquote>
 <p>【机器学习】降维——PCA（非常详细） - 阿泽的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77151308">https://zhuanlan.zhihu.com/p/77151308</a> 写的确实很详细</p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-e47296e78fff3d97eea11d0657ddcb81_720w.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-e47296e78fff3d97eea11d0657ddcb81_720w.jpg" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="定义">定义</h2>
 <p>Principal Component Analysis 主成分分析</p>
 <p>常用于高维数据的降维，可用于提取数据的主要特征分量</p>
 <h2 id="推导">推导</h2>
 <p>目的：<strong>寻找一个一维基，使得所有数据变换为这个基上的坐标表示后，方差值最大</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801210356479.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801210356479.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <blockquote>
 <p>更具体的推导过程请参考文章开头的引用链接</p>
 </blockquote>
 <h2 id="求解步骤">求解步骤</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801204807287.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801204807287.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="性质">性质</h2>
 <ol>
 <li><strong>缓解维度灾难</strong>：PCA 算法通过舍去一部分信息之后能使得样本的采样密度增大（因为维数降低了），这是缓解维度灾难的重要手段；</li>
@@ -315,7 +315,7 @@
 <li><strong>特征独立</strong>：PCA 不仅将数据压缩到低维，它也使得降维之后的数据各特征相互独立；</li>
 </ol>
 <h2 id="为什么用SVD求解PCA？">为什么用SVD求解PCA？</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801205622108.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801205622108.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>5.<strong>数值稳定性</strong>：通过 SVD 可以得到与 PCA 相同的结果，但是 SVD 通常比直接使用 PCA 更稳定。PCA 需要计算 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mi>T</mi></msup><mi>X</mi></mrow><annotation encoding="application/x-tex">X^TX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 的值，对于某些矩阵，求协方差时很可能会丢失一些精度</p>
 <h2 id="PCA-的优化目标是什么？">PCA 的优化目标是什么？</h2>
 <p>​	最大化投影后方差 + 最小化到超平面距离</p>
@@ -327,7 +327,7 @@
 <li>所有特征具有相同的方差</li>
 </ul>
 <h2 id="PCA与SVD对比">PCA与SVD对比</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801212058518.png" srcset="/img/loading.gif" lazyload alt="PCA vs SVD"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801212058518.png" srcset="/blog/img/loading.gif" lazyload alt="PCA vs SVD"></p>
 
                 
               </div>
@@ -346,7 +346,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/blog/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
   
   
 
@@ -367,7 +367,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>PCA</div>
-      <div>https://heart.github.io/2023/08/01/Work/Machine Learning/014PCA/</div>
+      <div>https://heart.github.io/blog/2023/08/01/Work/Machine Learning/014PCA/</div>
     </div>
     <div class="license-meta">
       
@@ -411,7 +411,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/02/Work/NLP/005word2vec/" title="word2vec">
+                      <a href="/blog/2023/08/02/Work/NLP/005word2vec/" title="word2vec">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">word2vec</span>
                         <span class="visible-mobile">上一篇</span>
@@ -421,7 +421,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/01/Work/Machine%20Learning/013%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" title="集成学习">
+                      <a href="/blog/2023/08/01/Work/Machine%20Learning/013%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" title="集成学习">
                         <span class="hidden-mobile">集成学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -580,8 +580,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -603,7 +603,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -702,7 +702,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -712,7 +712,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

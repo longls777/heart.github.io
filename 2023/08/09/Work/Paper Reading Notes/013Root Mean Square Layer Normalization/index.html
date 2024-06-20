@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《Root Mean Square Layer Normalization》 论文来源： NeurIPS 2019 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1910.07467.pdf 概述 层归一化（LayerNorm）已成功应用于各种深度神经网络，以帮助稳定训练并促进模型收敛，因为它能够处理输入和权重矩阵的重新居中和重新缩放。 然而，LayerNorm 引入的计算开销使得">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Root Mean Square Layer Normalization">
-<meta property="og:url" content="https://heart.github.io/2023/08/09/Work/Paper%20Reading%20Notes/013Root%20Mean%20Square%20Layer%20Normalization/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/09/Work/Paper%20Reading%20Notes/013Root%20Mean%20Square%20Layer%20Normalization/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《Root Mean Square Layer Normalization》 论文来源： NeurIPS 2019 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1910.07467.pdf 概述 层归一化（LayerNorm）已成功应用于各种深度神经网络，以帮助稳定训练并促进模型收敛，因为它能够处理输入和权重矩阵的重新居中和重新缩放。 然而，LayerNorm 引入的计算开销使得">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -298,7 +298,7 @@
 <h2 id="概述">概述</h2>
 <p>层归一化（LayerNorm）已成功应用于各种深度神经网络，以帮助稳定训练并促进模型收敛，因为它能够处理输入和权重矩阵的重新居中和重新缩放。 然而，LayerNorm 引入的计算开销使得这些改进成本高昂，并且显着减慢了底层网络的速度</p>
 <p>本文假设 LayerNorm中的重新居中不变性是可有可无的，并提出均方根层归一化（RMSNorm）。 RMSNorm 根据均方根（root mean square，RMS）对一层神经元的输入求和进行正则化，从而赋予模型重新缩放不变性和隐式学习率自适应能力。 RMSNorm 计算更简单，因此比 LayerNorm 更高效</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810151142179.png" srcset="/img/loading.gif" lazyload alt="LayerNorm能加快模型收敛"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810151142179.png" srcset="/blog/img/loading.gif" lazyload alt="LayerNorm能加快模型收敛"></p>
 <h2 id="Method">Method</h2>
 <h4 id="LayerNorm">LayerNorm</h4>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>w</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mi>x</mi><mi>j</mi></msub><mo separator="true">,</mo><mspace width="1em"/><msub><mi>y</mi><mi>i</mi></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><mo>+</mo><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a_i = \sum_{j=1}^{m}w_{ij}x_j,\quad y_i=f(a_i+b_i)
@@ -337,9 +337,9 @@ s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span></span></span></span>的缩放（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>M</mi><mi>S</mi><mo stretchy="false">(</mo><mi mathvariant="bold-italic">a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">RMS(\boldsymbol{a})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">RMS</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol">a</span></span></span><span class="mclose">)</span></span></span></span>），然后再对每个输入应用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>M</mi><mi>S</mi><mo stretchy="false">(</mo><mi mathvariant="bold-italic">a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">RMS(\boldsymbol{a})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">RMS</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol">a</span></span></span><span class="mclose">)</span></span></span></span>进行缩放，通过这样做，无论输入和权重分布的缩放如何，输出分布都保持不变，从而有利于层激活的稳定性</p>
 <h2 id="Experiments">Experiments</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810153949740.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810154017115.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810154117090.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810153949740.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810154017115.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230810154117090.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>可以看到RMSNorm在质量上与LayerNorm相当，但加快了运行速度，可以作为LayerNorm即插即用的替代</p>
 
                 
@@ -359,7 +359,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -374,7 +374,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Normalization/" class="print-no-link">#Normalization</a>
+        <a href="/blog/tags/Normalization/" class="print-no-link">#Normalization</a>
       
     </div>
   
@@ -387,7 +387,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   <div class="license-box my-3">
     <div class="license-title">
       <div>Root Mean Square Layer Normalization</div>
-      <div>https://heart.github.io/2023/08/09/Work/Paper Reading Notes/013Root Mean Square Layer Normalization/</div>
+      <div>https://heart.github.io/blog/2023/08/09/Work/Paper Reading Notes/013Root Mean Square Layer Normalization/</div>
     </div>
     <div class="license-meta">
       
@@ -431,7 +431,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/09/Work/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" title="LLaMA - Open and Efficient Foundation Language Models">
+                      <a href="/blog/2023/08/09/Work/Paper%20Reading%20Notes/015LLaMA%20Open%20and%20Efficient%20Foundation%20Language%20Models/" title="LLaMA - Open and Efficient Foundation Language Models">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">LLaMA - Open and Efficient Foundation Language Models</span>
                         <span class="visible-mobile">上一篇</span>
@@ -441,7 +441,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/08/Work/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/" title="GPT大模型相关知识">
+                      <a href="/blog/2023/08/08/Work/NLP/011GPT%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/" title="GPT大模型相关知识">
                         <span class="hidden-mobile">GPT大模型相关知识</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -600,8 +600,8 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -623,7 +623,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -722,7 +722,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -732,7 +732,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

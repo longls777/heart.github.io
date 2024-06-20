@@ -19,7 +19,7 @@
     <meta name="description" content="敏感词过滤用的使用比较多的有 Trie 树算法 和 DFA 算法 Trie树算法 Trie 树 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率  Trie树的特点：  根节点不包含字符，除根节点外每一个节点都只包含一个字符。 从根节点到某一节点，路径上经过的字符连接起">
 <meta property="og:type" content="article">
 <meta property="og:title" content="敏感词过滤算法">
-<meta property="og:url" content="https://heart.github.io/2023/04/09/Work/Practice/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/04/09/Work/Practice/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="敏感词过滤用的使用比较多的有 Trie 树算法 和 DFA 算法 Trie树算法 Trie 树 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率  Trie树的特点：  根节点不包含字符，除根节点外每一个节点都只包含一个字符。 从根节点到某一节点，路径上经过的字符连接起">
 <meta property="og:locale" content="zh_CN">
@@ -59,12 +59,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -73,15 +73,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -111,7 +111,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -130,7 +130,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -142,7 +142,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -154,7 +154,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -166,7 +166,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -178,7 +178,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -293,7 +293,7 @@
                 <p>敏感词过滤用的使用比较多的有 <strong>Trie 树算法</strong> 和 <strong>DFA 算法</strong></p>
 <h2 id="Trie树算法">Trie树算法</h2>
 <p><strong>Trie 树</strong> 也称为字典树、单词查找树，前缀树，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。<strong>Trie 树的核心原理其实很简单，就是通过公共前缀来提高字符串匹配效率</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/6fc07f9c1d0bc1fd05d6419d1a0f3609.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/6fc07f9c1d0bc1fd05d6419d1a0f3609.png" srcset="/blog/img/loading.gif" lazyload alt="img"></p>
 <p>Trie树的特点：</p>
 <ol>
 <li>根节点不包含字符，除根节点外每一个节点都只包含一个字符。</li>
@@ -353,7 +353,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Practice/" class="category-chain-item">Practice</a>
+  <a href="/blog/categories/Practice/" class="category-chain-item">Practice</a>
   
   
 
@@ -374,7 +374,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>敏感词过滤算法</div>
-      <div>https://heart.github.io/2023/04/09/Work/Practice/敏感词过滤算法/</div>
+      <div>https://heart.github.io/blog/2023/04/09/Work/Practice/敏感词过滤算法/</div>
     </div>
     <div class="license-meta">
       
@@ -418,7 +418,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/09/Work/Java/Java%E5%85%AB%E8%82%A1%E6%96%87%E6%80%BB%E7%BB%93/" title="Java八股总结">
+                      <a href="/blog/2023/04/09/Work/Java/Java%E5%85%AB%E8%82%A1%E6%96%87%E6%80%BB%E7%BB%93/" title="Java八股总结">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Java八股总结</span>
                         <span class="visible-mobile">上一篇</span>
@@ -428,7 +428,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/08/Work/Practice/%E7%A4%BE%E5%8C%BA%E5%AE%9E%E6%88%98/" title="社区架构（SpringBoot+MySQL+Redis）">
+                      <a href="/blog/2023/04/08/Work/Practice/%E7%A4%BE%E5%8C%BA%E5%AE%9E%E6%88%98/" title="社区架构（SpringBoot+MySQL+Redis）">
                         <span class="hidden-mobile">社区架构（SpringBoot+MySQL+Redis）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -582,8 +582,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -605,7 +605,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -704,7 +704,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -714,7 +714,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

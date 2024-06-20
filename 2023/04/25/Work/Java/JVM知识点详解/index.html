@@ -19,7 +19,7 @@
     <meta name="description" content="一、Java运行时数据区 1. 说说Java运行时数据区？  线程私有的：  程序计数器 虚拟机栈 本地方法栈  线程共享的：  堆 方法区 直接内存 (非运行时数据区的一部分)  堆  Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。 从 JDK 1.7 开始已经默认开启逃逸分析，如果某些对象没有被其他方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM知识点详解">
-<meta property="og:url" content="https://heart.github.io/2023/04/25/Work/Java/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/04/25/Work/Java/JVM%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="一、Java运行时数据区 1. 说说Java运行时数据区？  线程私有的：  程序计数器 虚拟机栈 本地方法栈  线程共享的：  堆 方法区 直接内存 (非运行时数据区的一部分)  堆  Java 堆是所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。 从 JDK 1.7 开始已经默认开启逃逸分析，如果某些对象没有被其他方">
 <meta property="og:locale" content="zh_CN">
@@ -80,12 +80,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -94,15 +94,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -132,7 +132,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -151,7 +151,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -163,7 +163,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -175,7 +175,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -187,7 +187,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -199,7 +199,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -313,7 +313,7 @@
                 
                 <h1>一、Java运行时数据区</h1>
 <p><strong>1. 说说Java运行时数据区？</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Java%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA.png" srcset="/img/loading.gif" lazyload alt="Java运行时数据区"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Java%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA.png" srcset="/blog/img/loading.gif" lazyload alt="Java运行时数据区"></p>
 <p>线程私有的：</p>
 <ul>
 <li>程序计数器</li>
@@ -338,11 +338,11 @@
 <ul>
 <li>使用句柄：Java堆中会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%BD%BF%E7%94%A8%E5%8F%A5%E6%9F%84.png" srcset="/img/loading.gif" lazyload alt="使用句柄"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%BD%BF%E7%94%A8%E5%8F%A5%E6%9F%84.png" srcset="/blog/img/loading.gif" lazyload alt="使用句柄"></p>
 <ul>
 <li>直接指针： reference 中存储的直接就是对象的地址，在对象中存储指向对象数据类型的指针</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%9B%B4%E6%8E%A5%E6%8C%87%E9%92%88.png" srcset="/img/loading.gif" lazyload alt="直接指针"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%9B%B4%E6%8E%A5%E6%8C%87%E9%92%88.png" srcset="/blog/img/loading.gif" lazyload alt="直接指针"></p>
 <ul>
 <li>比较：使用句柄来访问的最大好处是 reference 中存储的是稳定的句柄地址，在对象被移动时只会改变句柄中的实例数据指针，而 reference 本身不需要修改。使用直接指针访问方式最大的好处就是速度快，它节省了一次指针定位的时间开销。</li>
 </ul>
@@ -375,7 +375,7 @@
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011635492/article/details/81048150">浅谈String.intern()方法</a></p>
 </blockquote>
 <p><strong>虚拟机栈</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88.png" srcset="/img/loading.gif" lazyload alt="虚拟机栈"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88.png" srcset="/blog/img/loading.gif" lazyload alt="虚拟机栈"></p>
 <ul>
 <li>
 <p>Java虚拟机栈是线程私有的</p>
@@ -478,14 +478,14 @@
 <h1>四、垃圾回收算法</h1>
 <p><strong>说说有哪些垃圾回收算法？</strong></p>
 <p><strong>1. 标记-清除算法（Mark and Sweep）</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt="标记-清除算法"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.png" srcset="/blog/img/loading.gif" lazyload alt="标记-清除算法"></p>
 <p>首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记的对象，它存在两个问题：</p>
 <ul>
 <li>标记和清除的效率不高</li>
 <li>会产生大量不连续的内存碎片，导致无法给大对象分配内存</li>
 </ul>
 <p><strong>2. 标记-整理算法（Mark and Compact）</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt="标记-整理算法"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.png" srcset="/blog/img/loading.gif" lazyload alt="标记-整理算法"></p>
 <p>让所有存活的对象都向一端移动，然后直接清理掉边界以外的内存</p>
 <p>优点：</p>
 <ul>
@@ -496,7 +496,7 @@
 <li>需要移动对象，效率比较低</li>
 </ul>
 <p><strong>3. 复制算法（Copying）</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload alt="复制算法"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png" srcset="/blog/img/loading.gif" lazyload alt="复制算法"></p>
 <ul>
 <li>将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理</li>
 <li>主要不足是只使用了内存的一半</li>
@@ -513,14 +513,14 @@
 <h1>五、垃圾收集器</h1>
 <p><strong>1. 说说垃圾收集器？</strong></p>
 <p><strong>1. Serial收集器</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Serial%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.png" srcset="/img/loading.gif" lazyload alt="Serial垃圾收集器"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Serial%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.png" srcset="/blog/img/loading.gif" lazyload alt="Serial垃圾收集器"></p>
 <ul>
 <li>串行收集器，单线程，只会使用一条垃圾收集线程去完成垃圾收集工作，在进行垃圾收集工作的时候必须暂停其他所有的工作线程（ “Stop The World” ），直到它收集结束</li>
 <li>一般用于新生代回收</li>
 <li>使用复制算法</li>
 </ul>
 <p><strong>2. ParNew收集器</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ParNew%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.png" srcset="/img/loading.gif" lazyload alt="ParNew垃圾收集器"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ParNew%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.png" srcset="/blog/img/loading.gif" lazyload alt="ParNew垃圾收集器"></p>
 <ul>
 <li>Serial收集器的多线程版本</li>
 <li>标记-复制算法</li>
@@ -562,7 +562,7 @@
 </ul>
 </li>
 <li>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/CMS.png" srcset="/img/loading.gif" lazyload alt="CMS"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/CMS.png" srcset="/blog/img/loading.gif" lazyload alt="CMS"></p>
 </li>
 </ul>
 <p>优点是并发收集、停顿时间短</p>
@@ -617,7 +617,7 @@
 </ul>
 </li>
 <li>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/G1.png" srcset="/img/loading.gif" lazyload alt="G1"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/G1.png" srcset="/blog/img/loading.gif" lazyload alt="G1"></p>
 </li>
 </ul>
 <blockquote>
@@ -634,7 +634,7 @@
 <p><strong>全并发的ZGC</strong></p>
 <p>与CMS中的ParNew和G1类似，ZGC也采用<strong>标记-复制算法</strong>，不过ZGC对该算法做了重大改进：ZGC在标记、转移和重定位阶段几乎都是并发的，这是ZGC实现停顿时间小于10ms目标的最关键原因。</p>
 <p>ZGC垃圾回收周期如下图所示：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ZGC.jpeg" srcset="/img/loading.gif" lazyload alt="ZGC"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ZGC.jpeg" srcset="/blog/img/loading.gif" lazyload alt="ZGC"></p>
 <p>ZGC只有三个STW阶段：初始标记，再标记，初始转移。其中，初始标记和初始转移分别都<strong>只需要扫描所有GC Roots</strong>，其处理时间和GC Roots的数量成正比，一般情况耗时非常短；再标记阶段STW时间很短，最多1ms，超过1ms则再次进入并发标记阶段。即，<strong>ZGC几乎所有暂停都只依赖于GC Roots集合大小</strong>，<strong>停顿时间不会随着堆的大小或者活跃对象的大小而增加</strong>。与ZGC对比，G1的转移阶段完全STW，且停顿时间随存活对象的大小增加而增加。</p>
 <p><strong>ZGC关键技术</strong></p>
 <p>ZGC通过<strong>着色指针</strong>和<strong>读屏障</strong>技术，解决了转移过程中准确访问对象的问题，实现了并发转移。大致原理描述如下：并发转移中“并发”意味着GC线程在转移对象的过程中，应用线程也在不停地访问对象。假设对象发生转移，但对象地址未及时更新，那么应用线程可能访问到旧地址，从而造成错误。而在ZGC中，应用线程访问对象将触发“读屏障”，如果发现对象被移动了，那么“读屏障”会把读出来的指针更新到对象的新地址上，这样应用线程始终访问的都是对象的新地址。那么，JVM是如何判断对象被移动过呢？就是利用对象引用的地址，即着色指针。下面介绍着色指针和读屏障技术细节。</p>
@@ -643,11 +643,11 @@
 <p>着色指针是一种将信息存储在指针中的技术。</p>
 </blockquote>
 <p>ZGC仅支持64位系统，它把64位虚拟地址空间划分为多个子空间，如下图所示：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ZGC%E5%88%92%E5%88%86%E5%AD%90%E7%A9%BA%E9%97%B4.png" srcset="/img/loading.gif" lazyload alt="ZGC划分子空间"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ZGC%E5%88%92%E5%88%86%E5%AD%90%E7%A9%BA%E9%97%B4.png" srcset="/blog/img/loading.gif" lazyload alt="ZGC划分子空间"></p>
 <p>其中，[0~4TB) 对应Java堆，[4TB ~ 8TB) 称为M0地址空间，[8TB ~ 12TB) 称为M1地址空间，[12TB ~ 16TB) 预留未使用，[16TB ~ 20TB) 称为Remapped空间。</p>
 <p>当应用程序创建对象时，首先在堆空间申请一个虚拟地址，但该虚拟地址并不会映射到真正的物理地址。ZGC同时会为该对象在M0、M1和Remapped地址空间分别申请一个虚拟地址，且这三个虚拟地址对应同一个物理地址，但这三个空间在同一时间有且只有一个空间有效。ZGC之所以设置三个虚拟地址空间，是因为它使用“空间换时间”思想，去降低GC停顿时间。“空间换时间”中的空间是虚拟空间，而不是真正的物理空间。后续章节将详细介绍这三个空间的切换过程。</p>
 <p>与上述地址空间划分相对应，ZGC实际仅使用64位地址空间的第0 ~ 41位，而第42 ~ 45位存储元数据，第47~63位固定为0。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ZGC%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F.jpeg" srcset="/img/loading.gif" lazyload alt="ZGC存储方式"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ZGC%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F.jpeg" srcset="/blog/img/loading.gif" lazyload alt="ZGC存储方式"></p>
 <p>ZGC将对象存活信息存储在42~45位中，这与传统的垃圾回收并将对象存活信息放在对象头中完全不同。</p>
 <p><strong>读屏障</strong></p>
 <blockquote>
@@ -665,7 +665,7 @@
 </ul>
 <p>其实，在标记阶段存在两个地址视图M0和M1，上面的过程显示只用了一个地址视图。之所以设计成两个，是为了区别前一次标记和当前标记。即第二次进入并发标记阶段后，地址视图调整为M1，而非M0。</p>
 <p>着色指针和读屏障技术不仅应用在并发转移阶段，还应用在并发标记阶段：将对象设置为已标记，传统的垃圾回收器需要进行一次内存访问，并将对象存活信息放在对象头中；而在ZGC中，只需要设置指针地址的第42~45位即可，并且因为是寄存器访问，所以速度比访问内存更快。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%AF%BB%E5%B1%8F%E9%9A%9C.jpeg" srcset="/img/loading.gif" lazyload alt="读屏障"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E8%AF%BB%E5%B1%8F%E9%9A%9C.jpeg" srcset="/blog/img/loading.gif" lazyload alt="读屏障"></p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/170572432">https://zhuanlan.zhihu.com/p/170572432</a> 美团技术团队</p>
 </blockquote>
@@ -716,7 +716,7 @@
 <h1>七、类加载机制</h1>
 <p><strong>说说JVM的类加载机制？</strong></p>
 <p>类的生命周期：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" srcset="/img/loading.gif" lazyload alt="类的生命周期"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" srcset="/blog/img/loading.gif" lazyload alt="类的生命周期"></p>
 <p>虚拟机把描述类的数据从class文件加载到内存 的 类加载过程分为：</p>
 <ul>
 <li>加载</li>
@@ -734,10 +734,10 @@
 </ul>
 <p><strong>验证</strong></p>
 <p>为了确保Class字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全 ，其实就是验证字节码文件的正确性</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6%E9%AA%8C%E8%AF%81%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="字节码文件验证流程"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6%E9%AA%8C%E8%AF%81%E6%B5%81%E7%A8%8B.png" srcset="/blog/img/loading.gif" lazyload alt="字节码文件验证流程"></p>
 <p><strong>准备</strong></p>
 <p>正式为类变量（static修饰，也就是静态变量）分配内存并设置类变量初始值的阶段，这些内存都将在方法区中分配</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%B6%E5%80%BC.png" srcset="/img/loading.gif" lazyload alt="数据类型的零值"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%9B%B6%E5%80%BC.png" srcset="/blog/img/loading.gif" lazyload alt="数据类型的零值"></p>
 <blockquote>
 <p>这里的初始值指的是数据类型的默认值，而不是代码中所赋的值。例如：</p>
 <p>public static int value = 1 ；</p>
@@ -777,8 +777,8 @@
 <li>加载的时候，首先会把该请求委派该父类加载器的 loadClass() 处理，因此所有的请求最终都应该传送到顶层的启动类加载器 BootstrapClassLoader 中。当父类加载器无法处理时，才由自己来处理。</li>
 <li>当父类加载器为null时，会使用启动类加载器 BootstrapClassLoader 作为父类加载器。</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B1.png" srcset="/img/loading.gif" lazyload alt="双亲委派模型"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B2.png" srcset="/img/loading.gif" lazyload alt="双亲委派模型具体流程"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B1.png" srcset="/blog/img/loading.gif" lazyload alt="双亲委派模型"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B2.png" srcset="/blog/img/loading.gif" lazyload alt="双亲委派模型具体流程"></p>
 <p><strong>双亲委派模型的好处</strong></p>
 <p>双亲委派模型保证了Java程序的稳定运行，可以避免类的重复加载（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类），也保证了 Java 的核心 API 不被篡改。如果没有使用双亲委派模型，而是每个类加载器加载自己的话就会出现一些问题，比如我们编写一个称为 java.lang.Object 类的话，那么程序运行的时候，系统就会出现多个不同的 Object 类</p>
 <p>如果我们在classpath路径下自定义一个名为java.lang.SingleInterge类（该类是胡编的）呢？该类并不存在java.lang中，经过双亲委派模式，传递到启动类加载器中，由于父类加载器路径下并没有该类，所以不会加载，将反向委托给子类加载器加载，最终会通过<strong>系统类加载器</strong>？加载该类。但是这样做是不允许，因为<strong>java.lang是核心API包</strong>，需要访问权限，强制加载将会报出如下异常</p>
@@ -801,7 +801,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  <a href="/blog/categories/Java/" class="category-chain-item">Java</a>
   
   
 
@@ -816,7 +816,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+        <a href="/blog/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
       
     </div>
   
@@ -829,7 +829,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>JVM知识点详解</div>
-      <div>https://heart.github.io/2023/04/25/Work/Java/JVM知识点详解/</div>
+      <div>https://heart.github.io/blog/2023/04/25/Work/Java/JVM知识点详解/</div>
     </div>
     <div class="license-meta">
       
@@ -873,7 +873,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/25/Work/Practice/python%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/" title="python如何发送邮件">
+                      <a href="/blog/2023/04/25/Work/Practice/python%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/" title="python如何发送邮件">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">python如何发送邮件</span>
                         <span class="visible-mobile">上一篇</span>
@@ -883,7 +883,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/23/Work/Java/Java%E5%AE%B9%E5%99%A8%E8%AF%A6%E8%A7%A3/" title="Java集合详解">
+                      <a href="/blog/2023/04/23/Work/Java/Java%E5%AE%B9%E5%99%A8%E8%AF%A6%E8%A7%A3/" title="Java集合详解">
                         <span class="hidden-mobile">Java集合详解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1042,8 +1042,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1065,7 +1065,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -1164,7 +1164,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1174,7 +1174,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

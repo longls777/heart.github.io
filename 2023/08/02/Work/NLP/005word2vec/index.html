@@ -19,7 +19,7 @@
     <meta name="description" content="理解 Word2Vec 之 Skip-Gram 模型 - 天雨粟的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;27234078 word2vec详解（CBOW，skip-gram，负采样，分层Softmax） - 孙孙的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;53425736、 Hierarchical Softmax（层次Soft">
 <meta property="og:type" content="article">
 <meta property="og:title" content="word2vec">
-<meta property="og:url" content="https://heart.github.io/2023/08/02/Work/NLP/005word2vec/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/02/Work/NLP/005word2vec/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="理解 Word2Vec 之 Skip-Gram 模型 - 天雨粟的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;27234078 word2vec详解（CBOW，skip-gram，负采样，分层Softmax） - 孙孙的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;53425736、 Hierarchical Softmax（层次Soft">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -298,7 +298,7 @@
 <p>Hierarchical Softmax（层次Softmax） - 清欢鱼的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56139075">https://zhuanlan.zhihu.com/p/56139075</a></p>
 <p>优化技巧：负采样和分层softmax - 热血老男孩的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/568064512">https://zhuanlan.zhihu.com/p/568064512</a></p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-35339b4e3efc29326bad70728e2f469c_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-35339b4e3efc29326bad70728e2f469c_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="一、什么是Word2Vec和Embeddings？">一、什么是Word2Vec和Embeddings？</h2>
 <p>Word2Vec 是一种用于将单词表示为连续向量空间中的向量的技术。它是一种词嵌入（Word Embedding）方法，用于将文本中的单词映射到实数向量，使得具有相似语义的单词在向量空间中距离较近。</p>
 <p>它有两种不同的模型：CBOW（Continuous Bag of Words）和Skip-gram</p>
@@ -309,7 +309,7 @@
 <p>Word2Vec的优点是，它可以将离散的符号化单词转换为实数向量，从而使得文本数据可以在连续向量空间中进行计算和表示。</p>
 <p>Embeddings（嵌入）是一种表示学习的技术，用于将高维的离散数据映射到低维的连续向量空间。Word2Vec 就是一种词嵌入方法，它用于将单词表示为低维的向量，使得单词的语义和语法关系在向量空间中得到保留。</p>
 <h2 id="二、说说CBOW？">二、说说CBOW？</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-73885c25dd5d7cbbba9e7834b18c0aa3_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-73885c25dd5d7cbbba9e7834b18c0aa3_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>CBOW也就是连续词袋模型，目标是从上下文中的周围单词预测当前单词，最大化给定上下文时中心单词出现的概率，也就是最小化交叉熵损失函数</li>
 <li>参数包括输入层到隐藏层之间的权重矩阵W（大小为V×N），以及隐藏层到输出层之间的权重矩阵U（大小为N×V）</li>
@@ -333,7 +333,7 @@
 </li>
 </ul>
 <h2 id="三、说说Skip-gram？">三、说说Skip-gram？</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-0ed8b9efc8aa7867fbf001b921cec4ee_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-0ed8b9efc8aa7867fbf001b921cec4ee_1440w.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>Skip-gram 模型的目标是从当前单词预测上下文中的周围单词</li>
 <li>Skip-gram 模型的输出层是一个 softmax 分类器，它将当前单词的向量作为输入，预测上下文单词的向量</li>
@@ -402,7 +402,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  <a href="/blog/categories/NLP/" class="category-chain-item">NLP</a>
   
   
 
@@ -417,7 +417,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+        <a href="/blog/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
       
     </div>
   
@@ -430,7 +430,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>word2vec</div>
-      <div>https://heart.github.io/2023/08/02/Work/NLP/005word2vec/</div>
+      <div>https://heart.github.io/blog/2023/08/02/Work/NLP/005word2vec/</div>
     </div>
     <div class="license-meta">
       
@@ -474,7 +474,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/02/Work/NLP/006Transformer/" title="Transformer">
+                      <a href="/blog/2023/08/02/Work/NLP/006Transformer/" title="Transformer">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Transformer</span>
                         <span class="visible-mobile">上一篇</span>
@@ -484,7 +484,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/01/Work/Machine%20Learning/014PCA/" title="PCA">
+                      <a href="/blog/2023/08/01/Work/Machine%20Learning/014PCA/" title="PCA">
                         <span class="hidden-mobile">PCA</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -643,8 +643,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -666,7 +666,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -765,7 +765,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -775,7 +775,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

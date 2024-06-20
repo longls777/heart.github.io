@@ -19,7 +19,7 @@
     <meta name="description" content="Redis常用的五种数据类型（五种对象） Redis是一种存储key-value的内存型数据库，它的key都是字符串类型，value支持存储5种类型的数据：  String（字符串类型） List（列表类型） Hash（哈希表类型、即key-value类型） Set（无序集合类型，元素不可重复） Zset（有序集合类型，元素不可重复）  这五种数据类型的对象都由一个redisObject结构表示：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis的数据类型">
-<meta property="og:url" content="https://heart.github.io/2023/02/14/Work/Redis/Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/02/14/Work/Redis/Redis%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="Redis常用的五种数据类型（五种对象） Redis是一种存储key-value的内存型数据库，它的key都是字符串类型，value支持存储5种类型的数据：  String（字符串类型） List（列表类型） Hash（哈希表类型、即key-value类型） Set（无序集合类型，元素不可重复） Zset（有序集合类型，元素不可重复）  这五种数据类型的对象都由一个redisObject结构表示：">
 <meta property="og:locale" content="zh_CN">
@@ -76,12 +76,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -90,15 +90,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -128,7 +128,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -147,7 +147,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -159,7 +159,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -171,7 +171,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -183,7 +183,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -195,7 +195,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -317,20 +317,20 @@
 <li>Zset（有序集合类型，元素不可重复）</li>
 </ul>
 <p>这五种数据类型的对象都由一个redisObject结构表示：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214134925649.png" srcset="/img/loading.gif" lazyload alt="image-20230214134925649"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214134925649.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214134925649"></p>
 <ul>
 <li>type：记录对象的类型，可以是下表中的任一个：</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214135105820.png" srcset="/img/loading.gif" lazyload alt="image-20230214135105820"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214135105820.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214135105820"></p>
 <p>可以对一个数据库键使用TYPE命令，获取此数据库键对应的值对象的类型：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214135411221.png" srcset="/img/loading.gif" lazyload alt="image-20230214135411221"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214135411221.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214135411221"></p>
 <ul>
-<li>encoding：记录对象使用的编码，也就是对象的底层数据结构，可以是下表中的任一个：<img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214135730965.png" srcset="/img/loading.gif" lazyload alt="image-20230214135730965"></li>
+<li>encoding：记录对象使用的编码，也就是对象的底层数据结构，可以是下表中的任一个：<img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214135730965.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214135730965"></li>
 </ul>
 <p>每种数据类型的对象都至少使用了两种不同的编码，下表列出了每种数据类型的对象可以使用的编码：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214140042228.png" srcset="/img/loading.gif" lazyload alt="image-20230214140042228"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214140042228.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214140042228"></p>
 <p>使用OBJECT ENCODING命令可以查看一个数据库键的值对象的编码：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214140204190.png" srcset="/img/loading.gif" lazyload alt="image-20230214140204190"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214140204190.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214140204190"></p>
 <blockquote>
 <p>Redis可以根据不同的使用场景来为一个对象设置不同的编码，从而优化对象在某一场景下的效率。<br>
 举个例子，在列表对象包含的元素比较少时，Redis使用压缩列表作为列表对象的底层实现：因为压缩列表比双端链表更节约内存，并且在元素数量较少时，在内存中以连续块方式保存的压缩列表比起双端链表可以更快被载入到缓存中;<br>
@@ -349,10 +349,10 @@
 embstr编码将创建字符串对象所需的内存分配次数从raw编码的两次降低为一次。释放embstr编码的字符串对象只需要调用一次内存释放函数，而释放raw编码的字符串对象需要调用两次内存释放函数。因为embstr编码的字符串对象的所有数据都保存在一块连续的内存里面，所以这种编码的字符串对象比起raw编码的字符串对象能够更好地利用缓存带来的优势。</p>
 </blockquote>
 <p>最后要说的是，可以用long double类型表示的浮点数在Redis中也是作为字符串值来保存的。如果我们要保存一个浮点数到字符串对象里面，那么程序会先将这个浮点数转换成字符串值，然后再保存转换所得的字符串值：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214142845803.png" srcset="/img/loading.gif" lazyload alt="image-20230214142845803"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214142845803.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214142845803"></p>
 <p>在有需要的时候，程序会将保存在字符串对象里面的字符串值转换回浮点数值，执行某些操作，然后再将执行操作所得的浮点数值转换回字符串值，并继续保存在字符串对象里面：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214142945136.png" srcset="/img/loading.gif" lazyload alt="image-20230214142945136"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214143303902.png" srcset="/img/loading.gif" lazyload alt="image-20230214143303902"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214142945136.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214142945136"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214143303902.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214143303902"></p>
 <blockquote>
 <p>因为Redis没有为embstr编码的字符串对象编写任何相应的修改程序（只有int编码的字符串对象和raw编码的字符串对象有这些程序)，所以embstr编码的字符串对象实际上是只读的。当我们对embstr编码的字符串对象执行任何修改命令时，程序会先将对象的编码从embstr转换成raw，然后再执行修改命令。因为这个原因，embstr编码的字符串对象在执行修改命令之后，总会变成一个raw编码的字符串对象。</p>
 </blockquote>
@@ -369,15 +369,15 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
 <li>列表对象保存的元素数量小于512个</li>
 </ul>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214163213727.png" srcset="/img/loading.gif" lazyload alt="image-20230214163213727"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214163223406.png" srcset="/img/loading.gif" lazyload alt="image-20230214163223406"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214163213727.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214163213727"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230214163223406.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230214163223406"></p>
 <blockquote>
 <p>注意，linkedlist编码的列表对象在底层的双端链表结构中包含了多个字符串对象，这种嵌套字符串对象的行为在稍后介绍的哈希对象、集合对象和有序集合对象中都会出现，字符串对象是Redis 五种类型的对象中唯一一种会被其他四种类型对象嵌套的对象</p>
 </blockquote>
 <h3 id="哈希对象（hash）">哈希对象（hash）</h3>
 <p>哈希对象的编码可以是ziplist或者hashtable</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215093606923.png" srcset="/img/loading.gif" lazyload alt="image-20230215093606923"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215093918275.png" srcset="/img/loading.gif" lazyload alt="image-20230215093918275"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215093606923.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230215093606923"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215093918275.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230215093918275"></p>
 <blockquote>
 <p>当哈希对象可以同时满足以下两个条件时，哈希对象使用ziplist编码：</p>
 <ul>
@@ -392,7 +392,7 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
 <li>intset：整数集合</li>
 <li>hashtable：字典的键是字符串对象，储存集合元素，值为空</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215094520005.png" srcset="/img/loading.gif" lazyload alt="image-20230215094520005"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215094520005.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230215094520005"></p>
 <blockquote>
 <p>当集合对象可以同时满足以下两个条件时，对象使用intset编码：</p>
 <ul>
@@ -407,8 +407,8 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
 <li>ziplist：一个节点保存成员member，一个节点保存score，按score从小到大排序</li>
 <li>skiplist：使用zset作为底层实现，一个zset结构包含一个字典和一个跳跃表</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215095013884.png" srcset="/img/loading.gif" lazyload alt="image-20230215095013884"></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215095603602.png" srcset="/img/loading.gif" lazyload alt="image-20230215095603602"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215095013884.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230215095013884"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230215095603602.png" srcset="/blog/img/loading.gif" lazyload alt="image-20230215095603602"></p>
 <p>zset结构中的zsl跳跃表按分值从小到大保存了所有集合元素，每个跳跃表节点都保存了一个集合元素：跳跃表节点的object属性保存了元素的成员，而跳跃表节点的score属性则保存了元素的分值。通过这个跳跃表，程序可以对有序集合进行范围型操作，比如ZRANK、ZRANGE等命令就是基于跳跃表API来实现的。</p>
 <p>除此之外，zset结构中的dict字典为有序集合创建了一个从成员到分值的映射，字典中的每个键值对都保存了一个集合元素：字典的键保存了元素的成员，而字典的值则保存了元素的分值。通过这个字典，程序可以用O(1)复杂度查找给定成员的分值，ZSCORE命令就是根据这一特性实现的，而很多其他有序集合命令都在实现的内部用到了这一特性。</p>
 <p>有序集合每个元素的成员都是一个字符串对象，而每个元素的分值都是一个double类型的浮点数。</p>
@@ -455,7 +455,7 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
     
       <span class="category-chain">
         
-  <a href="/categories/Redis/" class="category-chain-item">Redis</a>
+  <a href="/blog/categories/Redis/" class="category-chain-item">Redis</a>
   
   
 
@@ -476,7 +476,7 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
   <div class="license-box my-3">
     <div class="license-title">
       <div>Redis的数据类型</div>
-      <div>https://heart.github.io/2023/02/14/Work/Redis/Redis的数据结构/</div>
+      <div>https://heart.github.io/blog/2023/02/14/Work/Redis/Redis的数据结构/</div>
     </div>
     <div class="license-meta">
       
@@ -520,7 +520,7 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/15/Work/Redis/Redis%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%85%B1%E4%BA%AB/" title="Redis的内存回收和对象共享">
+                      <a href="/blog/2023/02/15/Work/Redis/Redis%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%85%B1%E4%BA%AB/" title="Redis的内存回收和对象共享">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Redis的内存回收和对象共享</span>
                         <span class="visible-mobile">上一篇</span>
@@ -530,7 +530,7 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/19/Work/Algorithm%20Problem/leetcode1971/" title="leetcode828 寻找图中是否存在路径">
+                      <a href="/blog/2022/12/19/Work/Algorithm%20Problem/leetcode1971/" title="leetcode828 寻找图中是否存在路径">
                         <span class="hidden-mobile">leetcode828 寻找图中是否存在路径</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -689,8 +689,8 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -712,7 +712,7 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -811,7 +811,7 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -821,7 +821,7 @@ embstr编码将创建字符串对象所需的内存分配次数从raw编码的�
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

@@ -19,7 +19,7 @@
     <meta name="description" content="KNN  https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_45014385&#x2F;article&#x2F;details&#x2F;123618841  定义  监督学习 分类算法  K近邻（K Nearest Neighbors），核心思想是在一个含未知样本的空间，可以根据样本最近的 k 个样本的数据类型来确定未知样本的数据类型  距离计算 采用欧氏距离 d(x,y):&#x3D;(x1−y1)2+(x2−y2)2+⋯">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KNN &amp;&amp; K-Means">
-<meta property="og:url" content="https://heart.github.io/2023/07/31/Work/Machine%20Learning/011KNN&KMeans/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/07/31/Work/Machine%20Learning/011KNN&KMeans/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="KNN  https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_45014385&#x2F;article&#x2F;details&#x2F;123618841  定义  监督学习 分类算法  K近邻（K Nearest Neighbors），核心思想是在一个含未知样本的空间，可以根据样本最近的 k 个样本的数据类型来确定未知样本的数据类型  距离计算 采用欧氏距离 d(x,y):&#x3D;(x1−y1)2+(x2−y2)2+⋯">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -302,7 +302,7 @@
 <li>分类算法</li>
 </ul>
 <p>K近邻（K Nearest Neighbors），核心思想是在一个含未知样本的空间，可以根据样本最近的 k 个样本的数据类型来确定未知样本的数据类型</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230731183008537.png" srcset="/img/loading.gif" lazyload alt="KNN"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230731183008537.png" srcset="/blog/img/loading.gif" lazyload alt="KNN"></p>
 <h2 id="距离计算">距离计算</h2>
 <p>采用欧氏距离</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>:</mo><mo>=</mo><msqrt><mrow><msup><mrow><mo fence="true">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>y</mi><mn>1</mn></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup><mo>+</mo><msup><mrow><mo fence="true">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><msub><mi>y</mi><mn>2</mn></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mo>⋯</mo><mo>+</mo><msup><mrow><mo fence="true">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><msub><mi>y</mi><mi>n</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow></msqrt><mo>=</mo><msqrt><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo fence="true">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow></msqrt><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">d(x, y):=\sqrt{\left(x_1-y_1\right)^2+\left(x_2-y_2\right)^2+\cdots+\left(x_n-y_n\right)^2}=\sqrt{\sum_{i=1}^n\left(x_i-y_i\right)^2} .
@@ -325,7 +325,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 </blockquote>
 <h2 id="K值选择">K值选择</h2>
 <p>通过交叉验证（将样本数据按照一定比例，拆分出训练用的数据和验证用的数据，比如6：4拆分出部分训练数据和验证数据），从选取一个较小的K值开始，不断增加K的值，然后计算验证集合的方差，最终找到一个比较合适的K值</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/9fcf1129cfef488a9e97749b75043c99.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/9fcf1129cfef488a9e97749b75043c99.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="KNN特点">KNN特点</h2>
 <p>KNN是一种<strong>非参的</strong>，<strong>惰性的</strong>算法模型</p>
 <p>非参的意思并不是说这个算法不需要参数，而是意味着这个模型<strong>不会对数据做出任何的假设</strong>，与之相对的是线性回归（我们总会假设线性回归是一条直线）。也就是说KNN建立的模型结构是根据数据来决定的，这也比较符合现实的情况，毕竟在现实中的情况往往与理论上的假设是不相符的。</p>
@@ -358,7 +358,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 <li>聚类算法</li>
 </ul>
 <p>在K-Means算法中，簇的个数K是一个超参数，需要人为输入来确定。K-Means的核心任务就是根据设定好的K，找出K个最优的质心，并将离这些质心最近的数据分别分配到这些质心代表的簇中去</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/2e8f0b40d620567740baafce9893b4de.png" srcset="/img/loading.gif" lazyload alt="K-Means"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/2e8f0b40d620567740baafce9893b4de.png" srcset="/blog/img/loading.gif" lazyload alt="K-Means"></p>
 <h2 id="K-Means-术语">K-Means 术语</h2>
 <ul>
 <li>簇：所有数据的点集合，簇中的对象是相似的</li>
@@ -418,7 +418,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 <h2 id="为什么在计算-K-means-之前要将数据点在各维度上归一化？">为什么在计算 K-means 之前要将数据点在各维度上归一化？</h2>
 <p>因为数据点各维度的量级不同，例如：基于RFM模型的会员分群，每个会员分别有 R（最近一次购买距今的时长）、 F（来店消费的频率）和 M（购买金额）。如果这是一家奢侈品商店，你会发现M 的量级（可能几万元）远大于 F（可能平均 10 次以下），如果不归一化就算K-means，相当于 F 这个特征完全无效。如果希望能把常客与其他顾客区别开来，不归一化就做不到</p>
 <h1>KNN和K-Means对比</h1>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801202329254.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230801202329254.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>
@@ -437,7 +437,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
     
       <span class="category-chain">
         
-  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  <a href="/blog/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
   
   
 
@@ -458,7 +458,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
   <div class="license-box my-3">
     <div class="license-title">
       <div>KNN &amp;&amp; K-Means</div>
-      <div>https://heart.github.io/2023/07/31/Work/Machine Learning/011KNN&amp;KMeans/</div>
+      <div>https://heart.github.io/blog/2023/07/31/Work/Machine Learning/011KNN&amp;KMeans/</div>
     </div>
     <div class="license-meta">
       
@@ -502,7 +502,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/01/Work/Machine%20Learning/012SVM/" title="SVM">
+                      <a href="/blog/2023/08/01/Work/Machine%20Learning/012SVM/" title="SVM">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SVM</span>
                         <span class="visible-mobile">上一篇</span>
@@ -512,7 +512,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/31/Work/Machine%20Learning/010%E5%86%B3%E7%AD%96%E6%A0%91/" title="决策树">
+                      <a href="/blog/2023/07/31/Work/Machine%20Learning/010%E5%86%B3%E7%AD%96%E6%A0%91/" title="决策树">
                         <span class="hidden-mobile">决策树</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -671,8 +671,8 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -694,7 +694,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -793,7 +793,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -803,7 +803,7 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

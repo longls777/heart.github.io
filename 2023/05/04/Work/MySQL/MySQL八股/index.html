@@ -19,7 +19,7 @@
     <meta name="description" content="一、事务ACID特性 说说事务的ACID特性？ 数据库事务必须具备ACID特性，ACID是Atomic（原子性）、Consistency（一致性）、Isolation（隔离性）和Durability（持久性）  1. 原子性（Atomicity） 事务被视为不可分割的最小单元，事务的所有操作要么全部提交成功，要么全部失败回滚。 回滚可以用回滚日志（Undo Log）来实现，回滚日志记录着事务所执行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL">
-<meta property="og:url" content="https://heart.github.io/2023/05/04/Work/MySQL/MySQL%E5%85%AB%E8%82%A1/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/05/04/Work/MySQL/MySQL%E5%85%AB%E8%82%A1/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="一、事务ACID特性 说说事务的ACID特性？ 数据库事务必须具备ACID特性，ACID是Atomic（原子性）、Consistency（一致性）、Isolation（隔离性）和Durability（持久性）  1. 原子性（Atomicity） 事务被视为不可分割的最小单元，事务的所有操作要么全部提交成功，要么全部失败回滚。 回滚可以用回滚日志（Undo Log）来实现，回滚日志记录着事务所执行">
 <meta property="og:locale" content="zh_CN">
@@ -88,12 +88,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -102,15 +102,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -140,7 +140,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -159,7 +159,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -171,7 +171,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -183,7 +183,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -195,7 +195,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -207,7 +207,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -322,7 +322,7 @@
                 <h1>一、事务ACID特性</h1>
 <p><strong>说说事务的ACID特性？</strong></p>
 <p>数据库事务必须具备ACID特性，ACID是Atomic（原子性）、Consistency（一致性）、Isolation（隔离性）和Durability（持久性）</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%BA%8B%E5%8A%A1.png" srcset="/img/loading.gif" lazyload alt="事务"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E4%BA%8B%E5%8A%A1.png" srcset="/blog/img/loading.gif" lazyload alt="事务"></p>
 <p><strong>1. 原子性（Atomicity）</strong></p>
 <p>事务被视为不可分割的最小单元，事务的所有操作要么全部提交成功，要么全部失败回滚。</p>
 <p>回滚可以用回滚日志（Undo Log）来实现，回滚日志记录着事务所执行的修改操作，在回滚时反向执行这些修改操作即可。</p>
@@ -338,19 +338,19 @@
 <p><strong>丢失修改</strong></p>
 <p>丢失修改指一个事务的更新操作被另外一个事务的更新操作替换。 在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。</p>
 <p>例如：T1 和 T2 两个事务都对一个数据进行修改，T1 先修改并提交生效，T2 随后修改，T2 的修改覆盖了 T1 的修改。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207221744244.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207221744244.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>脏读</strong></p>
 <p>脏读是指一个事务读取了另一个事务尚未提交的更改数据。当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。当前者回滚时，后者读到的数据是不合法的，称为脏读</p>
 <p>例如：T1 修改一个数据但未提交，T2 随后读取这个数据。如果 T1 撤销了这次修改，那么 T2 读取的数据是脏数据。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207221920368.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207221920368.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>不可重复读</strong></p>
 <p>不可重复读指在一个事务内多次读取同一数据集合。在这一事务还未结束前，另一事务也访问了该同一数据集合并做了修改，由于第二个事务的修改，第一次事务的两次读取的数据可能不一致。</p>
 <p>例如：T2 读取一个数据，T1 对该数据做了修改。如果 T2 再次读取这个数据，此时读取的结果和第一次读取的结果不同。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207222102010.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207222102010.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>幻读</strong></p>
 <p>幻读与不可重复读类似，它发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
 <p>例如：T1 读取某个范围的数据，T2 在这个范围内插入新的数据，T1 再次读取这个范围的数据，此时读取的结果和和第一次读取的结果不同。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207222134306.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207222134306.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>幻读和不可重复读的区别在于：</strong></p>
 <p>幻读对应新增（insert）数据，不可重复读对应更改（update）或者删除（delete）数据，对于不可重复读，只需要采用行级锁防止该记录数据被更改或删除，而对于幻读，则必须加表级锁，防止其他事务在这个表中新增数据。</p>
 <p>对于前者,  只需要锁住满足条件的记录</p>
@@ -446,7 +446,7 @@
 <li>一个事务对数据对象 A 加了 S 锁，可以对 A 进行读取操作，但是不能进行更新操作。加锁期间其它事务能对 A 加 S 锁，但是不能加 X 锁。</li>
 </ul>
 <p>锁的兼容关系如下：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207213523777.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207213523777.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ol start="2">
 <li>意向锁</li>
 </ol>
@@ -459,7 +459,7 @@
 </ul>
 <p>通过引入意向锁，事务 T 想要对表 A 加 X 锁，只需要先检测是否有其它事务对表 A 加了 X/IX/S/IS 锁，如果加了就表示有其它事务正在使用这个表或者表中某一行的锁，因此事务 T 加 X 锁失败。</p>
 <p>各种锁的兼容关系如下：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207214442687.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207214442687.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>解释如下：</p>
 <ul>
 <li>任意 IS/IX 锁之间都是兼容的，因为它们只表示想要对表加锁，而不是真正加锁；</li>
@@ -470,25 +470,25 @@
 <p><strong>一级封锁协议</strong></p>
 <p>事务 T 要修改数据 A 时必须加 X 锁，直到 T 结束才释放锁。</p>
 <p>可以解决丢失修改问题，因为不能同时有两个事务对同一个数据进行修改，那么事务的修改就不会被覆盖。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207220440451.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207220440451.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>二级封锁协议</strong></p>
 <p>在一级的基础上，要求读取数据 A 时必须加 S 锁，读取完马上释放 S 锁。</p>
 <p>可以解决脏读问题，因为如果一个事务在对数据 A 进行修改，根据 1 级封锁协议，会加 X 锁，那么就不能再加 S 锁了，也就是不会读入数据。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207220831843.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207220831843.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>三级封锁协议</strong></p>
 <p>在二级的基础上，要求读取数据 A 时必须加 S 锁，直到事务结束了才能释放 S 锁。</p>
 <p>可以解决不可重复读的问题，因为读 A 时，其它事务不能对 A 加 X 锁，从而避免了在读的期间数据发生改变</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207221313819.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/207221313819.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>2. 两段锁协议</strong></p>
 <p>在一个事务里面，分为加锁（lock）阶段和解锁（unlock）阶段，也即所有的lock操作都在unlock操作之前</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/clipboard.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/clipboard.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>引入2PL是为了保证事务的隔离性，即多个事务在并发的情况下等同于串行的执行。</p>
 <p>在实际情况下，SQL是千变万化、条数不定的，数据库很难在事务中判定什么是加锁阶段，什么是解锁阶段。于是引入了S2PL（Strict-2PL），即:</p>
 <ol>
 <li>在事务中只有提交（commit）或者回滚（rollback）时才是解锁阶段，</li>
 <li>其余时间为加锁阶段。</li>
 </ol>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/2pl.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/2pl.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>MySQL 隐式与显示锁定</strong></p>
 <p>MySQL 的 InnoDB 存储引擎采用两段锁协议，会根据隔离级别在需要的时候自动加锁，并且所有的锁都是在同一时刻被释放，这被称为隐式锁定。</p>
 <p>InnoDB 也可以使用特定的语句进行显示锁定：</p>
@@ -548,7 +548,7 @@
 <p>例如在 MySQL 创建一个表 t，包含主键 id 和一个字段 x。我们先插入一个数据行，然后对该数据行执行两次更新操作。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> t(id, x) <span class="hljs-keyword">VALUES</span>(<span class="hljs-number">1</span>, &quot;a&quot;); <br><span class="hljs-keyword">UPDATE</span> t <span class="hljs-keyword">SET</span> x<span class="hljs-operator">=</span>&quot;b&quot; <span class="hljs-keyword">WHERE</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>; <br><span class="hljs-keyword">UPDATE</span> t <span class="hljs-keyword">SET</span> x<span class="hljs-operator">=</span>&quot;c&quot; <span class="hljs-keyword">WHERE</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
 <p>因为没有使用 START TRANSACTION 将上面的操作当成一个事务来执行，根据 MySQL 的 AUTOCOMMIT 机制，每个操作都会被当成一个事务来执行，所以上面的操作总共涉及到三个事务。快照中除了记录事务版本号 TRX_ID 和操作之外，还记录了一个 bit 的 DEL 字段，用于标记是否被删除。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/208164808217.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/208164808217.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>INSERT、UPDATE、DELETE 操作会创建一个日志，并将事务版本号 TRX_ID 写入。DELETE 可以看成是一个特殊的 UPDATE，还会额外将 DEL 字段设置为 1</p>
 <p><strong>快照读与当前读</strong></p>
 <ol>
@@ -581,7 +581,7 @@
 <li>所有的非叶子结点可以看成索引部分，结点中仅含其子树中的最大或最小关键字</li>
 </ul>
 <p>在 B+ Tree 中，一个节点中的 key 从左到右非递减排列，如果某个指针的左右相邻 key 分别是 key_i 和 key_i+1，且不为 null，则该指针指向节点的所有 key 大于等于 key_i 且小于等于 key_i+1</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/8ded5f5e7c73.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/8ded5f5e7c73.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>B 树和 B+树区别</strong></p>
 <ul>
 <li>B 树的所有节点既存放 键（key）也存放 数据（data）；而 B+树只有叶子节点存放 key 和 data，其他内节点只存放 key。</li>
@@ -614,7 +614,7 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html">http://blog.codinglabs.org/articles/theory-of-mysql-index.html</a></p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%A3%81%E7%9B%98IO%E8%BF%87%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="磁盘IO过程"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/%E7%A3%81%E7%9B%98IO%E8%BF%87%E7%A8%8B.png" srcset="/blog/img/loading.gif" lazyload alt="磁盘IO过程"></p>
 <ul>
 <li>第一步，首先是磁头径向移动来寻找数据所在的磁道。这部分时间叫寻道时间。</li>
 <li>第二步，找到目标磁道后通过盘面旋转，将目标扇区移动到磁头的正下方。</li>
@@ -646,9 +646,9 @@
 <li>如果查询中有某个列的范围查询，则其右边所有列都无法使用索引优化查找。</li>
 <li>InnoDB 的 B+Tree 索引分为主索引和辅助索引。主索引的叶子节点 data 域记录着完整的数据记录，这种索引方式被称为聚簇索引。因为无法把数据行存放在两个不同的地方，所以一个表只能有一个聚簇索引。</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/262b2d6d60b9.png" srcset="/img/loading.gif" lazyload alt="聚簇索引"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/262b2d6d60b9.png" srcset="/blog/img/loading.gif" lazyload alt="聚簇索引"></p>
 <p>辅助索引的叶子节点的 data 域记录着主键的值，因此在使用辅助索引进行查找时，需要先查找到主键值，然后再到主索引中进行查找。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ec86320307ea.png" srcset="/img/loading.gif" lazyload alt="辅助索引"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/ec86320307ea.png" srcset="/blog/img/loading.gif" lazyload alt="辅助索引"></p>
 <p><strong>2. 哈希索引</strong></p>
 <p>哈希索引能以 O(1) 时间进行查找，但是失去了有序性：</p>
 <ul>
@@ -712,7 +712,7 @@
 <li><strong>=和in可以乱序</strong>，比如 a = 1 and b = 2 and c = 3 ，建立 (a,b,c) 的索引可以任意顺序，mysql优化器会帮你优化成索引可以识别的形式</li>
 <li>从本质上来说，联合索引还是一颗B+树，不同的是联合索引的键值的数量不是1，而是大于等于2。假设一个表有a，b两个字段，且建立了(a,b)联合索引，该索引的B+ 树如下图所示：</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/d98410803b5a.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/d98410803b5a.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>键值都是排序的，通过叶节点可以逻辑上顺序地读出所有数据，就上面的例子来说即：（1, 1），（1, 2），（2, 1），（2, 4），（3, 1），（3, 2）。数据按（a, b）的顺序进行了存放。</p>
 <p>因此，对于查询 SELECT * FROM TABLE WHERE a=xxx and b=xxx ，显然是可以使用（a,b）的这个联合索引。对于单个的a列查询 SELECT * FROM TABLE WHERE a=xxx 也是可以使用这个（a,b）索引。但是对于b列的查询 SELECT * FROM TABLE WHERE b=xxx ，不可以使用这颗B+树索引。可以看到叶节点上的b值为1、2、1、4、1、2，显然不是排序的，因此对于b列的查询使用不到（a,b）的索引。</p>
 <h1>八、undo log</h1>
@@ -755,7 +755,7 @@
 </blockquote>
 <p><strong>1. 说说什么是redo log？</strong></p>
 <p>redo log 是 InnoDB 存储引擎所特有的，InnoDB 存储引擎由内存池和一些后台线程组成：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Innodb%E5%BC%95%E6%93%8E.png" srcset="/img/loading.gif" lazyload alt="Innodb引擎"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Innodb%E5%BC%95%E6%93%8E.png" srcset="/blog/img/loading.gif" lazyload alt="Innodb引擎"></p>
 <p><strong>内存池</strong></p>
 <p>先来解释下内存池。</p>
 <p>首先，我们需要知道，InnoDB 存储引擎是基于磁盘存储的，并将其中的记录按照页的方式进行管理。因此可将其视为基于磁盘的数据库系统（Disk-base Database），在这样的系统中，众所周知，由于 CPU 速度与磁盘速度之间的不匹配，通常会使用缓冲池技术来提高数据库的整体性能。</p>
@@ -788,7 +788,7 @@
 <p>每个 InnoDB 存储引擎至少有 1 个重做日志文件组（redo log group），每个文件组下至少有 2 个重做日志文件（redo log file），默认的话是一个 redo log group，其中包含 2 个 redo log file：ib_logfile0 和 ib_logfile1 。</p>
 <p>一般来说，为了得到更高的可靠性，用户可以设置多个镜像日志组（mirrored log groups），将不同的文件组放在不同的磁盘上，以此提高 redo log 的高可用性。在日志组中每个 redo log file 的大小一致，并以循环写入的方式运行。</p>
 <p>如下图，一个 redo log group，包含 3 个 redo log file：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/redo_log_group.png" srcset="/img/loading.gif" lazyload alt="redo log group"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/redo_log_group.png" srcset="/blog/img/loading.gif" lazyload alt="redo log group"></p>
 <p>InnoDB 存储引擎会先写 redo log file 0，当 file 0 被写满的时候，会切换至 redo log file 1，当 file 1 也被写满时，会切换到 redo log file 2 中，而当 file 2 也被写满时，会再切换到 file 0 中。</p>
 <p>可以看出，redo log file 的大小设置对于 InnoDB 存储引擎的性能有着非常大的影响：</p>
 <ul>
@@ -832,7 +832,7 @@
 </ol>
 <p>所谓 redo log 不可用就是所有的 redo log file 都写满了。但事实上，其实 redo log 中的数据并不是时时刻刻都是有用的，那些已经不再需要的部分就称为 ”可以被重用的部分“，即当数据库发生宕机时，数据库恢复操作不需要这部分的 redo log，因此这部分就可以被覆盖重用（或者说被擦除）。</p>
 <p>举个例子来具体解释下：一组 4 个文件，每个文件的大小是 1GB，那么总共就有 4GB 的 redo log file 空间。write pos 是当前 redo log 记录的位置，随着不断地写入磁盘，write pos 也不断地往后移，就像我们上文说的，写到 file 3 末尾后就回到 file 0 开头。CheckPoint 是当前要擦除的位置（将 Checkpoint 之前的页刷新回磁盘），也是往后推移并且循环的：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/fb3d4b95ec5.jpeg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/fb3d4b95ec5.jpeg" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>write pos 和 CheckPoint 之间的就是 redo log file 上还空着的部分，可以用来记录新的操作。如果 write pos 追上 CheckPoint，就表示 redo log file 满了，这时候不能再执行新的更新，得停下来先覆盖（擦掉）一些 redo log，把 CheckPoint 推进一下。</p>
 <p>综上所述，Checkpoint 所做的事情无外乎是将缓冲池中的脏页刷新到磁盘。不同之处在于每次刷新多少页到磁盘，每次从哪里取脏页，以及什么时间触发 Checkpoint。在 InnoDB 存储引擎内部，有两种 Checkpoint，分别为：</p>
 <ul>
@@ -842,7 +842,7 @@
 <blockquote>
 <p>好文 <a target="_blank" rel="noopener" href="https://database.51cto.com/art/202106/669168.htm">https://database.51cto.com/art/202106/669168.htm</a></p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/mlxcccccccc.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/mlxcccccccc.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>2.bin log和redo log的区别？</strong></p>
 <p><strong>bin log (binary log)</strong></p>
 <ul>
@@ -896,7 +896,7 @@
 <li>操作写入binlog可细分为write和fsync两个过程，write指的就是指把日志写入到文件系统的page cache，并没有把数据持久化到磁盘，fsync才是将数据持久化到磁盘的操作。通过参数设置sync_binlog为0的时候，表示每次提交事务都只write，不fsync。此时数据库崩溃可能导致部分提交的事务以及binlog日志由于没有持久化而丢失。</li>
 </ol>
 <p><strong>3. redo log的写入机制？</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/redo_log.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/redo_log.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>为了控制 redo log 的写入策略， InnoDB 提供了 innodb_flush_log_at_trx_commit 参数，它有三种可能取值：</p>
 <ol>
 <li>
@@ -920,14 +920,14 @@
 </li>
 </ol>
 <p>为了确保每次日志都能写入到事务日志文件中，在每次将log buffer中的日志写入日志文件的过程中都会调用一次操作系统的fsync操作（即fsync系统调用）。因为MySQL是工作在用户空间的，MySQL的log buffer处于用户空间的内存中。要写入到磁盘上的log file中，中间还要经过操作系统内核空间的os buffer，调用fsync的作用就是将OS buffer中的日志刷到磁盘上的log file中</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/buffer.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/buffer.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><strong>4. bin log的写入机制？</strong></p>
 <p>区分于redo log的事务执行过程中会不断的写入，bin log 是在事务最终提交前写入的</p>
 <p>具体的实现方法就是：事务执行过程中，先把日志写到 bin log cache ，事务提交的时候，再把 bin log cache 写到 bin log 文件中</p>
 <p>一个事务的 bin log 是不能被拆开的，因此不论这个事务多大，也要确保一次性写入，这就涉及到了bin log cache保存这个事务bin log 的能力</p>
 <p>系统给 bin log cache 分配了一片内存，每个线程一个，参数 binlog_cache_size 用于控制单个线程内 bin log cache 所占内存的大小</p>
 <p>如果超过了这个参数规定的大小，就要暂存到磁盘，事务提交的时候，把 binlog cache 里的完整事务写入到 bin log 中，并清空 bin log cache</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/jajdfa.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/jajdfa.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>每个线程有自己 bin log cache（binlog cache 是每个线程自己维护的），但是共用同一份 bin log 文件，保证了一个事务的bin log不能被拆开。bin log的阶段就三种：</p>
 <p>图中的 write ，指的就是指把日志写入到文件系统的 page cache（是操作系统的文件系统上的，属于操作系统的内存），并没有把数据持久化到磁盘，所以速度比较快。</p>
 <p>图中的 fsync ，才是将数据持久化到磁盘的操作（由系统缓冲区写回磁盘的函数）。一般情况下，我们认为 fsync 才占磁盘的IOPS（IOPS （Input/Output Operations Per Second），即每秒进行读写（I/O）操作的次数）</p>
@@ -997,7 +997,7 @@
 <p>理解：不能存在传递依赖，即除主键外，其他字段必须依赖主键</p>
 <h1>十二、Mysql语句执行过程</h1>
 <p><strong>1. 一条Mysql语句的执行过程？</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/snacdjk.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/snacdjk.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ol>
 <li>客户端首先通过连接器进行身份认证和权限相关</li>
 <li>如果是执行查询语句的时候，会先查询缓存，但MySQL 8.0 版本后该步骤移除</li>
@@ -1083,7 +1083,7 @@
 <li>执行器生成这个操作的bin log，将bin log写入磁盘。</li>
 <li>执行器调用引擎的提交事务接口，引擎将写入的redo log改成提交状态，更新完成。</li>
 </ol>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/dajfksjf.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/dajfksjf.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>浅绿色：InnoDB执行，深绿色：执行器执行</p>
 <h1>十三、MyISAM和InnoDB</h1>
 <p><strong>MyISAM和InnoDB的区别？</strong></p>
@@ -1163,7 +1163,7 @@
 <h1>十七、Mysql死锁</h1>
 <p><strong>一、什么是死锁</strong></p>
 <p>官方定义如下：两个事务都持有对方需要的锁，并且在等待对方释放，并且双方都不会释放自己的锁。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Mysql%E6%AD%BB%E9%94%81.png" srcset="/img/loading.gif" lazyload alt="Mysql死锁"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/Mysql%E6%AD%BB%E9%94%81.png" srcset="/blog/img/loading.gif" lazyload alt="Mysql死锁"></p>
 <p><strong>二、为什么会形成死锁</strong></p>
 <p>MySQL的并发控制有两种方式，一个是 MVCC，一个是两阶段锁协议。那么为什么要并发控制呢？是因为多个用户同时操作 MySQL 的时候，为了提高并发性能并且要求如同多个用户的请求过来之后如同串行执行的一样（可串行化调度）</p>
 <p><strong>两阶段锁协议（2PL）</strong></p>
@@ -1222,7 +1222,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  <a href="/blog/categories/MySQL/" class="category-chain-item">MySQL</a>
   
   
 
@@ -1237,7 +1237,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+        <a href="/blog/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
       
     </div>
   
@@ -1250,7 +1250,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>MySQL</div>
-      <div>https://heart.github.io/2023/05/04/Work/MySQL/MySQL八股/</div>
+      <div>https://heart.github.io/blog/2023/05/04/Work/MySQL/MySQL八股/</div>
     </div>
     <div class="license-meta">
       
@@ -1294,7 +1294,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/10/Work/Research/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97/" title="储备池计算">
+                      <a href="/blog/2023/05/10/Work/Research/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97/" title="储备池计算">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">储备池计算</span>
                         <span class="visible-mobile">上一篇</span>
@@ -1304,7 +1304,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/05/01/Others/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
+                      <a href="/blog/2023/05/01/Others/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">
                         <span class="hidden-mobile">操作系统</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1463,8 +1463,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1486,7 +1486,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -1585,7 +1585,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1595,7 +1595,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

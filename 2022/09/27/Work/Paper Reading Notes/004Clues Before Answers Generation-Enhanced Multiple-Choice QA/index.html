@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《Clues Before Answers: Generation-Enhanced Multiple-Choice QA》 论文来源： NAACL 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2205.00274v1.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;nju-websoft&#x2F;genmc 概述 目前MCQA的主要趋势是使用encoder-decode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Clues Before Answers  Generation-Enhanced Multiple-Choice QA">
-<meta property="og:url" content="https://heart.github.io/2022/09/27/Work/Paper%20Reading%20Notes/004Clues%20Before%20Answers%20Generation-Enhanced%20Multiple-Choice%20QA/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2022/09/27/Work/Paper%20Reading%20Notes/004Clues%20Before%20Answers%20Generation-Enhanced%20Multiple-Choice%20QA/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《Clues Before Answers: Generation-Enhanced Multiple-Choice QA》 论文来源： NAACL 2022 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2205.00274v1.pdf 源码： https:&#x2F;&#x2F;github.com&#x2F;nju-websoft&#x2F;genmc 概述 目前MCQA的主要趋势是使用encoder-decode">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -299,12 +299,12 @@
 <h2 id="概述">概述</h2>
 <p>目前MCQA的主要趋势是使用encoder-decoder的结构，然而，encoder-decoder结构的目标是生成文本，用此结构来做分类任务（MCQA）会使得预训练结构的知识得不到充分利用，</p>
 <p>此文为了充分利用encoder-decoder预训练模型的潜在知识，提出了一种名为GenMC的MCQA模型，从问题中生成线索，利用线索来辅助选择答案。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220927140124292.png" srcset="/img/loading.gif" lazyload alt="image-20220927140124292"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220927140124292.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220927140124292"></p>
 <p>随着text2text模式在nlp领域的快速应用，有人使用此结构通过大量语料的训练来达到了MCQA任务的SOTA，训练方法是将问题和所有选项作为输入，将正确选项作为生成目标</p>
 <p>然而，使用生成任务预训练，再用分类任务做微调，这会导致不能充分利用预训练的知识。</p>
 <p>出了text2text模式之外，还有encoder-only模式</p>
 <h2 id="模型设计">模型设计</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220927142410395.png" srcset="/img/loading.gif" lazyload alt="image-20220927142410395"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220927142410395.png" srcset="/blog/img/loading.gif" lazyload alt="image-20220927142410395"></p>
 
                 
               </div>
@@ -323,7 +323,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -338,7 +338,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/MCQA/" class="print-no-link">#MCQA</a>
+        <a href="/blog/tags/MCQA/" class="print-no-link">#MCQA</a>
       
     </div>
   
@@ -351,7 +351,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Clues Before Answers  Generation-Enhanced Multiple-Choice QA</div>
-      <div>https://heart.github.io/2022/09/27/Work/Paper Reading Notes/004Clues Before Answers Generation-Enhanced Multiple-Choice QA/</div>
+      <div>https://heart.github.io/blog/2022/09/27/Work/Paper Reading Notes/004Clues Before Answers Generation-Enhanced Multiple-Choice QA/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +395,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/29/Work/Paper%20Reading%20Notes/003DUMA%20Reading%20Comprehension%20with%20Transposition%20Thinking/" title="DUMA Reading Comprehension with Transposition Thinking">
+                      <a href="/blog/2022/09/29/Work/Paper%20Reading%20Notes/003DUMA%20Reading%20Comprehension%20with%20Transposition%20Thinking/" title="DUMA Reading Comprehension with Transposition Thinking">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">DUMA Reading Comprehension with Transposition Thinking</span>
                         <span class="visible-mobile">上一篇</span>
@@ -405,7 +405,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/19/Work/Paper%20Reading%20Notes/011Layer%20Normalization/" title="Layer Normalization">
+                      <a href="/blog/2022/09/19/Work/Paper%20Reading%20Notes/011Layer%20Normalization/" title="Layer Normalization">
                         <span class="hidden-mobile">Layer Normalization</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -564,8 +564,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -587,7 +587,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -686,7 +686,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -696,7 +696,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

@@ -19,7 +19,7 @@
     <meta name="description" content="详解Transformer （Attention Is All You Need） - 大师兄的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;48508221 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_27590277&#x2F;article&#x2F;details&#x2F;106263994\ 万字长文帮你彻底搞定Transformer-不要错过！！ - DASOU的文章 - 知乎">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer">
-<meta property="og:url" content="https://heart.github.io/2023/08/02/Work/NLP/006Transformer/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/02/Work/NLP/006Transformer/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="详解Transformer （Attention Is All You Need） - 大师兄的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;48508221 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_27590277&#x2F;article&#x2F;details&#x2F;106263994\ 万字长文帮你彻底搞定Transformer-不要错过！！ - DASOU的文章 - 知乎">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -299,9 +299,9 @@
 <p>答案解析(1)—史上最全Transformer面试题：灵魂20问帮你彻底搞定Transformer - DASOU的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149799951">https://zhuanlan.zhihu.com/p/149799951</a></p>
 <p>关于Transformer的若干问题整理记录 - 小白丶的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/82391768">https://zhuanlan.zhihu.com/p/82391768</a></p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802141733150.png" srcset="/img/loading.gif" lazyload alt="Transformer"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802141733150.png" srcset="/blog/img/loading.gif" lazyload alt="Transformer"></p>
 <h2 id="一、Transformer为何使用多头注意力机制？（为什么不使用一个头）">一、Transformer为何使用多头注意力机制？（为什么不使用一个头）</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201320897.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915201320897.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>原论文中说到进行Multi-head Attention的原因是将模型分为多个头，形成多个子空间，可以让模型去关注不同方面的信息，最后再将各个方面的信息综合起来。其实直观上也可以想到，如果自己设计这样的一个模型，必然也不会只做一次attention，多次attention综合的结果至少能够起到增强模型的作用，也可以类比CNN中同时使用<strong>多个卷积核</strong>的作用，直观上讲，多头的注意力<strong>有助于网络捕捉到更丰富的特征/信息。</strong></p>
 <blockquote>
 <p>具体可以看这篇文章<a target="_blank" rel="noopener" href="http://lishilong.xyz/2022/09/15/NLP/transformer%E7%9A%84multi-head/">http://lishilong.xyz/2022/09/15/NLP/transformer的multi-head/</a></p>
@@ -311,11 +311,11 @@
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/319339652">https://www.zhihu.com/question/319339652</a></p>
 <p><a target="_blank" rel="noopener" href="https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3">https://medium.com/dissecting-bert/dissecting-bert-part-1-d3c3d495cdb3</a></p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212309079.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212106860.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20220915212309079.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>K和Q的点乘是为了得到一个attention score 矩阵，用来对V进行提纯。K和Q使用了不同的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>k</mi></msub><mo separator="true">,</mo><msub><mi>W</mi><mi>Q</mi></msub></mrow><annotation encoding="application/x-tex">W_k, W_Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">Q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>来计算，可以理解为是在不同空间上的投影。正因为有了这种不同空间的投影，增加了表达能力，这样计算得到的attention score矩阵的泛化能力更高。这里解释下泛化能力，因为K和Q使用了不同的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>k</mi></msub><mo separator="true">,</mo><msub><mi>W</mi><mi>Q</mi></msub></mrow><annotation encoding="application/x-tex">W_k, W_Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">Q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>来计算，得到的也是两个完全不同的矩阵，所以表达能力更强。</p>
 <p>但是如果不用Q，直接拿K和K点乘的话，你会发现attention score 矩阵是一个对称矩阵。因为是同样一个矩阵，都投影到了同样一个空间，所以泛化能力很差。这样的矩阵导致对V进行提纯的时候，效果也不会好。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802164631292.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230802164631292.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="三、有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？">三、有哪些不同类型的注意力，其公式及计算过程和复杂度差异有什么区别？</h2>
 <blockquote>
 <p>这个问题也会被分为几个子问题</p>
@@ -377,7 +377,7 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <p>而上述的计算过程不变，依次对任意的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>h</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">s_i,h_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span> 求出其乘性注意力分数，然后统一softmax 。这个过程对于序列 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mtext>，</mtext><mi>S</mi></mrow><annotation encoding="application/x-tex">H，S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord cjk_fallback">，</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 而言,就是矩阵相乘的过程</p>
 <p>Dot Product Attention（Mul）和 Additive Attention（Add）两者在复杂度上是相似的。但是Additive Attention增加了三个可学习的矩阵，所以相比另外两个效果会更好，同时也增加了更多的模型参数，计算效率会较低。</p>
 <p>至于为什么要用Mul来完成Self-attention，Transformer作者的说法是为了计算更快。因为虽然矩阵加法的计算更简单，但是Add套着<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>a</mi><mi>n</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">tanh</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">anh</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span>，相当于一个完整的隐层。在整体计算复杂度上两者接近，但是矩阵乘法已经有了非常成熟的加速实现。在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">d_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>(即attention-dim）较小的时候，两者的效果接近。但是随着<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">d_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>增大，Add开始显著超越Mul。</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-4ce33c847c71c3092e1a557c857369fb_1440w.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-4ce33c847c71c3092e1a557c857369fb_1440w.jpg" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>作者分析Mul性能不佳的原因，认为是极大的点积值将整个softmax推向梯度平缓区，使得收敛困难。也就是出现了“梯度消失”。</p>
 <p>这才有了scaled。所以，Add是天然地不需要scaled，Mul在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">d_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>较大的时候必须要做scaled。</p>
 <p>那么，极大的点积值是从哪里来的呢?</p>
@@ -451,7 +451,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <p>在<strong>不增加时间复杂度</strong>的情况下，同时，借鉴<strong>CNN多核</strong>的思想，在<strong>更低的维度</strong>，在**多个独立的特征空间，**更容易学习到更丰富的特征信息</p>
 <p>transformer中multi-head attention中每个head为什么要进行降维？ - 海晨威的回答 - 知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/350369171/answer/1718672303">https://www.zhihu.com/question/350369171/answer/1718672303</a></p>
 <p>扩展：Self-Attention时间复杂度： <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>⋅</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2 \cdot d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>为max_seq_length，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span>为embedding_dim</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803144223933.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803144223933.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p><a target="_blank" rel="noopener" href="https://liwt31.github.io/2018/10/12/mul-complexity/">矩阵、张量乘法（numpy.tensordot）的时间复杂度分析</a></p>
 </blockquote>
 <h2 id="六、为何在获取输入词向量之后需要对矩阵乘以embedding-size的开方？意义是什么？">六、为何在获取输入词向量之后需要对矩阵乘以embedding size的开方？意义是什么？</h2>
@@ -462,42 +462,42 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <h2 id="七、简单介绍一下Transformer的位置编码？有什么意义和优缺点？">七、简单介绍一下Transformer的位置编码？有什么意义和优缺点？</h2>
 <p>因为self-attention是位置无关的，无论句子的顺序是什么样的，通过self-attention计算的token的hidden embedding都是一样的，这显然不符合人类的思维。因此要有一个办法能够在模型中表达出一个token的位置信息，transformer使用了固定的positional encoding来表示token在句子中的绝对位置信息。</p>
 <p>具体计算方法如下：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803151604300.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803151604300.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span>表示位置，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>表示维度</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803151649141.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803151649141.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>也即第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span>个位置的位置编码为：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803151728600.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/fd9871ec1e564486a546fc47caf4b988.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803151728600.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/fd9871ec1e564486a546fc47caf4b988.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>上图横坐标代表维度<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>，纵坐标代表位置<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>。可以看到，对于句子长度最大为50的模型来说，前60维就可以区分位置了</p>
 <blockquote>
 <p>奇数维度之间或者偶数维度之间周期不同</p>
 </blockquote>
 <p>给定<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>，存在一个固定的与<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>相关的线性变换矩阵，从而由<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">pos</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">os</span></span></span></span>的位置编码线性变换而得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>o</mi><mi>s</mi><mo>+</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">pos+k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">os</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>的位置编码。这个相对位置信息可能可以被模型发现而利用。因为绝对位置信息只保证了各个位置不一样，但是并不是像0，1，2这样的有明确前后关系的编码，证明如下：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e5ee3e90bc71dce15245eb2bca5516db.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/86a16423bef4f5f04e02fe66cf08e067.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/434f7c183fc6764b5a5c2995aad18e6c.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/aa04c495cde63f8cc687a2dcc21b0e63.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/e5ee3e90bc71dce15245eb2bca5516db.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/86a16423bef4f5f04e02fe66cf08e067.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/434f7c183fc6764b5a5c2995aad18e6c.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/aa04c495cde63f8cc687a2dcc21b0e63.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>为常数，因此我们可以用两个常数来表示：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/34c0742b091d3245dcc81eba57d67c4c.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/34c0742b091d3245dcc81eba57d67c4c.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>所以可以得到位置<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">pos</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">os</span></span></span></span>的编码与位置<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>o</mi><mi>s</mi><mo>+</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">pos+k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">os</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>的编码是线性关系：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/05fc26c69fb795ff833d9afb29fe3c96.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/05fc26c69fb795ff833d9afb29fe3c96.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>结论：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/8e789649da45467d9e15088829cf8cab.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/8e789649da45467d9e15088829cf8cab.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>其中M为：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/c76a2c40b6c5478e89e4dbd7d0c08e0c.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/c76a2c40b6c5478e89e4dbd7d0c08e0c.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <blockquote>
 <p>拓展：上面的操作也只可以看到线性关系，怎么可以更直白地知道每个token的距离关系？</p>
 <p>为了解答上面的问题，我们将<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><msub><mi>E</mi><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">PE_{pos}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">os</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><msub><mi>E</mi><mrow><mi>p</mi><mi>o</mi><mi>s</mi><mo>+</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">PE_{pos+k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">os</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>相乘 (两个向量相乘)，可以得到如下结果：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/d71060a995283ccb4589f8022836f345.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/d71060a995283ccb4589f8022836f345.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>我们发现相乘后的结果为一个余弦的加和。这里影响值的因素就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>，如果两个token的距离越大，也就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>越大，根据余弦函数的性质可以知道，两个位置的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">PE</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">PE</span></span></span></span>相乘结果越小。这样的关系可以得到，如果两个token距离越远则乘积的结果越小</p>
 <p>这样的方式虽说可以表示出相对的距离关系，但是也是有局限的。其中一个比较大的问题是：只能得到相对关系，无法得到方向关系。所谓的方向关系就是，对于两个token谁在谁的前面，或者谁在谁的后面是无法判断的。数学表示如下：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/4382d7b93a5ed7b38608be6a66d51d1c.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/4382d7b93a5ed7b38608be6a66d51d1c.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 </blockquote>
 <p>实际上有说法是<strong>Transformer中经过attention（主要是其中的线性变换）之后就不含相对位置信息了</strong>，具体可以参考</p>
 <blockquote>
 <p>Transformer改进之相对位置编码(RPE) - Taylor Wu的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105001610">https://zhuanlan.zhihu.com/p/105001610</a></p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-a7ae69fb7f380f612305d2633946ad8a_r.jpg" srcset="/img/loading.gif" lazyload alt="使用随机线性变换，可以看到相对位置信息已经没有了"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-a7ae69fb7f380f612305d2633946ad8a_r.jpg" srcset="/blog/img/loading.gif" lazyload alt="使用随机线性变换，可以看到相对位置信息已经没有了"></p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuzyibooooo/article/details/126063398">https://blog.csdn.net/zhuzyibooooo/article/details/126063398</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Kaiyuan_sjtu/article/details/119621613">https://blog.csdn.net/Kaiyuan_sjtu/article/details/119621613</a></p>
@@ -506,9 +506,9 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </blockquote>
 <h2 id="八、还有哪些关于位置编码的技术，各自的优缺点是什么？">八、还有哪些关于位置编码的技术，各自的优缺点是什么？</h2>
 <p><strong>位置编码方式一：</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/2e596770167143bba3ca319a987265a4.png" srcset="/img/loading.gif" lazyload alt="[0,1]区间内编码"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/2e596770167143bba3ca319a987265a4.png" srcset="/blog/img/loading.gif" lazyload alt="[0,1]区间内编码"></p>
 <p><strong>位置编码方式二：</strong></p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/538bc20c223e4814b0b87f97eeda6a1b.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/538bc20c223e4814b0b87f97eeda6a1b.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43391414/article/details/121061766">https://blog.csdn.net/qq_43391414/article/details/121061766</a></p>
 <p><a target="_blank" rel="noopener" href="https://kexue.fm/archives/8130">让研究人员绞尽脑汁的Transformer位置编码</a>  这篇写得很详细！</p>
@@ -594,7 +594,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <p>Encoder侧：模块之间是串行的，一个模块计算的结果做为下一个模块的输入，互相之前有依赖关系。从每个模块的角度来说，注意力层和前馈神经层这两个子模块单独来看都是可以并行的，不同单词之间是没有依赖关系的。</p>
 <p>Decoder引入sequence mask就是为了并行化训练，Decoder推理过程没有并行，只能一个一个的解码，很类似于RNN，这个时刻的输入依赖于上一个时刻的输出。</p>
 <blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803215312223.png" srcset="/img/loading.gif" lazyload alt="Decoder的并行化"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230803215312223.png" srcset="/blog/img/loading.gif" lazyload alt="Decoder的并行化"></p>
 <p>关于Transformer的若干问题整理记录 - 小白丶的文章 - 知乎 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/82391768">https://zhuanlan.zhihu.com/p/82391768</a></p>
 </blockquote>
 <h2 id="十六、简单描述一下wordpiece-model-和-byte-pair-encoding（BPE）">十六、简单描述一下wordpiece model 和 byte pair encoding（BPE）</h2>
@@ -631,7 +631,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
     
       <span class="category-chain">
         
-  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  <a href="/blog/categories/NLP/" class="category-chain-item">NLP</a>
   
   
 
@@ -646,7 +646,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
+        <a href="/blog/tags/%E5%85%AB%E8%82%A1/" class="print-no-link">#八股</a>
       
     </div>
   
@@ -659,7 +659,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   <div class="license-box my-3">
     <div class="license-title">
       <div>Transformer</div>
-      <div>https://heart.github.io/2023/08/02/Work/NLP/006Transformer/</div>
+      <div>https://heart.github.io/blog/2023/08/02/Work/NLP/006Transformer/</div>
     </div>
     <div class="license-meta">
       
@@ -703,7 +703,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/04/Work/NLP/007%E6%89%8B%E6%92%95Transformer/" title="手撕Transformer">
+                      <a href="/blog/2023/08/04/Work/NLP/007%E6%89%8B%E6%92%95Transformer/" title="手撕Transformer">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">手撕Transformer</span>
                         <span class="visible-mobile">上一篇</span>
@@ -713,7 +713,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/02/Work/NLP/005word2vec/" title="word2vec">
+                      <a href="/blog/2023/08/02/Work/NLP/005word2vec/" title="word2vec">
                         <span class="hidden-mobile">word2vec</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -872,8 +872,8 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -895,7 +895,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -994,7 +994,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -1004,7 +1004,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

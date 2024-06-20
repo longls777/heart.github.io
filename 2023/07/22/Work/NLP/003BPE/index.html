@@ -19,7 +19,7 @@
     <meta name="description" content="Byte Pair Encoding &lt;Neural Machine Translation of Rare Words with Subword Units&gt; 阅读笔记 - 中森的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;407057126 Neural Machine Translation with Byte-Level Subwords  一般">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BPE">
-<meta property="og:url" content="https://heart.github.io/2023/07/22/Work/NLP/003BPE/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/07/22/Work/NLP/003BPE/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="Byte Pair Encoding &lt;Neural Machine Translation of Rare Words with Subword Units&gt; 阅读笔记 - 中森的文章 - 知乎 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;407057126 Neural Machine Translation with Byte-Level Subwords  一般">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -301,7 +301,7 @@
 <h2 id="BPE">BPE</h2>
 <p>每个单词将首先转化为逐个字母分割的形式（单词尾会额外加上一个分割符号），随后统计每个字母和前面或后面字母的共现次数（所以叫字节对），对最常见的字母对，我们将其合并，并重新计算字母共现频率。重复该操作直到预先设定的超参数合并次数用尽或设定的词库大小达到为止。</p>
 <p>下图是该算法的简单python实现：</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-fae243b0f476ded326c38d7e752c07d7_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/v2-fae243b0f476ded326c38d7e752c07d7_720w.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li><code>p = re.compile(r'(?&lt;!\S)' + bigram + r'(?!\S)')</code> 这行代码的作用是创建一个正则表达式对象 <code>p</code>，用于匹配包含合并符号对 <code>bigram</code> 的字符串，并且这个符号对的前后不能有其他非空白字符</li>
 <li><code>p.sub()</code> 方法用于在字符串中执行替换操作，将匹配正则表达式模式的部分替换为指定的字符串</li>
@@ -336,7 +336,7 @@ A base vocabulary that includes all possible base characters can be quite large 
     
       <span class="category-chain">
         
-  <a href="/categories/NLP/" class="category-chain-item">NLP</a>
+  <a href="/blog/categories/NLP/" class="category-chain-item">NLP</a>
   
   
 
@@ -357,7 +357,7 @@ A base vocabulary that includes all possible base characters can be quite large 
   <div class="license-box my-3">
     <div class="license-title">
       <div>BPE</div>
-      <div>https://heart.github.io/2023/07/22/Work/NLP/003BPE/</div>
+      <div>https://heart.github.io/blog/2023/07/22/Work/NLP/003BPE/</div>
     </div>
     <div class="license-meta">
       
@@ -401,7 +401,7 @@ A base vocabulary that includes all possible base characters can be quite large 
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/22/Work/Deep%20Learning/009%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E6%9D%83%E9%87%8D%E8%A1%B0%E5%87%8F%E5%AE%9E%E8%B7%B5/" title="模型参数权重衰减实践">
+                      <a href="/blog/2023/07/22/Work/Deep%20Learning/009%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E6%9D%83%E9%87%8D%E8%A1%B0%E5%87%8F%E5%AE%9E%E8%B7%B5/" title="模型参数权重衰减实践">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">模型参数权重衰减实践</span>
                         <span class="visible-mobile">上一篇</span>
@@ -411,7 +411,7 @@ A base vocabulary that includes all possible base characters can be quite large 
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/22/Work/Deep%20Learning/001%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E5%8D%9A%E5%AE%A2/" title="比较好的博客List">
+                      <a href="/blog/2023/07/22/Work/Deep%20Learning/001%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E5%8D%9A%E5%AE%A2/" title="比较好的博客List">
                         <span class="hidden-mobile">比较好的博客List</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -570,8 +570,8 @@ A base vocabulary that includes all possible base characters can be quite large 
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -593,7 +593,7 @@ A base vocabulary that includes all possible base characters can be quite large 
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -692,7 +692,7 @@ A base vocabulary that includes all possible base characters can be quite large 
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -702,7 +702,7 @@ A base vocabulary that includes all possible base characters can be quite large 
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

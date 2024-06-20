@@ -19,7 +19,7 @@
     <meta name="description" content="1. 冒泡排序 从左到右不断交换相邻逆序的元素，在一轮的循环之后，可以让未排序的最大元素上浮到右侧。 在一轮循环中，如果没有发生交换，那么说明数组已经是有序的，此时可以直接退出。 时间复杂度为O(n2)O(n^2)O(n2) 123456789101112131415161718192021class Solution &amp;#123;    public int[] sortArray(int[]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="排序算法">
-<meta property="og:url" content="https://heart.github.io/2023/10/07/Work/Algorithm%20Problem/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/10/07/Work/Algorithm%20Problem/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="1. 冒泡排序 从左到右不断交换相邻逆序的元素，在一轮的循环之后，可以让未排序的最大元素上浮到右侧。 在一轮循环中，如果没有发生交换，那么说明数组已经是有序的，此时可以直接退出。 时间复杂度为O(n2)O(n^2)O(n2) 123456789101112131415161718192021class Solution &amp;#123;    public int[] sortArray(int[]">
 <meta property="og:locale" content="zh_CN">
@@ -62,12 +62,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -76,15 +76,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -114,7 +114,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -133,7 +133,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -145,7 +145,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -157,7 +157,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -169,7 +169,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -181,7 +181,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -301,7 +301,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] sortArray(<span class="hljs-type">int</span>[] nums) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> nums.length;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n-<span class="hljs-number">1</span>;i&gt;<span class="hljs-number">0</span>;i--)<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;i;j++)<br>                <span class="hljs-keyword">if</span>(nums[j]&gt;nums[j+<span class="hljs-number">1</span>])<br>                    swap(nums,j,j+<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums,<span class="hljs-type">int</span> i,<span class="hljs-type">int</span> j)</span>&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> nums[i];<br>        nums[i] = nums[j];<br>        nums[j] = temp;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="2-插入排序"><strong>2. 插入排序</strong></h2>
 <p>时间复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/07f6a41e574.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/07f6a41e574.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] sortArray(<span class="hljs-type">int</span>[] nums) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.length;i++)&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">insertVal</span> <span class="hljs-operator">=</span> nums[i];<br>            <span class="hljs-type">int</span> <span class="hljs-variable">insertIdx</span> <span class="hljs-operator">=</span> i-<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(insertIdx&gt;=<span class="hljs-number">0</span>&amp;&amp;nums[insertIdx]&gt;insertVal)&#123;<br>                nums[insertIdx+<span class="hljs-number">1</span>] = nums[insertIdx];<br>                insertIdx--;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(insertIdx+<span class="hljs-number">1</span>!=i)<br>                nums[insertIdx+<span class="hljs-number">1</span>] = insertVal;<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="3-选择排序"><strong>3. 选择排序</strong></h2>
 <p><strong>冒泡排序与选择排序的区别</strong></p>
@@ -320,7 +320,7 @@
 <p>i 一直遍历到arr.length，从而将所有分组的所有元素（从第二个开始）都在所在分组进行了插入排序，最后随着gap折减到0，排序完成</p>
 <h2 id="5-归并排序"><strong>5. 归并排序</strong></h2>
 <p>归并排序的时间复杂度是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></p>
-<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/328d47b728f.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://longls777.oss-cn-beijing.aliyuncs.com/img/328d47b728f.webp" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] sortArray(<span class="hljs-type">int</span>[] nums) &#123;<br>        <span class="hljs-type">int</span>[] temp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[nums.length];<br>        mergeSort(nums,<span class="hljs-number">0</span>,nums.length-<span class="hljs-number">1</span>,temp);<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mergeSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums,<span class="hljs-type">int</span> left,<span class="hljs-type">int</span> right,<span class="hljs-type">int</span>[] temp)</span>&#123;<br>        <span class="hljs-keyword">if</span>(left&lt;right)&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">mid</span> <span class="hljs-operator">=</span> (left+right)/<span class="hljs-number">2</span>;<br>            mergeSort(nums,left,mid,temp);<br>            mergeSort(nums,mid+<span class="hljs-number">1</span>,right,temp);<br>            merge(nums,left,mid,right,temp);<br>            &#125;<br>    &#125;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">merge</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums,<span class="hljs-type">int</span> left,<span class="hljs-type">int</span> mid,<span class="hljs-type">int</span> right,<span class="hljs-type">int</span>[] temp)</span>&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> left, j = mid+<span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=right)&#123;<br>            <span class="hljs-keyword">if</span>(nums[i]&lt;=nums[j])<br>                temp[t++] = nums[i++];<br>            <span class="hljs-keyword">else</span><br>                temp[t++] = nums[j++]; <br>        &#125;<br>        <span class="hljs-keyword">while</span>(i&lt;=mid)<br>            temp[t++] = nums[i++];<br>        <span class="hljs-keyword">while</span>(j&lt;=right)<br>            temp[t++] = nums[j++];<br>        t = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> left;<br>        <span class="hljs-keyword">while</span>(cur&lt;=right)<br>            nums[cur++] = temp[t++];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="6-堆排序"><strong>6. 堆排序</strong></h2>
 <p>最坏，最好．平均时间复杂度均为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，是不稳定排序（不能保证相同的两个数的位置和原来一样)</p>
@@ -375,7 +375,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
+  <a href="/blog/categories/Algorithm-Problem/" class="category-chain-item">Algorithm Problem</a>
   
   
 
@@ -390,7 +390,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%8E%92%E5%BA%8F/" class="print-no-link">#排序</a>
+        <a href="/blog/tags/%E6%8E%92%E5%BA%8F/" class="print-no-link">#排序</a>
       
     </div>
   
@@ -403,7 +403,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>排序算法</div>
-      <div>https://heart.github.io/2023/10/07/Work/Algorithm Problem/排序算法/</div>
+      <div>https://heart.github.io/blog/2023/10/07/Work/Algorithm Problem/排序算法/</div>
     </div>
     <div class="license-meta">
       
@@ -447,7 +447,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/08/Life/Imagination/%E5%AF%8C%E5%A3%AB%E5%B1%B1%E4%B8%8B/" title="富士山下">
+                      <a href="/blog/2023/10/08/Life/Imagination/%E5%AF%8C%E5%A3%AB%E5%B1%B1%E4%B8%8B/" title="富士山下">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">富士山下</span>
                         <span class="visible-mobile">上一篇</span>
@@ -457,7 +457,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/22/Others/Git%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/" title="Git实用指南">
+                      <a href="/blog/2023/09/22/Others/Git%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/" title="Git实用指南">
                         <span class="hidden-mobile">Git实用指南</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -616,8 +616,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -639,7 +639,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -738,7 +738,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -748,7 +748,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

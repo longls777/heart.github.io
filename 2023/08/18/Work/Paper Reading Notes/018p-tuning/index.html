@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《GPT Understands, Too》 论文来源： arXiv:2103.10385 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10385 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;P-tuning 参考链接  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;gogoSandy&#x2F;p&#x2F;17202169.html  概述 本文提出了P-tuning方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GPT Understands, Too">
-<meta property="og:url" content="https://heart.github.io/2023/08/18/Work/Paper%20Reading%20Notes/018p-tuning/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/18/Work/Paper%20Reading%20Notes/018p-tuning/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《GPT Understands, Too》 论文来源： arXiv:2103.10385 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2103.10385 源码： https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;P-tuning 参考链接  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;gogoSandy&#x2F;p&#x2F;17202169.html  概述 本文提出了P-tuning方">
 <meta property="og:locale" content="zh_CN">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -113,7 +113,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -132,7 +132,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -303,10 +303,10 @@
 <h2 id="概述">概述</h2>
 <p>本文提出了P-tuning方法，证明了GPT等自回归的生成式模型也可以具有和BERT等MLM相同甚至更好的NLU能力</p>
 <p>随着GPT3 175B等的大模型陆续出现，全参数微调是非常困难的，很多prompt微调依靠手工设计的模板，但是这不靠谱</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817222040174.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230817222040174.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>本文做的相关实验证明了prompt的设计对于LLM的效果具有很大影响</p>
 <h2 id="Method">Method</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818115703123.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818115703123.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>给定上下文（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>），目标（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>），要求搜索prompt</p>
 <p>相比于离散prompt搜索，P-tuning使用可训练的Prompt Encoder生成prompt embedding，比LLM vocab space的词汇可能具有更好的效果</p>
 <p><strong>优化过程</strong></p>
@@ -325,11 +325,11 @@
 <blockquote>
 <p>LSTM + ReLU + 2-layer MLP</p>
 </blockquote>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818121124142.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818121124142.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>LSTM的参数比LLM小了好几个数量级，而且推理时只需要<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span>，可以丢弃LSTM</p>
 <p>同时，作者发现增加几个anchor tokens可以提高模型在NLU任务上的表现，例如capital</p>
 <h2 id="Experiments">Experiments</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818121735943.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230818121735943.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>效果超群</p>
 <h2 id="局限性">局限性</h2>
 <blockquote>
@@ -358,7 +358,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -373,7 +373,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/fine-tuning/" class="print-no-link">#fine tuning</a>
+        <a href="/blog/tags/fine-tuning/" class="print-no-link">#fine tuning</a>
       
     </div>
   
@@ -386,7 +386,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>GPT Understands, Too</div>
-      <div>https://heart.github.io/2023/08/18/Work/Paper Reading Notes/018p-tuning/</div>
+      <div>https://heart.github.io/blog/2023/08/18/Work/Paper Reading Notes/018p-tuning/</div>
     </div>
     <div class="license-meta">
       
@@ -430,7 +430,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/18/Work/Paper%20Reading%20Notes/019prefix-tuning/" title="Prefix-Tuning - Optimizing Continuous Prompts for Generation">
+                      <a href="/blog/2023/08/18/Work/Paper%20Reading%20Notes/019prefix-tuning/" title="Prefix-Tuning - Optimizing Continuous Prompts for Generation">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Prefix-Tuning - Optimizing Continuous Prompts for Generation</span>
                         <span class="visible-mobile">上一篇</span>
@@ -440,7 +440,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/17/Work/NLP/015finetuning/" title="LLMs fine tuning方法总结">
+                      <a href="/blog/2023/08/17/Work/NLP/015finetuning/" title="LLMs fine tuning方法总结">
                         <span class="hidden-mobile">LLMs fine tuning方法总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -599,8 +599,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -622,7 +622,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -721,7 +721,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -731,7 +731,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

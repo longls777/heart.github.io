@@ -19,7 +19,7 @@
     <meta name="description" content="(以下部分内容由chatGPT生成) @Configuration注解的作用 在Spring框架中，@Configuration是一个用来声明配置类的注解。当类上添加了@Configuration注解时，表示这个类是一个配置类，用来配置和组装Spring应用程序中的组件。它的作用主要有以下几个方面：  声明配置类：使用@Configuration注解声明一个类是配置类，这个类中包含了一些配置方法和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot">
-<meta property="og:url" content="https://heart.github.io/2023/04/14/Work/Practice/springboot/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/04/14/Work/Practice/springboot/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="(以下部分内容由chatGPT生成) @Configuration注解的作用 在Spring框架中，@Configuration是一个用来声明配置类的注解。当类上添加了@Configuration注解时，表示这个类是一个配置类，用来配置和组装Spring应用程序中的组件。它的作用主要有以下几个方面：  声明配置类：使用@Configuration注解声明一个类是配置类，这个类中包含了一些配置方法和">
 <meta property="og:locale" content="zh_CN">
@@ -57,12 +57,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -71,15 +71,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -109,7 +109,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -128,7 +128,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -140,7 +140,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -152,7 +152,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -164,7 +164,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -176,7 +176,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -340,7 +340,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Practice/" class="category-chain-item">Practice</a>
+  <a href="/blog/categories/Practice/" class="category-chain-item">Practice</a>
   
   
 
@@ -361,7 +361,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>SpringBoot</div>
-      <div>https://heart.github.io/2023/04/14/Work/Practice/springboot/</div>
+      <div>https://heart.github.io/blog/2023/04/14/Work/Practice/springboot/</div>
     </div>
     <div class="license-meta">
       
@@ -405,7 +405,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/23/Work/Java/Java%E5%AE%B9%E5%99%A8%E8%AF%A6%E8%A7%A3/" title="Java集合详解">
+                      <a href="/blog/2023/04/23/Work/Java/Java%E5%AE%B9%E5%99%A8%E8%AF%A6%E8%A7%A3/" title="Java集合详解">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Java集合详解</span>
                         <span class="visible-mobile">上一篇</span>
@@ -415,7 +415,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/13/Work/Paper%20Reading%20Notes/005Causal%20Inference%20in%20Natural%20Language%20Processing%20Estimation,%20Prediction,%20Interpretation%20and%20Beyond/" title="Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond">
+                      <a href="/blog/2023/04/13/Work/Paper%20Reading%20Notes/005Causal%20Inference%20in%20Natural%20Language%20Processing%20Estimation,%20Prediction,%20Interpretation%20and%20Beyond/" title="Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond">
                         <span class="hidden-mobile">Causal Inference in Natural Language Processing - Estimation, Prediction, Interpretation and Beyond</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -569,8 +569,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -592,7 +592,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -691,7 +691,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -701,7 +701,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   

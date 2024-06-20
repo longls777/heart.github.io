@@ -19,7 +19,7 @@
     <meta name="description" content="标题：《BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension》 论文来源： ACL 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1910.13461v1.pdf 概述 训练seq2seq模型的降噪自编码器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension">
-<meta property="og:url" content="https://heart.github.io/2023/08/12/Work/Paper%20Reading%20Notes/012BART%20Denoising%20Sequence-to-Sequence%20Pre-training%20for%20Natural%20Language%20Generation,%20Translation,%20and%20Comprehension/index.html">
+<meta property="og:url" content="https://heart.github.io/blog/2023/08/12/Work/Paper%20Reading%20Notes/012BART%20Denoising%20Sequence-to-Sequence%20Pre-training%20for%20Natural%20Language%20Generation,%20Translation,%20and%20Comprehension/index.html">
 <meta property="og:site_name" content="Heart">
 <meta property="og:description" content="标题：《BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension》 论文来源： ACL 2020 原文链接： https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1910.13461v1.pdf 概述 训练seq2seq模型的降噪自编码器">
 <meta property="og:locale" content="zh_CN">
@@ -64,12 +64,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/blog/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
   
 
 
@@ -78,15 +78,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"heart.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"heart.github.io","root":"/blog/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/blog/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
   
 
   
@@ -116,7 +116,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/blog/">
       <strong>Heart</strong>
     </a>
 
@@ -135,7 +135,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/blog/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -147,7 +147,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/blog/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -159,7 +159,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
+              <a class="nav-link" href="/blog/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -171,7 +171,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/blog/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -183,7 +183,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/blog/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -301,7 +301,7 @@ Language Generation, Translation, and Comprehension》</p>
 <p><strong>原文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1910.13461v1.pdf">https://arxiv.org/pdf/1910.13461v1.pdf</a></p>
 <h2 id="概述">概述</h2>
 <p>训练seq2seq模型的降噪自编码器</p>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812151354794.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812151354794.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <h2 id="架构">架构</h2>
 <ul>
 <li>使用标准Transformer结构</li>
@@ -318,7 +318,7 @@ Language Generation, Translation, and Comprehension》</p>
 <li>Document Rotation：统一随机选择一个token，并旋转文档以使其以该token开始。 此任务训练模型来识别文档的开头</li>
 </ul>
 <h2 id="微调">微调</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812160619071.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812160619071.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>
 <p>Sequence Classification Tasks：encoder和decoder接收相同的输入，decoder输出的最后一个token的最后隐层状态做分类（类似BERT的[CLS]分类），不同的是BART将附加token添加到末尾，以便解码器中令牌的表示可以关注完整输入中的解码器状态</p>
@@ -338,7 +338,7 @@ Language Generation, Translation, and Comprehension》</p>
 </li>
 </ul>
 <h2 id="预训练目标的对比">预训练目标的对比</h2>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162224014.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162224014.png" srcset="/blog/img/loading.gif" lazyload alt=""></p>
 <p>结论：</p>
 <ul>
 <li>Performance of pre-training methods varies significantly across tasks ：在ELI5上表现得最好可能在SQuAD表现得最差</li>
@@ -346,7 +346,7 @@ Language Generation, Translation, and Comprehension》</p>
 <li>Left-to-right pre-training improves generation</li>
 <li>Bidirectional encoders are crucial for SQuAD</li>
 </ul>
-<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162836537.png" srcset="/img/loading.gif" lazyload alt="BART优于BERT，和RoBERTa互有优势"></p>
+<p><img src="http://longls777.oss-cn-beijing.aliyuncs.com/img/image-20230812162836537.png" srcset="/blog/img/loading.gif" lazyload alt="BART优于BERT，和RoBERTa互有优势"></p>
 
                 
               </div>
@@ -365,7 +365,7 @@ Language Generation, Translation, and Comprehension》</p>
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
+  <a href="/blog/categories/Paper-Reading-Notes/" class="category-chain-item">Paper Reading Notes</a>
   
   
 
@@ -380,7 +380,7 @@ Language Generation, Translation, and Comprehension》</p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/prLMs/" class="print-no-link">#prLMs</a>
+        <a href="/blog/tags/prLMs/" class="print-no-link">#prLMs</a>
       
     </div>
   
@@ -393,7 +393,7 @@ Language Generation, Translation, and Comprehension》</p>
   <div class="license-box my-3">
     <div class="license-title">
       <div>BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</div>
-      <div>https://heart.github.io/2023/08/12/Work/Paper Reading Notes/012BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension/</div>
+      <div>https://heart.github.io/blog/2023/08/12/Work/Paper Reading Notes/012BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension/</div>
     </div>
     <div class="license-meta">
       
@@ -437,7 +437,7 @@ Language Generation, Translation, and Comprehension》</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/13/Work/NLP/014SwiGLU/" title="SwiGLU激活函数">
+                      <a href="/blog/2023/08/13/Work/NLP/014SwiGLU/" title="SwiGLU激活函数">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SwiGLU激活函数</span>
                         <span class="visible-mobile">上一篇</span>
@@ -447,7 +447,7 @@ Language Generation, Translation, and Comprehension》</p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/11/Work/Paper%20Reading%20Notes/016GLM/" title="GLM &amp;&amp; GLM-130B">
+                      <a href="/blog/2023/08/11/Work/Paper%20Reading%20Notes/016GLM/" title="GLM &amp;&amp; GLM-130B">
                         <span class="hidden-mobile">GLM &amp;&amp; GLM-130B</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -606,8 +606,8 @@ Language Generation, Translation, and Comprehension》</p>
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -629,7 +629,7 @@ Language Generation, Translation, and Comprehension》</p>
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/blog/js/img-lazyload.js" ></script>
   
 
 
@@ -728,7 +728,7 @@ Language Generation, Translation, and Comprehension》</p>
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/blog/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -738,7 +738,7 @@ Language Generation, Translation, and Comprehension》</p>
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/blog/js/boot.js" ></script>
 
 
   
